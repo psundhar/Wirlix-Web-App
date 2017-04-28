@@ -1,17 +1,41 @@
 {
-  "name": "test2",
-  "version": "0.0.0",
+  "name": "wirlix",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "body-parser": "~1.17.1",
+    "async": "^2.3.0",
+    "body-parser": "^1.17.1",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^1.3.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.2",
     "hbs": "~4.0.1",
+    "mongo": "^0.1.0",
+    "mongod": "^2.0.0",
+    "mongoose": "^4.9.4",
     "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2"
-  }
+    "nodemailer": "^4.0.1",
+    "opentok": "^2.5.0",
+    "ramda": "^0.23.0",
+    "serve-favicon": "~2.4.2",
+    "twilio": "^2.11.1"
+  },
+  "description": "wirlix official",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "psundhar"
+  },
+  "keywords": [
+    "wirlix"
+  ],
+  "author": "priyank",
+  "license": "ISC"
 }
