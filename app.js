@@ -20,7 +20,7 @@ var connect = process.env.MONGODB_URI;
 mongoose.connect(connect);
 
 // view engine setup
-app.engine('.hbs', exphbs({extname: '.hbs'}));
+app.engine('.hbs', exphbs({extname: '.hbs', defaultLayout: 'main'}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
