@@ -318,9 +318,7 @@ router.get('/viewer', (req, res) => {
 router.get('/host', (req, res) => {
     opentok.getCredentials('host')
     .then(credentials => res.render('host', { credentials: JSON.stringify(credentials) }))
-    .catch(error => res.status(500).send(errprofile
-
-        or));
+    .catch(error => res.status(500).send(error));
 });
 
 router.get('/guest', (req, res) => {
