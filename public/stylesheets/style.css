@@ -1108,7 +1108,7 @@ padding-top: 50px;
 .React {
     text-align: center;
     color: #fff;
-    font-size: 40px;
+    font-size: 25px;
     -ms-word-wrap: normal;
     word-wrap: normal;
     font-family: "Raleway",Arial,sans-serif;
@@ -1121,8 +1121,7 @@ padding-top: 50px;
     font-weight: 200;
     font-style: lighter;
     -webkit-font-smoothing: antialiased;
-    padding-bottom: 2rem;
-    padding-top: 50px;
+    padding: 5px;
 
 
 }
@@ -1157,11 +1156,17 @@ padding-top: 50px;
     padding-top: 10px;
 
 }
+#profilepage1 {
+    height: 660px;
+
+}
+
 #watch {
     height: 650px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    padding: 0px;
+    background-color: black;
 }
 .profilerow1 {
     float: right;
@@ -1169,27 +1174,93 @@ padding-top: 50px;
     text-align: center;
     height: 50%;
     align-items: center;
-    justify-content: center;
+    padding: 0px;
+    border: 2px solid white;
+
 }
 .profilerow2 {
     float: left;
     width: 50%;
     text-align: center;
     height: 50%;
+    padding: 0px;
+    border: 2px solid white;
+
     /*align-items: center;
     justify-content: center;*/
 }
 .pr1c {
-    float: left;
-    font-size: 100px;
+
+    padding: 5px;
+    text-align: center;
+    color: #fff;
+    font-size: 25px;
+    -ms-word-wrap: normal;
+    word-wrap: normal;
+    font-family: "Raleway",Arial,sans-serif;
+    line-height: 1.35em;
+    letter-spacing: 0px;
+    text-transform: none;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    font-weight: 200;
+    font-style: lighter;
+    -webkit-font-smoothing: antialiased;
+
+
+
     /*align-items: center;
     justify-content: center;*/
 }
 .pr2c {
-    float: right;
-    font-size: 100px;
+    padding: 5px;
+    text-align: center;
+    color: #fff;
+    font-size: 25px;
+    -ms-word-wrap: normal;
+    word-wrap: normal;
+    font-family: "Raleway",Arial,sans-serif;
+    line-height: 1.35em;
+    letter-spacing: 0px;
+    text-transform: none;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    font-weight: 200;
+    font-style: lighter;
+    -webkit-font-smoothing: antialiased;
+
+
     /*align-items: center;
     justify-content: center;*/
+}
+.opinions {
+    padding-top: 15px;
+}
+.debatejoin {
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    -ms-word-wrap: normal;
+    word-wrap: normal;
+    font-family: "Raleway",Arial,sans-serif;
+    line-height: 1.35em;
+    letter-spacing: 0px;
+    text-transform: none;
+    line-height: 1em;
+    letter-spacing: 3px;
+    font-weight: 100;
+    font-style: lighter;
+    -webkit-font-smoothing: antialiased;
+
+}
+.profilerow1:hover {
+    color: white;
+    text-align: center;
+    background-color: white;
+    fill: solid white;
+
 }
 
 .watchdebate {
