@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../models/users.js');
 var client= require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 const nodemailer = require('nodemailer');
+var R = require('ramda')
 
 module.exports = function(passport) {
     /* GET home page. */
@@ -50,12 +51,11 @@ module.exports = function(passport) {
     })
 
     router.get('/logout', function(req, res) {
-        res.render('logout', { name: req.body.firstName
-        })
+        res.render('logout', { name: req.body.firstName})
     })
 
-    router.get('/live', function(req, res) {
-        res.render('opentok', {title: Wirlix, name: req.body.firstName})
+    router.get('/enterdebate', function(req, res) {
+        res.render('enterdebate', { name: req.body.firstName})
     })
 
     //router.get('/about', function(req, res) {
@@ -333,9 +333,6 @@ router.get('/broadcast', (req, res) => {
   res.render('broadcast', { broadcast: JSON.stringify({ url, availableAt }) });
 });
 
-router.get('*', (req, res) => {
-  res.redirect('/viewer');
-});
 
 
 /*

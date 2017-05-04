@@ -1623,3 +1623,80 @@ body {
     height: 0;
     width: 0;
 }
+.topic {
+    text-align: center;
+    color: #fff;
+    font-size: 60px;
+    -ms-word-wrap: normal;
+    word-wrap: normal;
+    font-family: "Raleway",Arial,sans-serif;
+    line-height: 1.35em;
+    letter-spacing: 0px;
+    text-transform: none;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    font-weight: 200;
+    font-style: lighter;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 2rem;
+    padding-top: 50px;
+
+}
+.topic-content {
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+    -ms-word-wrap: normal;
+    word-wrap: normal;
+    font-family: "Raleway",Arial,sans-serif;
+    line-height: 1.35em;
+    letter-spacing: 0px;
+    text-transform: none;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    font-weight: 200;
+    font-style: lighter;
+    -webkit-font-smoothing: antialiased;
+    padding-top: 10px;
+
+}
+.debate-comment {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    -ms-word-wrap: normal;
+    word-wrap: normal;
+    font-family: "Raleway",Arial,sans-serif;
+    line-height: 1.35em;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    line-height: 1em;
+    letter-spacing: 7px;
+    font-weight: 200;
+    font-style: lighter;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 2rem;
+    padding-top: 10px;
+
+}
+.watch-comment {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    -ms-word-wrap: normal;
+    word-wrap: normal;
+    font-family: "Raleway",Arial,sans-serif;
+    line-height: 1.35em;
+    letter-spacing: 0px;
+    text-transform: none;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    font-weight: 200;
+    font-style: lighter;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 2rem;
+    padding-top: 10px;
+}

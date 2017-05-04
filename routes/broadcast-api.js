@@ -1,8 +1,9 @@
 
-var apiKey = "45830652";
-var apiSecret = "4520980609132d28726f4332f39fcb4791415869";
 
-// const { apiKey, apiSecret } = require('../config');
+var apiKey = process.env.OPENTOK_apiKey;
+var apiSecret = process.env.OPENTOK_apiSecret;
+var MONGODB_URI = process.env.MONGODB_URI;
+//const { apiKey, apiSecret, process.env.MONGODB_URI}
 
 /** Imports */
 const R = require('ramda');
