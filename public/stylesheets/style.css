@@ -1302,6 +1302,8 @@ padding-top: 100px;
 }
 #engage {
     height: 650px;
+    border: 2px solid white;
+    background-color: black;
 }
 .engaging {
     text-align: center;
@@ -1365,6 +1367,7 @@ padding-top: 100px;
     padding-top: 10px;
     width: 100%;
     align-items: center;
+
 }
 .imgvoting {
   display: flex;
