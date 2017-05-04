@@ -30,7 +30,7 @@ module.exports = function(passport) {
 
     router.get('/profile', function(req, res) {
         //res.send('Successfully authenticated');
-        res.render('profile', { name: 'Priyanka' });
+        res.render('profile', { name: req.user.firstName });
     });
 
     router.get('/lit', function(req, res) {
@@ -104,7 +104,7 @@ module.exports = function(passport) {
                 to: req.body.email,
                 subject: 'Welcome to Wirlix',
                 text: 'Welcome to Wirlix',
-                html: `<center><img src="https://s29.postimg.org/lu6vjo9yv/Screen_Shot_2017-04-22_at_6.48.29_PM.png"/></center>
+                html: `
         <div>
           <div style="
             text-align: center;
@@ -147,7 +147,6 @@ module.exports = function(passport) {
             <br /><br />
 
             Password: ${req.body.password}
-            <br /><br />
             <div style = "
             color: black;
             font-size: 14px;
@@ -161,15 +160,10 @@ module.exports = function(passport) {
             font-weight: 200;
             font-style: lighter;
             -webkit-font-smoothing: antialiased;
-            padding-bottom: 2rem;
-            padding-top: 10px;"><i> "One of the great liabilities of history is that all too many people fail to remain awake through great periods of social change. Every society has its protectors of status quo and its fraternities of the indifferent who are notorious for sleeping through revolutions. Today, our very survival depends on our ability to stay awake, to adjust to new ideas, to remain vigilant and to face the challenge of change." – Martin Luther King, Jr.</i>
-            <br /><br />
-              </div>
+            padding-top: 10px;">
+            <br />
             </div>
 
-          <a href="wirlix.com"><img src="https://image.ibb.co/eb9wo5/email_meme.jpg" alt="email_meme" border="0"></img></a>
-
-         <br /><br />
 
          <div style = "
            color: black;
@@ -185,10 +179,10 @@ module.exports = function(passport) {
            font-style: lighter;
            -webkit-font-smoothing: antialiased;
            padding-bottom: 2rem;
-           padding-top: 10px;">
+           padding-top: 5px;">
 
-        Feel free to email us about anything. Just reach out we'd love to hear from you!
-        Enjoy your journey!
+        Thanks for joining! Feel free to email us about anything. Just reach out we'd love to hear from you.
+        Enjoy your journey.
 
         <br />
             <br />
@@ -293,6 +287,7 @@ module.exports = function(passport) {
                 alert("Oops you forgot a field!")
             }
             console.log(savedUser);
+            console.log(req.user);
             // res.send(savedUser);
 
             res.redirect('/testtwilio');

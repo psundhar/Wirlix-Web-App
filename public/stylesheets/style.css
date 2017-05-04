@@ -594,7 +594,7 @@ a {
 
 }
 .letterwords {
-    height: 80%;
+    height: 350px;
     width: 100%;
     padding: 14px;
     padding-left:120px;
@@ -1159,7 +1159,39 @@ padding-top: 50px;
 }
 #watch {
     height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.profilerow1 {
+    float: right;
+    width: 50%;
+    text-align: center;
+    height: 50%;
+    align-items: center;
+    justify-content: center;
+}
+.profilerow2 {
+    float: left;
+    width: 50%;
+    text-align: center;
+    height: 50%;
+    /*align-items: center;
+    justify-content: center;*/
+}
+.pr1c {
+    float: left;
+    font-size: 100px;
+    /*align-items: center;
+    justify-content: center;*/
+}
+.pr2c {
+    float: right;
+    font-size: 100px;
+    /*align-items: center;
+    justify-content: center;*/
+}
+
 .watchdebate {
 text-align: center;
 color: #fff;
@@ -1439,6 +1471,7 @@ body {
     z-index: 1001;
 }
 
+
 .banner .text {
     color: #0099cc;
     font-size: 34px;
@@ -1659,6 +1692,7 @@ body {
     font-weight: 200;
     font-style: lighter;
     -webkit-font-smoothing: antialiased;
+    padding-bottom: 2rem;
     padding-top: 10px;
 
 }
@@ -1697,6 +1731,7 @@ body {
     font-weight: 200;
     font-style: lighter;
     -webkit-font-smoothing: antialiased;
-    padding-bottom: 2rem;
+    padding-bottom: 5rem;
     padding-top: 10px;
+    height: 100%;
 }
