@@ -272,7 +272,7 @@ a:link {
 }
 
 a:visited {
-    color: pink;
+    color: silver;
     background-color: transparent;
     text-decoration: none;
 }
@@ -1160,29 +1160,38 @@ padding-top: 50px;
     height: 660px;
 
 }
+#profilepage2 {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
 #watch {
-    height: 650px;
     display: flex;
+    flex: 1;
     align-items: center;
     padding: 0px;
     background-color: black;
+    overflow: auto;
 }
 .profilerow1 {
     float: right;
     width: 50%;
     text-align: center;
-    height: 50%;
     align-items: center;
     padding: 0px;
     border: 2px solid white;
-
+    height: 100%;
+}
+.videoProfile {
+    height: 100%;
+    width: 100%;
 }
 .profilerow2 {
     float: left;
     width: 50%;
     text-align: center;
-    height: 50%;
+    height: 100%;
     padding: 0px;
     border: 2px solid white;
 
@@ -1236,7 +1245,7 @@ padding-top: 50px;
     justify-content: center;*/
 }
 .opinions {
-    padding-top: 15px;
+    padding-top: 25px;
 }
 .debatejoin {
     text-align: center;
@@ -1301,9 +1310,10 @@ padding-top: 100px;
     padding-bottom: 2rem;
 }
 #engage {
-    height: 650px;
     border: 2px solid white;
     background-color: black;
+    flex: 1;
+    overflow: auto;
 }
 .engaging {
     text-align: center;
@@ -1364,7 +1374,6 @@ padding-top: 100px;
 }
 .voting {
     display: flex;
-    padding-top: 10px;
     width: 100%;
     align-items: center;
 
@@ -1416,8 +1425,9 @@ body {
     height: 85vh;
     margin: 0 auto;
     padding: 10px;
-    border: 1px solid #59c9e3;
+    border: 1px solid black;
     border-radius: 6px;
+    background-color: black;
 }
 
 .main-container.player {
@@ -1547,7 +1557,7 @@ body {
 
 
 .banner .text {
-    color: #0099cc;
+    color: black;
     font-size: 34px;
     font-family: 'Yellowtail', cursive;
     letter-spacing: 1px;
@@ -1808,4 +1818,310 @@ body {
     padding-bottom: 5rem;
     padding-top: 10px;
     height: 100%;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+.vidtop-content {
+    padding-top: 40rem;
+
+}
+#signupForm {
+    padding-top: 45rem;
+    padding-bottom: 100rem;
+}
+
+.black-opaque {
+    background-color: black;
+}
+
+
+
+input {
+    background-color: transparent;
+    border: none;
+    padding: 45px;
+
+}
+
+.input_field {
+
+
+}
+.input__label-content {
+    font color: white;
+    font-family: "Kameron",Georgia,serif;
+    font-size: 16px;
+    letter-spacing: 0px;
+    line-height: 1.6em;
+    font-family: "Source Code Pro";
+    font-size: 18px;
+    color: white;
+
+}
+.peaceout {
+    padding-top: 400px;
+}
+.seeyou{
+text-align: center;
+color: #fff;
+font-size: 30px;
+-ms-word-wrap: normal;
+word-wrap: normal;
+font-family: "Raleway",Arial,sans-serif;
+/*line-height: 1.35em;*/
+letter-spacing: 0px;
+line-height: 1em;
+text-transform: uppercase;
+letter-spacing: 7px;
+font-weight: 200;
+font-style: lighter;
+-webkit-font-smoothing: antialiased;
+padding-bottom: 2rem;
+padding-top: 100px;
+}
+.welcome {
+    padding-top: 80spx;
+    font-size: 60px;
+}
+
+.aboutWirlix {
+font-size: 35px;
+padding-top: 50px;
+
+}
+.projecthappiness {
+    padding-top: 400px;
+}
+.letter {
+    padding-top: 300px;
+    line-height: 1.8px;
+}
+.letterwords {
+    font-size: 20px;
+    height: 100%;
+    padding-bottom: 50px;
+}
+.sincerely {
+    padding-top: 100px;
+}
+#weout {
+    padding-bottom: 600px;
+}
+#onetofour {
+    padding-top: 600px;
+    padding-bottom: 700px;
+}
+.step2 {
+    padding-top: 50px;
+}
+#projects {
+    padding-top: 600px;
+    padding-bottom: 700px;
+}
+.step3 {
+    padding-top: 50px;
+}
+#wonderwirlixs {
+    padding-top: 400px;
+    padding-bottom: 900px;
+
+}
+.step4 {
+    padding-top: 50px;
+}
+#sparkcontroversy {
+    padding-top:500px;
+    padding-bottom: 1350px;
+}
+#profilepage1 {
+    height: 2000px;
+}
+.nameone {
+    padding-top: 500px;
+}
+.opinions {
+    padding-top: 200px;
+}
+.row {
+    padding-top: 100px;
+}
+.debatejoin {
+    padding-top: 75px;
+}
+.imgvoting {
+    padding-top: 100px;
+}
+
+
+
+}
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
+.vidtop-content {
+    padding-top: 30rem;
+
+}
+#signupForm {
+    padding-top: 20rem;
+    padding-bottom: 80rem;
+}
+
+.black-opaque {
+    background-color: black;
+}
+
+
+
+input {
+    background-color: transparent;
+    border: none;
+    padding: 45px;
+
+}
+
+.input_field {
+
+
+}
+.input__label-content {
+    font color: white;
+    font-family: "Kameron",Georgia,serif;
+    font-size: 16px;
+    letter-spacing: 0px;
+    line-height: 1.6em;
+    font-family: "Source Code Pro";
+    font-size: 18px;
+    color: white;
+
+}
+.peaceout {
+    padding-top: 250px;
+
+}
+.welcome {
+    padding-top: 200px;
+    font-size: 50px;
+    padding-bottom: 30px;
+}
+
+.aboutWirlix {
+font-size: 25px;
+
+}
+.projecthappiness {
+    padding-top: 200px;
+}
+#profilepage1 {
+    height: 2000px;
+}
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+/* Styles */
+}
+/**********
+iPad 3
+**********/
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+/* Styles */
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+/* Styles */
+}
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+/* Styles */
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+/* Styles */
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+/* iPhone 6 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+/* iPhone 6+ ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+/* Samsung Galaxy S3 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+/* Samsung Galaxy S4 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+/* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+/* Styles */
+}
+
+/* Samsung Galaxy S5 ----------- */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+/* Styles */
+.vidtop-content {
+    padding-top: 200px;
+}
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+/* Styles */
 }

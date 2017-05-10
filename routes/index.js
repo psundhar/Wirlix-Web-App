@@ -51,6 +51,8 @@ module.exports = function(passport) {
     })
 
     router.get('/logout', function(req, res) {
+        req.logout();
+        
         res.render('logout', { name: req.body.firstName})
     })
 

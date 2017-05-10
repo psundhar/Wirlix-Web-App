@@ -4,6 +4,8 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  background-color: white;
+
 }
 
 #form {
@@ -74,19 +76,6 @@ a.button {
 }
 
 
-
-.main-container {
-    width: 90vw;
-    height: 85vh;
-    margin: 0 auto;
-    padding: 10px;
-    border: 1px solid #59c9e3 ;
-    border-radius: 6px;
-}
-
-.main-container.player {
-    min-height: 535px;
-}
 h1 {
     font-size:750%;
     font-family: "Raleway",Arial,sans-serif;
@@ -146,7 +135,6 @@ form{
 
 .bottom {
   height: 33%;
-  background-color: black;
 }
 
 .video-wrap {
@@ -224,12 +212,16 @@ body {
     height: 85vh;
     margin: 0 auto;
     padding: 10px;
-    border: 1px solid #59c9e3;
+    border: 1px solid black;
     border-radius: 6px;
+    background-color: black;
+    border: 1px solid black;
+    background-color: black;
 }
 
 .main-container.player {
     min-height: 535px;
+    background-color: black;
 }
 
 .video-wrap {
@@ -242,6 +234,7 @@ body {
     height: 100%;
     display: flex;
     justify-content: space-around;
+
 
 }
 
@@ -354,7 +347,7 @@ body {
 }
 
 .banner .text {
-    color: #0099cc;
+    color: black;
     font-size: 34px;
     font-family: 'Yellowtail', cursive;
     letter-spacing: 1px;
