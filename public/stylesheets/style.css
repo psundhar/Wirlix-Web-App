@@ -42,7 +42,7 @@ body {
     font-style: lighter;
     -webkit-font-smoothing: antialiased;
     font-size: 125px;
-    margin-top: 3.5rem;
+
 
 
 }
@@ -76,6 +76,10 @@ body {
 
 body {
     background-color: black;
+}
+center {
+
+    padding-top: 3.5rem;
 }
 
 #homepage {
@@ -494,7 +498,7 @@ a:active {
     padding-top: 1rem;
     padding-bottom: 1rem;
     background-color: black;
-    opacity: .7;
+    opacity: .5;
 
 }
 
