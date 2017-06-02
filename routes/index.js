@@ -30,11 +30,11 @@ module.exports = function(passport) {
 
     router.get('/profile', function(req, res) {
         //res.send('Successfully authenticated');
-        res.render('profile', { name: req.user.firstName });
+        res.render('profile', { name: req.body.fullName });
     });
 
     router.get('/lit', function(req, res) {
-        res.render('lit', {name: req.body.firstName});
+        res.render('lit', {name: req.body.fullName});
     });
 
     // router.get('/testtwilio', function(req, res) {
@@ -42,22 +42,22 @@ module.exports = function(passport) {
     // })
 
     router.get('/about', function(req, res) {
-        res.render('about', { name: req.body.firstName });
+        res.render('about', { name: req.body.fullName });
 
     })
 
     router.get('/email', function(req, res) {
-        res.render('email', { name: req.body.firstName });
+        res.render('email', { name: req.body.fullName });
     })
 
     router.get('/logout', function(req, res) {
         req.logout();
-        
-        res.render('logout', { name: req.body.firstName})
+
+        res.render('logout', { name: req.body.fullName})
     })
 
     router.get('/enterdebate', function(req, res) {
-        res.render('enterdebate', { name: req.body.firstName})
+        res.render('enterdebate', { name: req.body.fullName})
     })
 
     //router.get('/about', function(req, res) {
@@ -73,7 +73,7 @@ module.exports = function(passport) {
         client.sendMessage({
             to: req.body.phoneNumber,
             from:'+16176525428',
-            body: "Thanks for joining" + " " + req.body.firstName + "! Make sure to check out our site we have a ton of amazing shit coming up for you. At Wirlix, we are one world in unity and we believe in the power of people and the power in you. It's a movement and a revolution and we can't wait to change the world with you. We care about your experience and your happiness so please reach out anytime and stay tuned for an amazing journey. Welcome to Wirlix."
+            body: "Thanks for joining" + " " + req.body.fullName + "! Make sure to check out our site we have a ton of amazing shit coming up for you. At Wirlix, we are one world in unity and we believe in the power of people and the power in you. It's a movement and a revolution and we can't wait to change the world with you. We care about your experience and your happiness so please reach out anytime and stay tuned for an amazing journey. Welcome to Wirlix."
         });
         res.redirect('/testtwilio');
     })
@@ -87,7 +87,7 @@ module.exports = function(passport) {
         client.sendMessage({
             to: req.body.phoneNumber,
             from:'+16176525428',
-            body: "Thanks for joining" + " " + req.body.firstName + "! Make sure to check out our site we have a ton of amazing shit coming up for you. At Wirlix, we are one world in unity and we believe in the power of people and the power in you. It's a movement and a revolution and we can't wait to change the world with you. We care about your experience and your happiness so please reach out anytime and stay tuned for an amazing journey. Welcome to Wirlix."
+            body: "Thanks for joining" + " " + req.body.fullName + "! Make sure to check out our site we have a ton of amazing shit coming up for you. At Wirlix, we are one world in unity and we believe in the power of people and the power in you. It's a movement and a revolution and we can't wait to change the world with you. We care about your experience and your happiness so please reach out anytime and stay tuned for an amazing journey. Welcome to Wirlix."
         });
 
 
@@ -143,7 +143,7 @@ module.exports = function(passport) {
             -webkit-font-smoothing: antialiased;
             padding-bottom: 2rem;
             padding-top: 10px;">
-            What's up ${req.body.firstName}, <br /><br />
+            What's up ${req.body.fullName}, <br /><br />
             We hope you got our text. We promise not to spam you with pointless emails and we also promise a ton of amazing shit coming soon. <br /><br />
         Here is your password in case you forget.
             <br /><br />
@@ -264,23 +264,17 @@ module.exports = function(passport) {
                 console.log('Message % s sent: %s', info.messageId, info.response);
             });
 
-        var firstName = req.body.firstName;
-        var lastName = req.body.lastName;
+        var fullName = req.body.fullName;
         var password = req.body.password;
-        var birthday = req.body.birthday;
         var email = req.body.email;
         var phoneNumber = req.body.phoneNumber;
-        console.log(firstName);
-        console.log(lastName);
+        console.log(fullName);
         console.log(password);
-        console.log(birthday);
         console.log(email);
         console.log(phoneNumber);
         var newUser = new User({
-            firstName: firstName,
-            lastName: lastName,
+            fullName: fullName,
             password: password,
-            birthday: birthday,
             email: email,
             phoneNumber: phoneNumber,
         });

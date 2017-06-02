@@ -6,60 +6,88 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <title>Wirlix</title>
+
+
 </head>
 <body>
-<div class = "video-background">
+<!-- <div class = "video-background">
     <div class = "video-foreground">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/cvFdFAr_7po?playlist=cvFdFAr_7po&controls=0&version=3&start=242&end=840&showinfo=0&rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
     </div>
+</div> -->
+<div class = homenav>
+    <div class = flexbox>
+    <div class = parttwo>
+    <div class = "container">
+        <form action = "/login" method=post>
+            <span class="input">
+                <input type="text" name="username" placeholder="Email" class="input__field" id="input-1" required/>
+                <label for="input-1" class="input__label">
+                    <span class="input__label-content"></span>
+                </label>
+            </span>
+            <span class="input">
+                <input type="password" name="password" placeholder="Password" class="input__field" id="input-2" required/>
+                <label for="input-2" class="input__label">
+                    <span class="input__label-content"></span>
+                </label>
+            </span>
+            {{#if error}}
+            <div class="row">
+                <div class="error">{{error}}</div>
+            </div>
+            {{/if}}
+
+            <!-- <div class="row">
+                <button id="send-button" class="bootn lg ghost" type="submit">Enter</button>
+            </div> -->
+        </form>
+    </div>
 </div>
-<div class="black-opaque">
+<div class = partthree>
+    <div class="row">
+        <button id="send-button" class="bootn lg ghost" type="submit">Login</button>
+    </div>
+</div>
+</div>
+</div>
+<!-- <div class="black-opaque"> -->
+
+</div>
     <div id="homepage">
+
+
+
         <div class = "vidtop-content">
+            <div class = "video-background">
+                <div class = "video-foreground">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/AtdnWYqbMwc?playlist=AtdnWYqbMwc&controls=0&version=3&start=170&end=391&showinfo=0&rel=0&autoplay=1&loop=1" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <center>{{title}}</center>
         </div>
         <div class = "motto">
             Spark Controversy
         </div>
-        <div class = "text-home">
-            Join the Movement <br />
-            <b>Sign up Below</b> to enter the first social media created to empower you.
-            <br />
-            <br />
+        <div class = "text-home-red">
+            <i>Real People &nbsp;&nbsp; Real Stories &nbsp;&nbsp; Real Conversation</i>
+            <!-- <b>Sign up Below</b> to enter the first social media created to empower you. -->
+        </div>
+        <div id = "icon-align">
+            <div id = "div-1">
+            </div>
+            <div id = "div-2">
+            </div>
+            <div id = "div-3">
+            </div>
         </div>
 
-
-        <div class = "container">
-            <form action = "/login" method=post>
-                <span class="input">
-                    <input type="text" name="username" placeholder="Email" class="input__field" id="input-1" required/>
-                    <label for="input-1" class="input__label">
-                        <span class="input__label-content"></span>
-                    </label>
-                </span>
-                <span class="input">
-                    <input type="password" name="password" placeholder="Password" class="input__field" id="input-2" required/>
-                    <label for="input-2" class="input__label">
-                        <span class="input__label-content"></span>
-                    </label>
-                </span>
-                {{#if error}}
-                <div class="row">
-                    <div class="error">{{error}}</div>
-                </div>
-                {{/if}}
-
-                <div class="row">
-                    <button id="send-button" class="bootn lg ghost" type="submit">Enter</button>
-                </div>
-            </form>
-        </div>
         <!--<div class = "submit">
             <button id="send-button" type="submit">Be Bold</button>
         </div> -->
         <div class ="signup">
-            <a href=#signupForm><u>Sign Up</u></a>
+            <a href=#signupForm><u>Don't Have an Account? Sign Up</u></a>
         </div>
     </div>
     <div id = "signupForm">
@@ -67,49 +95,44 @@
             Join the Movement
         </div>
         <div class = "text-home">
-            Get ready for some crazy shit
+            Get ready for some amazing shit
         </div>
         <form action = "/user" method=post>
             <div class = "container">
                 <span class="input">
-                    <input type="text" name= "firstName" placeholder= "First Name" class="input__field" id="input-3" required/>
+                    <input type="text" name= "fullName" placeholder= "Full Name" class="input__field" id="input-3" required/>
                     <label for="input-3" class="input__label">
                         <span class="input__label-content"></span>
                     </label>
                 </span>
+                <br />
 
-                <span class="input">
+                <!-- <span class="input">
                     <input type="text" name= "lastName" placeholder= "Last Name" class="input__field" id="input-4" required/>
                     <label for="input-4" class="input__label">
                         <span class="input__label-content"></span>
                     </label>
-                </span>
+                </span> -->
             </div>
             <div class = "container">
-                <span class="input">
-                    <input type="password" name= "password" placeholder= "Password" minlength="6'" class="input__field" id="input-5" required/>
-                    <label for="input-5" class="input__label">
-                        <span class="input__label-content"></span>
-                    </label>
-                </span>
 
-                <span class="input">
-                    <input type="number" name= "birthday" placeholder= "Birthday (mmddyyyy)" maxlength="10" minlength="10" class="input__field" id="input-6" required/>
-                    <label for="input-6" class="input__label">
-                        <span class="input__label-content"></span>
-                    </label>
-                </span>
-            </div>
-            <div class = "container">
                 <span class="input">
                     <input type="email" name= "email" placeholder= "Email" class="input__field" id="input-7" required/>
                     <label for="input-7" class="input__label">
                         <span class="input__label-content"></span>
                     </label>
                 </span>
+                <span class="input">
+                    <input type="password" name= "password" placeholder= "Password" minlength="6" class="input__field" id="input-5" required/>
+                    <label for="input-5" class="input__label">
+                        <span class="input__label-content"></span>
+                    </label>
+                </span>
+            </div>
+            <div class = "container">
 
                 <span class="input">
-                    <input type="number" name= "phoneNumber" placeholder= "Phone Number" maxlength="12" class="input__field" id="input-8" />
+                    <input type="tel" name= "phoneNumber" placeholder= "Phone Number" maxlength="12" class="input__field" id="input-8" />
                     <label for="input-8" class="input__label">
                         <span class="input__label-content"></span>
                     </label>
@@ -117,13 +140,11 @@
             </div>
             <div class = row>
                 <div class="container">
+                    <br />
                     <button id="send-button" class="bootn lg ghost" type="submit">Join</button>
                 </div>
-            </div>
+            <!-- </div> -->
         </form>
-
-
-
     </div>
 </div>
 </body>
