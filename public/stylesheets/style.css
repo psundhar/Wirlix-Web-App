@@ -32,7 +32,7 @@ body {
 .vidtop-content {
     vertical-align: center;
     text-align: center;
-    color: #BD0F0F;
+    color: #FF0000;
     -ms-word-wrap: normal;
     word-wrap: normal;
     font-family: "Raleway",Arial,sans-serif;
@@ -118,7 +118,7 @@ center {
     letter-spacing: .4px;
     font-weight: 400;
     font-style: normal;
-    color: #C41717;
+    color: #FF0000;
     text-align: center;
     vertical-align: center;
     padding-bottom: 2rem;
@@ -135,7 +135,7 @@ button, .input, select, textarea {
 
 .motto {
 text-align: center;
-color: #C41717;
+color: #FF0000;
 font-size: 35px;
 -ms-word-wrap: normal;
 word-wrap: normal;
