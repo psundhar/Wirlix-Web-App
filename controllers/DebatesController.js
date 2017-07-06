@@ -13,7 +13,7 @@ module.exports = {
         const topic = req.body.topic;
 
         if( challenger && challengee && topic ) {
-            const debate = new Debate({challenger: challenger, challengee: challengee, topic: topic });
+            const debate = new Debate({challenger: challenger, challengee: challengee, topic: topic, created: Date.now() });
 
             debate.save().then(function(debate) {
                 res.send(debate);
