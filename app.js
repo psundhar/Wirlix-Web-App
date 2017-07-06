@@ -16,6 +16,7 @@ var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var connect = process.env.MONGODB_URI;
 
+const DebatesController = require('./controllers/DebatesController');
 
 mongoose.connect(connect);
 
@@ -38,7 +39,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());
-
 //Passport
 // Passport
 
@@ -176,6 +176,8 @@ passport.use(new LocalStrategy({passReqToCallback : true}, function(req, usernam
 //     process.nextTick(findOrCreateUser);
 //   });
 // );
+
+app.get('/api/debates', DebatesController.getCollection);
 
 app.use('/', index(passport));
 app.use('/users', users);
