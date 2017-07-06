@@ -24,4 +24,29 @@ module.exports = {
             res.send({"error": "Improper request"});
         }
     },
+
+    putObject: function(req, res) {
+        const id = req.params.id;
+        const rational = req.body.rational;
+        const emotional = req.body.emotional;
+
+        if(!req.params.id || (!rational && !emotional)) {
+            res.status(400);
+            res.send({"error": "Improper request"});
+        }
+
+        Debate.findById(id).then(function(debate) {
+            if(rational) {
+                debate.rational += 1;
+            }
+            if(emotional) {
+                debate.emotional += 1;
+            }
+            return debate.save();
+        })
+        .then(function(savedDebate) {
+            res.send(savedDebate);
+        });
+    },
+
 }

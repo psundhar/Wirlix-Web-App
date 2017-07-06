@@ -23,7 +23,15 @@ const debatesSchema = mongoose.Schema({
     deleted: {
         type: Boolean,
         default: false,
-    }
+    },
+    rational: {
+        type: Number,
+        default: 0,
+    },
+    emotional: {
+        type: Number,
+        default: 0,
+    },
 });
 
 module.exports = mongoose.model('Debate', debatesSchema);
