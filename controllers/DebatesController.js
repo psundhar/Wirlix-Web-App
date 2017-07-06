@@ -46,7 +46,27 @@ module.exports = {
         })
         .then(function(savedDebate) {
             res.send(savedDebate);
-        });
+        })
+        .catch(function(err) {
+            res.status(404);
+            res.send({"error": "Not found"});
+        })
     },
 
+    deleteObject: function(req, res) {
+        const id = req.params.id;
+
+        Debate.findById(id).then(function(debate) {
+            debate.deleted = true;
+            return debate.save();
+        })
+        .then(function(savedDebate) {
+            res.send({});
+        })
+        .catch(function(err) {
+            res.status(404);
+            res.send({"error": "Not found"});
+        });
+
+    }
 }

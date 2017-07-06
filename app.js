@@ -180,6 +180,7 @@ passport.use(new LocalStrategy({passReqToCallback : true}, function(req, usernam
 app.get('/api/debates', DebatesController.getCollection);
 app.post('/api/debates', DebatesController.postCollection);
 app.put('/api/debates/:id', DebatesController.putObject);
+app.delete('/api/debates/:id', DebatesController.deleteObject);
 
 app.use('/', index(passport));
 app.use('/users', users);
