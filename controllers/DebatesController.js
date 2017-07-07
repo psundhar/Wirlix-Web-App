@@ -14,6 +14,15 @@ module.exports = {
         })
     },
 
+    getMyDebates: function(req, res) {
+        // grab user info from passport middleware
+        // Find debates where either the challenger or challengee
+        // Debate
+        //     .find(
+        //         {deleted: false, challenger: }
+        //     )
+    },
+
     postCollection: function(req, res) {
         const challenger = req.body.challenger;
         const challengee = req.body.challengee;
