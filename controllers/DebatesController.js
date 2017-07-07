@@ -2,9 +2,16 @@ const Debate = require('../models/debates');
 
 module.exports = {
     getCollection: function(req, res) {
-        Debate.find({}).then(function(debates) {
+        Debate
+        .find({deleted: false})
+        .populate('challenger')
+        .exec()
+        .then(function(debates) {
             res.send(debates);
-        });
+        })
+        .catch(function(err) {
+            console.log(err);
+        })
     },
 
     postCollection: function(req, res) {
