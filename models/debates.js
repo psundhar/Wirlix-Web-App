@@ -35,6 +35,13 @@ const debatesSchema = mongoose.Schema({
         type: Number,
         default: 0,
     },
+    views: {
+        type: Number,
+        default: 0,
+    },
+    subscribers: [
+        {type: ObjectId, ref: 'User'}
+    ],
 });
 
 module.exports = mongoose.model('Debate', debatesSchema);
