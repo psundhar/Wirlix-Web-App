@@ -16,8 +16,7 @@ var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var connect = process.env.MONGODB_URI;
 
-const DebatesController = require('./controllers/DebatesController');
-const TopicsController = require('./controllers/TopicsController');
+const apiRoutes = require('./routes/api');
 
 mongoose.connect(connect);
 
@@ -178,12 +177,7 @@ passport.use(new LocalStrategy({passReqToCallback : true}, function(req, usernam
 //   });
 // );
 
-app.get('/api/debates', DebatesController.getCollection);
-app.get('/api/debates/my', DebatesController.getMyDebates);
-app.post('/api/debates', DebatesController.postCollection);
-app.put('/api/debates/:id', DebatesController.putObject);
-app.delete('/api/debates/:id', DebatesController.deleteObject);
-app.get('/api/topics', TopicsController.getCurrent);
+app.use('/api', apiRoutes);
 
 app.use('/', index(passport));
 app.use('/users', users);

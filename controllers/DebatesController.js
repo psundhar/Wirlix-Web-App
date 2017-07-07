@@ -1,7 +1,7 @@
 const Debate = require('../models/debates');
 
 module.exports = {
-    getCollection: function(req, res) {
+    getCollection: function(req, res, next) {
         Debate
         .find({deleted: false})
         .populate(['challenger', 'challengee'])
@@ -23,7 +23,7 @@ module.exports = {
         //     )
     },
 
-    postCollection: function(req, res) {
+    postCollection: function(req, res, next) {
         const challenger = req.body.challenger;
         const challengee = req.body.challengee;
         const topic = req.body.topic;
@@ -37,11 +37,11 @@ module.exports = {
         }
         else {
             res.status(400);
-            res.send({"error": "Improper request"});
+            next();
         }
     },
 
-    putObject: function(req, res) {
+    putObject: function(req, res, next) {
         const id = req.params.id;
         const rational = req.body.rational;
         const emotional = req.body.emotional;
@@ -49,7 +49,7 @@ module.exports = {
 
         if(!req.params.id) {
             res.status(400);
-            res.send({"error": "Improper request"});
+            next();
         }
 
         Debate.findById(id).then(function(debate) {
@@ -64,7 +64,7 @@ module.exports = {
             }
 
             // TODO add in subscriber if subscribed is clicked
-            
+
             return debate.save();
         })
         .then(function(savedDebate) {
@@ -72,11 +72,11 @@ module.exports = {
         })
         .catch(function(err) {
             res.status(404);
-            res.send({"error": "Not found"});
+            next();
         })
     },
 
-    deleteObject: function(req, res) {
+    deleteObject: function(req, res, next) {
         const id = req.params.id;
 
         Debate.findById(id).then(function(debate) {
@@ -88,7 +88,7 @@ module.exports = {
         })
         .catch(function(err) {
             res.status(404);
-            res.send({"error": "Not found"});
+            next();
         });
 
     }
