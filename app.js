@@ -17,6 +17,7 @@ var mongoose = require('mongoose');
 var connect = process.env.MONGODB_URI;
 
 const DebatesController = require('./controllers/DebatesController');
+const TopicsController = require('./controllers/TopicsController');
 
 mongoose.connect(connect);
 
@@ -181,6 +182,7 @@ app.get('/api/debates', DebatesController.getCollection);
 app.post('/api/debates', DebatesController.postCollection);
 app.put('/api/debates/:id', DebatesController.putObject);
 app.delete('/api/debates/:id', DebatesController.deleteObject);
+app.get('/api/topics', TopicsController.getCurrent);
 
 app.use('/', index(passport));
 app.use('/users', users);

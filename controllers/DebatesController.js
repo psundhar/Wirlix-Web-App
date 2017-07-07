@@ -4,7 +4,7 @@ module.exports = {
     getCollection: function(req, res) {
         Debate
         .find({deleted: false})
-        .populate('challenger')
+        .populate(['challenger', 'challengee'])
         .exec()
         .then(function(debates) {
             res.send(debates);
