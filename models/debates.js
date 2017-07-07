@@ -1,18 +1,19 @@
 const mongoose = require('mongoose');
-
+const ObjectId = mongoose.Schema.Types.ObjectId;
 const debatesSchema = mongoose.Schema({
     challenger: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: ObjectId,
         ref: 'User',
         required: true,
     },
     challengee: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: ObjectId,
         ref: 'User',
         required: true,
     },
     topic: {
-        type: String,
+        type: ObjectId,
+        ref: 'Topic',
         required: true,
     },
     created: {
@@ -20,7 +21,7 @@ const debatesSchema = mongoose.Schema({
     },
     updated: {
         type: Date,
-        default: Date.now
+        default: Date.now,
     },
     deleted: {
         type: Boolean,
