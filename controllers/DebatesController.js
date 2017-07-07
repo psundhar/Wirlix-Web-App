@@ -45,8 +45,9 @@ module.exports = {
         const id = req.params.id;
         const rational = req.body.rational;
         const emotional = req.body.emotional;
+        const viewed = req.body.viewed;
 
-        if(!req.params.id || (!rational && !emotional)) {
+        if(!req.params.id) {
             res.status(400);
             res.send({"error": "Improper request"});
         }
@@ -58,6 +59,12 @@ module.exports = {
             if(emotional) {
                 debate.emotional += 1;
             }
+            if(viewed) {
+                debate.viewed += 1;
+            }
+
+            // TODO add in subscriber if subscribed is clicked
+            
             return debate.save();
         })
         .then(function(savedDebate) {

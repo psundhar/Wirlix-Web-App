@@ -12,6 +12,9 @@ const topicSchema = mongoose.Schema({
         type: Date,
         required: true,
     },
+    picture: {
+        type: String,
+    },
 });
 
 module.exports = mongoose.model('Topic', topicSchema);
