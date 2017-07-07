@@ -2,11 +2,13 @@ const mongoose = require('mongoose');
 
 const debatesSchema = mongoose.Schema({
     challenger: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true,
     },
     challengee: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true,
     },
     topic: {
