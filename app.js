@@ -176,7 +176,6 @@ passport.use(new LocalStrategy({passReqToCallback : true}, function(req, usernam
 //     process.nextTick(findOrCreateUser);
 //   });
 // );
-
 app.use('/api', apiRoutes);
 
 app.use('/', index(passport));

@@ -49,7 +49,7 @@
     </nav>
     <div class="response">
       <div class="container">
-        <h1 class="main-question col-md-12">DO YOU THINK ABORTION SHOULD BE LEGAL?</h1>
+        <h1 class="main-question col-md-12" id="debate-prompt"></h1>
         <div class="col-md-4 col-md-offset-4 my-debates-button">
           <a class="col-md-12" href="#">My Debates</a>
         </div>
@@ -634,5 +634,23 @@
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
   <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript">
+    (function() {
+        $('document').ready(function() {
+            // Load in topic api data
+            fetch('/api/topics')
+            .then(function(res) {
+                return res.json();
+            })
+            .then(function(topicJson) {
+               $('#debate-prompt').text(topicJson.prompt);
+               $('.debate-section').css('background', 'url('+ topicJson.image +') center center no-repeat');
+            })
+            .catch(function(err) {
+               console.log(err);
+            });
+        })
+    })();
+  </script>
 </body>
 </html>
