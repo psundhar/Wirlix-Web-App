@@ -11,7 +11,7 @@ module.exports = {
         })
         .catch(function(err) {
             console.log(err);
-        })
+        });
     },
 
     getMyDebates: function(req, res) {
@@ -24,9 +24,11 @@ module.exports = {
     },
 
     postCollection: function(req, res, next) {
-        const challenger = req.body.challenger;
-        const challengee = req.body.challengee;
-        const topic = req.body.topic;
+        const body = req.body;
+
+        const challenger = body.challenger;
+        const challengee = body.challengee;
+        const topic = body.topic;
 
         if( challenger && challengee && topic ) {
             const debate = new Debate({challenger: challenger, challengee: challengee, topic: topic, created: Date.now() });
