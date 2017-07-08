@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/home.css" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,600" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.color.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
+    <title>Wirlix</title>
+
+
+</head>
+<body>
+  <div class="main-section-home">
+    <div class="content">
+      <nav class="navbar navbar-default">
+        <div class="">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="img/Wirlix_InvertedLogo.png"></a>
+            <!-- <div class="nav navbar-nav center mobile">
+              <div class="search-mobile"><i class="fa fa-search" aria-hidden="true"></i><input type="text" name="search" placeholder="Search"></div>
+            </div> -->
+          </div>
+          <div class="collapse navbar-collapse center-m" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav center">
+              <li><a href="home.html">News</a></li>
+              <li><a href="debate.html">Debate</a></li>
+              <!-- <li><i class="fa fa-search" aria-hidden="true"></i><input type="text" name="search" placeholder="Search"></li> -->
+              <li><a href="#" data-toggle="modal" data-target="#rankings">Ranking</a></li>
+              <li><a href="about.html">About</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a class="profile-nav" href="profile.html" style="background: url(img/pexels-photo-103123.jpeg) center center no-repeat;"></a></li>
+              <li><a class="help" href="tutorial.html">? <br><span>See Tutorial</span></a></li>
+
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+
+
+    </div>
+    <div class="overlay">
+
+    </div>
+    <div class="button-home col-md-4">
+      <a href="#">Spark Controversy</a>
+    </div>
+    <div class="mute">
+      <img src="img/sound.png">
+    </div>
+    <div class="control">
+      <img src="img/pause.png">
+    </div>
+    <video playsinline autoplay muted loop poster="" id="bgvid">
+        <source src="video/wirlix_promo_video_v1.mp4" type="video/mp4">
+        <source src="video/wirlix_promo_video_v1.webm" type="video/webm">
+    </video>
+
+  </div>
+  <section class="news-section" id ="cont-section">
+    <div class="response">
+      <div class="container">
+        <h1 class="main-question col-md-12">DO YOU THINK ABORTION SHOULD BE LEGAL?</h1>
+        <div class="col-md-8 col-md-offset-2">
+          <textarea class="col-md-12 col-xs-12 col-sm-12" placeholder="What's your first opinion?"></textarea>
+          <div class="col-md-6 res-button agr">
+            <button>Agree</button>
+          </div>
+          <div class="col-md-6 res-button dis">
+            <button>Disagree</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comments">
+      <div class="container">
+        <div class="border decide">
+          <ul  class="nav nav-pills">
+      			<li class="active col-xs-12">
+              <a  href="#factual" data-toggle="tab">Factual</a>
+      			</li>
+      			<li class="col-xs-12"><a href="#emotional" data-toggle="tab">Emotional</a>
+            <li class="col-xs-12"><a href="#middle" data-toggle="tab">You Decide</a>
+      		</ul>
+          <div class="tab-content">
+            <div class="col-md-4 vote-col factual active" id ="factual">
+              <h2 class="col-md-12"><img src="img/factual-w.png"></h2>
+              <div class="comment-container col-md-12">
+                  <div class="comment">
+                    <p class="col-md-12">
+                      <a class="profile-pic" href="profile.html" style="background: url(img/pexels-photo-103123.jpeg) center center no-repeat;"></a> <a href="profile.html" class="username">Username</a> <br>
+                        I think that abortion should be
+                        legal because abortion is a
+                        women’s right. It is psychologically
+                        proven that women are more than
+                        capable of making a decision to
+                        keep or not keep a child. <i class="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true"></i>
+                    </p>
+                    <div class="col-md-6 button-container">
+                      <button class="button-vote up"><img src="img/factual-w.png"> <span class="vote-num">255</span></button>
+                    </div>
+                    <div class="col-md-6 button-container">
+                      <button class="button-vote down"><img src="img/emotional-w.png"><span class="vote-num">255</span></button>
+                    </div>
+                  </div>
+                  <div class="comment">
+                    <p class="col-md-12">
+                        <a class="profile-pic" href="profile.html" style="background: url(img/pexels-photo-103123.jpeg) center center no-repeat;"></a> <a href="profile.html" class="username">Username</a> <br>
+                        I think that abortion should be
+                        legal because abortion is a
+                        women’s right. It is psychologically
+                        proven that women are more than
+                        capable of making a decision to
+                        keep or not keep a child. <i class="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true"></i></i>
+                    </p>
+                    <div class="col-md-6 button-container">
+                      <button class="button-vote up"><img src="img/factual-w.png"> <span class="vote-num">255</span></button>
+                    </div>
+                    <div class="col-md-6 button-container">
+                      <button class="button-vote down"><img src="img/emotional-w.png"><span class="vote-num">255</span></button>
+                    </div>
+                  </div>
+                  <div class="comment">
+                    <p class="col-md-12">
+                      <a class="profile-pic" href="profile.html" style="background: url(img/pexels-photo-103123.jpeg) center center no-repeat;"></a> <a href="profile.html" class="username">Username</a> <br>
+                      I think that abortion should be
+                        legal because abortion is a
+                        women’s right. It is psychologically
+                        proven that women are more than
+                        capable of making a decision to
+                        keep or not keep a child. <i class="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true"></i></i>
+                    </p>
+                    <div class="col-md-6 button-container">
+                      <button class="button-vote up"><img src="img/factual-w.png"> <span class="vote-num">255</span></button>
+                    </div>
+                    <div class="col-md-6 button-container">
+                      <button class="button-vote down"><img src="img/emotional-w.png"> 145</button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 vote-col middle" id ="middle">
+              <h2 class="col-md-12">You Decide</h2>
+              <div class="comment-container col-md-12">
+                  <div class="comment">
+                    <p class="col-md-12">
+                      <a class="profile-pic" href="profile.html" style="background: url(img/pexels-photo-103123.jpeg) center center no-repeat;"></a> <a href="profile.html" class="username">Username</a> <br>
+                        I think that abortion should be
+                        legal because abortion is a
+                        women’s right. It is psychologically
+                        proven that women are more than
+                        capable of making a decision to
+                        keep or not keep a child.
+                    </p>
+                    <div class="col-md-6 button-container">
+                      <button class="button-vote up"><img src="img/factual-w.png"> <span class="vote-num">255</span></button>
+                    </div>
+                    <div class="col-md-6 button-container">
+                      <button class="button-vote down"><img src="img/emotional-w.png"><span class="vote-num">255</span></button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-4 vote-col emotional" id = "emotional">
+              <h2 class="col-md-12"><img src="img/emotional-w.png"></h2>
+              <div class="comment-container col-md-12">
+                <div class="comment">
+                  <p class="col-md-12">
+                    <a class="profile-pic" href="profile.html" style="background: url(img/pexels-photo-103123.jpeg) center center no-repeat;"></a> <a href="profile.html" class="username">Username</a> <br>
+                      I think that abortion should be
+                      legal because abortion is a
+                      women’s right. It is psychologically
+                      proven that women are more than
+                      capable of making a decision to
+                      keep or not keep a child. <i class="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true"></i></i>
+                  </p>
+                  <div class="col-md-6 button-container">
+                    <button class="button-vote up"><img src="img/factual-w.png"> <span class="vote-num">54</span></button>
+                  </div>
+                  <div class="col-md-6 button-container">
+                    <button class="button-vote down"><img src="img/emotional-w.png"><span class="vote-num">100</span></button>
+                  </div>
+                </div>
+                <div class="comment">
+                  <p class="col-md-12">
+                    <a class="profile-pic" href="profile.html" style="background: url(img/pexels-photo-103123.jpeg) center center no-repeat;"></a> <a href="profile.html" class="username">Username</a> <br>
+                      I think that abortion should be
+                      legal because abortion is a
+                      women’s right. It is psychologically
+                      proven that women are more than
+                      capable of making a decision to
+                      keep or not keep a child. <i class="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true"></i></i>
+                  </p>
+                  <div class="col-md-6 button-container">
+                    <button class="button-vote up"><img src="img/factual-w.png"> <span class="vote-num">54</span></button>
+                  </div>
+                  <div class="col-md-6 button-container">
+                    <button class="button-vote down"><img src="img/emotional-w.png"><span class="vote-num">100</span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay">
+
+    </div>
+  </section>
+  <div id="rankings" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="my-ranking">
+          <p class="my-info"><a href="profile.html" style="background: url(img/pexels-photo-103123.jpeg) center center no-repeat;"></a> Priyanka Sundhar</p>
+        </div>
+        <div class="my-rank-num">
+          <p class="my-rank">#434</p>
+        </div>
+        <div class="top-ranks">
+          <div class="factual rank-content">
+            <h2><img src="img/best-debater.png"> Most Factual Debater</h2>
+            <ul class="rank-container col-md-12">
+              <div class="first-place">
+                <li><span class="rank-number">1</span> John Appleseed</li>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <li><span class="rank-number">2</span> John Appleseed</li>
+                <li><span class="rank-number">3</span> John Appleseed</li>
+                <li><span class="rank-number">4</span> John Appleseed</li>
+                <li><span class="rank-number">5</span> John Appleseed</li>
+                <li><span class="rank-number">6</span> John Appleseed</li>
+                <li><span class="rank-number">7</span> John Appleseed</li>
+                <li><span class="rank-number">8</span> John Appleseed</li>
+                <li><span class="rank-number">9</span> John Appleseed</li>
+                <li><span class="rank-number">10</span> John Appleseed</li>
+                <li><span class="rank-number">11</span> John Appleseed</li>
+                <li><span class="rank-number">12</span> John Appleseed</li>
+                <li><span class="rank-number">13</span> John Appleseed</li>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <li><span class="rank-number">14</span> John Appleseed</li>
+                <li><span class="rank-number">15</span> John Appleseed</li>
+                <li><span class="rank-number">16</span> John Appleseed</li>
+                <li><span class="rank-number">17</span> John Appleseed</li>
+                <li><span class="rank-number">18</span> John Appleseed</li>
+                <li><span class="rank-number">19</span> John Appleseed</li>
+                <li><span class="rank-number">20</span> John Appleseed</li>
+                <li><span class="rank-number">21</span> John Appleseed</li>
+                <li><span class="rank-number">22</span> John Appleseed</li>
+                <li><span class="rank-number">23</span> John Appleseed</li>
+                <li><span class="rank-number">24</span> John Appleseed</li>
+                <li><span class="rank-number">25</span> John Appleseed</li>
+              </div>
+            </ul>
+            <div class="next-buttons col-md-12 col-sm-12">
+              <div class="col-md-6 col-sm-6">
+                <button class="back">Back</button>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <button class="next">Next</button>
+              </div>
+            </div>
+          </div>
+          <div class="emotional rank-content">
+            <h2><i class="fa fa-hand-peace-o" aria-hidden="true"></i> Most <span class="coexist"><span class="C">C</span><span class="O">O</span><span class="E">E</span><span class="X">X</span><span class="I">I</span><span class="S">S</span><span class="T">T</span><span class="I">I</span><span class="N">N</span><span class="G">G</span></span>
+ Debater</h2>
+            <ul class="rank-container col-md-12">
+              <div class="first-place">
+                <li><span class="rank-number">1</span> John Appleseed</li>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <li><span class="rank-number">2</span> John Appleseed</li>
+                <li><span class="rank-number">3</span> John Appleseed</li>
+                <li><span class="rank-number">4</span> John Appleseed</li>
+                <li><span class="rank-number">5</span> John Appleseed</li>
+                <li><span class="rank-number">6</span> John Appleseed</li>
+                <li><span class="rank-number">7</span> John Appleseed</li>
+                <li><span class="rank-number">8</span> John Appleseed</li>
+                <li><span class="rank-number">9</span> John Appleseed</li>
+                <li><span class="rank-number">10</span> John Appleseed</li>
+                <li><span class="rank-number">11</span> John Appleseed</li>
+                <li><span class="rank-number">12</span> John Appleseed</li>
+                <li><span class="rank-number">13</span> John Appleseed</li>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <li><span class="rank-number">14</span> John Appleseed</li>
+                <li><span class="rank-number">15</span> John Appleseed</li>
+                <li><span class="rank-number">16</span> John Appleseed</li>
+                <li><span class="rank-number">17</span> John Appleseed</li>
+                <li><span class="rank-number">18</span> John Appleseed</li>
+                <li><span class="rank-number">19</span> John Appleseed</li>
+                <li><span class="rank-number">20</span> John Appleseed</li>
+                <li><span class="rank-number">21</span> John Appleseed</li>
+                <li><span class="rank-number">22</span> John Appleseed</li>
+                <li><span class="rank-number">23</span> John Appleseed</li>
+                <li><span class="rank-number">24</span> John Appleseed</li>
+                <li><span class="rank-number">25</span> John Appleseed</li>
+              </div>
+            </ul>
+            <div class="next-buttons col-md-12 col-sm-12">
+              <div class="col-md-6 col-sm-6">
+                <button class="back">Back</button>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <button class="next">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="close-bottom">
+          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="challenge-conf" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <p>Are you sure you want to challenge <span>Username</span> to a debate?</p>
+        <div class="col-md-6 cancel">
+          <button data-dismiss="modal">Cancel</button>
+        </div>
+        <div class="col-md-6 confirm">
+          <button data-dismiss="modal">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
+  <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

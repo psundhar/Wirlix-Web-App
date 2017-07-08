@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,600" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.color.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
+    <title>Wirlix</title>
+
+
+</head>
+<body>
+  <div class="upload-container">
+    <div class="container">
+      <h1>Upload a photo</h1>
+      <div class="img-container">
+        <img src="img/profile-pic-placeholder.png" id = "profile-img" alt="your profile img" data-top="0"  data-left="0">
+        <div class="upload-group col-md-12">
+          <input type="file" name="profile-picture" id="file" class="inputfile" data-multiple-caption="{count} files selected"/>
+          <label for="file"><i class="fa fa-upload" aria-hidden="true"></i> <span id = "filename">Upload Image</span></label>
+        </div>
+      </div>
+      <div class="change">
+        <input type="file" name="profile-picture" class="inputfile" data-multiple-caption="{count} files selected"/>
+        <label for="file"><i class="fa fa-upload" aria-hidden="true"></i> <span>Change Image</span></label>
+      </div>
+      <div class="col-md-4 col-md-offset-4 continue">
+        <a href="tutorial.html">Continue <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-md-offset-4 modal-continue">
+    <p>Are you sure you want to continue without a profile picture?</p>
+    <div class="button-group">
+      <div class="col-md-6">
+        <a href="#" onclick="closeModal()" class="cancel">Cancel</a>
+      </div>
+      <div class="col-md-6">
+        <a href="tutorial.html" class="col-md-6 cont">Continue</a>
+      </div>
+    </div>
+  </div>
+  <div class="overlay">
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/reposition.js"></script>
+  <script type="text/javascript" src="js/fileinput.js"></script>
+</body>
+</html>
