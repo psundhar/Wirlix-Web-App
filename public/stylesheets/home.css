@@ -273,7 +273,7 @@ h1, h2, h3, h4{
 /* ================================== News / Comment Section ================================== */
 
 .news-section{
-  background: url(../img/piccool.jpeg) center center no-repeat;
+  background: url(../images/piccool.jpeg) center center no-repeat;
     background-size: cover;
     position: relative;
 }
@@ -649,7 +649,7 @@ z-index: 5;
 
 /* ================================== Debate ================================== */
 .debate-section{
-    background: url(../img/piccool.jpeg) center center no-repeat;
+    background: url(../images/piccool.jpeg) center center no-repeat;
     background-size: cover;
     position: relative;
 }
@@ -1443,7 +1443,7 @@ z-index: 5;
 /* ================================== Profile ================================== */
 
 .main-content.profile{
-  background: url(../img/piccool.jpeg) center center no-repeat;
+  background: url(../images/piccool.jpeg) center center no-repeat;
   background-size: cover;
 }
 
