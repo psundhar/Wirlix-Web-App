@@ -54,5 +54,12 @@ module.exports = {
             .populate(['challenger', 'challengee']);
     },
 
+    queryBest: function() {
+        return model
+            .find({deleted: false, views: {$gt: 0}})
+            .limit(3)
+            .populate(['challenger', 'challengee']);
+    },
+
     default: model,
 }
