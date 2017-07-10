@@ -178,12 +178,29 @@ passport.use(new LocalStrategy({passReqToCallback : true}, function(req, usernam
 // );
 app.use('/api', apiRoutes);
 
-var fs = require('fs');
+const Topic = require('./models/topics');
 
 app.get('/debate', function(req, res) {
-  // res.set('Content-Type', 'text/html');
-  // res.send(fs.readFileSync(path.join(__dirname, 'public/debate.html')));
-    res.render('debate');
+    Topic.queryLatest()
+        .exec()
+        .then(function(topic) {
+            var bgImage = "../images/piccool.jpeg", prompt = "Should abortion be legal?";
+
+            if(topic) {
+                bgImage = topic.image;
+                prompt = topic.prompt;
+            }
+            console.log(bgImage, topic);
+
+            res.render('debate', {
+                topicPrompt: prompt,
+                pageBackground: 'url(' + bgImage + ') center center no-repeat',
+            });
+        }).
+        catch(function(err) {
+            console.log(err);
+            res.status(500);
+        })
 });
 
 app.use('/', index(passport));

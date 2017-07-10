@@ -12,9 +12,16 @@ const topicSchema = mongoose.Schema({
         type: Date,
         required: true,
     },
-    picture: {
+    image: {
         type: String,
     },
 });
 
-module.exports = mongoose.model('Topic', topicSchema);
+const model = mongoose.model('Topic', topicSchema);
+
+module.exports = {
+    queryLatest: function() {
+        return model.findOne({expires: {$gte: Date.now()}});
+    },
+    default: model,
+};

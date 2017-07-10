@@ -2,7 +2,7 @@ const Topic = require('../models/topics');
 
 module.exports = {
     getCurrent: function(req, res) {
-        Topic.findOne({expires: {$gte: Date.now()}})
+        Topic.queryLatest()
             .exec()
             .then(function(topic) {
                 res.send(topic);

@@ -649,7 +649,6 @@ z-index: 5;
 
 /* ================================== Debate ================================== */
 .debate-section{
-    background: url(../images/piccool.jpeg) center center no-repeat;
     background-size: cover;
     position: relative;
 }
