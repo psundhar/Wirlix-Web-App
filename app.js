@@ -182,11 +182,12 @@ const Topic = require('./models/topics');
 const Debate = require('./models/debates');
 
 app.get('/debate', function(req, res) {
-    Promise.all([Topic.queryLatest().exec(), Debate.queryAll().exec(), Debate.queryBest().exec()])
+    Promise.all([Topic.queryLatest().exec(), Debate.queryAll().exec(), Debate.queryBest().exec(), Debate.queryLive().exec()])
         .then(function(promiseResultsArray) {
             const topic = promiseResultsArray[0];
             const debates = promiseResultsArray[1];
             const bestDebates = promiseResultsArray[2];
+            const liveDebates = promiseResultsArray[3];
 
             var bgImage = "../images/piccool.jpeg", prompt = "Should abortion be legal?";
 
@@ -200,6 +201,7 @@ app.get('/debate', function(req, res) {
                 pageBackground: 'url(' + bgImage + ') center center no-repeat',
                 debates: debates,
                 bestDebates: bestDebates,
+                liveDebates: liveDebates,
             });
         }).
         catch(function(err) {

@@ -136,42 +136,44 @@
 
                     <div class="col-md-4 vote-col middle" id ="middle">
                         <h2 class="col-md-12"><br>Live Right Now</h2>
-                        <div class="debates col-md-12">
-                            <div class="debate">
-                                <div class="front">
-                                    <div class="content">
-                                        <div class="user">
-                                            <p><a href="profile.html" style="background: url(images/pexels-photo-103123.jpeg) center center no-repeat;"></a></p>
-                                            <p>Username</p>
+                        <div class="debates col-md-12 live-debates">
+                            {{#each liveDebates}}
+                                <div class="debate">
+                                    <div class="front">
+                                        <div class="content">
+                                            <div class="user">
+                                                <p><a href="profile.html" style="background: url(images/pexels-photo-103123.jpeg) center center no-repeat;"></a></p>
+                                                <p>{{ this.challenger.username }}</p>
+                                            </div>
+                                            <div class="vs">
+                                                <p>vs.</p>
+                                            </div>
+                                            <div class="user">
+                                                <p><a href="profile.html" style="background: url(images/pexels-photo-103123.jpeg) center center no-repeat;"></a></p>
+                                                <p><p>{{ this.challengee.username }}</p></p>
+                                            </div>
+                                            <p class="time-posted">25m</p>
+                                            <div class="notif">
+                                                <input type="checkbox" class="notif-input" name="subscribe" value="">
+                                            </div>
                                         </div>
-                                        <div class="vs">
-                                            <p>vs.</p>
+                                        <div class="col-md-6 button-container">
+                                            <p class="view-amt"><img src="images/eye-w.png"> {{ this.views }}</p>
                                         </div>
-                                        <div class="user">
-                                            <p><a href="profile.html" style="background: url(images/pexels-photo-103123.jpeg) center center no-repeat;"></a></p>
-                                            <p>Username</p>
+                                        <div class="col-md-6 button-container">
+                                            <p class="view-amt"><img src="images/check-mark.png"> {{ this.subscribers.length }}</p>
                                         </div>
+                                    </div>
+                                    <div class="back">
+                                        <div class="username">
+                                            <p><a href="profile.html" style="background: url(images/pexels-photo-103123.jpeg) center center no-repeat;"></a> {{ this.challengee.username }}</p>
+                                        </div>
+                                        <p class="comment-preview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius egestas lacinia. </p>
+                                        <p><button type="button" class="full-debate" href="#" data-toggle="modal" data-target="#view-debate">Full Debate &#8250;</button></p>
                                         <p class="time-posted">25m</p>
-                                        <div class="notif">
-                                            <input type="checkbox" class="notif-input" name="subscribe" value="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 button-container">
-                                        <p class="view-amt"><img src="images/eye-w.png"> 54</p>
-                                    </div>
-                                    <div class="col-md-6 button-container">
-                                        <p class="view-amt"><img src="images/check-mark.png"> 100</p>
                                     </div>
                                 </div>
-                                <div class="back">
-                                    <div class="username">
-                                        <p><a href="profile.html" style="background: url(images/pexels-photo-103123.jpeg) center center no-repeat;"></a> Username</p>
-                                    </div>
-                                    <p class="comment-preview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius egestas lacinia. </p>
-                                    <p><button type="button" class="full-debate" href="#" data-toggle="modal" data-target="#view-debate">Full Debate &#8250;</button></p>
-                                    <p class="time-posted">25m</p>
-                                </div>
-                            </div>
+                            {{/each}}
                         </div>
                     </div>
 

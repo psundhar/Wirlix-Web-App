@@ -61,5 +61,11 @@ module.exports = {
             .populate(['challenger', 'challengee']);
     },
 
+    queryLive: function() {
+        return model
+            .find({deleted: false, updated: {$gte: Date.now() - 300000 }}) // last five minutes
+            .populate(['challenger', 'challengee']);
+    },
+
     default: model,
 }
