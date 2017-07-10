@@ -26,6 +26,10 @@ var userSchema = mongoose.Schema({
         type: String,
         unique: true
     },
+    username: {
+        type: String,
+        unique: true
+    },
 });
 
 var User = mongoose.model('User', userSchema);

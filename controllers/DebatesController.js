@@ -3,15 +3,14 @@ const Debate = require('../models/debates');
 module.exports = {
     getCollection: function(req, res, next) {
         Debate
-        .find({deleted: false})
-        .populate(['challenger', 'challengee'])
-        .exec()
-        .then(function(debates) {
-            res.send(debates);
-        })
-        .catch(function(err) {
-            console.log(err);
-        });
+            .queryAll()
+            .exec()
+            .then(function(debates) {
+                res.send(debates);
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
     },
 
     getMyDebates: function(req, res) {

@@ -179,22 +179,25 @@ passport.use(new LocalStrategy({passReqToCallback : true}, function(req, usernam
 app.use('/api', apiRoutes);
 
 const Topic = require('./models/topics');
+const Debate = require('./models/debates');
 
 app.get('/debate', function(req, res) {
-    Topic.queryLatest()
-        .exec()
-        .then(function(topic) {
+    Promise.all([Topic.queryLatest().exec(), Debate.queryAll().exec()])
+        .then(function(promiseResultsArray) {
+            const topic = promiseResultsArray[0];
+            const debates = promiseResultsArray[1];
+
             var bgImage = "../images/piccool.jpeg", prompt = "Should abortion be legal?";
 
             if(topic) {
                 bgImage = topic.image;
                 prompt = topic.prompt;
             }
-            console.log(bgImage, topic);
 
             res.render('debate', {
                 topicPrompt: prompt,
                 pageBackground: 'url(' + bgImage + ') center center no-repeat',
+                debates: debates,
             });
         }).
         catch(function(err) {

@@ -44,4 +44,15 @@ const debatesSchema = mongoose.Schema({
     ],
 });
 
-module.exports = mongoose.model('Debate', debatesSchema);
+const model = mongoose.model('Debate', debatesSchema);
+
+module.exports = {
+
+    queryAll: function() {
+        return model
+            .find({deleted: false})
+            .populate(['challenger', 'challengee']);
+    },
+
+    default: model,
+}
