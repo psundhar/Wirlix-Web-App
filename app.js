@@ -39,15 +39,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());
-//Passport
-// Passport
-
-
-
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -57,18 +48,12 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-// passport.use(new LocalStrategy(function(username, password, done) {
-//   process.nextTick(function() {
-//     // Auth Check Logic
-//   });
-// }));
-
 passport.use(new LocalStrategy({passReqToCallback : true}, function(req, username, password, done) {
-  // process.nextTick(function() {
     users.findOne({
       email: username
     }, function(err, user) {
       if (err) {
+        console.log(err);
         return done(err);
       }
 
@@ -83,7 +68,6 @@ passport.use(new LocalStrategy({passReqToCallback : true}, function(req, usernam
 
       return done(null, user);
     });
-  // });
 }));
 
 
@@ -181,13 +165,16 @@ app.use('/api', apiRoutes);
 const Topic = require('./models/topics');
 const Debate = require('./models/debates');
 
+app.use('/', index(passport));
+
 app.get('/debate', function(req, res) {
-    Promise.all([Topic.queryLatest().exec(), Debate.queryAll().exec(), Debate.queryBest().exec(), Debate.queryLive().exec()])
+    Promise.all([Topic.queryLatest().exec(), Debate.queryAll().exec(), Debate.queryBest().exec(), Debate.queryLive().exec(), Promise.resolve([])])
         .then(function(promiseResultsArray) {
             const topic = promiseResultsArray[0];
             const debates = promiseResultsArray[1];
             const bestDebates = promiseResultsArray[2];
             const liveDebates = promiseResultsArray[3];
+            const subscribedDebates = promiseResultsArray[4];
 
             var bgImage = "../images/piccool.jpeg", prompt = "Should abortion be legal?";
 
@@ -202,6 +189,7 @@ app.get('/debate', function(req, res) {
                 debates: debates,
                 bestDebates: bestDebates,
                 liveDebates: liveDebates,
+                subscribedDebates: subscribedDebates,
             });
         }).
         catch(function(err) {
@@ -209,9 +197,6 @@ app.get('/debate', function(req, res) {
             res.status(500);
         })
 });
-
-app.use('/', index(passport));
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -242,6 +227,6 @@ var quotes = [
 
 app.listen(3000, function () {
     console.log("Example port is listening on app!");
-})
+});
 
 module.exports = app;

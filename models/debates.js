@@ -67,5 +67,11 @@ module.exports = {
             .populate(['challenger', 'challengee']);
     },
 
+    querySubscribed: function() {
+        return model
+            .find({deleted: false})
+            .populate(['challenger', 'challengee']);
+    },
+
     default: model,
 }
