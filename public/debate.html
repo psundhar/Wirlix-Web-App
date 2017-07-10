@@ -636,20 +636,20 @@
   <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript">
     (function() {
-        $('document').ready(function() {
-            // Load in topic api data
-            fetch('/api/topics')
-            .then(function(res) {
-                return res.json();
-            })
-            .then(function(topicJson) {
-               $('#debate-prompt').text(topicJson.prompt);
-               $('.debate-section').css('background', 'url('+ topicJson.image +') center center no-repeat');
-            })
-            .catch(function(err) {
-               console.log(err);
-            });
+      $('document').ready(function() {
+        // Load in topic api data
+        fetch('/api/topics')
+        .then(function(res) {
+            return res.json();
         })
+        .then(function(topicJson) {
+           $('#debate-prompt').text(topicJson.prompt);
+           $('.debate-section').css('background', 'url('+ topicJson.image +') center center no-repeat');
+        })
+        .catch(function(err) {
+           console.log(err);
+        });
+      })
     })();
   </script>
 </body>

@@ -178,6 +178,13 @@ passport.use(new LocalStrategy({passReqToCallback : true}, function(req, usernam
 // );
 app.use('/api', apiRoutes);
 
+var fs = require('fs');
+
+app.get('/debate', function(req, res) {
+  res.set('Content-Type', 'text/html');
+  res.send(fs.readFileSync(path.join(__dirname, 'public/debate.html')));
+});
+
 app.use('/', index(passport));
 app.use('/users', users);
 
@@ -207,8 +214,6 @@ var quotes = [
 
 	"“It is important that students bring a certain ragamuffin, barefoot irreverence to their studies; they are not here to worship what is known, but to question it.”  <br><br>—  Jacob Bronowski"
 ];
-
-
 
 app.listen(3000, function () {
     console.log("Example port is listening on app!");
