@@ -21,7 +21,7 @@ const apiRoutes = require('./routes/api');
 mongoose.connect(connect);
 
 // view engine setup
-app.engine('.hbs', exphbs({extname: '.hbs', defaultLayout: 'main'}));
+app.engine('.hbs', exphbs({extname: '.hbs', defaultLayout: 'web_main'}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -181,8 +181,9 @@ app.use('/api', apiRoutes);
 var fs = require('fs');
 
 app.get('/debate', function(req, res) {
-  res.set('Content-Type', 'text/html');
-  res.send(fs.readFileSync(path.join(__dirname, 'public/debate.html')));
+  // res.set('Content-Type', 'text/html');
+  // res.send(fs.readFileSync(path.join(__dirname, 'public/debate.html')));
+    res.render('debate');
 });
 
 app.use('/', index(passport));
