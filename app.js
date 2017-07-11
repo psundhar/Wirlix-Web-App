@@ -168,34 +168,35 @@ const Debate = require('./models/debates');
 app.use('/', index(passport));
 
 app.get('/debate', function(req, res) {
-    Promise.all([Topic.queryLatest().exec(), Debate.queryAll().exec(), Debate.queryBest().exec(), Debate.queryLive().exec(), Debate.querySubscribed(req.user._id)])
-        .then(function(promiseResultsArray) {
-            const topic = promiseResultsArray[0];
-            const debates = promiseResultsArray[1];
-            const bestDebates = promiseResultsArray[2];
-            const liveDebates = promiseResultsArray[3];
-            const subscribedDebates = promiseResultsArray[4];
-
-            var bgImage = "../images/piccool.jpeg", prompt = "Should abortion be legal?";
-
-            if(topic) {
-                bgImage = topic.image;
-                prompt = topic.prompt;
-            }
-
-            res.render('debate', {
-                topicPrompt: prompt,
-                pageBackground: 'url(' + bgImage + ') center center no-repeat',
-                debates: debates,
-                bestDebates: bestDebates,
-                liveDebates: liveDebates,
-                subscribedDebates: subscribedDebates,
-            });
-        }).
-        catch(function(err) {
-            console.log(err);
-            res.status(500);
-        })
+    res.render('react_main');
+    // Promise.all([Topic.queryLatest().exec(), Debate.queryAll().exec(), Debate.queryBest().exec(), Debate.queryLive().exec(), Debate.querySubscribed(req.user._id)])
+    //     .then(function(promiseResultsArray) {
+    //         const topic = promiseResultsArray[0];
+    //         const debates = promiseResultsArray[1];
+    //         const bestDebates = promiseResultsArray[2];
+    //         const liveDebates = promiseResultsArray[3];
+    //         const subscribedDebates = promiseResultsArray[4];
+    //
+    //         var bgImage = "../images/piccool.jpeg", prompt = "Should abortion be legal?";
+    //
+    //         if(topic) {
+    //             bgImage = topic.image;
+    //             prompt = topic.prompt;
+    //         }
+    //
+    //         res.render('debate', {
+    //             topicPrompt: prompt,
+    //             pageBackground: 'url(' + bgImage + ') center center no-repeat',
+    //             debates: debates,
+    //             bestDebates: bestDebates,
+    //             liveDebates: liveDebates,
+    //             subscribedDebates: subscribedDebates,
+    //         });
+    //     }).
+    //     catch(function(err) {
+    //         console.log(err);
+    //         res.status(500);
+    //     })
 });
 
 // catch 404 and forward to error handler
