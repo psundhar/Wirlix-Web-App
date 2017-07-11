@@ -183,7 +183,7 @@ app.get('/debate', function(req, res) {
             const data = {
                 topic: topic,
                 debates: debates,
-                userId: req.user._id,
+                user: req.user,
             };
 
             res.render('react_main', { data: JSON.stringify(data) });

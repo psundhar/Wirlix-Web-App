@@ -14,19 +14,19 @@ const FlippableDebateCard = React.createClass({
     },
 
     render() {
-        const { challenger, challengee, views, subscribers, subscribed } = this.props;
+        const { challenger, challengee, views, subscribers, subscribed, handleSubscribeToggle, _id } = this.props;
 
         const frontVisible = this.state.frontVisible;
 
         return (
-            <div className="debate" onClick={ this.flip }>
+            <div className="debate">
                 { frontVisible && (<div className="front">
                     <div className="content">
                         <div className="flex justify-between">
                             <div>
-                                <input type="checkbox" checked={ subscribed }/>
+                                <input type="checkbox" onChange={ e => { e.stopPropagation(); handleSubscribeToggle(_id); } } checked={ subscribed }/>
                             </div>
-                            <div className="flex justify-around">
+                            <div className="flex justify-around" onClick={ this.flip }>
                                 <div className="flex flex-column" style={{width: "40%"}}>
                                     <div className="mx-auto" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
                                     <p className="small">{ challenger.username }</p>
@@ -52,7 +52,7 @@ const FlippableDebateCard = React.createClass({
                     </div>
                 </div>) }
                 { !frontVisible && (
-                    <div className="back">
+                    <div className="back" onClick={ this.flip }>
                         <div className="username">
                             <p><a href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat"}}></a> { challengee.username }</p>
                         </div>

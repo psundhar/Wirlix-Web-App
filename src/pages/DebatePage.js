@@ -7,7 +7,7 @@ const DebatePage = React.createClass({
         return {
             debates: [],
             topic: {},
-            userId: null,
+            user: {},
         }
     },
 
@@ -15,6 +15,25 @@ const DebatePage = React.createClass({
         if(initialState) { // Globally set into hbs templates
             this.setState(initialState);
         }
+    },
+
+    handleSubscribeToggle: function(debateId) {
+        let debates = [...this.state.debates];
+        const selectedDebate = debates.find(d => d._id == debateId);
+
+        const sdSubscribers = selectedDebate.subscribers;
+        if(sdSubscribers.some(sid => {
+            return sid == this.state.user._id;
+        })) {
+            // Remove
+            selectedDebate.subscribers = sdSubscribers.filter(sid => { return sid != this.state.user._id});
+        }
+        else {
+            // Add
+            sdSubscribers.push(this.state.user._id);
+        }
+
+        this.setState({ debates });
     },
 
     render: function() {
@@ -75,7 +94,7 @@ const DebatePage = React.createClass({
                     return d.views > 10;
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard key={i} {...d} />
+                        <FlippableDebateCard key={i} handleSubscribeToggle={this.handleSubscribeToggle} {...d}/>
                     )
                 })}
             </div>
@@ -88,7 +107,7 @@ const DebatePage = React.createClass({
                     return Date.parse(d.updated) >= (Date.now() - 600000) //10 minutes ago
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard key={i} {...d} />
+                        <FlippableDebateCard key={i} handleSubscribeToggle={this.handleSubscribeToggle} {...d}  />
                     )
                 })}
             </div>
@@ -98,10 +117,10 @@ const DebatePage = React.createClass({
             <h2 className="col-md-12"><img src="images/check-mark.png" /><br/>Subscribed Debates</h2>
         <div className="debates col-md-12" id="subscribed-debates-list">
             { this.state.debates.filter((d) => {
-                return d.subscribers.includes(this.state.userId);
+                return d.subscribers.includes(this.state.user._id);
             }).map((d,i)=> {
                 return (
-                    <FlippableDebateCard key={i} subscribed={true} {...d}/>
+                    <FlippableDebateCard key={i} subscribed={true} handleSubscribeToggle={this.handleSubscribeToggle} {...d} />
                 )
             })}
         </div>
