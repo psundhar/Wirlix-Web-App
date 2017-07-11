@@ -22729,7 +22729,9 @@ var DebatePage = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                         'div',
                                         { className: 'debates col-md-12 live-debates' },
-                                        this.state.debates.map(function (d, i) {
+                                        this.state.debates.filter(function (d) {
+                                            return Date.parse(d.updated) >= Date.now() - 600000; //10 minutes ago
+                                        }).map(function (d, i) {
                                             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_FlippableDebateCard__["a" /* default */], { data: d, key: i });
                                         })
                                     )

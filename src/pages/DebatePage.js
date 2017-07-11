@@ -77,7 +77,9 @@ const DebatePage = React.createClass({
         <div className="col-md-4 vote-col middle" id ="middle">
             <h2 className="col-md-12"><br/>Live Right Now</h2>
             <div className="debates col-md-12 live-debates">
-                { this.state.debates.map((d, i) => {
+                { this.state.debates.filter((d) => {
+                    return Date.parse(d.updated) >= (Date.now() - 600000) //10 minutes ago
+                }).map((d, i) => {
                     return (
                         <FlippableDebateCard data={d} key={i}/>
                     )
