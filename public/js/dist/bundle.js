@@ -22514,6 +22514,8 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_MyDebates__ = __webpack_require__(187);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_FlippableDebateCard__ = __webpack_require__(188);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 
 
 
@@ -22536,6 +22538,8 @@ var DebatePage = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
 
 
     render: function render() {
+        var _this = this;
+
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             null,
@@ -22715,7 +22719,15 @@ var DebatePage = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
                                         'Best Debates'
                                     ),
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'debates col-md-12', id: 'best-debates-list' })
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'div',
+                                        { className: 'debates col-md-12', id: 'best-debates-list' },
+                                        this.state.debates.filter(function (d) {
+                                            return d.views > 10;
+                                        }).map(function (d, i) {
+                                            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_FlippableDebateCard__["a" /* default */], _extends({ key: i }, d));
+                                        })
+                                    )
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'div',
@@ -22732,7 +22744,7 @@ var DebatePage = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
                                         this.state.debates.filter(function (d) {
                                             return Date.parse(d.updated) >= Date.now() - 600000; //10 minutes ago
                                         }).map(function (d, i) {
-                                            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_FlippableDebateCard__["a" /* default */], { data: d, key: i });
+                                            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_FlippableDebateCard__["a" /* default */], _extends({ key: i }, d));
                                         })
                                     )
                                 ),
@@ -22746,7 +22758,15 @@ var DebatePage = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
                                         'Subscribed Debates'
                                     ),
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'debates col-md-12', id: 'subscribed-debates-list' })
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'div',
+                                        { className: 'debates col-md-12', id: 'subscribed-debates-list' },
+                                        this.state.debates.filter(function (d) {
+                                            return d.subscribers.includes(_this.state.userId);
+                                        }).map(function (d, i) {
+                                            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_FlippableDebateCard__["a" /* default */], _extends({ key: i }, d));
+                                        })
+                                    )
                                 )
                             )
                         )
@@ -24292,11 +24312,11 @@ var FlippableDebateCard = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createCl
         });
     },
     render: function render() {
-        var _props$data = this.props.data,
-            challenger = _props$data.challenger,
-            challengee = _props$data.challengee,
-            views = _props$data.views,
-            subscribers = _props$data.subscribers;
+        var _props = this.props,
+            challenger = _props.challenger,
+            challengee = _props.challengee,
+            views = _props.views,
+            subscribers = _props.subscribers;
 
 
         var frontVisible = this.state.frontVisible;

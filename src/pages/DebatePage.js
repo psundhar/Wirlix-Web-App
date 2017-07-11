@@ -70,8 +70,15 @@ const DebatePage = React.createClass({
             <div className="tab-content">
             <div className="col-md-4 vote-col factual active" id ="factual">
             <h2 className="col-md-12"><img src="images/eye-w.png" /><br/>Best Debates</h2>
-        <div className="debates col-md-12" id="best-debates-list">
-    </div>
+            <div className="debates col-md-12" id="best-debates-list">
+                { this.state.debates.filter((d) => {
+                    return d.views > 10;
+                }).map((d, i) => {
+                    return (
+                        <FlippableDebateCard key={i} {...d} />
+                    )
+                })}
+            </div>
         </div>
 
         <div className="col-md-4 vote-col middle" id ="middle">
@@ -81,7 +88,7 @@ const DebatePage = React.createClass({
                     return Date.parse(d.updated) >= (Date.now() - 600000) //10 minutes ago
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard data={d} key={i}/>
+                        <FlippableDebateCard key={i} {...d} />
                     )
                 })}
             </div>
@@ -90,7 +97,14 @@ const DebatePage = React.createClass({
         <div className="col-md-4 vote-col emotional" id = "emotional">
             <h2 className="col-md-12"><img src="images/check-mark.png" /><br/>Subscribed Debates</h2>
         <div className="debates col-md-12" id="subscribed-debates-list">
-    </div>
+            { this.state.debates.filter((d) => {
+                return d.subscribers.includes(this.state.userId);
+            }).map((d,i)=> {
+                return (
+                    <FlippableDebateCard key={i} {...d}/>
+                )
+            })}
+        </div>
         </div>
         </div>
         </div>

@@ -15,7 +15,7 @@ const FlippableDebateCard = React.createClass({
     },
 
     render() {
-        const { challenger, challengee, views, subscribers } = this.props.data;
+        const { challenger, challengee, views, subscribers } = this.props;
 
         const frontVisible = this.state.frontVisible;
 
