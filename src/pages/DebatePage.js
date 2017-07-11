@@ -56,7 +56,7 @@ const DebatePage = React.createClass({
         </div>
         </div>
 
-        <MyDebates />
+        <MyDebates debates={ this.state.debates } userId={ this.state.userId}/>
         <div className="comments">
             <div className="container">
             <div className="border decide">

@@ -22665,7 +22665,7 @@ var DebatePage = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
                         )
                     )
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_MyDebates__["a" /* default */], null),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_MyDebates__["a" /* default */], { debates: this.state.debates, userId: this.state.userId }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'comments' },
@@ -24118,171 +24118,27 @@ var DebatePage = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FirstArgumentCard__ = __webpack_require__(194);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function (_ref) {
-    _objectDestructuringEmpty(_ref);
+    var debates = _ref.debates,
+        userId = _ref.userId;
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "section",
-        { className: "my-debates" },
+        'section',
+        { className: 'my-debates' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "div",
-            { className: "container" },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "my-debate col-md-6 col-md-offset-3 no-response" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "username" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "p",
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", { className: "pic", href: "profile.html", style: { background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" } }),
-                        " ",
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "a",
-                            { className: "un", href: "profile.html" },
-                            "Username"
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    { className: "comment-preview" },
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius egestas lacinia. "
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "button",
-                        { type: "button", className: "reply-button col-md-4 col-md-offset-8 col-xs-12", "data-toggle": "modal", "data-target": "#convo" },
-                        "Reply"
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    { className: "time-posted" },
-                    "25m"
-                )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "my-debate col-md-6 col-md-offset-3" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "username" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "p",
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", { className: "pic", href: "profile.html", style: { background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" } }),
-                        " ",
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "a",
-                            { className: "un", href: "profile.html" },
-                            "Username"
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    { className: "comment-preview" },
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius egestas lacinia. "
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "button",
-                        { type: "button", className: "reply-button col-md-4 col-md-offset-8 col-xs-12", "data-toggle": "modal", "data-target": "#convo" },
-                        "Reply"
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    { className: "time-posted" },
-                    "25m"
-                )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "my-debate col-md-6 col-md-offset-3 no-response" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "username" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "p",
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", { className: "pic", href: "profile.html", style: { background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" } }),
-                        " ",
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "a",
-                            { className: "un", href: "profile.html" },
-                            "Username"
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    { className: "comment-preview" },
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius egestas lacinia. "
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "button",
-                        { type: "button", className: "reply-button col-md-4 col-md-offset-8 col-xs-12", "data-toggle": "modal", "data-target": "#convo" },
-                        "Reply"
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    { className: "time-posted" },
-                    "25m"
-                )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "my-debate col-md-6 col-md-offset-3" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "username" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "p",
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", { className: "pic", href: "profile.html", style: { background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" } }),
-                        " ",
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "a",
-                            { className: "un", href: "profile.html" },
-                            "Username"
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    { className: "comment-preview" },
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius egestas lacinia. "
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "button",
-                        { type: "button", className: "reply-button col-md-4 col-md-offset-8 col-xs-12", "data-toggle": "modal", "data-target": "#convo" },
-                        "Reply"
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    { className: "time-posted" },
-                    "25m"
-                )
-            )
+            'div',
+            { className: 'container' },
+            debates.filter(function (d) {
+                return d.challenger._id == userId || d.challengee._id == userId;
+            }).map(function (d, i) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__FirstArgumentCard__["a" /* default */], _extends({}, d, { challenger: userId == d.challenger._id, key: i }));
+            })
         )
     );
 });
@@ -24294,13 +24150,10 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_flipcard__ = __webpack_require__(189);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_flipcard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_flipcard__);
-
 
 
 var FlippableDebateCard = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
-    displayName: 'FlippableDebateCard',
+    displayName: "FlippableDebateCard",
     getInitialState: function getInitialState() {
         return {
             frontVisible: true
@@ -24322,115 +24175,115 @@ var FlippableDebateCard = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createCl
         var frontVisible = this.state.frontVisible;
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'debate', onClick: this.flip },
+            "div",
+            { className: "debate", onClick: this.flip },
             frontVisible && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'front' },
+                "div",
+                { className: "front" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'content' },
+                    "div",
+                    { className: "content" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'flex justify-between' },
+                        "div",
+                        { className: "flex justify-between" },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
+                            "div",
                             null,
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox' })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox" })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'flex justify-around' },
+                            "div",
+                            { className: "flex justify-around" },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'flex flex-column', style: { width: "40%" } },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'mx-auto', style: { background: "url(images/pexels-photo-103123.jpeg) center center no-repeat", borderRadius: "100px", border: "2px white solid", width: "50px", height: "50px" } }),
+                                "div",
+                                { className: "flex flex-column", style: { width: "40%" } },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "mx-auto", style: { background: "url(images/pexels-photo-103123.jpeg) center center no-repeat", borderRadius: "100px", border: "2px white solid", width: "50px", height: "50px" } }),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'p',
-                                    { className: 'small' },
+                                    "p",
+                                    { className: "small" },
                                     challenger.username
                                 )
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'vs' },
+                                "div",
+                                { className: "vs" },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'p',
+                                    "p",
                                     null,
-                                    'vs.'
+                                    "vs."
                                 )
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'flex flex-column', style: { width: "40%" } },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'mx-auto', style: { background: "url(images/pexels-photo-103123.jpeg) center center no-repeat", borderRadius: "100px", border: "2px white solid", width: "50px", height: "50px" } }),
+                                "div",
+                                { className: "flex flex-column", style: { width: "40%" } },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "mx-auto", style: { background: "url(images/pexels-photo-103123.jpeg) center center no-repeat", borderRadius: "100px", border: "2px white solid", width: "50px", height: "50px" } }),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'p',
-                                    { className: 'small' },
+                                    "p",
+                                    { className: "small" },
                                     challengee.username
                                 )
                             )
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'span',
-                            { className: 'small' },
-                            '25m'
+                            "span",
+                            { className: "small" },
+                            "25m"
                         )
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'clearfix mb3' },
+                    "div",
+                    { className: "clearfix mb3" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col-md-6' },
+                        "div",
+                        { className: "col-md-6" },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'p',
-                            { className: 'view-amt' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'images/eye-w.png', style: { margin: "0px" } }),
-                            ' ',
+                            "p",
+                            { className: "view-amt" },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "images/eye-w.png", style: { margin: "0px" } }),
+                            " ",
                             views
                         )
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col-md-6' },
+                        "div",
+                        { className: "col-md-6" },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'p',
-                            { className: 'view-amt' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'images/check-mark.png', style: { margin: "0px" } }),
-                            ' ',
+                            "p",
+                            { className: "view-amt" },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "images/check-mark.png", style: { margin: "0px" } }),
+                            " ",
                             subscribers.length
                         )
                     )
                 )
             ),
             !frontVisible && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'back' },
+                "div",
+                { className: "back" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'username' },
+                    "div",
+                    { className: "username" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'p',
+                        "p",
                         null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: 'profile.html', style: { background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" } }),
-                        ' ',
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", { href: "profile.html", style: { background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" } }),
+                        " ",
                         challengee.username
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'p',
-                    { className: 'comment-preview' },
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius egestas lacinia. '
+                    "p",
+                    { className: "comment-preview" },
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius egestas lacinia. "
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'p',
+                    "p",
                     null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'button',
-                        { type: 'button', className: 'full-debate', href: '#', 'data-toggle': 'modal', 'data-target': '#view-debate' },
-                        'Full Debate \u203A'
+                        "button",
+                        { type: "button", className: "full-debate", href: "#", "data-toggle": "modal", "data-target": "#view-debate" },
+                        "Full Debate \u203A"
                     )
                 )
             )
@@ -24441,320 +24294,63 @@ var FlippableDebateCard = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createCl
 /* harmony default export */ __webpack_exports__["a"] = (FlippableDebateCard);
 
 /***/ }),
-/* 189 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
 
 
-module.exports = __webpack_require__(190);
 
-/***/ }),
-/* 190 */
-/***/ (function(module, exports, __webpack_require__) {
+/* harmony default export */ __webpack_exports__["a"] = (function (_ref) {
+    _objectDestructuringEmpty(_ref);
 
-"use strict";
-
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _react = __webpack_require__(49);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(99);
-
-var _classnames = __webpack_require__(191);
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _helpersContains = __webpack_require__(192);
-
-var _helpersContains2 = _interopRequireDefault(_helpersContains);
-
-var _helpersInjectStyle = __webpack_require__(193);
-
-var _helpersInjectStyle2 = _interopRequireDefault(_helpersInjectStyle);
-
-// Auto inject the styles (will only be done once)
-(0, _helpersInjectStyle2['default'])();
-
-exports['default'] = _react2['default'].createClass({
-  displayName: 'ReactFlipCard',
-
-  propTypes: {
-    type: _react.PropTypes.string,
-    flipped: _react.PropTypes.bool,
-    disabled: _react.PropTypes.bool,
-    onFlip: _react.PropTypes.func,
-    onKeyDown: _react.PropTypes.func,
-    children: function children(props, propName, componentName) {
-      var prop = props[propName];
-
-      if (_react2['default'].Children.count(prop) !== 2) {
-        return new Error('`' + componentName + '` ' + 'should contain exactly two children. ' + 'The first child represents the front of the card. ' + 'The second child represents the back of the card.');
-      }
-    }
-  },
-
-  getDefaultProps: function getDefaultProps() {
-    return {
-      type: 'horizontal',
-      flipped: false,
-      disabled: false
-    };
-  },
-
-  getInitialState: function getInitialState() {
-    return {
-      hasFocus: false,
-      isFlipped: this.props.flipped
-    };
-  },
-
-  componentDidMount: function componentDidMount() {
-    this._hideFlippedSide();
-  },
-
-  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
-    var _this = this;
-
-    // Make sure both sides are displayed for animation
-    this._showBothSides();
-
-    // Wait for display above to take effect
-    setTimeout(function () {
-      _this.setState({
-        isFlipped: newProps.flipped
-      });
-    }, 0);
-  },
-
-  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
-    // If card is flipping to back via props, track element for focus
-    if (!this.props.flipped && nextProps.flipped) {
-      // The element that focus will return to when flipped back to front
-      this.focusElement = document.activeElement;
-      // Indicates that the back of card needs focus
-      this.focusBack = true;
-    }
-
-    // If isFlipped has changed need to notify
-    if (this.state.isFlipped !== nextState.isFlipped) {
-      this.notifyFlip = true;
-    }
-  },
-
-  componentDidUpdate: function componentDidUpdate() {
-    // If card has flipped to front, and focus is still within the card
-    // return focus to the element that triggered flipping to the back.
-    if (!this.props.flipped && this.focusElement && (0, _helpersContains2['default'])((0, _reactDom.findDOMNode)(this), document.activeElement)) {
-      this.focusElement.focus();
-      this.focusElement = null;
-    }
-    // Direct focus to the back if needed
-    /* eslint brace-style:0 */
-    else if (this.focusBack) {
-        this.refs.back.focus();
-        this.focusBack = false;
-      }
-
-    // Notify card being flipped
-    if (this.notifyFlip && typeof this.props.onFlip === 'function') {
-      this.props.onFlip(this.state.isFlipped);
-      this.notifyFlip = false;
-    }
-
-    // Hide whichever side of the card is down
-    setTimeout(this._hideFlippedSide, 600);
-  },
-
-  handleFocus: function handleFocus() {
-    if (this.props.disabled) return;
-
-    this.setState({
-      isFlipped: true
-    });
-  },
-
-  handleBlur: function handleBlur() {
-    if (this.props.disabled) return;
-
-    this.setState({
-      isFlipped: false
-    });
-  },
-
-  handleKeyDown: function handleKeyDown(e) {
-    if (typeof this.props.onKeyDown === 'function') {
-      this.props.onKeyDown(e);
-    }
-  },
-
-  render: function render() {
-    return _react2['default'].createElement(
-      'div',
-      {
-        className: (0, _classnames2['default'])({
-          'ReactFlipCard': true,
-          'ReactFlipCard--vertical': this.props.type === 'vertical',
-          'ReactFlipCard--horizontal': this.props.type !== 'vertical',
-          'ReactFlipCard--flipped': this.state.isFlipped,
-          'ReactFlipCard--enabled': !this.props.disabled
-        }),
-        tabIndex: 0,
-        onFocus: this.handleFocus,
-        onBlur: this.handleBlur,
-        onKeyDown: this.handleKeyDown
-      },
-      _react2['default'].createElement(
-        'div',
-        {
-          className: 'ReactFlipCard__Flipper'
-        },
-        _react2['default'].createElement(
-          'div',
-          {
-            className: 'ReactFlipCard__Front',
-            ref: 'front',
-            tabIndex: -1,
-            'aria-hidden': this.state.isFlipped
-          },
-          this.props.children[0]
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "div",
+        { className: "my-debate col-md-6 col-md-offset-3 no-response" },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "username" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "p",
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", { className: "pic", href: "profile.html", style: { background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" } }),
+                " ",
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "a",
+                    { className: "un", href: "profile.html" },
+                    "Username"
+                )
+            )
         ),
-        _react2['default'].createElement(
-          'div',
-          {
-            className: 'ReactFlipCard__Back',
-            ref: 'back',
-            tabIndex: -1,
-            'aria-hidden': !this.state.isFlipped
-          },
-          this.props.children[1]
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "p",
+            { className: "comment-preview" },
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius egestas lacinia. "
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "p",
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "button",
+                { type: "button", className: "reply-button col-md-4 col-md-offset-8 col-xs-12", "data-toggle": "modal", "data-target": "#convo" },
+                "Reply"
+            )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "p",
+            { className: "time-posted" },
+            "25m"
         )
-      )
     );
-  },
-
-  _showBothSides: function _showBothSides() {
-    this.refs.front.style.display = '';
-    this.refs.back.style.display = '';
-  },
-
-  _hideFlippedSide: function _hideFlippedSide() {
-    // This prevents the flipped side from being tabbable
-    if (this.props.disabled) {
-      if (this.state.isFlipped) {
-        this.refs.front.style.display = 'none';
-      } else {
-        this.refs.back.style.display = 'none';
-      }
-    }
-  }
 });
-module.exports = exports['default'];
-
-/***/ }),
-/* 191 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2016 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames () {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				classes.push(classNames.apply(null, arg));
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = classNames;
-	} else if (true) {
-		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
-			return classNames;
-		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-		window.classNames = classNames;
-	}
-}());
-
-
-/***/ }),
-/* 192 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Checks to see if a parent element contains a child element
-/* eslint no-param-reassign:0, no-cond-assign:0 */
-
-
-module.exports = function contains(parent, child) {
-  do {
-    if (parent === child) {
-      return true;
-    }
-  } while (child && (child = child.parentNode));
-  return false;
-};
-
-/***/ }),
-/* 193 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var CSS = '\n.ReactFlipCard {\n  -webkit-perspective: 1000;\n  -moz-perspective: 1000;\n  -ms-perspective: 1000;\n  perspective: 1000;\n\n  -ms-transform: perspective(1000px);\n  -moz-transform: perspective(1000px);\n  -moz-transform-style: preserve-3d;\n  -ms-transform-style: preserve-3d;\n\n  display: inline-block;\n}\n\n/* START: Accommodating for IE */\n.ReactFlipCard--enabled.ReactFlipCard:hover .ReactFlipCard__Back,\n.ReactFlipCard--flipped .ReactFlipCard__Back {\n  -webkit-transform: rotateY(0deg);\n  -moz-transform: rotateY(0deg);\n  -ms-transform: rotateY(0deg);\n  -o-transform: rotateY(0deg);\n  transform: rotateY(0deg);\n}\n\n.ReactFlipCard--enabled.ReactFlipCard:hover .ReactFlipCard__Front,\n.ReactFlipCard--flipped .ReactFlipCard__Front {\n  -webkit-transform: rotateY(180deg);\n  -moz-transform: rotateY(180deg);\n  -ms-transform: rotateY(180deg);\n  -o-transform: rotateY(180deg);\n  transform: rotateY(180deg);\n}\n/* END: Accommodating for IE */\n\n.ReactFlipCard__Flipper {\n  -webkit-transition: 0.6s;\n  -webkit-transform-style: preserve-3d;\n  -ms-transition: 0.6s;\n\n  -moz-transition: 0.6s;\n  -moz-transform: perspective(1000px);\n  -moz-transform-style: preserve-3d;\n  -ms-transform-style: preserve-3d;\n\n  transition: 0.6s;\n  transform-style: preserve-3d;\n\n  position: relative;\n}\n\n.ReactFlipCard__Front, .ReactFlipCard__Back {\n  -webkit-backface-visibility: hidden;\n  -moz-backface-visibility: hidden;\n  -ms-backface-visibility: hidden;\n  backface-visibility: hidden;\n\n  -webkit-transition: 0.6s;\n  -webkit-transform-style: preserve-3d;\n  -webkit-transform: rotateY(0deg);\n\n  -moz-transition: 0.6s;\n  -moz-transform-style: preserve-3d;\n  -moz-transform: rotateY(0deg);\n\n  -o-transition: 0.6s;\n  -o-transform-style: preserve-3d;\n  -o-transform: rotateY(0deg);\n\n  -ms-transition: 0.6s;\n  -ms-transform-style: preserve-3d;\n  -ms-transform: rotateY(0deg);\n\n  transition: 0.6s;\n  transform-style: preserve-3d;\n  transform: rotateY(0deg);\n\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n\n.ReactFlipCard__Front {\n  -webkit-transform: rotateY(0deg);\n  -moz-transform: rotateY(0deg);\n  -ms-transform: rotateY(0deg);\n  -o-transform: rotateY(0deg);\n  z-index: 2;\n}\n\n.ReactFlipCard__Back {\n  -webkit-transform: rotateY(-180deg);\n  -moz-transform: rotateY(-180deg);\n  -ms-transform: rotateY(-180deg);\n  -o-transform: rotateY(-180deg);\n    transform: rotateY(-180deg);\n}\n\n/* vertical */\n.ReactFlipCard--vertical {\n  position: relative;\n}\n\n.ReactFlipCard--vertical .ReactFlipCard__Back {\n  -webkit-transform: rotateX(180deg);\n  -moz-transform: rotateX(180deg);\n  -ms-transform: rotateX(180deg);\n  -o-transform: rotateX(180deg);\n  transform: rotateX(180deg);\n}\n\n.ReactFlipCard--vertical .ReactFlipCard__Flipper {\n  -webkit-transform-origin: 100% 150px;\n  -moz-transform-origin: 100% 150px;\n  -ms-transform-origin: 100% 150px;\n  -o-transform-origin: 100% 150px;\n  transform-origin: 100% 150px;\n}\n\n/* START: Accommodating for IE */\n.ReactFlipCard--enabled.ReactFlipCard--vertical:hover .ReactFlipCard__Back,\n.ReactFlipCard--vertical.ReactFlipCard--flipped .ReactFlipCard__Back {\n  -webkit-transform: rotateX(0deg);\n  -moz-transform: rotateX(0deg);\n  -ms-transform: rotateX(0deg);\n  -o-transform: rotateX(0deg);\n  transform: rotateX(0deg);\n}\n\n.ReactFlipCard--enabled.ReactFlipCard--vertical:hover .ReactFlipCard__Front,\n.ReactFlipCard--vertical.ReactFlipCard--flipped .ReactFlipCard__Front {\n  -webkit-transform: rotateX(180deg);\n  -moz-transform: rotateX(180deg);\n  -ms-transform: rotateX(180deg);\n  -o-transform: rotateX(180deg);\n  transform: rotateX(180deg);\n}\n/* END: Accommodating for IE */\n';
-
-exports['default'] = function () {
-  var style = document.getElementById('react-flipcard-style');
-  if (!style) {
-    style = document.createElement('style');
-    style.setAttribute('id', 'react-flipcard-style');
-    var head = document.querySelector('head');
-    head.insertBefore(style, head.firstChild);
-  }
-  style.innerHTML = CSS;
-};
-
-module.exports = exports['default'];
 
 /***/ })
 /******/ ]);

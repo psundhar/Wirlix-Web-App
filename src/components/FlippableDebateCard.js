@@ -1,5 +1,4 @@
 import React from 'react';
-import FlipCard from 'react-flipcard';
 
 const FlippableDebateCard = React.createClass({
     getInitialState() {
