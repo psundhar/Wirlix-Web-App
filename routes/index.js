@@ -84,21 +84,21 @@ module.exports = function(passport) {
 
 
     router.post('/user', function(req, res) {
-        client.sendMessage({
-            to: req.body.phoneNumber,
-            from:'+16176525428',
-            body: "Thanks for joining" + " " + req.body.fullName + "! Make sure to check out our site we have a ton of amazing shit coming up for you. At Wirlix, we are one world in unity and we believe in the power of people and the power in you. It's a movement and a revolution and we can't wait to change the world with you. We care about your experience and your happiness so please reach out anytime and stay tuned for an amazing journey. Welcome to Wirlix."
-        });
+        // client.sendMessage({
+        //     to: req.body.phoneNumber,
+        //     from:'+16176525428',
+        //     body: "Thanks for joining" + " " + req.body.fullName + "! Make sure to check out our site we have a ton of amazing shit coming up for you. At Wirlix, we are one world in unity and we believe in the power of people and the power in you. It's a movement and a revolution and we can't wait to change the world with you. We care about your experience and your happiness so please reach out anytime and stay tuned for an amazing journey. Welcome to Wirlix."
+        // });
 
 
 
-            let transporter = nodemailer.createTransport({
-                service: 'gmail',
-                auth: {
-                    user: 'priyanka@wirlix.com',
-                    pass: 'federer1998'
-                }
-            });
+            // let transporter = nodemailer.createTransport({
+            //     service: 'gmail',
+            //     auth: {
+            //         user: 'priyanka@wirlix.com',
+            //         pass: 'federer1998'
+            //     }
+            // });
             // var name = req.body.firstName;
             // var password = req.body.password;
             let mailOptions = {
@@ -257,36 +257,42 @@ module.exports = function(passport) {
                 // ]
             };
 
-            transporter.sendMail(mailOptions, (error, info) => {
-                if(error) {
-                    return console.log(error);
-                }
-                console.log('Message % s sent: %s', info.messageId, info.response);
-            });
+            // transporter.sendMail(mailOptions, (error, info) => {
+            //     if(error) {
+            //         return console.log(error);
+            //     }
+            //     console.log('Message % s sent: %s', info.messageId, info.response);
+            // });
 
         var fullName = req.body.fullName;
         var password = req.body.password;
         var email = req.body.email;
         var phoneNumber = req.body.phoneNumber;
-        console.log(fullName);
-        console.log(password);
-        console.log(email);
-        console.log(phoneNumber);
+
+        const nameArr = fullName.split(' ');
+
         var newUser = new User({
             fullName: fullName,
+            firstName: nameArr[0],
+            lastName: nameArr.length > 1 ? nameArr[1] : null,
             password: password,
             email: email,
             phoneNumber: phoneNumber,
+            username: req.body.username,
         });
         newUser.save(function(err,savedUser) {
             if(err) {
-                alert("Oops you forgot a field!")
+                console.log(err);
+                res.redirect('/');
+                res.end();
             }
-            console.log(savedUser);
-            console.log(req.user);
-            // res.send(savedUser);
-
-            res.redirect('/testtwilio');
+            // Log in user
+            req.login(savedUser, function(err) {
+                if(err) {
+                    return next(err);
+                }
+                res.redirect('/profile');
+            })
         });
 
     });

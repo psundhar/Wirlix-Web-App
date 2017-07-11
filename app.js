@@ -17,6 +17,7 @@ var mongoose = require('mongoose');
 var connect = process.env.MONGODB_URI;
 
 const apiRoutes = require('./routes/api');
+// const webRoutes = require('./routes/web');
 
 mongoose.connect(connect);
 
@@ -60,7 +61,6 @@ passport.use(new LocalStrategy({passReqToCallback : true}, function(req, usernam
       if (!user) {
         return done(null, false, { message: 'Invalid Username or Password!' });
       }
-      ;
 
       if (user.password != password) {
         return done(null, false, { message: 'Invalid Username or Password!' });
@@ -167,7 +167,7 @@ const Debate = require('./models/debates');
 
 app.use('/', index(passport));
 
-app.get('/debate', function(req, res) {
+app.get('/debate', passport.authenticate('local', { failureRedirect: '/'}), function(req, res) {
     Promise.all([Topic.queryLatest().exec(), Debate.queryAll().exec(), Debate.queryBest().exec(), Debate.queryLive().exec(), Promise.resolve([])])
         .then(function(promiseResultsArray) {
             const topic = promiseResultsArray[0];

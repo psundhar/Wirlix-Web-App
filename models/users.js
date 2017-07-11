@@ -4,11 +4,9 @@ var mongoose = require('mongoose');
 var userSchema = mongoose.Schema({
     firstName: {
         type: String,
-        required: [true, 'Oops you forgot your first name!']
     },
     lastName: {
         type: String,
-        required: [true, 'Oops you forgot your last name!']
     },
     password: {
         type: String,
@@ -24,14 +22,11 @@ var userSchema = mongoose.Schema({
     },
     phoneNumber: {
         type: String,
-        unique: true
     },
     username: {
         type: String,
-        unique: true
+        unique: true,
     },
 });
 
-var User = mongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);
