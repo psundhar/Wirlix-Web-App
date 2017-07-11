@@ -13,15 +13,35 @@ module.exports = function(passport) {
     });
 
     router.post('/login', function(req, res, next) {
-      passport.authenticate('local', function(err, user, info) {
-        if (err) { return next(err); }
-        console.log(info);
-        if (!user) { return res.render('index', { title: 'Wirlix', error: info.message }); }
-        req.logIn(user, function(err) {
-          if (err) { return next(err); }
-          return res.redirect('/profile');
-        });
-      })(req, res, next);
+        var body = req.body;
+        var username = body.username;
+        var password = body.password;
+
+        User.findOne({username: username, password: password})
+            .exec()
+            .then(function(user) {
+                if(user) {
+                    req.logIn(user, function(err) {
+                        if(err) {
+                            return next(err);
+                        }
+                        return res.redirect('/profile');
+                    });
+                }
+                else {
+                    return res.redirect('/');
+                }
+            })
+
+      // passport.authenticate('local', function(err, user, info) {
+      //   if (err) { return next(err); }
+      //   console.log(info);
+      //   if (!user) { return res.render('index', { title: 'Wirlix', error: info.message }); }
+      //   req.logIn(user, function(err) {
+      //     if (err) { return next(err); }
+      //     return res.redirect('/profile');
+      //   });
+      // })(req, res, next);
     });
 
     //router.get('/', function(req, res, next) {
