@@ -167,8 +167,8 @@ const Debate = require('./models/debates');
 
 app.use('/', index(passport));
 
-app.get('/debate', passport.authenticate('local', { failureRedirect: '/'}), function(req, res) {
-    Promise.all([Topic.queryLatest().exec(), Debate.queryAll().exec(), Debate.queryBest().exec(), Debate.queryLive().exec(), Promise.resolve([])])
+app.get('/debate', function(req, res) {
+    Promise.all([Topic.queryLatest().exec(), Debate.queryAll().exec(), Debate.queryBest().exec(), Debate.queryLive().exec(), Debate.querySubscribed(req.user._id)])
         .then(function(promiseResultsArray) {
             const topic = promiseResultsArray[0];
             const debates = promiseResultsArray[1];

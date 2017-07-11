@@ -67,9 +67,9 @@ module.exports = {
             .populate(['challenger', 'challengee']);
     },
 
-    querySubscribed: function() {
+    querySubscribed: function(userId) {
         return model
-            .find({deleted: false})
+            .find({deleted: false, subscribers: {$all: [ userId ]}})
             .populate(['challenger', 'challengee']);
     },
 
