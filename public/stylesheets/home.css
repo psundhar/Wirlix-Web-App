@@ -494,7 +494,6 @@ button:focus{
   border-radius: 3px;
   text-align: center;
   font-family: 'Raleway', sans-serif;
-  transition: all .2s;
   background-color: transparent;
   border: 2px solid #ffffff;
 }
@@ -710,8 +709,7 @@ z-index: 5;
 
 .debates .debate .user{
   text-align: center;
-  float: left;
-  width: 45%;
+  width: 30%;
 }
 
 .debates .debate .user p a{

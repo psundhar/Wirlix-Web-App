@@ -254,9 +254,9 @@ $(function animate() { //Scrolls to element
 //
 // });
 
-$(".debate").flip({
-  trigger: 'manual'
-}); // flip plugin
+// $(".debate").flip({
+//   trigger: 'manual'
+// }); // flip plugin
 
 $(".qotd").flip();
 
@@ -266,9 +266,9 @@ $(".notif").click(function(e){
     e.stopPropagation();
 });
 
-$(".debate").click(function(e){
-  $(this).flip('toggle');
-});
+// $(".debate").click(function(e){
+//   $(this).flip('toggle');
+// });
 
 $(".button-vote").click(function(e){
   e.stopPropagation();
