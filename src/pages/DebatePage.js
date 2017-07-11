@@ -101,7 +101,7 @@ const DebatePage = React.createClass({
                 return d.subscribers.includes(this.state.userId);
             }).map((d,i)=> {
                 return (
-                    <FlippableDebateCard key={i} {...d}/>
+                    <FlippableDebateCard key={i} subscribed={true} {...d}/>
                 )
             })}
         </div>

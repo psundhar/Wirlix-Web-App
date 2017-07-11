@@ -14,7 +14,7 @@ const FlippableDebateCard = React.createClass({
     },
 
     render() {
-        const { challenger, challengee, views, subscribers } = this.props;
+        const { challenger, challengee, views, subscribers, subscribed } = this.props;
 
         const frontVisible = this.state.frontVisible;
 
@@ -24,7 +24,7 @@ const FlippableDebateCard = React.createClass({
                     <div className="content">
                         <div className="flex justify-between">
                             <div>
-                                <input type="checkbox" />
+                                <input type="checkbox" checked={ subscribed }/>
                             </div>
                             <div className="flex justify-around">
                                 <div className="flex flex-column" style={{width: "40%"}}>
