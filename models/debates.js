@@ -73,5 +73,15 @@ module.exports = {
             .populate(['challenger', 'challengee']);
     },
 
+    queryByTopicAndUser: function(topicId, userId) {
+        return model
+            .find({
+                deleted: false,
+                topic: topicId,
+                $or: [{challenger: userId}, {challengee: userId}]
+            })
+            .populate(['challenger', 'challengee']);
+    },
+
     default: model,
 }

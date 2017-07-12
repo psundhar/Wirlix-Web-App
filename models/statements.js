@@ -52,5 +52,11 @@ module.exports = {
             .populate(['user', 'topic']);
     },
 
+    queryByTopicAndUser: function(topicId, userId) {
+        return model
+            .findOne({deleted: false, topic: topicId, user: userId})
+            .populate(['user', 'topic']);
+    },
+
     default: model,
 }
