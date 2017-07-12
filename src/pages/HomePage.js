@@ -1,6 +1,7 @@
 import React from 'react';
 import StatementCard from '../components/StatementCard';
 import apiFetch from '../utilities/apiFetch';
+import NavBar from '../components/NavBar';
 
 const HomePage = React.createClass({
 
@@ -9,6 +10,7 @@ const HomePage = React.createClass({
             topic: {},
             statementText: '',
             statements: [],
+            user: {},
         };
     },
 
@@ -43,41 +45,13 @@ const HomePage = React.createClass({
     },
 
     render() {
-        const { topic } = this.state;
+        console.log(user);
+        const { topic, user } = this.state;
 
         return (
         <div>
         <div className="main-section-home">
-            <div className="content">
-                <nav className="navbar navbar-default">
-                    <div className="">
-                        <div className="navbar-header">
-                            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span className="sr-only">Toggle navigation</span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                            </button>
-                            <a className="navbar-brand" href="#"><img src="images/Wirlix_InvertedLogo.png" /></a>
-                        </div>
-                        <div className="collapse navbar-collapse center-m" id="bs-example-navbar-collapse-1">
-                            <ul className="nav navbar-nav center">
-                                <li><a href="home.html">News</a></li>
-                                <li><a href="debate.html">Debate</a></li>
-                                <li><a href="#" data-toggle="modal" data-target="#rankings">Ranking</a></li>
-                                <li><a href="about.html">About</a></li>
-                            </ul>
-                            <ul className="nav navbar-nav navbar-right">
-                                <li><a className="profile-nav" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a></li>
-                                <li><a className="help" href="tutorial.html">? <br/><span>See Tutorial</span></a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-
-
-            </div>
+            <NavBar user={ user }/>
             <div className="overlay">
 
             </div>

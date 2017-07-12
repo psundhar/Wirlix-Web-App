@@ -208,6 +208,7 @@ app.get('/home', function(req, res) {
             const data = {
                 topic: topic,
                 statements: statements,
+                user: req.user,
             };
 
             res.render('react_main', { page: 'home', data: JSON.stringify(data)});
