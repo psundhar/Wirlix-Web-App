@@ -94,7 +94,7 @@ const DebatePage = React.createClass({
                     return d.views > 10;
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard key={i} handleSubscribeToggle={this.handleSubscribeToggle} {...d}/>
+                        <FlippableDebateCard key={i} user={this.state.user} handleSubscribeToggle={this.handleSubscribeToggle} {...d}/>
                     )
                 })}
             </div>
@@ -107,7 +107,7 @@ const DebatePage = React.createClass({
                     return Date.parse(d.updated) >= (Date.now() - 600000) //10 minutes ago
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard key={i} handleSubscribeToggle={this.handleSubscribeToggle} {...d}  />
+                        <FlippableDebateCard key={i} user={this.state.user} handleSubscribeToggle={this.handleSubscribeToggle} {...d}  />
                     )
                 })}
             </div>
@@ -120,7 +120,7 @@ const DebatePage = React.createClass({
                 return d.subscribers.includes(this.state.user._id);
             }).map((d,i)=> {
                 return (
-                    <FlippableDebateCard key={i} subscribed={true} handleSubscribeToggle={this.handleSubscribeToggle} {...d} />
+                    <FlippableDebateCard key={i} user={this.state.user} handleSubscribeToggle={this.handleSubscribeToggle} {...d} />
                 )
             })}
         </div>
