@@ -11,6 +11,12 @@ const statementsSchema = mongoose.Schema({
         ref: 'Topic',
         required: true,
     },
+    agreement: {
+        type: String
+    },
+    text: {
+        type: String,
+    },
     created: {
         type: Date,
     },

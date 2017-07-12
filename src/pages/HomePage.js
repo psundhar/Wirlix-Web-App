@@ -5,6 +5,7 @@ const HomePage = React.createClass({
     getInitialState() {
         return {
             topic: {},
+            statementText: '',
         };
     },
 
@@ -12,6 +13,33 @@ const HomePage = React.createClass({
         if(initialState) { // Globally set into hbs templates
             this.setState(initialState);
         }
+    },
+
+    handleStatementTextChange(e) {
+        this.setState({ statementText: e.target.value });
+    },
+
+    handleSubmit(agree) {
+        let that = this;
+
+        fetch('/api/statements', {
+            credentials: 'include',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+            }),
+            body: JSON.stringify({
+                topic: this.state.topic._id,
+                text: this.state.statementText,
+                agreement: agree ? 'agree' : 'disagree',
+            }),
+            method: 'POST',
+        })
+        .then(() => {
+            that.setState({ statementText: '' });
+        })
+        .catch(function(err) {
+            console.log(err);
+        })
     },
 
     render() {
@@ -62,7 +90,7 @@ const HomePage = React.createClass({
             <div className="control">
                 <img src="images/pause.png" />
             </div>
-            <video playsinline autoplay muted loop poster="" id="bgvid">
+            <video playsInline autoPlay muted loop poster="" id="bgvid">
                 <source src="video/wirlix_promo_video_v1.mp4" type="video/mp4" />
                 <source src="video/wirlix_promo_video_v1.webm" type="video/webm" />
             </video>
@@ -72,12 +100,12 @@ const HomePage = React.createClass({
                 <div className="container">
                     <h1 className="main-question col-md-12">{ topic.prompt }</h1>
                     <div className="col-md-8 col-md-offset-2">
-                        <textarea className="col-md-12 col-xs-12 col-sm-12" placeholder="What's your first opinion?"></textarea>
+                        <textarea className="col-md-12 col-xs-12 col-sm-12" placeholder="What's your first opinion?" onChange={ this.handleStatementTextChange } value={ this.state.statementText }></textarea>
                         <div className="col-md-6 res-button agr">
-                            <button>Agree</button>
+                            <button onClick={() => { this.handleSubmit(true);}}>Agree</button>
                         </div>
                         <div className="col-md-6 res-button dis">
-                            <button>Disagree</button>
+                            <button onClick={() => { this.handleSubmit(false)}}>Disagree</button>
                         </div>
                     </div>
                 </div>
