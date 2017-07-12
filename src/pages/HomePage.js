@@ -1,4 +1,5 @@
 import React from 'react';
+import StatementCard from '../components/StatementCard';
 
 const HomePage = React.createClass({
 
@@ -6,6 +7,7 @@ const HomePage = React.createClass({
         return {
             topic: {},
             statementText: '',
+            statements: [],
         };
     },
 
@@ -124,80 +126,23 @@ const HomePage = React.createClass({
                             <div className="col-md-4 vote-col factual active" id ="factual">
                                 <h2 className="col-md-12"><img src="images/factual-w.png"/></h2>
                                 <div className="comment-container col-md-12">
-                                    <div className="comment">
-                                        <p className="col-md-12">
-                                            <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
-                                            I think that abortion should be
-                                            legal because abortion is a
-                                            women’s right. It is psychologically
-                                            proven that women are more than
-                                            capable of making a decision to
-                                            keep or not keep a child. <i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" />
-                                        </p>
-                                        <div className="col-md-6 button-container">
-                                            <button className="button-vote up"><img src="images/factual-w.png"/> <span className="vote-num">255</span></button>
-                                        </div>
-                                        <div className="col-md-6 button-container">
-                                            <button className="button-vote down"><img src="images/emotional-w.png" /><span className="vote-num">255</span></button>
-                                        </div>
-                                    </div>
-                                    <div className="comment">
-                                        <p className="col-md-12">
-                                            <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
-                                            I think that abortion should be
-                                            legal because abortion is a
-                                            women’s right. It is psychologically
-                                            proven that women are more than
-                                            capable of making a decision to
-                                            keep or not keep a child. <i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" />
-                                        </p>
-                                        <div className="col-md-6 button-container">
-                                            <button className="button-vote up"><img src="images/factual-w.png"/> <span className="vote-num">255</span></button>
-                                        </div>
-                                        <div className="col-md-6 button-container">
-                                            <button className="button-vote down"><img src="images/emotional-w.png" /><span className="vote-num">255</span></button>
-                                        </div>
-                                    </div>
-                                    <div className="comment">
-                                        <p className="col-md-12">
-                                            <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
-                                            I think that abortion should be
-                                            legal because abortion is a
-                                            women’s right. It is psychologically
-                                            proven that women are more than
-                                            capable of making a decision to
-                                            keep or not keep a child. <i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" />
-                                        </p>
-                                        <div className="col-md-6 button-container">
-                                            <button className="button-vote up"><img src="images/factual-w.png"/> <span className="vote-num">255</span></button>
-                                        </div>
-                                        <div className="col-md-6 button-container">
-                                            <button className="button-vote down"><img src="images/emotional-w.png" /> 145</button>
-                                        </div>
-                                    </div>
+                                    { this.state.statements.filter(s => s.rational >= 10).map(s => {
+                                        return (
+                                            <StatementCard { ...s }/>
+                                        )
+                                    })}
+
                                 </div>
                             </div>
 
                             <div className="col-md-4 vote-col middle" id ="middle">
                                 <h2 className="col-md-12">You Decide</h2>
                                 <div className="comment-container col-md-12">
-                                    <div className="comment">
-                                        <p className="col-md-12">
-                                            <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
-                                            I think that abortion should be
-                                            legal because abortion is a
-                                            women’s right. It is psychologically
-                                            proven that women are more than
-                                            capable of making a decision to
-                                            keep or not keep a child.
-                                        </p>
-                                        <div className="col-md-6 button-container">
-                                            <button className="button-vote up"><img src="images/factual-w.png"/> <span className="vote-num">255</span></button>
-                                        </div>
-                                        <div className="col-md-6 button-container">
-                                            <button className="button-vote down"><img src="images/emotional-w.png" /><span className="vote-num">255</span></button>
-                                        </div>
-                                    </div>
+                                    { this.state.statements.filter(s => s.rational < 10 && s.emotional < 10).map(s => {
+                                        return (
+                                            <StatementCard { ...s }/>
+                                        )
+                                    })}
                                 </div>
                             </div>
 
@@ -205,40 +150,11 @@ const HomePage = React.createClass({
                             <div className="col-md-4 vote-col emotional" id = "emotional">
                                 <h2 className="col-md-12"><img src="images/emotional-w.png" /></h2>
                                 <div className="comment-container col-md-12">
-                                    <div className="comment">
-                                        <p className="col-md-12">
-                                            <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
-                                            I think that abortion should be
-                                            legal because abortion is a
-                                            women’s right. It is psychologically
-                                            proven that women are more than
-                                            capable of making a decision to
-                                            keep or not keep a child. <i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true"/>
-                                        </p>
-                                        <div className="col-md-6 button-container">
-                                            <button className="button-vote up"><img src="images/factual-w.png"/> <span className="vote-num">54</span></button>
-                                        </div>
-                                        <div className="col-md-6 button-container">
-                                            <button className="button-vote down"><img src="images/emotional-w.png" /><span className="vote-num">100</span></button>
-                                        </div>
-                                    </div>
-                                    <div className="comment">
-                                        <p className="col-md-12">
-                                            <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
-                                            I think that abortion should be
-                                            legal because abortion is a
-                                            women’s right. It is psychologically
-                                            proven that women are more than
-                                            capable of making a decision to
-                                            keep or not keep a child. <i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true"/>
-                                        </p>
-                                        <div className="col-md-6 button-container">
-                                            <button className="button-vote up"><img src="images/factual-w.png"/> <span className="vote-num">54</span></button>
-                                        </div>
-                                        <div className="col-md-6 button-container">
-                                            <button className="button-vote down"><img src="images/emotional-w.png" /><span className="vote-num">100</span></button>
-                                        </div>
-                                    </div>
+                                    { this.state.statements.filter(s => s.emotional >= 10).map(s => {
+                                        return (
+                                            <StatementCard { ...s }/>
+                                        )
+                                    })}
                                 </div>
                             </div>
                         </div>
