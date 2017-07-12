@@ -1,7 +1,22 @@
 import React from 'react';
 
 const HomePage = React.createClass({
+
+    getInitialState() {
+        return {
+            topic: {},
+        };
+    },
+
+    componentDidMount() {
+        if(initialState) { // Globally set into hbs templates
+            this.setState(initialState);
+        }
+    },
+
     render() {
+        const { topic } = this.state;
+
         return (
         <div>
         <div className="main-section-home">
@@ -15,7 +30,7 @@ const HomePage = React.createClass({
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                             </button>
-                            <a className="navbar-brand" href="#"><img src="img/Wirlix_InvertedLogo.png" /></a>
+                            <a className="navbar-brand" href="#"><img src="images/Wirlix_InvertedLogo.png" /></a>
                         </div>
                         <div className="collapse navbar-collapse center-m" id="bs-example-navbar-collapse-1">
                             <ul className="nav navbar-nav center">
@@ -25,7 +40,7 @@ const HomePage = React.createClass({
                                 <li><a href="about.html">About</a></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
-                                <li><a className="profile-nav" href="profile.html" style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat" }}></a></li>
+                                <li><a className="profile-nav" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a></li>
                                 <li><a className="help" href="tutorial.html">? <br/><span>See Tutorial</span></a></li>
 
                             </ul>
@@ -42,10 +57,10 @@ const HomePage = React.createClass({
                 <a href="#">Spark Controversy</a>
             </div>
             <div className="mute">
-                <img src="img/sound.png" />
+                <img src="images/sound.png" />
             </div>
             <div className="control">
-                <img src="img/pause.png" />
+                <img src="images/pause.png" />
             </div>
             <video playsinline autoplay muted loop poster="" id="bgvid">
                 <source src="video/wirlix_promo_video_v1.mp4" type="video/mp4" />
@@ -55,7 +70,7 @@ const HomePage = React.createClass({
         <section className="news-section" id="cont-section">
             <div className="response">
                 <div className="container">
-                    <h1 className="main-question col-md-12">DO YOU THINK ABORTION SHOULD BE LEGAL?</h1>
+                    <h1 className="main-question col-md-12">{ topic.prompt }</h1>
                     <div className="col-md-8 col-md-offset-2">
                         <textarea className="col-md-12 col-xs-12 col-sm-12" placeholder="What's your first opinion?"></textarea>
                         <div className="col-md-6 res-button agr">
@@ -79,11 +94,11 @@ const HomePage = React.createClass({
                         </ul>
                         <div className="tab-content">
                             <div className="col-md-4 vote-col factual active" id ="factual">
-                                <h2 className="col-md-12"><img src="img/factual-w.png"/></h2>
+                                <h2 className="col-md-12"><img src="images/factual-w.png"/></h2>
                                 <div className="comment-container col-md-12">
                                     <div className="comment">
                                         <p className="col-md-12">
-                                            <a className="profile-pic" href="profile.html" style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
+                                            <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
                                             I think that abortion should be
                                             legal because abortion is a
                                             women’s right. It is psychologically
@@ -92,15 +107,15 @@ const HomePage = React.createClass({
                                             keep or not keep a child. <i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" />
                                         </p>
                                         <div className="col-md-6 button-container">
-                                            <button className="button-vote up"><img src="img/factual-w.png"/> <span className="vote-num">255</span></button>
+                                            <button className="button-vote up"><img src="images/factual-w.png"/> <span className="vote-num">255</span></button>
                                         </div>
                                         <div className="col-md-6 button-container">
-                                            <button className="button-vote down"><img src="img/emotional-w.png" /><span className="vote-num">255</span></button>
+                                            <button className="button-vote down"><img src="images/emotional-w.png" /><span className="vote-num">255</span></button>
                                         </div>
                                     </div>
                                     <div className="comment">
                                         <p className="col-md-12">
-                                            <a className="profile-pic" href="profile.html" style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
+                                            <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
                                             I think that abortion should be
                                             legal because abortion is a
                                             women’s right. It is psychologically
@@ -109,15 +124,15 @@ const HomePage = React.createClass({
                                             keep or not keep a child. <i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" />
                                         </p>
                                         <div className="col-md-6 button-container">
-                                            <button className="button-vote up"><img src="img/factual-w.png"/> <span className="vote-num">255</span></button>
+                                            <button className="button-vote up"><img src="images/factual-w.png"/> <span className="vote-num">255</span></button>
                                         </div>
                                         <div className="col-md-6 button-container">
-                                            <button className="button-vote down"><img src="img/emotional-w.png" /><span className="vote-num">255</span></button>
+                                            <button className="button-vote down"><img src="images/emotional-w.png" /><span className="vote-num">255</span></button>
                                         </div>
                                     </div>
                                     <div className="comment">
                                         <p className="col-md-12">
-                                            <a className="profile-pic" href="profile.html" style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
+                                            <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
                                             I think that abortion should be
                                             legal because abortion is a
                                             women’s right. It is psychologically
@@ -126,10 +141,10 @@ const HomePage = React.createClass({
                                             keep or not keep a child. <i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" />
                                         </p>
                                         <div className="col-md-6 button-container">
-                                            <button className="button-vote up"><img src="img/factual-w.png"/> <span className="vote-num">255</span></button>
+                                            <button className="button-vote up"><img src="images/factual-w.png"/> <span className="vote-num">255</span></button>
                                         </div>
                                         <div className="col-md-6 button-container">
-                                            <button className="button-vote down"><img src="img/emotional-w.png" /> 145</button>
+                                            <button className="button-vote down"><img src="images/emotional-w.png" /> 145</button>
                                         </div>
                                     </div>
                                 </div>
@@ -140,7 +155,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     <div className="comment">
                                         <p className="col-md-12">
-                                            <a className="profile-pic" href="profile.html" style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
+                                            <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
                                             I think that abortion should be
                                             legal because abortion is a
                                             women’s right. It is psychologically
@@ -149,10 +164,10 @@ const HomePage = React.createClass({
                                             keep or not keep a child.
                                         </p>
                                         <div className="col-md-6 button-container">
-                                            <button className="button-vote up"><img src="img/factual-w.png"/> <span className="vote-num">255</span></button>
+                                            <button className="button-vote up"><img src="images/factual-w.png"/> <span className="vote-num">255</span></button>
                                         </div>
                                         <div className="col-md-6 button-container">
-                                            <button className="button-vote down"><img src="img/emotional-w.png" /><span className="vote-num">255</span></button>
+                                            <button className="button-vote down"><img src="images/emotional-w.png" /><span className="vote-num">255</span></button>
                                         </div>
                                     </div>
                                 </div>
@@ -160,11 +175,11 @@ const HomePage = React.createClass({
 
 
                             <div className="col-md-4 vote-col emotional" id = "emotional">
-                                <h2 className="col-md-12"><img src="img/emotional-w.png" /></h2>
+                                <h2 className="col-md-12"><img src="images/emotional-w.png" /></h2>
                                 <div className="comment-container col-md-12">
                                     <div className="comment">
                                         <p className="col-md-12">
-                                            <a className="profile-pic" href="profile.html" style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
+                                            <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
                                             I think that abortion should be
                                             legal because abortion is a
                                             women’s right. It is psychologically
@@ -173,15 +188,15 @@ const HomePage = React.createClass({
                                             keep or not keep a child. <i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true"/>
                                         </p>
                                         <div className="col-md-6 button-container">
-                                            <button className="button-vote up"><img src="img/factual-w.png"/> <span className="vote-num">54</span></button>
+                                            <button className="button-vote up"><img src="images/factual-w.png"/> <span className="vote-num">54</span></button>
                                         </div>
                                         <div className="col-md-6 button-container">
-                                            <button className="button-vote down"><img src="img/emotional-w.png" /><span className="vote-num">100</span></button>
+                                            <button className="button-vote down"><img src="images/emotional-w.png" /><span className="vote-num">100</span></button>
                                         </div>
                                     </div>
                                     <div className="comment">
                                         <p className="col-md-12">
-                                            <a className="profile-pic" href="profile.html" style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
+                                            <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">Username</a> <br/>
                                             I think that abortion should be
                                             legal because abortion is a
                                             women’s right. It is psychologically
@@ -190,10 +205,10 @@ const HomePage = React.createClass({
                                             keep or not keep a child. <i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true"/>
                                         </p>
                                         <div className="col-md-6 button-container">
-                                            <button className="button-vote up"><img src="img/factual-w.png"/> <span className="vote-num">54</span></button>
+                                            <button className="button-vote up"><img src="images/factual-w.png"/> <span className="vote-num">54</span></button>
                                         </div>
                                         <div className="col-md-6 button-container">
-                                            <button className="button-vote down"><img src="img/emotional-w.png" /><span className="vote-num">100</span></button>
+                                            <button className="button-vote down"><img src="images/emotional-w.png" /><span className="vote-num">100</span></button>
                                         </div>
                                     </div>
                                 </div>
@@ -210,14 +225,14 @@ const HomePage = React.createClass({
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="my-ranking">
-                        <p className="my-info"><a href="profile.html" style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat" }}></a> Priyanka Sundhar</p>
+                        <p className="my-info"><a href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> Priyanka Sundhar</p>
                     </div>
                     <div className="my-rank-num">
                         <p className="my-rank">#434</p>
                     </div>
                     <div className="top-ranks">
                         <div className="factual rank-content">
-                            <h2><img src="img/best-debater.png" /> Most Factual Debater</h2>
+                            <h2><img src="images/best-debater.png" /> Most Factual Debater</h2>
                             <ul className="rank-container col-md-12">
                                 <div className="first-place">
                                     <li><span className="rank-number">1</span> John Appleseed</li>
