@@ -1,4 +1,5 @@
 import React from 'react';
+import FlippableDebateCard from '../components/FlippableDebateCard';
 
 const ProfilePage = React.createClass({
 
@@ -62,10 +63,10 @@ const ProfilePage = React.createClass({
                                 <h2 className="profile-name">{ user.username }</h2>
                                 <div className="scores">
                                     <div className="col-md-6">
-                                        <p><img src="/images/best-debater-w.png"/> 235</p>
+                                        <p><img src="/images/best-debater-w.png"/> { statement.rational }</p>
                                     </div>
                                     <div className="col-md-6">
-                                        <p><img src="/images/peace.png" className="peace"/> 235</p>
+                                        <p><img src="/images/peace.png" className="peace"/> { statement.emotional }</p>
                                     </div>
                                 </div>
                                 <div className="qotd col-md-10 col-md-offset-1">
@@ -77,108 +78,9 @@ const ProfilePage = React.createClass({
                                     </div>
                                 </div>
                                 <div className="debates col-md-12">
-                                    <div className="debate">
-                                        <div className="front">
-                                            <div className="content">
-                                                <div className="user">
-                                                    <p><a href="profile.html"
-                                                          style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
-                                                    </p>
-                                                    <p>Username</p>
-                                                </div>
-                                                <div className="vs">
-                                                    <p>vs.</p>
-                                                </div>
-                                                <div className="user">
-                                                    <p><a href="profile.html"
-                                                          style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
-                                                    </p>
-                                                    <p>Username</p>
-                                                </div>
-                                                <p className="time-posted">25m</p>
-                                                <div className="notif">
-                                                    <input type="checkbox" className="notif-input" name="subscribe"
-                                                           value=""/>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6 button-container">
-                                                <p className="view-amt"><img src="/images/eye-w.png"/> 54</p>
-                                            </div>
-                                            <div className="col-md-6 button-container">
-                                                <p className="view-amt"><img src="/images/check-mark.png"/> 100</p>
-                                            </div>
-                                        </div>
-                                        <div className="back">
-                                            <div className="username">
-                                                <p><a href="profile.html"
-                                                      style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
-                                                    Username</p>
-                                            </div>
-                                            <p className="comment-preview">Lorem ipsum dolor sit amet, consectetur
-                                                adipiscing elit. Suspendisse varius egestas lacinia. </p>
-                                            <p>
-                                                <button type="button" className="full-debate" href="#"
-                                                        data-toggle="modal" data-target="#view-debate">Full
-                                                    Debate &#8250;</button>
-                                            </p>
-                                            <p className="time-posted">25m</p>
-                                        </div>
-                                    </div>
-                                    <div className="debate">
-                                        <div className="front">
-                                            <div className="content">
-                                                <div className="user">
-                                                    <p><a href="profile.html"
-                                                          style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
-                                                    </p>
-                                                    <p>Username</p>
-                                                </div>
-                                                <div className="vs">
-                                                    <p>vs.</p>
-                                                </div>
-                                                <div className="user">
-                                                    <p><a href="profile.html"
-                                                          style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
-                                                    </p>
-                                                    <p>Username</p>
-                                                </div>
-                                                <p className="time-posted">25m</p>
-                                                <div className="notif">
-                                                    <input type="checkbox" className="notif-input" name="subscribe"
-                                                           value=""/>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6 button-container">
-                                                <p className="view-amt"><img src="/images/eye-w.png"/> 54</p>
-                                            </div>
-                                            <div className="col-md-6 button-container">
-                                                <p className="view-amt"><img src="/images/check-mark.png"/> 100</p>
-                                            </div>
-                                        </div>
-                                        <div className="back">
-                                            <div className="username">
-                                                <p><a href="profile.html"
-                                                      style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
-                                                    Username</p>
-                                            </div>
-                                            <p className="comment-preview">Lorem ipsum dolor sit amet, consectetur
-                                                adipiscing elit. Suspendisse varius egestas lacinia. </p>
-                                            <p>
-                                                <button type="button" className="full-debate" href="#"
-                                                        data-toggle="modal" data-target="#view-debate">Full
-                                                    Debate &#8250;</button>
-                                            </p>
-                                            <p className="time-posted">25m</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="next-buttons col-md-12 col-sm-12">
-                                    <div className="col-md-6 col-sm-6">
-                                        <button className="back">Back</button>
-                                    </div>
-                                    <div className="col-md-6 col-sm-6">
-                                        <button className="next">Next</button>
-                                    </div>
+                                    { debates.map((d, i) => {
+                                        return (<FlippableDebateCard key={i} user={user} { ...d } />)
+                                    })}
                                 </div>
                                 <div className="logout">
                                     <a href="index.html" className="logout"><img src="/images/logout.png"/></a>
@@ -436,14 +338,6 @@ const ProfilePage = React.createClass({
                                             <li><span className="rank-number">25</span> John Appleseed</li>
                                         </div>
                                     </ul>
-                                    <div className="next-buttons col-md-12 col-sm-12">
-                                        <div className="col-md-6 col-sm-6">
-                                            <button className="back">Back</button>
-                                        </div>
-                                        <div className="col-md-6 col-sm-6">
-                                            <button className="next">Next</button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div className="close-bottom">
