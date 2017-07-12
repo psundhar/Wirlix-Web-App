@@ -186,13 +186,31 @@ app.get('/debate', function(req, res) {
                 user: req.user,
             };
 
-            res.render('react_main', { data: JSON.stringify(data) });
+            res.render('react_main', { page: 'debate', data: JSON.stringify(data) });
         }).
         catch(function(err) {
             console.log(err);
             res.status(500);
         })
 });
+
+app.get('/home', function(req, res) {
+    Promise.all([Topic.queryLatest().exec(),])
+        .then(function(promiseResultsArray) {
+            const topic = promiseResultsArray[0];
+
+            const data = {
+                topic: topic,
+            };
+
+            res.render('react_main', { page: 'home', data: JSON.stringify(data)});
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.status(500);
+        });
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
