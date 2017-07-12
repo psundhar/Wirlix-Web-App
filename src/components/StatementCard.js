@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default ({user, topic, rational, emotional, text}) => {
+export default ({user, topic, rational, emotional, text, agreement}) => {
+    const border = agreement == 'disagree' ? '3px solid crimson' : '3px solid slateblue';
+
     return (
         <div className="comment">
-            <p className="col-md-12">
+            <p className="col-md-12" style={{border}}>
                 <a className="profile-pic" href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href="profile.html" className="username">{ user.username }</a> <br/>
                 {text} <i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true"/>
             </p>
