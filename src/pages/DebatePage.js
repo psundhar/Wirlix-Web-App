@@ -22,14 +22,15 @@ const DebatePage = React.createClass({
         const selectedDebate = debates.find(d => d._id == debateId);
 
         const sdSubscribers = selectedDebate.subscribers;
+        let subscribed = "subscribe";
+
         if(sdSubscribers.some(sid => {
             return sid == this.state.user._id;
         })) { // Remove
-
+            subscribed = "unsubscribe";
             selectedDebate.subscribers = sdSubscribers.filter(sid => { return sid != this.state.user._id});
         }
         else { // Add
-
             sdSubscribers.push(this.state.user._id);
         }
 
@@ -41,7 +42,7 @@ const DebatePage = React.createClass({
                'Content-Type': 'application/json',
             }),
             body: JSON.stringify({
-                subscribed: "subscribe",
+                subscribed,
             }),
             credentials: "include",
         })

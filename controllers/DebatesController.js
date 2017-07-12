@@ -65,8 +65,13 @@ module.exports = {
                 debate.viewed += 1;
             }
             if(subscribed == 'subscribe') {
-                console.log(req.user);
                 debate.subscribers.push(req.user._id);
+            }
+            if(subscribed == 'unsubscribe') {
+
+                debate.subscribers = debate.subscribers.filter(subId => {
+                    return !subId.equals(req.user._id);
+                });
             }
 
             return debate.save();
