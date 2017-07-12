@@ -47,13 +47,14 @@ module.exports = {
         const rational = req.body.rational;
         const emotional = req.body.emotional;
         const viewed = req.body.viewed;
+        const subscribed = req.body.subscribed;
 
-        if(!req.params.id) {
+        if(!id) {
             res.status(400);
             next();
         }
 
-        Debate.findById(id).then(function(debate) {
+        Debate.default.findById(id).then(function(debate) {
             if(rational) {
                 debate.rational += 1;
             }
@@ -63,8 +64,10 @@ module.exports = {
             if(viewed) {
                 debate.viewed += 1;
             }
-
-            // TODO add in subscriber if subscribed is clicked
+            if(subscribed == 'subscribe') {
+                console.log(req.user);
+                debate.subscribers.push(req.user._id);
+            }
 
             return debate.save();
         })
@@ -72,6 +75,7 @@ module.exports = {
             res.send(savedDebate);
         })
         .catch(function(err) {
+            console.log(err);
             res.status(404);
             next();
         })

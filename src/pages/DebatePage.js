@@ -24,16 +24,32 @@ const DebatePage = React.createClass({
         const sdSubscribers = selectedDebate.subscribers;
         if(sdSubscribers.some(sid => {
             return sid == this.state.user._id;
-        })) {
-            // Remove
+        })) { // Remove
+
             selectedDebate.subscribers = sdSubscribers.filter(sid => { return sid != this.state.user._id});
         }
-        else {
-            // Add
+        else { // Add
+
             sdSubscribers.push(this.state.user._id);
         }
 
         this.setState({ debates });
+
+        fetch('/api/debates/' + debateId, {
+            method: 'PUT',
+            headers: new Headers({
+               'Content-Type': 'application/json',
+            }),
+            body: JSON.stringify({
+                subscribed: "subscribe",
+            }),
+            credentials: "include",
+        })
+        .then(function(res) {
+            if(!res.ok) {
+                console.log("Unable to update");
+            }
+        })
     },
 
     render: function() {
