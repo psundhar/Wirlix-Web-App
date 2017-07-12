@@ -53,7 +53,7 @@ const HomePage = React.createClass({
             <div className="overlay">
 
             </div>
-            <div className="button-home col-md-4">
+            <div className="button-home col-md-4" style={{ position: "absolute" }}>
                 <a href="#">Spark Controversy</a>
             </div>
             <div className="mute">
