@@ -217,6 +217,12 @@ app.get('/home', function(req, res) {
         });
 });
 
+app.get('/profile/:id', function(req, res) {
+    const data = {};
+
+    res.render('react_main', { page: 'profile', data: JSON.stringify(data)});
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
