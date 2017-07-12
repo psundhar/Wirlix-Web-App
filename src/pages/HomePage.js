@@ -1,5 +1,6 @@
 import React from 'react';
 import StatementCard from '../components/StatementCard';
+import apiFetch from '../utilities/apiFetch';
 
 const HomePage = React.createClass({
 
@@ -21,20 +22,17 @@ const HomePage = React.createClass({
         this.setState({ statementText: e.target.value });
     },
 
+    handleVote(rational) {
+
+    },
+
     handleSubmit(agree) {
         let that = this;
 
-        fetch('/api/statements', {
-            credentials: 'include',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-            }),
-            body: JSON.stringify({
-                topic: this.state.topic._id,
-                text: this.state.statementText,
-                agreement: agree ? 'agree' : 'disagree',
-            }),
-            method: 'POST',
+        apiFetch('POST', {
+            topic: this.state.topic._id,
+            text: this.state.statementText,
+            agreement: agree ? 'agree' : 'disagree',
         })
         .then(() => {
             that.setState({ statementText: '' });
