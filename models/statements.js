@@ -46,9 +46,9 @@ const model = mongoose.model('Statement', statementsSchema);
 
 module.exports = {
 
-    queryAll: function() {
+    queryTopic: function(topicId) {
         return model
-            .find({deleted: false})
+            .find({deleted: false, topic: topicId})
             .populate(['user', 'topic']);
     },
 

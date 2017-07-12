@@ -164,6 +164,7 @@ app.use('/api', apiRoutes);
 
 const Topic = require('./models/topics');
 const Debate = require('./models/debates');
+const Statement = require('./models/statements');
 
 app.use('/', index(passport));
 
@@ -195,12 +196,17 @@ app.get('/debate', function(req, res) {
 });
 
 app.get('/home', function(req, res) {
-    Promise.all([Topic.queryLatest().exec(),])
-        .then(function(promiseResultsArray) {
-            const topic = promiseResultsArray[0];
+    Topic.queryLatest().exec()
+        .then(function(topic) {
+            return Promise.all([Promise.resolve(topic), Statement.queryTopic(topic._id)]);
+        })
+        .then(function(resultsArr) {
+            const topic = resultsArr[0];
+            const statements = resultsArr[1];
 
             const data = {
                 topic: topic,
+                statements: statements,
             };
 
             res.render('react_main', { page: 'home', data: JSON.stringify(data)});
