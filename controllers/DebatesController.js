@@ -68,7 +68,6 @@ module.exports = {
                 debate.subscribers.push(req.user._id);
             }
             if(subscribed == 'unsubscribe') {
-
                 debate.subscribers = debate.subscribers.filter(subId => {
                     return !subId.equals(req.user._id);
                 });
