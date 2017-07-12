@@ -16,7 +16,6 @@ module.exports = function(passport) {
         var body = req.body;
         var username = body.username;
         var password = body.password;
-
         User.findOne({username: username, password: password})
             .exec()
             .then(function(user) {
@@ -25,12 +24,15 @@ module.exports = function(passport) {
                         if(err) {
                             return next(err);
                         }
-                        return res.redirect('/profile');
+                        return res.redirect('/profile/' + user._id);
                     });
                 }
                 else {
                     return res.redirect('/');
                 }
+            })
+            .catch(function(err) {
+                console.log(err);
             })
 
       // passport.authenticate('local', function(err, user, info) {
@@ -300,6 +302,7 @@ module.exports = function(passport) {
             phoneNumber: phoneNumber,
             username: req.body.username,
         });
+
         newUser.save(function(err,savedUser) {
             if(err) {
                 console.log(err);
@@ -311,7 +314,7 @@ module.exports = function(passport) {
                 if(err) {
                     return next(err);
                 }
-                res.redirect('/profile');
+                res.redirect('/profile/' + savedUser._id);
             })
         });
 
