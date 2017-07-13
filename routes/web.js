@@ -100,4 +100,12 @@ router.get('/profile/:id', function(req, res, next) {
         });
 });
 
+router.get('/image', function(req, res, next) {
+    const data = {
+        user: req.user,
+    };
+
+    res.render('react_main', { page: 'image', data: JSON.stringify(data)});
+});
+
 module.exports = router;
