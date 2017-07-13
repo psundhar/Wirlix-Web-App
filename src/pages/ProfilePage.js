@@ -58,9 +58,11 @@ const ProfilePage = React.createClass({
                                         return (<FlippableDebateCard key={i} user={user} { ...d } />)
                                     })}
                                 </div>
-                                <div className="logout">
-                                    <a href="index.html" className="logout"><img src="/images/logout.png"/></a>
-                                </div>
+                                { loggedInUser._id == user._id && (
+                                    <div className="logout">
+                                        <a href="/logout" className="logout"><img src="/images/logout.png"/></a>
+                                    </div>
+                                )}
                                 { loggedInUser._id != user._id && ( <div className="challenge">
                                     <p><i className="fa fa-plus-circle" aria-hidden="true" data-toggle="modal"
                                           data-target="#challenge-conf"/></p>
