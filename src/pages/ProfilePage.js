@@ -22,7 +22,7 @@ const ProfilePage = React.createClass({
 
     render() {
         const { user, statement, debates, loggedInUser, topic } = this.state;
-        console.log(topic);
+
         return (
             <div>
                 <div className="main-content profile">
@@ -39,10 +39,10 @@ const ProfilePage = React.createClass({
                                 <h2 className="profile-name">{ user.username }</h2>
                                 <div className="scores">
                                     <div className="col-md-6">
-                                        <p><img src="/images/best-debater-w.png"/> { statement.rational }</p>
+                                        <p><img src="/images/best-debater-w.png"/> { statement.voters && statement.voters.filter(v => v.isRational).length }</p>
                                     </div>
                                     <div className="col-md-6">
-                                        <p><img src="/images/peace.png" className="peace"/> { statement.emotional }</p>
+                                        <p><img src="/images/peace.png" className="peace"/> { statement.voters && statement.voters.filter(v => !v.isRational).length }</p>
                                     </div>
                                 </div>
                                 <div className="qotd col-md-10 col-md-offset-1">
