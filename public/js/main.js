@@ -22,36 +22,36 @@ $(document).ready(function(){
   }
 
 
-  $(".button-vote.up").click(function(){
-
-    $(this).closest(".comment").find(".button-vote.down").removeClass("clicked");
-    if($(this).hasClass("clicked")){
-      var num = parseInt($(this).find(".vote-num").html());
-      $(this).removeClass("clicked");
-      // num = num - 1;
-      // $(this).find(".vote-num").html(num);
-    } else {
-      var num = parseInt($(this).find(".vote-num").html());
-      $(this).addClass("clicked");
-      // num++;
-      // $(this).find(".vote-num").html(num);
-    }
-  });
-  $(".button-vote.down").click(function(){
-
-    $(this).closest(".comment").find(".button-vote.up").removeClass("clicked");
-    if($(this).hasClass("clicked")){
-      var num = parseInt($(this).find(".vote-num").html());
-      $(this).removeClass("clicked");
-      // num++;
-      // $(this).find(".vote-num").html(num);
-    } else {
-      var num = parseInt($(this).find(".vote-num").html());
-      $(this).addClass("clicked");
-      // num = num - 1;
-      // $(this).find(".vote-num").html(num);
-    }
-  });
+  // $(".button-vote.up").click(function(){
+  //
+  //   $(this).closest(".comment").find(".button-vote.down").removeClass("clicked");
+  //   if($(this).hasClass("clicked")){
+  //     var num = parseInt($(this).find(".vote-num").html());
+  //     $(this).removeClass("clicked");
+  //     // num = num - 1;
+  //     // $(this).find(".vote-num").html(num);
+  //   } else {
+  //     var num = parseInt($(this).find(".vote-num").html());
+  //     $(this).addClass("clicked");
+  //     // num++;
+  //     // $(this).find(".vote-num").html(num);
+  //   }
+  // });
+  // $(".button-vote.down").click(function(){
+  //
+  //   $(this).closest(".comment").find(".button-vote.up").removeClass("clicked");
+  //   if($(this).hasClass("clicked")){
+  //     var num = parseInt($(this).find(".vote-num").html());
+  //     $(this).removeClass("clicked");
+  //     // num++;
+  //     // $(this).find(".vote-num").html(num);
+  //   } else {
+  //     var num = parseInt($(this).find(".vote-num").html());
+  //     $(this).addClass("clicked");
+  //     // num = num - 1;
+  //     // $(this).find(".vote-num").html(num);
+  //   }
+  // });
 
 
   $(".res-button.dis button").click(function(){
@@ -271,7 +271,7 @@ $(".notif").click(function(e){
 // });
 
 $(".button-vote").click(function(e){
-  e.stopPropagation();
+  // e.stopPropagation();
 });
 
 $(".next-buttons button.next").click(function(){

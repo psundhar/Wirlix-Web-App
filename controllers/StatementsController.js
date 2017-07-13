@@ -21,4 +21,23 @@ module.exports = {
             }
         });
     },
+
+    putObject: function(req, res, next) {
+        Statement
+            .default
+            .findById(req.params.id)
+            .exec()
+            .then(function(s) {
+                if(s) {
+                    return s.save();
+                }
+            })
+            .then(function(s) {
+                res.send(s);
+            })
+            .catch(function(err) {
+                console.log(err);
+                next();
+            });
+    },
 };

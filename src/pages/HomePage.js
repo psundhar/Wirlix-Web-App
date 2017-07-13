@@ -25,8 +25,21 @@ const HomePage = React.createClass({
         this.setState({ statementText: e.target.value });
     },
 
-    handleVote(rational) {
+    handleVote(isRational, statementId) {
+        const statements = this.state.statements;
 
+        const s = statements.find(s => s._id == statementId);
+
+        const existingVote = s.voters.find(v => v._id == this.state.user._id);
+
+        if(existingVote) {
+            existingVote.isRational = isRational;
+        }
+        else {
+            s.voters.push({ user: this.state.user._id, isRational });
+        }
+
+        this.setState({ statements });
     },
 
     handleSubmit(agree) {
@@ -98,9 +111,9 @@ const HomePage = React.createClass({
                             <div className="col-md-4 vote-col factual active" id ="factual">
                                 <h2 className="col-md-12"><img src="images/factual-w.png"/></h2>
                                 <div className="comment-container col-md-12">
-                                    { this.state.statements.filter(s => s.rational >= 10).map(s => {
+                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length >= 10).map(s => {
                                         return (
-                                            <StatementCard showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
 
@@ -110,9 +123,9 @@ const HomePage = React.createClass({
                             <div className="col-md-4 vote-col middle" id ="middle">
                                 <h2 className="col-md-12">You Decide</h2>
                                 <div className="comment-container col-md-12">
-                                    { this.state.statements.filter(s => s.rational < 10 && s.emotional < 10).map(s => {
+                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length < 10 && s.voters.filter(v => !v.isRational).length < 10).map(s => {
                                         return (
-                                            <StatementCard showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
                                 </div>
@@ -122,9 +135,9 @@ const HomePage = React.createClass({
                             <div className="col-md-4 vote-col emotional" id = "emotional">
                                 <h2 className="col-md-12"><img src="images/emotional-w.png" /></h2>
                                 <div className="comment-container col-md-12">
-                                    { this.state.statements.filter(s => s.emotional >= 10).map(s => {
+                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => !v.isRational).length >= 10).map(s => {
                                         return (
-                                            <StatementCard showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
                                 </div>

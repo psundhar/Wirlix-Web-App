@@ -36,6 +36,9 @@ const statementsSchema = mongoose.Schema({
         type: Number,
         default: 0,
     },
+    voters: [
+        { type: ObjectId, ref: 'User' }
+    ],
     views: {
         type: Number,
         default: 0,
@@ -45,7 +48,6 @@ const statementsSchema = mongoose.Schema({
 const model = mongoose.model('Statement', statementsSchema);
 
 module.exports = {
-
     queryTopic: function(topicId) {
         return model
             .find({deleted: false, topic: topicId})
