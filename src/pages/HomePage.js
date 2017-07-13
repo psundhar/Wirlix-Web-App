@@ -113,7 +113,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length >= 10).map(s => {
                                         return (
-                                            <StatementCard handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
 
@@ -125,7 +125,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length < 10 && s.voters.filter(v => !v.isRational).length < 10).map(s => {
                                         return (
-                                            <StatementCard handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
                                 </div>
@@ -137,7 +137,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.voters && s.voters.filter(v => !v.isRational).length >= 10).map(s => {
                                         return (
-                                            <StatementCard handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
                                 </div>
