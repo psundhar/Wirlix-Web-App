@@ -2,6 +2,7 @@ import React from 'react';
 import StatementCard from '../components/StatementCard';
 import apiFetch from '../utilities/apiFetch';
 import NavBar from '../components/NavBar';
+import ChallengeDialog from '../components/ChallengeDialog';
 
 const HomePage = React.createClass({
 
@@ -45,13 +46,12 @@ const HomePage = React.createClass({
     },
 
     render() {
-        console.log(user);
         const { topic, user } = this.state;
 
         return (
         <div>
         <div className="main-section-home">
-            <NavBar user={ user }/>
+            <NavBar user={ user } />
             <div className="overlay">
 
             </div>
@@ -100,7 +100,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.rational >= 10).map(s => {
                                         return (
-                                            <StatementCard { ...s }/>
+                                            <StatementCard showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
 
@@ -112,7 +112,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.rational < 10 && s.emotional < 10).map(s => {
                                         return (
-                                            <StatementCard { ...s }/>
+                                            <StatementCard showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
                                 </div>
@@ -124,7 +124,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.emotional >= 10).map(s => {
                                         return (
-                                            <StatementCard { ...s }/>
+                                            <StatementCard showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
                                 </div>
@@ -243,19 +243,7 @@ const HomePage = React.createClass({
                 </div>
             </div>
         </div>
-        <div id="challenge-conf" className="modal fade" role="dialog">
-            <div className="modal-dialog">
-                <div className="modal-content">
-                    <p>Are you sure you want to challenge <span>Username</span> to a debate?</p>
-                    <div className="col-md-6 cancel">
-                        <button data-dismiss="modal">Cancel</button>
-                    </div>
-                    <div className="col-md-6 confirm">
-                        <button data-dismiss="modal">Yes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ChallengeDialog />
         </div>
         )
     },
