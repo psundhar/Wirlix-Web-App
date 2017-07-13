@@ -56,7 +56,7 @@ const FlippableDebateCard = React.createClass({
                 { !frontVisible && (
                     <div className="back" onClick={ this.flip }>
                         <div className="username">
-                            <p><a href="profile.html" style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a> { challengee.username }</p>
+                            <p><a href={ "/profile/" + challengee._id } style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a> { challengee.username }</p>
                         </div>
                         <p className="comment-preview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius egestas lacinia. </p>
                         <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate">Full Debate &#8250;</button></p>

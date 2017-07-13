@@ -87,8 +87,9 @@ router.get('/profile/:id', function(req, res, next) {
 
             const data = {
                 user: user,
-                statement: statement,
+                statement: statement || {},
                 debates: debates,
+                loggedInUser: req.user,
             };
 
             res.render('react_main', { page: 'profile', data: JSON.stringify(data)});

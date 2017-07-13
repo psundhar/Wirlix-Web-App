@@ -9,6 +9,7 @@ const ProfilePage = React.createClass({
             user: {},
             debates: [],
             statement: {},
+            loggedInUser: {},
         };
     },
 
@@ -19,7 +20,7 @@ const ProfilePage = React.createClass({
     },
 
     render() {
-        const { user, statement, debates } = this.state;
+        const { user, statement, debates, loggedInUser } = this.state;
         return (
             <div>
                 <div className="main-content profile">
@@ -58,10 +59,10 @@ const ProfilePage = React.createClass({
                                 <div className="logout">
                                     <a href="index.html" className="logout"><img src="/images/logout.png"/></a>
                                 </div>
-                                <div className="challenge">
+                                { loggedInUser._id != user._id && ( <div className="challenge">
                                     <p><i className="fa fa-plus-circle" aria-hidden="true" data-toggle="modal"
                                           data-target="#challenge-conf"/></p>
-                                </div>
+                                </div> ) }
                             </div>
                             <div className="profile-content notifications col-md-8 col-md-offset-2">
                                 <h2 className="profile-name">Name goes here</h2>

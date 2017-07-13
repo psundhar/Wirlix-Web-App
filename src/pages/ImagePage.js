@@ -1,10 +1,13 @@
 import React from 'react';
+import Dropzone from 'react-dropzone';
+import cloudinary from 'cloudinary-core';
 
 const ImagePage = React.createClass({
 
     getInitialState() {
         return {
-
+            imageFile: {},
+            user: {},
         };
     },
 
@@ -14,7 +17,32 @@ const ImagePage = React.createClass({
         }
     },
 
+    onImageDrop(f) {
+        this.setState({
+            imageFile: f[0],
+        });
+    },
+
+    handleContinueClick() {
+        const { imageFile, user } = this.state;
+
+        if(!user.image && !imageFile.preview) {
+            // Warn user not to continue
+        }
+
+        if(imageFile.preview) {
+            // Initiate upload
+            const cl = cloudinary.Cloudinary.new({ cloud_name: "wirlix" });
+
+        }
+    },
+
     render() {
+        const { user, imageFile } = this.state;
+
+        const previewImage = user.image || imageFile.preview || "/images/profile-pic-placeholder.png";
+
+        console.log(previewImage, imageFile.preview);
 
         return (<div>
             <link rel = "stylesheet" type= "text/css" href="/stylesheets/styles.css" />
@@ -22,10 +50,12 @@ const ImagePage = React.createClass({
                 <div className="container">
                     <h1>Upload a photo</h1>
                     <div className="img-container">
-                        <img src="/images/profile-pic-placeholder.png" id = "profile-img" alt="your profile img" data-top="0"  data-left="0" />
+                        <img src={ previewImage } id = "profile-img" alt="your profile img" data-top="0"  data-left="0" />
                             <div className="upload-group col-md-12">
-                                <input type="file" name="profile-picture" id="file" className="inputfile" data-multiple-caption="{count} files selected"/>
+                                <Dropzone style={{visibility: "none"}} onDrop={ this.onImageDrop }>
+                                <div className="inputfile"/>
                                 <label htmlFor="file"><i className="fa fa-upload" aria-hidden="true"/> <span id = "filename">Upload Image</span></label>
+                                </Dropzone>
                             </div>
                     </div>
                     <div className="change">
@@ -33,7 +63,7 @@ const ImagePage = React.createClass({
                         <label htmlFor="file"><i className="fa fa-upload" aria-hidden="true"/> <span>Change Image</span></label>
                     </div>
                     <div className="col-md-4 col-md-offset-4 continue">
-                        <a href="tutorial.html">Continue <i className="fa fa-arrow-right" aria-hidden="true"/></a>
+                        <button onClick={ this.handleContinueClick }>Continue <i className="fa fa-arrow-right" aria-hidden="true"/></button>
                     </div>
                 </div>
             </div>
@@ -44,7 +74,7 @@ const ImagePage = React.createClass({
                         <a href="#" className="cancel">Cancel</a>
                     </div>
                     <div className="col-md-6">
-                        <a href="tutorial.html" className="col-md-6 cont">Continue</a>
+                        <button onClick={ this.handleContinueClick }>Continue</button>
                     </div>
                 </div>
             </div>
