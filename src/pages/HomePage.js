@@ -30,7 +30,7 @@ const HomePage = React.createClass({
 
         const s = statements.find(s => s._id == statementId);
 
-        const existingVote = s.voters.find(v => v._id == this.state.user._id);
+        const existingVote = s.voters.find(v => v.user == this.state.user._id);
 
         if(existingVote) {
             existingVote.isRational = isRational;
@@ -38,7 +38,7 @@ const HomePage = React.createClass({
         else {
             s.voters.push({ user: this.state.user._id, isRational });
         }
-
+        
         this.setState({ statements });
     },
 

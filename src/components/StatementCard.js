@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 
 export default ({showChallenge, loggedInUser, user, topic, voters, text, agreement, handleVote, _id}) => {
     const border = agreement == 'disagree' ? '3px solid crimson' : '3px solid slateblue';
