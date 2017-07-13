@@ -30,22 +30,29 @@ const HomePage = React.createClass({
 
         const s = statements.find(s => s._id == statementId);
 
-        const existingVote = s.voters.find(v => v.user == this.state.user._id);
+        if(s) {
+            apiFetch('/api/statements/' + s._id, 'PUT', {isRational})
+            .catch((err) => {
+                console.log(err);
+            });
 
-        if(existingVote) {
-            existingVote.isRational = isRational;
+            const existingVote = s.voters.find(v => v.user == this.state.user._id);
+
+            if(existingVote) {
+                existingVote.isRational = isRational;
+            }
+            else {
+                s.voters.push({ user: this.state.user._id, isRational });
+            }
+
+            this.setState({ statements });
         }
-        else {
-            s.voters.push({ user: this.state.user._id, isRational });
-        }
-        
-        this.setState({ statements });
     },
 
     handleSubmit(agree) {
         let that = this;
 
-        apiFetch('POST', {
+        apiFetch('/api/statements', 'POST', {
             topic: this.state.topic._id,
             text: this.state.statementText,
             agreement: agree ? 'agree' : 'disagree',

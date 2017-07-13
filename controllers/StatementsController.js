@@ -29,7 +29,21 @@ module.exports = {
             .exec()
             .then(function(s) {
                 if(s) {
+                    const user = req.user;
+                    const existingVote = s.voters.find(v => v.user == user._id)
+                    const isRational = req.body.isRational;
+
+                    if(existingVote) { // Change it to the new vote
+                        existingVote.isRational = isRational;
+                    }
+                    else {
+                        s.voters.push({user: user._id, isRational});
+                    }
+
                     return s.save();
+                }
+                else {
+                    throw("Statement not found");
                 }
             })
             .then(function(s) {
@@ -37,7 +51,7 @@ module.exports = {
             })
             .catch(function(err) {
                 console.log(err);
-                next();
+                return next();
             });
     },
 };

@@ -12,6 +12,7 @@ router.delete('/debates/:id', DebatesController.deleteObject);
 router.get('/topics', TopicsController.getCurrent);
 
 router.post('/statements', StatementsController.postCollection);
+router.put('/statements/:id', StatementsController.putObject);
 
 router.use('*', jsonErrorResponse);
 

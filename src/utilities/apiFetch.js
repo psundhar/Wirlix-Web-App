@@ -1,4 +1,4 @@
-const apiFetch = (method, body) => {
+const apiFetch = (url, method, body) => {
     const options = {
         body: JSON.stringify(body),
         headers: new Headers({
@@ -8,7 +8,7 @@ const apiFetch = (method, body) => {
         method,
     };
 
-    return fetch('/api/statements', options)
+    return fetch(url, options)
 };
 
 export default apiFetch;

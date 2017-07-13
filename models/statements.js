@@ -37,7 +37,7 @@ const statementsSchema = mongoose.Schema({
         default: 0,
     },
     voters: [
-        { type: ObjectId, ref: 'User' }
+        { user: { type: ObjectId, ref: 'User'}, isRational: Boolean }
     ],
     views: {
         type: Number,
