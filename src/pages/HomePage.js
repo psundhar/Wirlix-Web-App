@@ -57,8 +57,14 @@ const HomePage = React.createClass({
             text: this.state.statementText,
             agreement: agree ? 'agree' : 'disagree',
         })
-        .then(() => {
+        .then((res) => {
             that.setState({ statementText: '' });
+            return res.json();
+        })
+        .then(statement => {
+            const statements = that.state.statements;
+            statements.push(statement);
+            that.setState({ statements });
         })
         .catch(function(err) {
             console.log(err);

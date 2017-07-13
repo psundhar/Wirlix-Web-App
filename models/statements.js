@@ -28,14 +28,6 @@ const statementsSchema = mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    rational: {
-        type: Number,
-        default: 0,
-    },
-    emotional: {
-        type: Number,
-        default: 0,
-    },
     voters: [
         { user: { type: ObjectId, ref: 'User'}, isRational: Boolean }
     ],

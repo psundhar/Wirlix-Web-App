@@ -8,6 +8,7 @@ module.exports = {
             created: Date.now(),
             text: req.body.text,
             agreement: req.body.agreement,
+            voters: [],
         });
 
         statement.save(function(err) {
