@@ -10,6 +10,7 @@ const ProfilePage = React.createClass({
             debates: [],
             statement: {},
             loggedInUser: {},
+            topic: {},
         };
     },
 
@@ -20,7 +21,8 @@ const ProfilePage = React.createClass({
     },
 
     render() {
-        const { user, statement, debates, loggedInUser } = this.state;
+        const { user, statement, debates, loggedInUser, topic } = this.state;
+        console.log(topic);
         return (
             <div>
                 <div className="main-content profile">
@@ -29,7 +31,7 @@ const ProfilePage = React.createClass({
                         <div className="container">
                             <div className="profile-pic col-md-4 col-md-offset-4">
                                 <div className="pic-crop"
-                                     style={{background: "url('/images/pexels-photo-103123.jpeg') center center no-repeat;"}}></div>
+                                     style={{background: "url('/images/pexels-photo-103123.jpeg') center center no-repeat"}}></div>
                             </div>
                         </div>
                         <div className="container">
@@ -45,10 +47,10 @@ const ProfilePage = React.createClass({
                                 </div>
                                 <div className="qotd col-md-10 col-md-offset-1">
                                     <div className="gotd-banner">
-                                        <h3 className="mb2">{ statement.topic ? statement.topic.prompt : '' }</h3>
-                                        <div style={{backgroundColor: "white", border: "4px solid " + (statement.agreement == 'agree' ? 'slateblue' : 'crimson')}} className="p2">
+                                        <h3 className="mb2">{ topic.prompt }</h3>
+                                        { statement.agreement && (<div style={{backgroundColor: "white", border: "4px solid " + (statement.agreement == 'agree' ? 'slateblue' : 'crimson')}} className="p2">
                                             <h4 style={{color: 'black'}}>{ statement.text }</h4>
-                                        </div>
+                                        </div>) }
                                     </div>
                                 </div>
                                 <div className="debates col-md-12">
@@ -127,7 +129,7 @@ const ProfilePage = React.createClass({
                                 <div className="col-md-6 col-sm-6 col-xs-6">
                                     <div className="user-img">
                                         <p><a href="profile.html"
-                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
+                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                         </p>
                                         <p>Username</p>
                                     </div>
@@ -135,7 +137,7 @@ const ProfilePage = React.createClass({
                                 <div className="col-md-6 col-sm-6 col-xs-6">
                                     <div className="user-img">
                                         <p><a href="profile.html"
-                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
+                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                         </p>
                                         <p>Username</p>
                                     </div>
@@ -153,7 +155,7 @@ const ProfilePage = React.createClass({
                                 <div className="message-box dis-message">
                                     <div className="username">
                                         <p><a href="profile.html"
-                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
+                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                         </p>
                                     </div>
                                     <p className="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -163,7 +165,7 @@ const ProfilePage = React.createClass({
                                 <div className="message-box agr-message">
                                     <div className="username">
                                         <p><a href="profile.html"
-                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
+                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                         </p>
                                     </div>
                                     <p className="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -173,7 +175,7 @@ const ProfilePage = React.createClass({
                                 <div className="message-box dis-message">
                                     <div className="username">
                                         <p><a href="profile.html"
-                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
+                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                         </p>
                                     </div>
                                     <p className="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -183,7 +185,7 @@ const ProfilePage = React.createClass({
                                 <div className="message-box agr-message">
                                     <div className="username">
                                         <p><a href="profile.html"
-                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
+                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                         </p>
                                     </div>
                                     <p className="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -193,7 +195,7 @@ const ProfilePage = React.createClass({
                                 <div className="message-box dis-message">
                                     <div className="username">
                                         <p><a href="profile.html"
-                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
+                                              style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                         </p>
                                     </div>
                                     <p className="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -219,7 +221,7 @@ const ProfilePage = React.createClass({
                         <div className="modal-content">
                             <div className="my-ranking">
                                 <p className="my-info"><a href="profile.html"
-                                                          style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat;"}}></a>
+                                                          style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                     Priyanka Sundhar</p>
                             </div>
                             <div className="my-rank-num">
