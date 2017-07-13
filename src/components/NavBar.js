@@ -22,7 +22,9 @@ const NavBar = ({user}) => {
                             <li><a href="about.html">About</a></li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a className="profile-nav" href={ "/profile/" + user._id } style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat" }}></a></li>
+                            <li><a className="profile-nav" href={ "/profile/" + user._id } style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat" }}>
+                                <div style={{position:'absolute',top:0,left:0,height:"13px",width:"13px",borderRadius:"100px",backgroundColor:"crimson"}}></div>
+                            </a></li>
                             <li><a className="help" href="tutorial.html">? <br/><span>See Tutorial</span></a></li>
 
                         </ul>

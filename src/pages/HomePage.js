@@ -12,6 +12,9 @@ const HomePage = React.createClass({
             statementText: '',
             statements: [],
             user: {},
+            challenge: {
+                statementId: null,
+            },
         };
     },
 
@@ -71,6 +74,22 @@ const HomePage = React.createClass({
         })
     },
 
+    handleChallenge(statementId) {
+        this.setState({
+            challenge: {statementId}
+        });
+    },
+
+    handleCancel() {
+        this.setState({
+            challenge: { statementId: null }
+        });
+    },
+
+    handleConfirm(statementId, user) {
+
+    },
+
     render() {
         const { topic, user } = this.state;
 
@@ -126,7 +145,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length >= 10).map(s => {
                                         return (
-                                            <StatementCard loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
 
@@ -138,7 +157,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length < 10 && s.voters.filter(v => !v.isRational).length < 10).map(s => {
                                         return (
-                                            <StatementCard loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
                                 </div>
@@ -150,7 +169,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.voters && s.voters.filter(v => !v.isRational).length >= 10).map(s => {
                                         return (
-                                            <StatementCard loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
                                 </div>
@@ -269,7 +288,7 @@ const HomePage = React.createClass({
                 </div>
             </div>
         </div>
-        <ChallengeDialog />
+        <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} statementId={ this.state.challenge.statementId } user={ user } />
         </div>
         )
     },
