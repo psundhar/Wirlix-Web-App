@@ -11,26 +11,22 @@ const DebateModal = ({debate}) => {
                     <div className="chat-header col-md-12">
                         <div className="col-md-6 col-sm-6 col-xs-6">
                             <div className="user-img">
-                                <p><a href="profile.html"
-                                      style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
-                                </p>
+                                <p><a href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat"}}></a></p>
                                 <p>Username</p>
                             </div>
                         </div>
                         <div className="col-md-6 col-sm-6 col-xs-6">
                             <div className="user-img">
-                                <p><a href="profile.html"
-                                      style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
-                                </p>
+                                <p><a href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat"}}></a></p>
                                 <p>Username</p>
                             </div>
                         </div>
                         <div className="vote-bar">
                             <div className="vote-amt">
-                                <p><img src="/images/eye-b.png"/> 200</p>
+                                <p><img src="images/eye-b.png" /> 200</p>
                             </div>
                             <div className="vote-amt">
-                                <p><img src="/images/check-mark-b.png"/> 278</p>
+                                <p><img src="images/check-mark-b.png" /> 278</p>
                             </div>
                         </div>
                     </div>
@@ -61,21 +57,80 @@ const DebateModal = ({debate}) => {
                                 </div>
                             );
                         }) }
-                    <div className="vote-box col-md-12">
-                        <div className="col-md-6 col-md-offset-3">
-                            <p><i className="fa fa-check"/> Subscribe</p>
+                    </div>
+                    <div className="reply-box col-md-12">
+                        <textarea placeholder="Write your opinion...."></textarea>
+                        <div className="col-md-4 col-sm-4 col-xs-4 end-button">
+                            <button className="end-debate">End Debate</button>
+                        </div>
+                        <div className="col-md-8 col-sm-8 col-xs-8 reply-button">
+                            <button className="reply-submit">Reply</button>
                         </div>
                     </div>
                     <div className="close-bottom">
-                        <button type="button" className="btn btn-default" data-dismiss="modal"><i
-                            className="fa fa-times-circle" aria-hidden="true"/></button>
+                        <button type="button" className="btn btn-default" data-dismiss="modal"><i className="fa fa-times-circle" aria-hidden="true"></i></button>
+                    </div>
+                    <div className="end-confirm">
+                        <p>Are you sure you want to end this debate?</p>
+                        <div className="cancel col-md-6 col-sm-6 col-xs-6">
+                            <button>No</button>
+                        </div>
+                        <div className="confirm col-md-6 col-sm-6 col-xs-6">
+                            <button>Yes</button>
+                        </div>
+                    </div>
+                    <div className="end-message">
+                        <p className="quote">Change will not come if we wait for some other person or some other time. We are the ones we've been waiting for. We are the change that we seek.</p>
+                        <p className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span></p>
+                    </div>
+                    <div className="end-overlay">
+
                     </div>
                 </div>
-
+                <div className="q-container">
+                    <div className="question-box one">
+                        <p className="number">1</p>
+                    </div>
+                    <div className="question-box two">
+                        <p className="number">2</p>
+                    </div>
+                    <div className="question-box three">
+                        <p className="number">3</p>
+                    </div>
+                </div>
+                <div className="question one" style={{display: "none"}}>
+                    <div className="message-box question-box one">
+                        <div className="username">
+                            <p className="wirlix-img" style={{background: "url(images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
+                            <p> Wirlix</p>
+                        </div>
+                        <p className="message">this is question #1</p>
+                        <p className="time-posted">25m</p>
+                    </div>
+                </div>
+                <div className="question two" style={{display: "none"}}>
+                    <div className="message-box question-box one">
+                        <div className="username">
+                            <p className="wirlix-img" style={{background: "url(images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
+                            <p> Wirlix</p>
+                        </div>
+                        <p className="message">this is question #2</p>
+                        <p className="time-posted">25m</p>
+                    </div>
+                </div>
+                <div className="question three" style={{display: "none"}}>
+                    <div className="message-box question-box one">
+                        <div className="username">
+                            <p className="wirlix-img" style={{background: "url(images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
+                            <p> Wirlix</p>
+                        </div>
+                        <p className="message">this is question #3</p>
+                        <p className="time-posted">25m</p>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-    )
+    );
 };
 
 export default DebateModal;
