@@ -42,10 +42,12 @@ const ProfilePage = React.createClass({
             apiFetch('/api/challenges/' +  acceptedChallenge._id, 'PUT', {
                 status,
                 notifyChallengee: false,
-                notifyChallenger: true,
+                notifyChallenger: status == 'accepted',
             })
-            .then((c) => {
-                this.setState({ challenges });
+            .then((res) => {
+                if(res.ok) {
+                    this.setState({ challenges });
+                }
             })
             .catch((err) => console.log(err));
         }
