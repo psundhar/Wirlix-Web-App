@@ -53,4 +53,7 @@ module.exports = {
     queryByUserAndTopic: function(userId, topicId) {
         return model.find({topic: topicId, $or: [{challenger: userId}, {challengee: userId}]}).populate(['challenger', 'challengee', 'statement']);
     },
+    queryByUserAndTopicAndNotification: function(userId, topicId) {
+        return model.find({topic: topicId, $or: [{challenger: userId, notifyChallenger: true}, {challengee: userId, notifyChallengee: true}]}).populate(['challenger', 'challengee', 'statement']);
+    },
 };

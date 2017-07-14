@@ -1,7 +1,22 @@
 const Challenge = require('../models/challenges');
 const Statement = require('../models/statements');
+const Topic = require('../models/topics');
 
 const ChallengesController = {
+    getNotifications: function(req, res, next) {
+        Topic.queryLatest()
+            .then(function(topic) {
+                return Challenge.queryByUserAndTopicAndNotification(req.user._id, topic._id);
+            })
+            .then(function(challenges) {
+                res.send(challenges);
+            })
+            .catch(function(err) {
+                console.log(err);
+                res.end();
+            })
+    },
+
     postCollection: function(req, res, next) {
         const body = req.body;
         Statement.default

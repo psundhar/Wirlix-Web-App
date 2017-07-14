@@ -17,6 +17,8 @@ router.put('/statements/:id', StatementsController.putObject);
 
 router.post('/challenges', ChallengesController.postCollection);
 
+router.get('/notifications', ChallengesController.getNotifications);
+
 router.use('*', jsonErrorResponse);
 
 module.exports = router;
