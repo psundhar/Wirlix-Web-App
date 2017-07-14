@@ -2,6 +2,7 @@ import React from 'react';
 import FlippableDebateCard from '../components/FlippableDebateCard';
 import NavBar from '../components/NavBar';
 import ChallengeNotificationsList from '../components/ChallengeNotificationsList';
+import apiFetch from '../utilities/apiFetch';
 
 const ProfilePage = React.createClass({
 
@@ -20,6 +21,20 @@ const ProfilePage = React.createClass({
         if(initialState) { // Globally set into hbs templates
             this.setState(initialState);
         }
+    },
+
+    handleAcceptChallenge(acceptedChallenge) {
+        const challenges = this.state.challenges;
+
+        const challenge = challenges.find(c => c._id == acceptedChallenge._id);
+        challenge.status = "accepted";
+
+        this.setState({ challenges });
+
+        // Make request to update db state
+        apiFetch('/api/challenges/' +  acceptedChallenge._id, 'PUT', {
+            status: "accepted",
+        });
     },
 
     render() {
@@ -73,7 +88,7 @@ const ProfilePage = React.createClass({
                                           data-target="#challenge-conf"/></p>
                                 </div> ) }
 
-                                { isMyProfile && (<ChallengeNotificationsList user={loggedInUser} challenges={ challenges }/>) }
+                                { isMyProfile && (<ChallengeNotificationsList handleAcceptChallenge={this.handleAcceptChallenge} user={loggedInUser} challenges={ challenges }/>) }
                             </div>
                             <div className="profile-content notifications col-md-8 col-md-offset-2">
                                 <h2 className="profile-name">Name goes here</h2>

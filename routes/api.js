@@ -16,6 +16,7 @@ router.post('/statements', StatementsController.postCollection);
 router.put('/statements/:id', StatementsController.putObject);
 
 router.post('/challenges', ChallengesController.postCollection);
+router.put('/challenges/:id', ChallengesController.putObject);
 
 router.get('/notifications', ChallengesController.getNotifications);
 

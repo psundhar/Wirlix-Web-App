@@ -19,7 +19,7 @@ import React from 'react';
 // {/*<div className="notification">*/}
 //     {/*<p>A new question has been chosen in the debate <a href="#">debate name</a></p>*/}
 // {/*</div>*/}
-const ChallengeNotificationsList = ({challenges, user}) => {
+const ChallengeNotificationsList = ({challenges, user, handleAcceptChallenge, handleDeclineChallenge }) => {
 
     return (
         <div className="notifications col-md-12">
@@ -33,8 +33,9 @@ const ChallengeNotificationsList = ({challenges, user}) => {
                             { isChallenger ? 'you' : c.challenger.username } challenged { !isChallenger ? 'you' : c.challengee.username } to debate
                         </div>
                         <div>
+                            { c.status == 'accepted' && (<span className="mr2">Challenge accepted! <button>Enter Debate</button></span>)}
                             { isChallenger && c.status == 'pending' && (<span>Waiting for a response</span>) }
-                            { !isChallenger && c.status == 'pending' && (<div><button className="mr2">Accept</button> <button>Decline</button></div>) }
+                            { !isChallenger && c.status == 'pending' && (<div><button className="mr2" onClick={ () => handleAcceptChallenge(c) }>Accept</button> <button onClick={ () => handleDeclineChallenge(c) } >Decline</button></div>) }
                         </div>
 
                     </div>

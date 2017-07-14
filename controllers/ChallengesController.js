@@ -17,6 +17,35 @@ const ChallengesController = {
             })
     },
 
+    putObject: function(req, res, next) {
+        const body = req.body;
+
+        Challenge.default
+            .findById(req.params.id)
+            .exec()
+            .then(function(challenge) {
+                if(challenge) {
+                    challenge.status = body.status;
+                    challenge.save(function(err) {
+                        if(err) {
+                            console.log(err);
+                            res.status(422);
+                            res.end();
+                        }
+                        else {
+                            res.send(challenge);
+                        }
+                    });
+                }
+                else throw "Not found";
+            })
+            .catch(function(err) {
+                console.log(err);
+                res.status(404);
+                res.end();
+            });
+    },
+
     postCollection: function(req, res, next) {
         const body = req.body;
         Statement.default
