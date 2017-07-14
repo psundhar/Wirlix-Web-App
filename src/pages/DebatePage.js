@@ -60,6 +60,19 @@ const DebatePage = React.createClass({
         this.setState({debateModal: { debate }});
     },
 
+    handleNewMessage(debate, text) {
+        const debates = this.state.debates;
+
+        const newMessageDebate = debates.find(d => d._id == debate._id);
+
+        newMessageDebate.messages.push({
+            user: this.state.user._id,
+            text,
+        });
+
+        this.setState({debates});
+    },
+
     render: function() {
         return (
     <div>
@@ -131,7 +144,7 @@ const DebatePage = React.createClass({
         <div className="overlay"></div>
         </section>
 
-        <DebateModal debate={this.state.debateModal.debate} />
+        <DebateModal handleNewMessage={this.handleNewMessage} debate={this.state.debateModal.debate} />
 
             <div id="rankings" className="modal fade" role="dialog">
             <div className="modal-dialog">
