@@ -1,6 +1,5 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import cloudinary from 'cloudinary-core';
 
 const ImagePage = React.createClass({
 
@@ -31,8 +30,15 @@ const ImagePage = React.createClass({
         }
 
         if(imageFile.preview) {
+            console.log(imageFile);
             // Initiate upload
-            const cl = cloudinary.Cloudinary.new({ cloud_name: "wirlix" });
+            const data = new FormData();
+            data.append('image', imageFile);
+
+            fetch('/api/images/' + user._id, {
+                method: 'POST',
+                body: data,
+            });
 
         }
     },
@@ -41,8 +47,6 @@ const ImagePage = React.createClass({
         const { user, imageFile } = this.state;
 
         const previewImage = user.image || imageFile.preview || "/images/profile-pic-placeholder.png";
-
-        console.log(previewImage, imageFile.preview);
 
         return (<div>
             <link rel = "stylesheet" type= "text/css" href="/stylesheets/styles.css" />
