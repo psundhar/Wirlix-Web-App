@@ -30,9 +30,13 @@ const ChallengeNotificationsList = ({challenges, user}) => {
                 return (
                     <div className="notification" key={i}>
                         <div className="p1">
-                            { c.challenger.username } challenged { c.challengee.username }
+                            { isChallenger ? 'you' : c.challenger.username } challenged { !isChallenger ? 'you' : c.challengee.username } to debate
                         </div>
-                        <div>{ isChallenger && c.status == 'pending' && (<span>Waiting for a response</span>) }</div>
+                        <div>
+                            { isChallenger && c.status == 'pending' && (<span>Waiting for a response</span>) }
+                            { !isChallenger && c.status == 'pending' && (<div><button className="mr2">Accept</button> <button>Decline</button></div>) }
+                        </div>
+
                     </div>
                 )
             })}
