@@ -87,11 +87,12 @@ const HomePage = React.createClass({
         });
     },
 
-    handleConfirm(statementId, user) {
+    handleConfirm(statementId, topicId, user) {
         // Make api call to create a challenge and then update state
         apiFetch('/api/challenges', 'POST', {
             statement: statementId,
             challenger: user._id,
+            topic: topicId,
         })
         .then(res => res.json())
         .then(json => {

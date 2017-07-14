@@ -94,6 +94,7 @@ router.get('/profile/:id', function(req, res, next) {
             const topic = resultsArray[1];
             const statement = resultsArray[2];
             const debates = resultsArray[3];
+            const challenges = resultsArray[4];
 
             const data = {
                 user: user,
@@ -101,6 +102,7 @@ router.get('/profile/:id', function(req, res, next) {
                 statement: statement || {},
                 debates: debates,
                 loggedInUser: req.user,
+                challenges: challenges,
             };
 
             res.render('react_main', { page: 'profile', data: JSON.stringify(data)});
