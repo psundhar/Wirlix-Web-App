@@ -17,6 +17,25 @@ const debatesSchema = mongoose.Schema({
         ref: 'Topic',
         required: true,
     },
+    statement: {
+        type: ObjectId,
+        ref: 'Statement',
+    },
+    messages: [
+        {
+            user: {
+                type: ObjectId,
+                ref: 'User',
+            },
+            text: {
+                type: String,
+            },
+            created: {
+                type: Date,
+                default: Date.now(),
+            }
+        }
+    ],
     created: {
         type: Date,
     },

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DebateModal = ({}) => {
+const DebateModal = ({debate}) => {
     return (
         <div id="view-debate" className="modal fade" role="dialog">
             <div className="modal-dialog">

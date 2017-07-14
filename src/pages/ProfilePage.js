@@ -44,10 +44,21 @@ const ProfilePage = React.createClass({
                 notifyChallengee: false,
                 notifyChallenger: status == 'accepted',
             })
-            .then((res) => {
-                if(res.ok) {
-                    this.setState({ challenges });
-                }
+            .then(res => res.json())
+            .then(challenge => {
+                return apiFetch('/api/debates/', 'POST', {
+                    topic: challenge.topic,
+                    challenger: challenge.challenger,
+                    challengee: challenge.challengee,
+                    statement: challenge.statement,
+                });
+            })
+            .then((res) => res.json())
+            .then((debate) => {
+                const debates = this.state.debates;
+                debates.push(debate);
+
+                this.setState({ challenges, debates });
             })
             .catch((err) => console.log(err));
         }
@@ -105,7 +116,7 @@ const ProfilePage = React.createClass({
                                           data-target="#challenge-conf"/></p>
                                 </div> ) }
 
-                                { isMyProfile && (<ChallengeNotificationsList handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} challenges={ challenges }/>) }
+                                { isMyProfile && (<ChallengeNotificationsList debates={debates} handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} challenges={ challenges }/>) }
                             </div>
                             <div className="profile-content notifications col-md-8 col-md-offset-2">
                                 <h2 className="profile-name">Name goes here</h2>

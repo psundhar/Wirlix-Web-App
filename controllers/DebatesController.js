@@ -28,9 +28,14 @@ module.exports = {
         const challenger = body.challenger;
         const challengee = body.challengee;
         const topic = body.topic;
+        const statement = body.statement;
 
         if( challenger && challengee && topic ) {
-            const debate = new Debate({challenger: challenger, challengee: challengee, topic: topic, created: Date.now() });
+            const debate = new Debate.default({challenger: challenger, challengee: challengee, topic: topic, created: Date.now() });
+
+            if(statement) {
+                debate.statement = statement;
+            }
 
             debate.save().then(function(debate) {
                 res.send(debate);
