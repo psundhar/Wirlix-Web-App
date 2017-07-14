@@ -38,7 +38,9 @@ module.exports = {
             }
 
             debate.save().then(function(debate) {
-                res.send(debate);
+                Debate.default.populate(debate, [{ path: 'challenger' }, { path: 'challengee'}, {path: 'statement'}, {path: 'topic'}], function(err, d) {
+                    res.send(d);
+                });
             });
         }
         else {

@@ -71,7 +71,7 @@ module.exports = {
     queryAll: function() {
         return model
             .find({deleted: false})
-            .populate(['challenger', 'challengee']);
+            .populate(['challenger', 'challengee', 'statement', 'topic']);
     },
 
     queryBest: function() {
@@ -100,7 +100,7 @@ module.exports = {
                 topic: topicId,
                 $or: [{challenger: userId}, {challengee: userId}]
             })
-            .populate(['challenger', 'challengee']);
+            .populate(['challenger', 'challengee', 'statement', 'topic']);
     },
 
     default: model,

@@ -26,8 +26,7 @@ const ChallengeNotificationsList = ({challenges, debates, user, handleAcceptChal
             <h3>Notifications</h3>
             { challenges.map((c,i)=> {
                 const isChallenger = user._id == c.challenger._id;
-
-                const thisDebate = debates.find()
+                // const thisDebate = debates.find(d => d.statement == c.statement || d.statement._)
                 return (
                     <div className="notification" key={i}>
                         <div className="p1">
