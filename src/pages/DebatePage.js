@@ -3,6 +3,7 @@ import MyDebates from '../components/MyDebates';
 import FlippableDebateCard from '../components/FlippableDebateCard';
 import NavBar from '../components/NavBar';
 import DebateModal from '../components/DebateModal';
+import apiFetch from '../utilities/apiFetch';
 
 const DebatePage = React.createClass({
     getInitialState() {
@@ -65,12 +66,23 @@ const DebatePage = React.createClass({
 
         const newMessageDebate = debates.find(d => d._id == debate._id);
 
-        newMessageDebate.messages.push({
+        const newMessageObj = {
             user: this.state.user._id,
             text,
-        });
+        };
+
+        newMessageDebate.messages.push(newMessageObj);
 
         this.setState({debates});
+
+        console.log("HERE!!!");
+        // Update db state
+        apiFetch('/api/debates/' + debate._id, 'PUT', {
+            message: newMessageObj
+        })
+        .then(res => res.json())
+        .then(json => console.log(json))
+        .catch(err => console.log(err));
     },
 
     render: function() {

@@ -55,6 +55,7 @@ module.exports = {
         const emotional = req.body.emotional;
         const viewed = req.body.viewed;
         const subscribed = req.body.subscribed;
+        const message = req.body.message;
 
         if(!id) {
             res.status(400);
@@ -78,6 +79,9 @@ module.exports = {
                 debate.subscribers = debate.subscribers.filter(subId => {
                     return !subId.equals(req.user._id);
                 });
+            }
+            if(message) {
+                debate.messages.push(message);
             }
 
             return debate.save();
