@@ -33,7 +33,7 @@ const ChallengeNotificationsList = ({challenges, user, handleAcceptChallenge, ha
                             { isChallenger ? 'you' : c.challenger.username } challenged { !isChallenger ? 'you' : c.challengee.username } to debate
                         </div>
                         <div>
-                            { c.status == 'accepted' && (<span className="mr2">Challenge accepted! <button>Enter Debate</button></span>)}
+                            { c.status == 'accepted' && (<span className="mr2">Challenge accepted! <button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate">Enter Debate</button></span>)}
                             { c.status == 'declined' && (<span className="mr2">Challenge declined</span>)}
                             { isChallenger && c.status == 'pending' && (<span>Waiting for a response</span>) }
                             { !isChallenger && c.status == 'pending' && (<div><button className="mr2" onClick={ () => handleAcceptChallenge(c) }>Accept</button> <button onClick={ () => handleDeclineChallenge(c) } >Decline</button></div>) }
