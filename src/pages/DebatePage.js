@@ -56,6 +56,10 @@ const DebatePage = React.createClass({
         })
     },
 
+    handleReplyClick(debate) {
+        this.setState({debateModal: { debate }});
+    },
+
     render: function() {
         return (
     <div>
@@ -70,7 +74,7 @@ const DebatePage = React.createClass({
         </div>
         </div>
 
-        <MyDebates debates={ this.state.debates } userId={ this.state.user._id}/>
+        <MyDebates handleReplyClick={this.handleReplyClick} debates={ this.state.debates } userId={ this.state.user._id}/>
         <div className="comments">
             <div className="container">
             <div className="border decide">
