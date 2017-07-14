@@ -32,6 +32,7 @@ const ChallengesSchema = mongoose.Schema({
     },
     status: {
         type: String,
+        default: 'pending',
     },
     created: {
         type: Date,

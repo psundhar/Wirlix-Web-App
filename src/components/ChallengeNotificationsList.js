@@ -20,13 +20,19 @@ import React from 'react';
 //     {/*<p>A new question has been chosen in the debate <a href="#">debate name</a></p>*/}
 // {/*</div>*/}
 const ChallengeNotificationsList = ({challenges, user}) => {
+
     return (
         <div className="notifications col-md-12">
             <h3>Notifications</h3>
             { challenges.map((c,i)=> {
+                const isChallenger = user._id == c.challenger._id;
+
                 return (
                     <div className="notification" key={i}>
-                        { c.challengee.username } vs. { c.challenger.username }
+                        <div className="p1">
+                            { c.challenger.username } challenged { c.challengee.username }
+                        </div>
+                        <div>{ isChallenger && c.status == 'pending' && (<span>Waiting for a response</span>) }</div>
                     </div>
                 )
             })}
