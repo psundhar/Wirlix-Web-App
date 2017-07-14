@@ -14,7 +14,8 @@ const FlippableDebateCard = React.createClass({
     },
 
     render() {
-        const { challenger, challengee, views, subscribers, user, handleSubscribeToggle, _id } = this.props;
+        const { debate, user, handleSubscribeToggle,  handleEnterDebate} = this.props;
+        const { statement = {}, challenger, challengee, views, subscribers, _id } = debate;
 
         const frontVisible = this.state.frontVisible;
 
@@ -58,8 +59,8 @@ const FlippableDebateCard = React.createClass({
                         <div className="username">
                             <p><a href={ "/profile/" + challengee._id } style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a> { challengee.username }</p>
                         </div>
-                        <p className="comment-preview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius egestas lacinia. </p>
-                        <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate">Full Debate &#8250;</button></p>
+                        <p className="comment-preview">{ statement.text }</p>
+                        <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate" onClick={ () => handleEnterDebate(debate) }>Full Debate &#8250;</button></p>
                     </div>
                 )}
 
