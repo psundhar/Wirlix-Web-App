@@ -75,13 +75,11 @@ const DebatePage = React.createClass({
 
         this.setState({debates});
 
-        console.log("HERE!!!");
         // Update db state
         apiFetch('/api/debates/' + debate._id, 'PUT', {
             message: newMessageObj
         })
         .then(res => res.json())
-        .then(json => console.log(json))
         .catch(err => console.log(err));
     },
 
