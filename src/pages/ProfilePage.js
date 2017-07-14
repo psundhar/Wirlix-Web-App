@@ -23,18 +23,29 @@ const ProfilePage = React.createClass({
         }
     },
 
-    handleAcceptChallenge(acceptedChallenge) {
-        const challenges = this.state.challenges;
+    handleChallengeResponse(accepted) {
+        return (acceptedChallenge) => {
+            const challenges = this.state.challenges;
 
-        const challenge = challenges.find(c => c._id == acceptedChallenge._id);
-        challenge.status = "accepted";
+            const challenge = challenges.find(c => c._id == acceptedChallenge._id);
 
-        this.setState({ challenges });
+            let status = "accepted";
 
-        // Make request to update db state
-        apiFetch('/api/challenges/' +  acceptedChallenge._id, 'PUT', {
-            status: "accepted",
-        });
+            if(!accepted) {
+                status = "declined";
+            }
+
+            challenge.status = status;
+            // Make request to update db state
+            apiFetch('/api/challenges/' +  acceptedChallenge._id, 'PUT', {
+                status,
+            })
+            .then((c) => {
+                this.setState({ challenges });
+            })
+            .catch((err) => console.log(err));
+        }
+
     },
 
     render() {
@@ -88,7 +99,7 @@ const ProfilePage = React.createClass({
                                           data-target="#challenge-conf"/></p>
                                 </div> ) }
 
-                                { isMyProfile && (<ChallengeNotificationsList handleAcceptChallenge={this.handleAcceptChallenge} user={loggedInUser} challenges={ challenges }/>) }
+                                { isMyProfile && (<ChallengeNotificationsList handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} challenges={ challenges }/>) }
                             </div>
                             <div className="profile-content notifications col-md-8 col-md-offset-2">
                                 <h2 className="profile-name">Name goes here</h2>
