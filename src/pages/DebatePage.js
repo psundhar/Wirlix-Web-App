@@ -57,7 +57,7 @@ const DebatePage = React.createClass({
         })
     },
 
-    handleReplyClick(debate) {
+    handleEnterDebate(debate) {
         this.setState({debateModal: { debate }});
     },
 
@@ -99,7 +99,7 @@ const DebatePage = React.createClass({
         </div>
         </div>
 
-        <MyDebates handleReplyClick={this.handleReplyClick} debates={ this.state.debates } userId={ this.state.user._id}/>
+        <MyDebates handleEnterDebate={this.handleEnterDebate} debates={ this.state.debates } userId={ this.state.user._id}/>
         <div className="comments">
             <div className="container">
             <div className="border decide">
@@ -118,7 +118,7 @@ const DebatePage = React.createClass({
                     return d.views > 10;
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard key={i} user={this.state.user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleReplyClick} />
+                        <FlippableDebateCard key={i} user={this.state.user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                     )
                 })}
             </div>
@@ -131,7 +131,7 @@ const DebatePage = React.createClass({
                     return Date.parse(d.updated) >= (Date.now() - 600000) //10 minutes ago
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard key={i} user={this.state.user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleReplyClick} />
+                        <FlippableDebateCard key={i} user={this.state.user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                     )
                 })}
             </div>
@@ -144,7 +144,7 @@ const DebatePage = React.createClass({
                 return d.subscribers.includes(this.state.user._id);
             }).map((d,i)=> {
                 return (
-                    <FlippableDebateCard key={i} user={this.state.user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleReplyClick} />
+                    <FlippableDebateCard key={i} user={this.state.user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                 )
             })}
         </div>

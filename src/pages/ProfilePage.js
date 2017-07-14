@@ -71,6 +71,10 @@ const ProfilePage = React.createClass({
 
     },
 
+    handleEnterDebate(debate) {
+        this.setState({debateModal: { debate }});
+    },
+
     render() {
         const { user, statement, debates, loggedInUser, topic, challenges, debateModal } = this.state;
 
@@ -108,7 +112,7 @@ const ProfilePage = React.createClass({
 
                                 <div className="debates col-md-12">
                                     { debates.map((d, i) => {
-                                        return (<FlippableDebateCard key={i} user={user} { ...d } />)
+                                        return (<FlippableDebateCard key={i} user={user} debate={ d } handleEnterDebate={ this.handleEnterDebate } />)
                                     })}
                                 </div>
                                 {isMyProfile && (
