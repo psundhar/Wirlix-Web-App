@@ -11,7 +11,7 @@ export default ({showChallenge, loggedInUser, user, topic, voters, text, agreeme
         <div className="comment">
             <p className="col-md-12" style={{border}}>
                 <a className="profile-pic" href={ profileLink } style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href={ profileLink } className="username">{ user.username }</a> <br/>
-                {text} { showChallenge && (<i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" onClick={ () => handleChallenge(_id) }/>) }
+                {text} { showChallenge && (<i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" onClick={ () => handleChallenge(_id, topic._id) }/>) }
             </p>
             <div className="col-md-6 button-container">
                 <button className={ "button-vote up " + ((loggedInUsersVote && loggedInUsersVote.isRational) ? "clicked" : "") } onClick={ () => handleVote(true, _id) }><img src="images/factual-w.png"/> <span className="vote-num">{ voters.filter(v => v.isRational).length }</span></button>

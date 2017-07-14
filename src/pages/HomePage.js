@@ -14,6 +14,7 @@ const HomePage = React.createClass({
             user: {},
             challenge: {
                 statementId: null,
+                topicId: null,
             },
         };
     },
@@ -74,20 +75,28 @@ const HomePage = React.createClass({
         })
     },
 
-    handleChallenge(statementId) {
+    handleChallenge(statementId, topicId) {
         this.setState({
-            challenge: {statementId}
+            challenge: {statementId, topicId}
         });
     },
 
     handleCancel() {
         this.setState({
-            challenge: { statementId: null }
+            challenge: { statementId: null, topicId: null }
         });
     },
 
     handleConfirm(statementId, user) {
-
+        // Make api call to create a challenge and then update state
+        apiFetch('/api/challenges', 'POST', {
+            statement: statementId,
+            challenger: user._id,
+        })
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+        });
     },
 
     render() {
@@ -288,7 +297,7 @@ const HomePage = React.createClass({
                 </div>
             </div>
         </div>
-        <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} statementId={ this.state.challenge.statementId } user={ user } />
+        <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} topicId={ this.state.challenge.topicId } statementId={ this.state.challenge.statementId } user={ user } />
         </div>
         )
     },

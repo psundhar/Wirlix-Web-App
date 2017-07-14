@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.Types.ObjectId;
+
 const debatesSchema = mongoose.Schema({
     challenger: {
         type: ObjectId,

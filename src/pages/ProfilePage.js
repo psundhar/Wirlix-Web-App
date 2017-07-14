@@ -1,6 +1,7 @@
 import React from 'react';
 import FlippableDebateCard from '../components/FlippableDebateCard';
 import NavBar from '../components/NavBar';
+import ChallengeNotificationsList from '../components/ChallengeNotificationsList';
 
 const ProfilePage = React.createClass({
 
@@ -11,6 +12,7 @@ const ProfilePage = React.createClass({
             statement: {},
             loggedInUser: {},
             topic: {},
+            challenges: [],
         };
     },
 
@@ -21,8 +23,9 @@ const ProfilePage = React.createClass({
     },
 
     render() {
-        const { user, statement, debates, loggedInUser, topic } = this.state;
+        const { user, statement, debates, loggedInUser, topic, challenges } = this.state;
 
+        const isMyProfile = loggedInUser._id == user._id;
         return (
             <div>
                 <div className="main-content profile">
@@ -53,21 +56,24 @@ const ProfilePage = React.createClass({
                                         </div>) }
                                     </div>
                                 </div>
+
                                 <div className="debates col-md-12">
                                     { debates.map((d, i) => {
                                         return (<FlippableDebateCard key={i} user={user} { ...d } />)
                                     })}
                                 </div>
-                                { loggedInUser._id == user._id && (
+                                {isMyProfile && (
                                     <div className="logout">
                                         <a href="/logout" className="logout"><img src="/images/logout.png"/></a>
                                     </div>
                                 )}
 
-                                { loggedInUser._id != user._id && ( <div className="challenge">
+                                {!isMyProfile && ( <div className="challenge">
                                     <p><i className="fa fa-plus-circle" aria-hidden="true" data-toggle="modal"
                                           data-target="#challenge-conf"/></p>
                                 </div> ) }
+
+                                { isMyProfile && (<ChallengeNotificationsList challenges={ challenges }/>) }
                             </div>
                             <div className="profile-content notifications col-md-8 col-md-offset-2">
                                 <h2 className="profile-name">Name goes here</h2>
@@ -77,31 +83,6 @@ const ProfilePage = React.createClass({
                                     </div>
                                     <div className="col-md-6">
                                         <p><img src="/images/peace.png" className="peace"/> 235</p>
-                                    </div>
-                                </div>
-                                <div className="notifications col-md-12">
-                                    <h3>Notifications</h3>
-                                    <div className="notification">
-                                        <p><a href="#">Username</a> challenged you to a debate</p>
-                                    </div>
-                                    <div className="notification">
-                                        <p><a href="#">Username</a> accepted your debate request</p>
-                                    </div>
-                                    <div className="notification">
-                                        <p><a href="#">Username</a> replied to your debate</p>
-                                    </div>
-                                    <div className="notification">
-                                        <p><a href="#">Username</a> subscribed to your debate</p>
-                                    </div>
-                                    <div className="notification">
-                                        <p><a href="#">Username</a> rated your argument factual</p>
-                                    </div>
-                                    <div className="notification">
-                                        <p><a href="#">Username</a> responded to the debate <a href="#">debate name</a>
-                                        </p>
-                                    </div>
-                                    <div className="notification">
-                                        <p>A new question has been chosen in the debate <a href="#">debate name</a></p>
                                     </div>
                                 </div>
                                 <div className="next-buttons col-md-12 col-sm-12">

@@ -5,6 +5,7 @@ const Topic = require('../models/topics');
 const Debate = require('../models/debates');
 const Statement = require('../models/statements');
 const User = require('../models/users');
+const Challenge = require('../models/challenges');
 
 router.use(function(req, res, next) { // TODO - for some reason couldn't get passport's default middleware to work
     if(!req.user) {
@@ -77,6 +78,14 @@ router.get('/profile/:id', function(req, res, next) {
 
             resultsArray.push(Statement.queryByTopicAndUser(topic._id, user._id).exec());
             resultsArray.push(Debate.queryByTopicAndUser(topic._id, user._id).exec());
+
+            let challenges = [];
+
+            if(req.params.id == user._id) { // Requesting own profile
+                challenges = Challenge.queryByUserAndTopic(user._id, topic._id).exec();
+            }
+
+            resultsArray.push(challenges);
 
             return Promise.all(resultsArray);
         })

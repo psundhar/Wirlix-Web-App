@@ -3,6 +3,7 @@ const jsonErrorResponse = require('../middleware/jsonErrorResponse');
 const DebatesController = require('../controllers/DebatesController');
 const TopicsController = require('../controllers/TopicsController');
 const StatementsController = require('../controllers/StatementsController');
+const ChallengesController = require('../controllers/ChallengesController');
 
 router.get('/debates', DebatesController.getCollection);
 router.get('/debates/my', DebatesController.getMyDebates);
@@ -13,6 +14,8 @@ router.get('/topics', TopicsController.getCurrent);
 
 router.post('/statements', StatementsController.postCollection);
 router.put('/statements/:id', StatementsController.putObject);
+
+router.post('/challenges', ChallengesController.postCollection);
 
 router.use('*', jsonErrorResponse);
 
