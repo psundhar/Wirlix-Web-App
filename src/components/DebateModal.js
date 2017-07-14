@@ -2,7 +2,7 @@ import React from 'react';
 
 const DebateModal = ({debate}) => {
 
-    const { statement, challenger, challengee, messages = [] } = debate;
+    const { statement, challenger = {}, challengee = {}, messages = [] } = debate;
 
     return (
         <div id="view-debate" className="modal fade" role="dialog">
@@ -12,13 +12,13 @@ const DebateModal = ({debate}) => {
                         <div className="col-md-6 col-sm-6 col-xs-6">
                             <div className="user-img">
                                 <p><a href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat"}}></a></p>
-                                <p>Username</p>
+                                <p>{ challengee.username }</p>
                             </div>
                         </div>
                         <div className="col-md-6 col-sm-6 col-xs-6">
                             <div className="user-img">
                                 <p><a href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat"}}></a></p>
-                                <p>Username</p>
+                                <p>{ challenger.username }</p>
                             </div>
                         </div>
                         <div className="vote-bar">
