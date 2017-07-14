@@ -26,6 +26,13 @@ const ChallengesController = {
             .then(function(challenge) {
                 if(challenge) {
                     challenge.status = body.status;
+                    if(typeof body.notifyChallenger != 'undefined') {
+                        challenge.notifyChallenger = body.notifyChallenger;
+                    }
+                    if(typeof body.notifyChallengee != 'undefined') {
+                        challenge.notifyChallengee = body.notifyChallengee;
+                    }
+
                     challenge.save(function(err) {
                         if(err) {
                             console.log(err);

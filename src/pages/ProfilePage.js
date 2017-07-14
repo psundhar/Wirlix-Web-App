@@ -39,6 +39,8 @@ const ProfilePage = React.createClass({
             // Make request to update db state
             apiFetch('/api/challenges/' +  acceptedChallenge._id, 'PUT', {
                 status,
+                notifyChallengee: false,
+                notifyChallenger: true,
             })
             .then((c) => {
                 this.setState({ challenges });
