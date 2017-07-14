@@ -25,6 +25,12 @@ const ProfilePage = React.createClass({
         }
     },
 
+    handleEnterDebate(debate) {
+        this.setState({
+            debateModal: { visible: true, debate },
+        });
+    },
+
     handleChallengeResponse(accepted) {
         return (acceptedChallenge) => {
             const challenges = this.state.challenges;
@@ -116,7 +122,7 @@ const ProfilePage = React.createClass({
                                           data-target="#challenge-conf"/></p>
                                 </div> ) }
 
-                                { isMyProfile && (<ChallengeNotificationsList debates={debates} handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} challenges={ challenges }/>) }
+                                { isMyProfile && (<ChallengeNotificationsList handleEnterDebate={this.handleEnterDebate} debates={debates} handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} challenges={ challenges }/>) }
                             </div>
                             <div className="profile-content notifications col-md-8 col-md-offset-2">
                                 <h2 className="profile-name">Name goes here</h2>
@@ -148,7 +154,7 @@ const ProfilePage = React.createClass({
                     </section>
                 </div>
 
-                <DebateModal />
+                <DebateModal debate={ this.state.debateModal.debate }/>
 
                 <div id="rankings" className="modal fade" role="dialog">
                     <div className="modal-dialog">

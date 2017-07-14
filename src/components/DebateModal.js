@@ -1,6 +1,9 @@
 import React from 'react';
 
 const DebateModal = ({debate}) => {
+
+    const { statement, challenger, challengee } = debate;
+
     return (
         <div id="view-debate" className="modal fade" role="dialog">
             <div className="modal-dialog">
@@ -9,7 +12,7 @@ const DebateModal = ({debate}) => {
                         <div className="col-md-6 col-sm-6 col-xs-6">
                             <div className="user-img">
                                 <p><a href="profile.html"
-                                      style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
+                                      style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                 </p>
                                 <p>Username</p>
                             </div>
@@ -17,7 +20,7 @@ const DebateModal = ({debate}) => {
                         <div className="col-md-6 col-sm-6 col-xs-6">
                             <div className="user-img">
                                 <p><a href="profile.html"
-                                      style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
+                                      style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                 </p>
                                 <p>Username</p>
                             </div>
@@ -32,10 +35,32 @@ const DebateModal = ({debate}) => {
                         </div>
                     </div>
                     <div className="chat-box">
+                        { statement && (
+                            <div className="message-box dis-message">
+                                <div className="username">
+                                    <p><a href="profile.html"
+                                          style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
+                                    </p>
+                                </div>
+                                <p className="message">{ statement.text }</p>
+                                <p className="time-posted">25m</p>
+                            </div>
+                        )}
+
+                        <div className="message-box agr-message">
+                            <div className="username">
+                                <p><a href="profile.html"
+                                      style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
+                                </p>
+                            </div>
+                            <p className="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Suspendisse varius egestas lacinia. </p>
+                            <p className="time-posted">25m</p>
+                        </div>
                         <div className="message-box dis-message">
                             <div className="username">
                                 <p><a href="profile.html"
-                                      style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
+                                      style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                 </p>
                             </div>
                             <p className="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -45,7 +70,7 @@ const DebateModal = ({debate}) => {
                         <div className="message-box agr-message">
                             <div className="username">
                                 <p><a href="profile.html"
-                                      style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
+                                      style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                 </p>
                             </div>
                             <p className="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -55,27 +80,7 @@ const DebateModal = ({debate}) => {
                         <div className="message-box dis-message">
                             <div className="username">
                                 <p><a href="profile.html"
-                                      style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
-                                </p>
-                            </div>
-                            <p className="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Suspendisse varius egestas lacinia. </p>
-                            <p className="time-posted">25m</p>
-                        </div>
-                        <div className="message-box agr-message">
-                            <div className="username">
-                                <p><a href="profile.html"
-                                      style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
-                                </p>
-                            </div>
-                            <p className="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Suspendisse varius egestas lacinia. </p>
-                            <p className="time-posted">25m</p>
-                        </div>
-                        <div className="message-box dis-message">
-                            <div className="username">
-                                <p><a href="profile.html"
-                                      style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
+                                      style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
                                 </p>
                             </div>
                             <p className="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
