@@ -12,7 +12,7 @@ const DebateModal = React.createClass({
 
     render() {
         const {handleNewMessage, debate} = this.props;
-        const { statement, challenger = {}, challengee = {}, messages = [] } = debate;
+        const { statement, challenger = {}, challengee = {}, messages = [], views, subscribers = [] } = debate;
         return (
             <div id="view-debate" className="modal fade" role="dialog">
                 <div className="modal-dialog">
@@ -32,10 +32,10 @@ const DebateModal = React.createClass({
                             </div>
                             <div className="vote-bar">
                                 <div className="vote-amt">
-                                    <p><img src="images/eye-b.png" /> 200</p>
+                                    <p><img src="images/eye-b.png" /> { views }</p>
                                 </div>
                                 <div className="vote-amt">
-                                    <p><img src="images/check-mark-b.png" /> 278</p>
+                                    <p><img src="images/check-mark-b.png" /> { subscribers.length }</p>
                                 </div>
                             </div>
                         </div>

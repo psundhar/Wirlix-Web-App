@@ -58,7 +58,20 @@ const DebatePage = React.createClass({
     },
 
     handleEnterDebate(debate) {
-        this.setState({debateModal: { debate }});
+        const debates = this.state.debates;
+
+        const viewedDebate = debates.find(d => d._id == debate._id);
+
+        viewedDebate.views += 1;
+
+        apiFetch('/api/debates/' + debate._id, 'PUT', {viewed: true})
+            .then(function(res) {
+                if(!res.ok) {
+                    console.log(res);
+                }
+            });
+
+        this.setState({debates, debateModal: { debate }});
     },
 
     handleNewMessage(debate, text) {

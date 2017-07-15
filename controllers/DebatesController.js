@@ -70,7 +70,7 @@ module.exports = {
                 debate.emotional += 1;
             }
             if(viewed) {
-                debate.viewed += 1;
+                debate.views += 1;
             }
             if(subscribed == 'subscribe') {
                 debate.subscribers.push(req.user._id);
