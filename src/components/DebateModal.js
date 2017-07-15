@@ -20,22 +20,22 @@ const DebateModal = React.createClass({
                         <div className="chat-header col-md-12">
                             <div className="col-md-6 col-sm-6 col-xs-6">
                                 <div className="user-img">
-                                    <p><a href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat"}}></a></p>
+                                    <p><a href="profile.html" style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a></p>
                                     <p>{ challengee.username }</p>
                                 </div>
                             </div>
                             <div className="col-md-6 col-sm-6 col-xs-6">
                                 <div className="user-img">
-                                    <p><a href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat"}}></a></p>
+                                    <p><a href="profile.html" style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a></p>
                                     <p>{ challenger.username }</p>
                                 </div>
                             </div>
                             <div className="vote-bar">
                                 <div className="vote-amt">
-                                    <p><img src="images/eye-b.png" /> { views }</p>
+                                    <p><img src="/images/eye-b.png" /> { views }</p>
                                 </div>
                                 <div className="vote-amt">
-                                    <p><img src="images/check-mark-b.png" /> { subscribers.length }</p>
+                                    <p><img src="/images/check-mark-b.png" /> { subscribers.length }</p>
                                 </div>
                             </div>
                         </div>
