@@ -67,6 +67,7 @@ const HomePage = React.createClass({
         })
         .then(statement => {
             const statements = that.state.statements;
+            statement.user = this.state.user;
             statements.push(statement);
             that.setState({ statements });
         })
