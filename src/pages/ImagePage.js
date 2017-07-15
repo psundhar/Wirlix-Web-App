@@ -30,7 +30,6 @@ const ImagePage = React.createClass({
         }
 
         if(imageFile.preview) {
-            console.log(imageFile);
             // Initiate upload
             const data = new FormData();
             data.append('image', imageFile);
@@ -38,8 +37,13 @@ const ImagePage = React.createClass({
             fetch('/api/images/' + user._id, {
                 method: 'POST',
                 body: data,
-            });
-
+                credentials: 'include',
+            })
+            .then(res => res.json())
+            .then(user => {
+                this.setState({user});
+            })
+            .catch(err => console.log(err));
         }
     },
 
@@ -58,7 +62,7 @@ const ImagePage = React.createClass({
                             <div className="upload-group col-md-12">
                                 <Dropzone style={{visibility: "none"}} onDrop={ this.onImageDrop }>
                                 <div className="inputfile"/>
-                                <label htmlFor="file"><i className="fa fa-upload" aria-hidden="true"/> <span id = "filename">Upload Image</span></label>
+                                <label htmlFor="file"><i className="fa fa-upload" aria-hidden="true"/> <span id = "filename">Profile Photo</span></label>
                                 </Dropzone>
                             </div>
                     </div>

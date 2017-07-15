@@ -108,6 +108,9 @@ const ProfilePage = React.createClass({
         const { user, statement, debates, loggedInUser, topic, challenges, debateModal } = this.state;
 
         const isMyProfile = loggedInUser._id == user._id;
+
+        const profileImage = user.image || '/images/pexels-photo-103123.jpeg';
+
         return (
             <div>
                 <div className="main-content profile">
@@ -116,7 +119,7 @@ const ProfilePage = React.createClass({
                         <div className="container">
                             <div className="profile-pic col-md-4 col-md-offset-4">
                                 <div className="pic-crop"
-                                     style={{background: "url('/images/pexels-photo-103123.jpeg') center center no-repeat"}}></div>
+                                     style={{background: "url(" + profileImage + ") center center no-repeat"}}></div>
                             </div>
                         </div>
                         <div className="container">
