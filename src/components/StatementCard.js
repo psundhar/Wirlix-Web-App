@@ -7,10 +7,12 @@ export default ({showChallenge, loggedInUser, user, topic, voters, text, agreeme
 
     const loggedInUsersVote = voters.find(v => v.user == loggedInUser._id);
 
+    const userImage = user.image || "/images/pexels-photo-103123.jpeg";
+
     return (
         <div className="comment">
             <p className="col-md-12" style={{border}}>
-                <a className="profile-pic" href={ profileLink } style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> <a href={ profileLink } className="username">{ user.username }</a> <br/>
+                <a className="profile-pic" href={ profileLink } style={{background: "url(" + userImage + ") center center no-repeat" }}></a> <a href={ profileLink } className="username">{ user.username }</a> <br/>
                 {text} { showChallenge && (<i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" onClick={ () => handleChallenge(_id, topic._id) }/>) }
             </p>
             <div className="col-md-6 button-container">
