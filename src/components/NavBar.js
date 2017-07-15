@@ -20,6 +20,10 @@ const NavBar = React.createClass({
             });
     },
 
+    componentDidMount() {
+        // initiate web socket connection
+    },
+
     getInitialState() {
         return {
             notify: false,
