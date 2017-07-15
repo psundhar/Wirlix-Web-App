@@ -314,7 +314,7 @@ module.exports = function(passport) {
                 if(err) {
                     return next(err);
                 }
-                res.redirect('/profile/' + savedUser._id);
+                res.redirect('/image/');
             })
         });
 
