@@ -7,6 +7,7 @@ const ImagePage = React.createClass({
         return {
             imageFile: {},
             user: {},
+            isUploading: false,
         };
     },
 
@@ -22,12 +23,10 @@ const ImagePage = React.createClass({
         });
     },
 
-    handleContinueClick() {
-        const { imageFile, user } = this.state;
+    handleUploadClick() {
+        this.setState({isUploading: true});
 
-        if(!user.image && !imageFile.preview) {
-            // Warn user not to continue
-        }
+        const { imageFile, user } = this.state;
 
         if(imageFile.preview) {
             // Initiate upload
@@ -41,16 +40,24 @@ const ImagePage = React.createClass({
             })
             .then(res => res.json())
             .then(user => {
-                this.setState({user});
+                this.setState({user, isUploading: false});
             })
-            .catch(err => console.log(err));
+            .catch(err =>  {
+                console.log(err);
+                this.setState({ isUploading: false });
+            });
         }
     },
 
-    render() {
-        const { user, imageFile } = this.state;
+    handleContinueClick() {
+        window.location = "/profile/" + this.state.user._id;
+    },
 
-        const previewImage = user.image || imageFile.preview || "/images/profile-pic-placeholder.png";
+    render() {
+        const { user, imageFile, isUploading } = this.state;
+
+        const previewImage = imageFile.preview || user.image || "/images/profile-pic-placeholder.png";
+        console.log(imageFile, user.image);
 
         return (<div>
             <link rel = "stylesheet" type= "text/css" href="/stylesheets/styles.css" />
@@ -70,8 +77,16 @@ const ImagePage = React.createClass({
                         <input type="file" name="profile-picture" className="inputfile" data-multiple-caption="{count} files selected"/>
                         <label htmlFor="file"><i className="fa fa-upload" aria-hidden="true"/> <span>Change Image</span></label>
                     </div>
-                    <div className="col-md-4 col-md-offset-4 continue">
-                        <button onClick={ this.handleContinueClick }>Continue <i className="fa fa-arrow-right" aria-hidden="true"/></button>
+                    <div className="col-md-4 col-md-offset-4">
+                        <div className="continue">
+                            <button onClick={ this.handleUploadClick } disabled={ isUploading }>Save Photo</button>
+                        </div>
+                        <div className="continue">
+                            <button onClick={ this.handleContinueClick }>To Profile <i className="fa fa-arrow-right" aria-hidden="true"/></button>
+                        </div>
+                    </div>
+                    <div className="col-md-4 continue">
+
                     </div>
                 </div>
             </div>

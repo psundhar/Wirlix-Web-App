@@ -17,7 +17,13 @@ const ImagesController = {
                             if(err) {
                                 throw err;
                             }
-                            res.send(savedUser);
+
+                            req.login(savedUser, function(err) {
+                                if(err) {
+                                    return next(err);
+                                }
+                                res.send(savedUser);
+                            });
                         })
                     })
                     .catch(function(err) {

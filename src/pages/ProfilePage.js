@@ -119,7 +119,7 @@ const ProfilePage = React.createClass({
                         <div className="container">
                             <div className="profile-pic col-md-4 col-md-offset-4">
                                 <div className="pic-crop"
-                                     style={{background: "url(" + profileImage + ") center center no-repeat"}}></div>
+                                     style={{backgroundSize: "cover", background: "url(" + profileImage + ") center center no-repeat"}}></div>
                             </div>
                         </div>
                         <div className="container">

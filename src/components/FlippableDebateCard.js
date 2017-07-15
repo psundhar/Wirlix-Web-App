@@ -21,6 +21,9 @@ const FlippableDebateCard = React.createClass({
 
         const subscribed = subscribers.includes(user._id);
 
+        const challengerImage = challenger.image || '/images/pexels-photo-103123.jpeg';
+        const challengeeImage = challengee.image || '/images/pexels-photo-103123.jpeg';
+
         return (
             <div className="debate">
                 { frontVisible && (<div className="front">
@@ -31,14 +34,14 @@ const FlippableDebateCard = React.createClass({
                             </div>
                             <div className="flex justify-around" onClick={ this.flip }>
                                 <div className="flex flex-column" style={{width: "40%"}}>
-                                    <div className="mx-auto" style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
+                                    <div className="mx-auto" style={{background: "url(" + challengerImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
                                     <p className="small">{ challenger.username }</p>
                                 </div>
                                 <div className="vs">
                                     <p>vs.</p>
                                 </div>
                                 <div className="flex flex-column" style={{width: "40%"}}>
-                                    <div className="mx-auto" style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
+                                    <div className="mx-auto" style={{background: "url(" + challengeeImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
                                     <p className="small">{ challengee.username }</p>
                                 </div>
                             </div>
@@ -57,7 +60,7 @@ const FlippableDebateCard = React.createClass({
                 { !frontVisible && (
                     <div className="back" onClick={ this.flip }>
                         <div className="username">
-                            <p><a href={ "/profile/" + challengee._id } style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a> { challengee.username }</p>
+                            <p><a href={ "/profile/" + challengee._id } style={{background: "url(" + challengeeImage + ") center center no-repeat"}}></a> { challengee.username }</p>
                         </div>
                         <p className="comment-preview">{ statement.text }</p>
                         <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate" onClick={ () => handleEnterDebate(debate) }>Full Debate &#8250;</button></p>

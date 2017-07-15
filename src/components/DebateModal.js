@@ -13,6 +13,10 @@ const DebateModal = React.createClass({
     render() {
         const {handleNewMessage, debate} = this.props;
         const { statement, challenger = {}, challengee = {}, messages = [], views, subscribers = [] } = debate;
+
+        const challengerImage = challenger.image || '/images/pexels-photo-103123.jpeg';
+        const challengeeImage = challengee.image || '/images/pexels-photo-103123.jpeg';
+
         return (
             <div id="view-debate" className="modal fade" role="dialog">
                 <div className="modal-dialog">
@@ -20,13 +24,13 @@ const DebateModal = React.createClass({
                         <div className="chat-header col-md-12">
                             <div className="col-md-6 col-sm-6 col-xs-6">
                                 <div className="user-img">
-                                    <p><a href="profile.html" style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a></p>
+                                    <p><a href="profile.html" style={{background: "url(" + challengeeImage + " ) center center no-repeat"}}></a></p>
                                     <p>{ challengee.username }</p>
                                 </div>
                             </div>
                             <div className="col-md-6 col-sm-6 col-xs-6">
                                 <div className="user-img">
-                                    <p><a href="profile.html" style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a></p>
+                                    <p><a href="profile.html" style={{background: "url(" + challengerImage + " ) center center no-repeat"}}></a></p>
                                     <p>{ challenger.username }</p>
                                 </div>
                             </div>
