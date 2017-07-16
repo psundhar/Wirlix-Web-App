@@ -28,28 +28,13 @@ module.exports = function(passport) {
                     });
                 }
                 else {
-                    // return res.render('index', { title: 'Wirlix', error: info.message })}
-                    return res.render('index', { title: 'Wirlix', error: 'ERROR ERROR' });
+                    return res.render('index', { title: 'Wirlix', error: 'Invalid Username or Password' });
                 }
             })
             .catch(function(err) {
                 console.log(err);
             })
-
-      // passport.authenticate('local', function(err, user, info) {
-      //   if (err) { return next(err); }
-      //   console.log(info);
-      //   if (!user) { return res.render('index', { title: 'Wirlix', error: info.message }); }
-      //   req.logIn(user, function(err) {
-      //     if (err) { return next(err); }
-      //     return res.redirect('/profile');
-      //   });
-      // })(req, res, next);
     });
-
-    //router.get('/', function(req, res, next) {
-
-    //});
 
     router.get('/profile', function(req, res) {
         //res.send('Successfully authenticated');
