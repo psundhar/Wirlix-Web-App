@@ -8,7 +8,6 @@ var R = require('ramda')
 module.exports = function(passport) {
     /* GET home page. */
     router.get('/', function(req, res) {
-        console.log('Test');
         res.render('index', { title: 'Wirlix' });
     });
 
@@ -23,12 +22,14 @@ module.exports = function(passport) {
                     req.logIn(user, function(err) {
                         if(err) {
                             return next(err);
+
                         }
                         return res.redirect('/home');
                     });
                 }
                 else {
-                    return res.redirect('/');
+                    // return res.render('index', { title: 'Wirlix', error: info.message })}
+                    return res.render('index', { title: 'Wirlix', error: 'ERROR ERROR' });
                 }
             })
             .catch(function(err) {
