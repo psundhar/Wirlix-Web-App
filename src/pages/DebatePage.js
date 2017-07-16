@@ -58,7 +58,7 @@ const DebatePage = React.createClass({
     },
 
     handleEnterDebate(debate) {
-        const debates = this.state.debates;
+        const { debates, user } = this.state;
 
         const viewedDebate = debates.find(d => d._id == debate._id);
 

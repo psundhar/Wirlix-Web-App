@@ -70,7 +70,18 @@ module.exports = {
                 debate.emotional += 1;
             }
             if(viewed) {
-                debate.views += 1;
+                debate.views += 1
+
+                if(req.user._id == debate.challenger) {
+                    debate.challengerRead = true;
+                }
+
+                if(req.user._id == debate.challengee) {
+                    console.log("CHALLENGEE");
+                    debate.challengeeRead = true;
+                }
+
+                console.log(debate);
             }
             if(subscribed == 'subscribe') {
                 debate.subscribers.push(req.user._id);

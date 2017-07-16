@@ -25,6 +25,7 @@ const FlippableDebateCard = React.createClass({
         const challengeeImage = challengee.image || '/images/pexels-photo-103123.jpeg';
 
         const isChallenger = user._id == challenger._id;
+        const isChallengee = user._id == challengee._id;
 
         return (
             <div className="debate">
@@ -47,7 +48,7 @@ const FlippableDebateCard = React.createClass({
                                     <p className="small">{ challengee.username }</p>
                                 </div>
                             </div>
-                            { ((isChallenger && !debate.challengerRead) || (!isChallenger) && (!debate.challengeeRead)) && (<span className="small"><i className="glyphicon glyphicon-envelope" /></span>) }
+                            <span className="small">{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
                         </div>
                     </div>
                     <div className="clearfix mb3">
