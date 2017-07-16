@@ -1,5 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
+import Draggable from 'react-draggable';
 
 const ImagePage = React.createClass({
 
@@ -57,7 +58,7 @@ const ImagePage = React.createClass({
         const { user, imageFile, isUploading } = this.state;
 
         const previewImage = imageFile.preview || user.image || "/images/profile-pic-placeholder.png";
-        console.log(imageFile, user.image);
+        console.log(imageFile);
 
         return (<div>
             <link rel = "stylesheet" type= "text/css" href="/stylesheets/styles.css" />
@@ -65,7 +66,11 @@ const ImagePage = React.createClass({
                 <div className="container">
                     <h1>Upload a photo</h1>
                     <div className="img-container">
-                        <img src={ previewImage } id = "profile-img" alt="your profile img" data-top="0"  data-left="0" />
+                        <Draggable
+
+                        >
+                            <img src={ previewImage } id="profile-img" alt="your profile img" data-top="0"  data-left="0" />
+                        </Draggable>
                             <div className="upload-group col-md-12">
                                 <Dropzone style={{visibility: "none"}} onDrop={ this.onImageDrop }>
                                 <div className="inputfile"/>

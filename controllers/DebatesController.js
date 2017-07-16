@@ -77,7 +77,6 @@ module.exports = {
                 }
 
                 if(req.user._id == debate.challengee) {
-                    console.log("CHALLENGEE");
                     debate.challengeeRead = true;
                 }
 
