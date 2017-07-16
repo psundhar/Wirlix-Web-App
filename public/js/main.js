@@ -10,7 +10,7 @@ $(document).ready(function(){
       $(".navbar.navbar-default .nav .logout").html("Logout");
     } else {
       $(".help").html("? <br><span>See Tutorial</span>");
-      $(".navbar.navbar-default .nav .logout").html("<img src='img/logout.png'>");
+      $(".navbar.navbar-default .nav .logout").html("<img src='/images/logout.png'>");
     }
   });
 
@@ -109,20 +109,20 @@ $(document).ready(function(){
   $(".mute").find("img").on("click", function(){
     c++;
     if ((c % 2) === 0){
-      $(this).attr("src", "img/sound.png");
+      $(this).attr("src", "/images/sound.png");
       vid.prop('muted', true);
     } else {
-      $(this).attr("src", "img/mute.png");
+      $(this).attr("src", "/images/mute.png");
       vid.prop('muted', false);
     }
   });
   $(".control").find("img").on("click", function(){
     d++;
     if ((d % 2) === 0){
-      $(this).attr("src", "img/pause.png");
+      $(this).attr("src", "/images/pause.png");
       $("#bgvid")[0].play();
     } else {
-      $(this).attr("src", "img/play.png");
+      $(this).attr("src", "/images/play.png");
       $("#bgvid")[0].pause();
     }
   });
@@ -160,13 +160,13 @@ $(document).ready(function(){
     if($(window).width() <= 768){
       $(".nav li a.profile").html("Your Profile");
     } else {
-      $(".nav li a.profile").html('<img src="img/profile.png">');
+      $(".nav li a.profile").html('<img src="/images/profile.png">');
     }
     $(window).resize(function(){
       if($(window).width() <= 768){
         $(".nav li a.profile").html("Your Profile");
       } else {
-        $(".nav li a.profile").html('<img src="img/profile.png">');
+        $(".nav li a.profile").html('<img src="/images/profile.png">');
       }
     });
   });
