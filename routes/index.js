@@ -24,7 +24,7 @@ module.exports = function(passport) {
                         if(err) {
                             return next(err);
                         }
-                        return res.redirect('/profile/' + user._id);
+                        return res.redirect('/home');
                     });
                 }
                 else {
