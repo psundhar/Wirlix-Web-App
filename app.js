@@ -16,6 +16,20 @@ var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var connect = process.env.MONGODB_URI;
 
+const socketServer = require('http').Server(app);
+const io = require('socket.io')(socketServer);
+const SOCKET_PORT = 8000;
+
+io.on('connection', function(socket) {
+    global.socket = socket; // TODO remove vars from global
+});
+
+socketServer.listen(SOCKET_PORT, function() {
+    console.log("Socket server is listening on port " + SOCKET_PORT );
+});
+
+
+
 const apiRoutes = require('./routes/api');
 // const webRoutes = require('./routes/web');
 

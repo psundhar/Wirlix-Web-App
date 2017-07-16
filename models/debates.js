@@ -62,6 +62,14 @@ const debatesSchema = mongoose.Schema({
     subscribers: [
         {type: ObjectId, ref: 'User'}
     ],
+    challengerRead: {
+        type: Boolean,
+        default: true,
+    },
+    challengeeRead: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const model = mongoose.model('Debate', debatesSchema);

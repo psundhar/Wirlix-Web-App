@@ -69,6 +69,9 @@ const ChallengesController = {
                     res.status(422);
                     res.end();
                 }
+
+                global.socket.emit("notifications-" + statement.user, challenge);
+
                 res.send(challenge);
             });
         })

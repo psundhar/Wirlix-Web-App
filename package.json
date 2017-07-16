@@ -37,6 +37,7 @@
     "react-flipcard": "^0.2.1",
     "serve-favicon": "~2.4.2",
     "socket.io": "^1.7.2",
+    "socket.io-client": "^2.0.3",
     "twilio": "^2.11.1",
     "webpack": "^3.1.0"
   },

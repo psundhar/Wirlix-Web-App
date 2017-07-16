@@ -24,15 +24,17 @@ const FlippableDebateCard = React.createClass({
         const challengerImage = challenger.image || '/images/pexels-photo-103123.jpeg';
         const challengeeImage = challengee.image || '/images/pexels-photo-103123.jpeg';
 
+        const isChallenger = user._id == challenger._id;
+
         return (
             <div className="debate">
                 { frontVisible && (<div className="front">
-                    <div className="content">
+                    <div className="content"  onClick={ this.flip }>
                         <div className="flex justify-between">
                             <div>
-                                <input type="checkbox" onChange={ e => { e.stopPropagation(); handleSubscribeToggle(_id); } } checked={ subscribed }/>
+                                <input type="checkbox" onClick={e => e.stopPropagation()} onChange={ e => { e.stopPropagation(); handleSubscribeToggle(_id); } } checked={ subscribed }/>
                             </div>
-                            <div className="flex justify-around" onClick={ this.flip }>
+                            <div className="flex justify-around">
                                 <div className="flex flex-column" style={{width: "40%"}}>
                                     <div className="mx-auto" style={{background: "url(" + challengerImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
                                     <p className="small">{ challenger.username }</p>
@@ -45,7 +47,7 @@ const FlippableDebateCard = React.createClass({
                                     <p className="small">{ challengee.username }</p>
                                 </div>
                             </div>
-                            <span className="small">25m</span>
+                            { ((isChallenger && !debate.challengerRead) || (!isChallenger) && (!debate.challengeeRead)) && (<span className="small"><i className="glyphicon glyphicon-envelope" /></span>) }
                         </div>
                     </div>
                     <div className="clearfix mb3">

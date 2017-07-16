@@ -107,7 +107,7 @@ const HomePage = React.createClass({
         return (
         <div>
         <div className="main-section-home">
-            <NavBar user={ user } />
+            { Object.keys(user).length > 0 && (<NavBar user={ user } />) }
             <div className="overlay">
 
             </div>

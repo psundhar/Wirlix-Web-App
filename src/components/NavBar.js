@@ -1,15 +1,15 @@
 import React from 'react';
 import apiFetch from '../utilities/apiFetch';
+import IO from 'socket.io-client';
 
 const NavBar = React.createClass({
-
-    componentWillMount() {
-        // Fetch whether notification is necessary
+    _fetchNotifications() {
         const that = this;
         apiFetch('/api/notifications', 'GET')
             .then(res => res.json())
             .then(json => {
                 if(json.length > 0) {
+                    console.log(that);
                     that.setState({
                         notify: true,
                     });
@@ -20,8 +20,21 @@ const NavBar = React.createClass({
             });
     },
 
+    componentWillMount() {
+        // Fetch whether notification is necessary
+        this._fetchNotifications();
+    },
+
     componentDidMount() {
-        // initiate web socket connection
+        const socket = IO('http://localhost:8000'); // Will need to be altered in production
+
+        if(this.props.user._id) {
+            socket.on('notifications', (data) => {
+                console.log("notification received", data);
+
+                this._fetchNotifications();
+            });
+        }
     },
 
     getInitialState() {
