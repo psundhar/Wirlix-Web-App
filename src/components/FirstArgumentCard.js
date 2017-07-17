@@ -4,7 +4,7 @@ export default ({ debate, handleReplyClick }) => {
     const {statement = {}, challengee } = debate;
     let profileLink, profileImage;
 
-    if(statement.user) {
+    if(challengee) {
         profileLink = "/profile/" + statement.user
     }
 

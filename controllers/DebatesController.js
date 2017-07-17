@@ -1,4 +1,5 @@
 const Debate = require('../models/debates');
+const Challenge = require('../models/challenges');
 
 module.exports = {
     getCollection: function(req, res, next) {
@@ -108,12 +109,27 @@ module.exports = {
 
     deleteObject: function(req, res, next) {
         const id = req.params.id;
+        let debate;
 
-        Debate.default.findById(id).remove().exec()
+        Debate.default.findById(id).exec()
+        .then(function(d) {
+            debate = d;
+
+            return d.remove();
+        })
+        .then(function() {
+            // Delete challenges that have the same statement, challenger, and challengee
+            return Challenge.default.findOne({
+                challengee: debate.challengee,
+                challenger: debate.challenger,
+                statement: debate.statement,
+            }).remove().exec();
+        })
         .then(function() {
             res.send({});
         })
         .catch(function(err) {
+            console.log(err);
             res.status(404);
             next();
         });

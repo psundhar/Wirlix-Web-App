@@ -154,9 +154,9 @@ const HomePage = React.createClass({
                             <div className="col-md-4 vote-col factual active" id ="factual">
                                 <h2 className="col-md-12"><img src="images/factual-w.png"/></h2>
                                 <div className="comment-container col-md-12">
-                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length >= 10).map(s => {
+                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length >= 10).map((s, i) => {
                                         return (
-                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard key={i} handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
                                     })}
 
