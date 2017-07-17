@@ -16,6 +16,7 @@ const ProfilePage = React.createClass({
             topic: {},
             challenges: [],
             debateModal: { visible: false, debate: {} },
+            showEndDebateMessage: false,
         };
     },
 
@@ -122,9 +123,13 @@ const ProfilePage = React.createClass({
             delete challenges[dIndexToDelete];
         }
 
-        this.setState({debates, challenges});
+        this.setState({debates, challenges, showEndDebateMessage: true});
 
-        // apiFetch('/api/debates/' + debateObj._id, 'DELETE');
+        setTimeout(() => {
+            this.setState({ showEndDebateMessage: false});
+        }, 4000);
+
+        apiFetch('/api/debates/' + debateObj._id, 'DELETE');
     },
 
     render() {
@@ -214,6 +219,11 @@ const ProfilePage = React.createClass({
                 </div>
 
                 <DebateModal handleEndDebate={ this.handleEndDebate } user={this.state.loggedInUser} handleNewMessage={this.handleNewMessage} debate={ this.state.debateModal.debate }/>
+
+                { this.state.showEndDebateMessage && (<div className="end-message" style={{display: "block", backgroundColor: "white"}}>
+                    <p className="quote" style={{color: "black"}}>Change will not come if we wait for some other person or some other time. We are the ones we've been waiting for. We are the change that we seek.</p>
+                    <p className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span></p>
+                </div>) }
 
                 <div id="rankings" className="modal fade" role="dialog">
                     <div className="modal-dialog">

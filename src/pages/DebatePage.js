@@ -12,6 +12,7 @@ const DebatePage = React.createClass({
             topic: {},
             user: {},
             debateModal: {debate: {}},
+            showEndDebateMessage: false,
         }
     },
 
@@ -105,7 +106,7 @@ const DebatePage = React.createClass({
             delete debates[indexToDelete];
         }
 
-        this.setState({debates});
+        this.setState({debates, });
 
         apiFetch('/api/debates/' + debateObj._id, 'DELETE');
     },
@@ -182,7 +183,10 @@ const DebatePage = React.createClass({
         </section>
 
         <DebateModal handleEndDebate={this.handleEndDebate} user={this.state.user} handleNewMessage={this.handleNewMessage} debate={this.state.debateModal.debate} />
-
+        { this.state.showEndDebateMessage && (<div className="end-message">
+            <p className="quote">Change will not come if we wait for some other person or some other time. We are the ones we've been waiting for. We are the change that we seek.</p>
+            <p className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span></p>
+        </div>) }
             <div id="rankings" className="modal fade" role="dialog">
             <div className="modal-dialog">
         <div className="modal-content">
