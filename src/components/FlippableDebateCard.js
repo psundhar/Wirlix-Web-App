@@ -35,7 +35,7 @@ const FlippableDebateCard = React.createClass({
                             <div>
                                 <input type="checkbox" onClick={e => e.stopPropagation()} onChange={ e => { e.stopPropagation(); handleSubscribeToggle(_id); } } checked={ subscribed }/>
                             </div>
-                            <div className="flex justify-around">
+                            <div className="flex justify-around flex-auto">
                                 <div className="flex flex-column" style={{width: "40%"}}>
                                     <div className="mx-auto" style={{background: "url(" + challengerImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
                                     <p className="small">{ challenger.username }</p>
