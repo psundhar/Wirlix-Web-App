@@ -114,7 +114,7 @@ const DebatePage = React.createClass({
     render: function() {
         return (
     <div>
-    <section className="debate-section">
+    <section className="debate-section" style={{minHeight:"1400px"}}>
         <NavBar user={ this.state.user }/>
         <div className="response">
             <div className="container">

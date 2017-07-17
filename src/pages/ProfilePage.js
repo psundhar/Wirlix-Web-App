@@ -141,7 +141,7 @@ const ProfilePage = React.createClass({
 
         return (
             <div>
-                <div className="main-content profile">
+                <div className="main-content profile" style={{minHeight:"1400px"}}>
                     <NavBar user={user}/>
                     <section className="profile-container">
                         <div className="container">
