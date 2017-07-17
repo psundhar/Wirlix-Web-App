@@ -106,6 +106,8 @@ const DebatePage = React.createClass({
         }
 
         this.setState({debates});
+
+        apiFetch('/api/debates/' + debateObj._id, 'DELETE');
     },
 
     render: function() {

@@ -109,11 +109,8 @@ module.exports = {
     deleteObject: function(req, res, next) {
         const id = req.params.id;
 
-        Debate.findById(id).then(function(debate) {
-            debate.deleted = true;
-            return debate.save();
-        })
-        .then(function(savedDebate) {
+        Debate.default.findById(id).remove().exec()
+        .then(function() {
             res.send({});
         })
         .catch(function(err) {
