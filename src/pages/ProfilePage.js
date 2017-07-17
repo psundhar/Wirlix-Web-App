@@ -106,6 +106,7 @@ const ProfilePage = React.createClass({
 
     handleEndDebate(debateObj) {
         const debates = this.state.debates;
+        const challenges = this.state.challenges;
 
         const indexToDelete = debates.findIndex(d => d._id == debateObj._id);
 
@@ -113,9 +114,17 @@ const ProfilePage = React.createClass({
             delete debates[indexToDelete];
         }
 
-        this.setState({debates});
+        const dIndexToDelete = challenges.findIndex(c => {
+            return (c.challenger._id == debateObj.challenger._id) && (c.challengee._id == debateObj.challengee._id) && (c.statement._id == debateObj.statement._id)
+        });
 
-        apiFetch('/api/debates/' + debateObj._id, 'DELETE');
+        if(dIndexToDelete > -1) {
+            delete challenges[dIndexToDelete];
+        }
+
+        this.setState({debates, challenges});
+
+        // apiFetch('/api/debates/' + debateObj._id, 'DELETE');
     },
 
     render() {
