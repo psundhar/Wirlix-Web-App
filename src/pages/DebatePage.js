@@ -96,6 +96,18 @@ const DebatePage = React.createClass({
         .catch(err => console.log(err));
     },
 
+    handleEndDebate(debateObj) {
+        const debates = this.state.debates;
+
+        const indexToDelete = debates.findIndex(d => d._id == debateObj._id);
+
+        if(indexToDelete > -1) {
+            delete debates[indexToDelete];
+        }
+
+        this.setState({debates});
+    },
+
     render: function() {
         return (
     <div>
@@ -167,7 +179,7 @@ const DebatePage = React.createClass({
         <div className="overlay"></div>
         </section>
 
-        <DebateModal user={this.state.user} handleNewMessage={this.handleNewMessage} debate={this.state.debateModal.debate} />
+        <DebateModal handleEndDebate={this.handleEndDebate} user={this.state.user} handleNewMessage={this.handleNewMessage} debate={this.state.debateModal.debate} />
 
             <div id="rankings" className="modal fade" role="dialog">
             <div className="modal-dialog">

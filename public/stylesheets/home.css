@@ -1176,7 +1176,6 @@ z-index: 5;
 }
 
 .end-confirm{
-  display: none;
   position: absolute;
   left: 0;
   border-radius: 3px;

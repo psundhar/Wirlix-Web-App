@@ -3,7 +3,10 @@ import React from 'react';
 const DebateModal = React.createClass({
 
     getInitialState() {
-        return {text: ''};
+        return {
+            text: '',
+            showEndDebateDialog: false,
+        };
     },
 
     handleReplyTextChange(e) {
@@ -11,7 +14,7 @@ const DebateModal = React.createClass({
     },
 
     render() {
-        const {handleNewMessage, debate, user} = this.props;
+        const {handleNewMessage, debate, user, handleEndDebate } = this.props;
         const { statement, challenger = {}, challengee = {}, messages = [], views, subscribers = [] } = debate;
 
         const challengerImage = challenger.image || '/images/pexels-photo-103123.jpeg';
@@ -79,7 +82,7 @@ const DebateModal = React.createClass({
                         { isParticipant && (<div className="reply-box col-md-12">
                             <textarea placeholder="Write your opinion...." onChange={this.handleReplyTextChange} value={this.state.text}></textarea>
                             <div className="col-md-4 col-sm-4 col-xs-4 end-button">
-                                <button className="end-debate">End Debate</button>
+                                <button className="end-debate" onClick={() => this.setState({ showEndDebateDialog: true })}>End Debate</button>
                             </div>
                             <div className="col-md-8 col-sm-8 col-xs-8 reply-button">
                                 <button className="reply-submit" onClick={ () => { handleNewMessage(debate, this.state.text); this.setState({text: ''}); } }>Reply</button>
@@ -88,15 +91,15 @@ const DebateModal = React.createClass({
                         <div className="close-bottom">
                             <button type="button" className="btn btn-default" data-dismiss="modal"><i className="fa fa-times-circle" aria-hidden="true"></i></button>
                         </div>
-                        <div className="end-confirm">
+                        { this.state.showEndDebateDialog && (<div className="end-confirm">
                             <p>Are you sure you want to end this debate?</p>
                             <div className="cancel col-md-6 col-sm-6 col-xs-6">
-                                <button>No</button>
+                                <button onClick={ () => this.setState({showEndDebateDialog: false})}>No</button>
                             </div>
                             <div className="confirm col-md-6 col-sm-6 col-xs-6">
-                                <button>Yes</button>
+                                <button onClick={ () => { handleEndDebate(debate) }} >Yes</button>
                             </div>
-                        </div>
+                        </div>) }
                         <div className="end-message">
                             <p className="quote">Change will not come if we wait for some other person or some other time. We are the ones we've been waiting for. We are the change that we seek.</p>
                             <p className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span></p>
