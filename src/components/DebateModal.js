@@ -11,11 +11,16 @@ const DebateModal = React.createClass({
     },
 
     render() {
-        const {handleNewMessage, debate} = this.props;
+        const {handleNewMessage, debate, user} = this.props;
         const { statement, challenger = {}, challengee = {}, messages = [], views, subscribers = [] } = debate;
 
         const challengerImage = challenger.image || '/images/pexels-photo-103123.jpeg';
         const challengeeImage = challengee.image || '/images/pexels-photo-103123.jpeg';
+
+        const isChallenger = user._id == challenger._id;
+        const isChallengee = user._id == challengee._id;
+
+        const isParticipant = isChallenger || isChallengee;
 
         return (
             <div id="view-debate" className="modal fade" role="dialog">
@@ -71,7 +76,7 @@ const DebateModal = React.createClass({
                                 );
                             }) }
                         </div>
-                        <div className="reply-box col-md-12">
+                        { isParticipant && (<div className="reply-box col-md-12">
                             <textarea placeholder="Write your opinion...." onChange={this.handleReplyTextChange} value={this.state.text}></textarea>
                             <div className="col-md-4 col-sm-4 col-xs-4 end-button">
                                 <button className="end-debate">End Debate</button>
@@ -79,7 +84,7 @@ const DebateModal = React.createClass({
                             <div className="col-md-8 col-sm-8 col-xs-8 reply-button">
                                 <button className="reply-submit" onClick={ () => { handleNewMessage(debate, this.state.text); this.setState({text: ''}); } }>Reply</button>
                             </div>
-                        </div>
+                        </div>) }
                         <div className="close-bottom">
                             <button type="button" className="btn btn-default" data-dismiss="modal"><i className="fa fa-times-circle" aria-hidden="true"></i></button>
                         </div>

@@ -167,7 +167,7 @@ const DebatePage = React.createClass({
         <div className="overlay"></div>
         </section>
 
-        <DebateModal handleNewMessage={this.handleNewMessage} debate={this.state.debateModal.debate} />
+        <DebateModal user={this.state.user} handleNewMessage={this.handleNewMessage} debate={this.state.debateModal.debate} />
 
             <div id="rankings" className="modal fade" role="dialog">
             <div className="modal-dialog">

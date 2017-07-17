@@ -190,7 +190,7 @@ const ProfilePage = React.createClass({
                     </section>
                 </div>
 
-                <DebateModal  handleNewMessage={this.handleNewMessage} debate={ this.state.debateModal.debate }/>
+                <DebateModal  user={this.state.loggedInUser} handleNewMessage={this.handleNewMessage} debate={ this.state.debateModal.debate }/>
 
                 <div id="rankings" className="modal fade" role="dialog">
                     <div className="modal-dialog">
