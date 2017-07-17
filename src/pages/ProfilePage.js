@@ -104,6 +104,20 @@ const ProfilePage = React.createClass({
 
     },
 
+    handleEndDebate(debateObj) {
+        const debates = this.state.debates;
+
+        const indexToDelete = debates.findIndex(d => d._id == debateObj._id);
+
+        if(indexToDelete > -1) {
+            delete debates[indexToDelete];
+        }
+
+        this.setState({debates});
+
+        apiFetch('/api/debates/' + debateObj._id, 'DELETE');
+    },
+
     render() {
         const { user, statement, debates, loggedInUser, topic, challenges, debateModal } = this.state;
 
@@ -190,7 +204,7 @@ const ProfilePage = React.createClass({
                     </section>
                 </div>
 
-                <DebateModal  user={this.state.loggedInUser} handleNewMessage={this.handleNewMessage} debate={ this.state.debateModal.debate }/>
+                <DebateModal handleEndDebate={ this.handleEndDebate } user={this.state.loggedInUser} handleNewMessage={this.handleNewMessage} debate={ this.state.debateModal.debate }/>
 
                 <div id="rankings" className="modal fade" role="dialog">
                     <div className="modal-dialog">

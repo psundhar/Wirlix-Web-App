@@ -117,6 +117,5 @@ module.exports = {
             res.status(404);
             next();
         });
-
     }
 }

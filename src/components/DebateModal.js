@@ -98,7 +98,7 @@ const DebateModal = React.createClass({
                                 <button onClick={ () => this.setState({showEndDebateDialog: false})}>No</button>
                             </div>
                             <div className="confirm col-md-6 col-sm-6 col-xs-6">
-                                <button href="#" data-toggle="modal" data-target="#view-debate" onClick={ () => { handleEndDebate(debate); this.setState({showEndDebateDialog: false, showEndDebateMessage: true}); setTimeout(() => {this.setState({showEndDebateMessage: false})}, 4000) }} >Yes</button>
+                                <button href="#" data-toggle="modal" data-target="#view-debate" onClick={ () => { this.setState({showEndDebateDialog: false, showEndDebateMessage: true}); setTimeout(() => {this.setState({showEndDebateMessage: false})}, 4000); handleEndDebate(debate);  }} >Yes</button>
                             </div>
                         </div>) }
                         { this.state.showEndDebateMessage && (<div className="end-message">
