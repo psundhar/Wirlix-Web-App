@@ -6,6 +6,7 @@ const DebateModal = React.createClass({
         return {
             text: '',
             showEndDebateDialog: false,
+            showEndDebateMessage: false,
         };
     },
 
@@ -97,13 +98,13 @@ const DebateModal = React.createClass({
                                 <button onClick={ () => this.setState({showEndDebateDialog: false})}>No</button>
                             </div>
                             <div className="confirm col-md-6 col-sm-6 col-xs-6">
-                                <button onClick={ () => { handleEndDebate(debate) }} >Yes</button>
+                                <button href="#" data-toggle="modal" data-target="#view-debate" onClick={ () => { handleEndDebate(debate); this.setState({showEndDebateDialog: false, showEndDebateMessage: true}); setTimeout(() => {this.setState({showEndDebateMessage: false})}, 4000) }} >Yes</button>
                             </div>
                         </div>) }
-                        <div className="end-message">
+                        { this.state.showEndDebateMessage && (<div className="end-message">
                             <p className="quote">Change will not come if we wait for some other person or some other time. We are the ones we've been waiting for. We are the change that we seek.</p>
                             <p className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span></p>
-                        </div>
+                        </div>) }
                         <div className="end-overlay">
 
                         </div>
