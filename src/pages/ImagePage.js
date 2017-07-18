@@ -122,7 +122,7 @@ const ImagePage = React.createClass({
     },
 
     handleContinueClick() {
-        window.location = "/profile/" + this.state.user._id;
+        window.location = "/tutorial.html";
     },
 
     render() {
