@@ -6,10 +6,34 @@ const RankingsPage = React.createClass({
     getInitialState() {
         return {
             user: {},
+            statements: []
+        }
+    },
+
+    componentWillMount() {
+        if(initialState) {
+            this.setState(initialState);
         }
     },
 
     render() {
+        const popularStatements = this.state.statements.filter(s => s.voters.length > 0);
+
+        const cachedVoteStatements = popularStatements.map((s) => {
+            s.rational = s.voters.filter(v => v.isRational).length;
+            s.emotional = s.voters.length - s.rational;
+            return s;
+        });
+
+        const factualDebaters = cachedVoteStatements.sort((a,b) => {
+            if(a.rational > b.rational) {
+                return -1;
+            }
+            return 1;
+        });
+
+        const topFactualDebater = factualDebaters.shift();
+
         return (
             <section className="rankings-section pb4">
                 <NavBar user={this.state.user}/>
@@ -25,41 +49,24 @@ const RankingsPage = React.createClass({
                             <div className="factual rank-content">
                                 <h2><img src="images/best-debater.png" /> Most Factual Debater</h2>
                                 <div className="rank-container">
-                                    <div className="first-place">
-                                        <div className="rank-item"><span className="rank-number">1</span> John Appleseed</div>
-                                    </div>
-
-                                    <div className="clearfix">
+                                    { topFactualDebater && (
+                                        <div className="first-place">
+                                            <div className="rank-item"><span className="rank-number">1</span> { topFactualDebater.user.username }</div>
+                                        </div>
+                                    )}
+                                    <div className="clearfix" style={{minHeight: "520px"}}>
                                         <div className="col col-6 pr1">
                                             <ul>
-                                                <li className="rank-item"><span className="rank-number">2</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">3</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">4</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">5</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">6</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">7</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">8</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">9</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">10</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">11</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">12</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">13</span> John Appleseed</li>
+                                                { factualDebaters.slice(0,13).map((d, i) => {
+                                                    return (<li className="rank-item" key={i}><span className="rank-number">{ i + 2 }</span> { d.user.username }</li>)
+                                                }) }
                                             </ul>
                                         </div>
                                         <div className="col col-6 pl1">
                                             <ul>
-                                                <li className="rank-item"><span className="rank-number">14</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">15</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">16</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">17</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">18</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">19</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">20</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">21</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">22</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">23</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">24</span> John Appleseed</li>
-                                                <li className="rank-item"><span className="rank-number">25</span> John Appleseed</li>
+                                                { factualDebaters.slice(13,24).map((d, i) => {
+                                                    return (<li className="rank-item" key={i}><span className="rank-number">{ i + 2 }</span> { d.user.username }</li>)
+                                                }) }
                                             </ul>
                                         </div>
                                     </div>

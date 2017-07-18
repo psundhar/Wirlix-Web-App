@@ -123,11 +123,18 @@ router.get('/image', function(req, res, next) {
 });
 
 router.get('/rankings', function(req, res, next) {
-    const data = {
-        user: req.user,
-    };
+    Topic.queryLatest().exec()
+    .then(function(topic) {
+        return Statement.queryTopic(topic._id);
+    })
+    .then(function(statements) {
+        const data = {
+            user: req.user,
+            statements,
+        };
 
-    res.render('react_main', { page: 'rankings', data: JSON.stringify(data)});
+        res.render('react_main', { page: 'rankings', data: JSON.stringify(data)});
+    });
 });
 
 module.exports = router;
