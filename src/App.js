@@ -4,6 +4,7 @@ import DebatePage from './pages/DebatePage';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import ImagePage from './pages/ImagePage';
+import RankingsPage from './pages/RankingsPage';
 
 export default ({page}) => {
     let component;
@@ -18,6 +19,10 @@ export default ({page}) => {
         }
         case 'image': {
             component = <ImagePage/>;
+            break;
+        }
+        case 'rankings': {
+            component = <RankingsPage />;
             break;
         }
         default: {

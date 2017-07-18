@@ -66,7 +66,7 @@ const NavBar = React.createClass({
                             <ul className="nav navbar-nav center">
                                 <li><a href="/home">News</a></li>
                                 <li><a href="/debate">Debate</a></li>
-                                <li><a href="#" data-toggle="modal" data-target="#rankings">Ranking</a></li>
+                                <li><a href="/rankings">Ranking</a></li>
                                 <li><a href="about.html">About</a></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">

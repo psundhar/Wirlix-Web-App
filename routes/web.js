@@ -122,4 +122,12 @@ router.get('/image', function(req, res, next) {
     res.render('react_main', { page: 'image', data: JSON.stringify(data)});
 });
 
+router.get('/rankings', function(req, res, next) {
+    const data = {
+        user: req.user,
+    };
+
+    res.render('react_main', { page: 'rankings', data: JSON.stringify(data)});
+});
+
 module.exports = router;
