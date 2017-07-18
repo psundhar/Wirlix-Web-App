@@ -76,39 +76,46 @@ const RankingsPage = React.createClass({
                             <div className="emotional rank-content">
                                 <h2><i className="fa fa-hand-peace-o" aria-hidden="true"></i> Most <span className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span><span className="I">I</span><span className="N">N</span><span className="G">G</span></span>
                                     Debater</h2>
-                                <ul className="rank-container col-md-12">
+                                <div className="rank-container">
                                     <div className="first-place">
-                                        <li><span className="rank-number">1</span> John Appleseed</li>
+                                        <div className="rank-item"><span className="rank-number">1</span> John Appleseed</div>
                                     </div>
-                                    <div className="col-md-6 col-sm-6">
-                                        <li><span className="rank-number">2</span> John Appleseed</li>
-                                        <li><span className="rank-number">3</span> John Appleseed</li>
-                                        <li><span className="rank-number">4</span> John Appleseed</li>
-                                        <li><span className="rank-number">5</span> John Appleseed</li>
-                                        <li><span className="rank-number">6</span> John Appleseed</li>
-                                        <li><span className="rank-number">7</span> John Appleseed</li>
-                                        <li><span className="rank-number">8</span> John Appleseed</li>
-                                        <li><span className="rank-number">9</span> John Appleseed</li>
-                                        <li><span className="rank-number">10</span> John Appleseed</li>
-                                        <li><span className="rank-number">11</span> John Appleseed</li>
-                                        <li><span className="rank-number">12</span> John Appleseed</li>
-                                        <li><span className="rank-number">13</span> John Appleseed</li>
+
+                                    <div className="clearfix">
+                                        <div className="col col-6 pr1">
+                                            <ul>
+                                                <li className="rank-item"><span className="rank-number">2</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">3</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">4</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">5</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">6</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">7</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">8</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">9</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">10</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">11</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">12</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">13</span> John Appleseed</li>
+                                            </ul>
+                                        </div>
+                                        <div className="col col-6 pl1">
+                                            <ul>
+                                                <li className="rank-item"><span className="rank-number">14</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">15</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">16</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">17</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">18</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">19</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">20</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">21</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">22</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">23</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">24</span> John Appleseed</li>
+                                                <li className="rank-item"><span className="rank-number">25</span> John Appleseed</li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div className="col-md-6 col-sm-6">
-                                        <li><span className="rank-number">14</span> John Appleseed</li>
-                                        <li><span className="rank-number">15</span> John Appleseed</li>
-                                        <li><span className="rank-number">16</span> John Appleseed</li>
-                                        <li><span className="rank-number">17</span> John Appleseed</li>
-                                        <li><span className="rank-number">18</span> John Appleseed</li>
-                                        <li><span className="rank-number">19</span> John Appleseed</li>
-                                        <li><span className="rank-number">20</span> John Appleseed</li>
-                                        <li><span className="rank-number">21</span> John Appleseed</li>
-                                        <li><span className="rank-number">22</span> John Appleseed</li>
-                                        <li><span className="rank-number">23</span> John Appleseed</li>
-                                        <li><span className="rank-number">24</span> John Appleseed</li>
-                                        <li><span className="rank-number">25</span> John Appleseed</li>
-                                    </div>
-                                </ul>
+                                </div>
                                 <div className="next-buttons col-md-12 col-sm-12">
                                     <div className="col-md-6 col-sm-6">
                                         <button className="back">Back</button>
