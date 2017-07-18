@@ -74,7 +74,6 @@ const RankingsPage = React.createClass({
             emotionalRank = emotionalIndex + 2;
         }
 
-        console.log(view);
         return (
             <section className="rankings-section pb4">
                 <NavBar user={user}/>
@@ -89,7 +88,7 @@ const RankingsPage = React.createClass({
                         <div className="top-ranks">
                             <div className="rank-content">
                                 { view == 'factual' && (<div>
-                                <h2><img src="images/best-debater.png" /> Most Factual Debater</h2>
+                                <h2><img src="images/best-debater.png" className="m0" style={{maxHeight:"28px"}}/> Most Factual Debater</h2>
                                 { factualStatements.length == 0 && (<p className="mt4 center">Waiting for more votes.</p>) }
                                 <div className="rank-container">
                                     { topFactualStatement && (
