@@ -2,6 +2,8 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import Draggable from 'react-draggable';
 
+
+
 const ImagePage = React.createClass({
 
     getInitialState() {
@@ -9,7 +11,54 @@ const ImagePage = React.createClass({
             imageFile: {},
             user: {},
             isUploading: false,
+            edits: {
+                top: 0,
+                left: 0,
+            }
         };
+    },
+
+    handleReposition() {
+        const that = this;
+        var img = $('img#profile-img');
+
+        var y1 = $('.img-container').height();
+        var x1 = $('.img-container').width();
+
+        $('.continue a').hover(function(event){
+            var t = img.position().top,
+                l = img.position().left;
+            img.attr('data-top', t);
+            img.attr('data-left', l);
+        });
+
+        var y2 = img.prop('naturalHeight');
+        var x2 = img.prop('naturalWidth');
+
+        img.draggable({
+            disabled: false,
+            scroll: false,
+            axis: 'y, x',
+            cursor : 'move',
+            drag: function(event, ui) {
+
+                if(ui.position.top >= 0) {
+                    ui.position.top = 0;
+                }
+                if(ui.position.top < y1 - y2) {
+                    ui.position.top = y1 - y2;
+                }
+                if (ui.position.left >= 0) {
+                    ui.position.left = 0;
+                }
+                if(ui.position.left <= x1 - x2) {
+                    ui.position.left = x1 - x2;
+                }
+            },
+            stop(e, ui) {
+                that.setState({edits: {top: ui.position.top, left: ui.position.left}});
+            },
+        });
     },
 
     componentDidMount() {
@@ -34,7 +83,29 @@ const ImagePage = React.createClass({
             const data = new FormData();
             data.append('image', imageFile);
 
-            fetch('/api/images/' + user._id, {
+            const queries = [];
+
+            if(this.state.edits.left) {
+                queries.push({key: 'left', value: -this.state.edits.left})
+            }
+            if(this.state.edits.top) {
+                queries.push({key: 'top', value: -this.state.edits.top});
+            }
+
+            const queryStrings = queries.map(q => {
+               return q.key + '=' + q.value;
+            });
+
+            const queryString = queryStrings.join('&');
+
+            let uri = '/api/images/' + user._id;
+
+            if(queries.length > 0) {
+                uri = uri + '?' + queryString;
+            }
+
+            console.log(queries, queryString);
+            fetch(uri, {
                 method: 'POST',
                 body: data,
                 credentials: 'include',
@@ -58,7 +129,6 @@ const ImagePage = React.createClass({
         const { user, imageFile, isUploading } = this.state;
 
         const previewImage = imageFile.preview || user.image || "/images/profile-pic-placeholder.png";
-        console.log(imageFile);
 
         return (<div>
             <link rel = "stylesheet" type= "text/css" href="/stylesheets/styles.css" />
@@ -66,17 +136,13 @@ const ImagePage = React.createClass({
                 <div className="container">
                     <h1>Upload a photo</h1>
                     <div className="img-container">
-                        <Draggable
-
-                        >
-                            <img src={ previewImage } id="profile-img" alt="your profile img" data-top="0"  data-left="0" />
-                        </Draggable>
-                            <div className="upload-group col-md-12">
-                                <Dropzone style={{visibility: "none"}} onDrop={ this.onImageDrop }>
-                                <div className="inputfile"/>
-                                <label htmlFor="file"><i className="fa fa-upload" aria-hidden="true"/> <span id = "filename">Profile Photo</span></label>
-                                </Dropzone>
-                            </div>
+                        <img onLoad={ () => imageFile.preview ? this.handleReposition() : null } src={ previewImage } id = "profile-img" alt="your profile img" data-top="0"  data-left="0" />
+                        <div className="upload-group col-md-12">
+                            <Dropzone style={{visibility: "none"}} onDrop={ this.onImageDrop }>
+                            <div className="inputfile"/>
+                            <label htmlFor="file"><i className="fa fa-upload" aria-hidden="true"/> <span id = "filename">Profile Photo</span></label>
+                            </Dropzone>
+                        </div>
                     </div>
                     <div className="change">
                         <input type="file" name="profile-picture" className="inputfile" data-multiple-caption="{count} files selected"/>

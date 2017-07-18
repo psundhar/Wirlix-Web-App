@@ -87,7 +87,6 @@ function reposition() {
 	    			  	axis: 'y, x',
 	    			  	cursor : 'move',
 	    			  	 drag: function(event, ui) {
-	    			  		console.log(ui);
 							 if(ui.position.top >= 0)
 							  {
 								  ui.position.top = 0;
