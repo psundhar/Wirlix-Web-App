@@ -84,24 +84,32 @@ const ProfilePage = React.createClass({
                 notifyChallengee: false,
                 notifyChallenger: status == 'accepted',
             })
-            .then(res => res.json())
+            .then(res => {
+                this.setState({challenges});
+                return res.json();
+            })
             .then(challenge => {
                 if(status == "declined") {
-                    return Promise.resolve({});
+                    return Promise.resolve({ json: () => null });
                 }
-                return apiFetch('/api/debates/', 'POST', {
-                    topic: challenge.topic,
-                    challenger: challenge.challenger,
-                    challengee: challenge.challengee,
-                    statement: challenge.statement,
-                });
+                else {
+                    return apiFetch('/api/debates/', 'POST', {
+                        topic: challenge.topic,
+                        challenger: challenge.challenger,
+                        challengee: challenge.challengee,
+                        statement: challenge.statement,
+                    });
+                }
             })
             .then((res) => res.json())
             .then((debate) => {
+                if(!debate) {
+                    return;
+                }
+
                 const debates = this.state.debates;
                 debates.push(debate);
-
-                this.setState({ challenges, debates });
+                this.setState({ debates });
             })
             .catch((err) => console.log(err));
         }
