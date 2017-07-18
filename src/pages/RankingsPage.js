@@ -74,13 +74,15 @@ const RankingsPage = React.createClass({
             emotionalRank = emotionalIndex + 2;
         }
 
+        const profileImage = user.image || "images/pexels-photo-103123.jpeg";
+
         return (
             <section className="rankings-section pb4">
                 <NavBar user={user}/>
                 <div className="modal-dialog">
                     <div className="modal-content" style={{ backgroundColor: "#CCCCCC" }}>
                         <div className="my-ranking">
-                            <p className="my-info"><a href={"/profile/" + user._id } style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat"}}></a> { user.username }</p>
+                            <p className="my-info"><a href={"/profile/" + user._id } style={{background: "url(" + profileImage + ") center center no-repeat"}}></a> { user.username }</p>
                         </div>
                         <div className="my-rank-num">
                             <p className="my-rank">{ factualRank ? '#' + factualRank : 'N/A' }</p>
