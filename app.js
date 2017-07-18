@@ -16,20 +16,6 @@ var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var connect = process.env.MONGODB_URI;
 
-const socketServer = require('http').Server(app);
-const io = require('socket.io')(socketServer);
-const SOCKET_PORT = 8000;
-
-io.on('connection', function(socket) {
-    global.socket = socket; // TODO remove vars from global
-});
-
-socketServer.listen(SOCKET_PORT, function() {
-    console.log("Socket server is listening on port " + SOCKET_PORT );
-});
-
-
-
 const apiRoutes = require('./routes/api');
 // const webRoutes = require('./routes/web');
 
@@ -207,8 +193,16 @@ var quotes = [
 	"“It is important that students bring a certain ragamuffin, barefoot irreverence to their studies; they are not here to worship what is known, but to question it.”  <br><br>—  Jacob Bronowski"
 ];
 
-app.listen(3000, function () {
+const server = app.listen(3000, function () {
     console.log("Example port is listening on app!");
+});
+
+const io = require('socket.io')(server);
+
+io.on('connection', function(socket) {
+    console.log("Socket.io: User Connected");
+
+    global.socket = socket; // TODO remove vars from global
 });
 
 module.exports = app;

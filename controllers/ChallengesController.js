@@ -70,7 +70,7 @@ const ChallengesController = {
                     res.end();
                 }
 
-                global.socket.emit("notifications-" + statement.user, challenge);
+                global.socket.emit("notifications", challenge);
 
                 res.send(challenge);
             });

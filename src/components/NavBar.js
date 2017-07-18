@@ -26,7 +26,7 @@ const NavBar = React.createClass({
     },
 
     componentDidMount() {
-        const socket = IO('http://localhost:8000'); // Will need to be altered in production
+        const socket = IO(); // Will need to be altered in production
 
         if(this.props.user._id) {
             socket.on('notifications', (data) => {
