@@ -125,7 +125,7 @@ const DebatePage = React.createClass({
         </div>
         </div>
 
-        <MyDebates handleReplyClick={this.handleNewMessage} handleEnterDebate={this.handleEnterDebate} debates={ this.state.debates } userId={ this.state.user._id}/>
+        <MyDebates handleReplyClick={this.handleEnterDebate} debates={ this.state.debates } userId={ this.state.user._id}/>
         <div className="comments">
             <div className="container">
             <div className="border decide">
