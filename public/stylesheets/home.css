@@ -646,7 +646,7 @@ z-index: 5;
 }
 
 /* ================================== Debate ================================== */
-.debate-section{
+.debate-section, .ran{
     background: url(../images/piccool.jpeg) center center no-repeat;
     background-size: cover;
     position: relative;
@@ -1277,6 +1277,10 @@ z-index: 5;
 }
 
 /* ================================== Rankings ================================== */
+.rankings-section {
+  background: url(../images/piccool.jpeg) center center no-repeat;
+  background-size: cover;
+}
 
 .my-ranking{
   padding: 10px;
@@ -1341,6 +1345,38 @@ z-index: 5;
   padding: 20px;
 }
 
+.rank-container .first-place{
+  text-align: center;
+}
+
+.rank-container .first-place .rank-item{
+  font-size: 1.5em;
+  display: inline-block;
+  padding-right: 10px;
+  margin-bottom: 10px;
+  width: auto;
+}
+
+.rank-container .rank-item{
+  padding: 0;
+  font-size: 1em;
+  background-color: #f5f5f5;
+  border-radius: 3px;
+  color: #262626;
+  font-family: "Source Code Pro";
+  margin-bottom: 3px;
+  width: 100%;
+}
+
+.rank-container .rank-number{
+  background-color: #c41717;
+  color: #ffffff;
+  padding: 5px;
+  display: inline-block;
+  width: 35px;
+  text-align: center;
+}
+
 .rank-content h2{
   font-family: "Raleway";
 }
@@ -1379,37 +1415,6 @@ z-index: 5;
 }
 .rank-content .coexist .G{
   color: #C76A15;
-}
-
-
-.rank-container .first-place{
-  text-align: center;
-}
-
-.rank-container .first-place li{
-  font-size: 1.5em;
-  display: inline-block;
-  padding-right: 10px;
-  margin-bottom: 10px;
-}
-
-.rank-container li{
-  padding: 0;
-  font-size: 1em;
-  background-color: #f5f5f5;
-  border-radius: 3px;
-  color: #262626;
-  font-family: "Source Code Pro";
-  margin-bottom: 3px;
-}
-
-.rank-container .rank-number{
-  background-color: #c41717;
-  color: #ffffff;
-  padding: 5px;
-  display: inline-block;
-  width: 35px;
-  text-align: center;
 }
 
 .next-buttons{
