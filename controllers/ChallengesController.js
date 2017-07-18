@@ -42,6 +42,7 @@ const ChallengesController = {
                         }
                         else {
                             res.send(challenge);
+                            global.io.emit("notifications", challenge);
                         }
                     });
                 }
@@ -70,7 +71,7 @@ const ChallengesController = {
                     res.end();
                 }
 
-                global.socket.emit("notifications", challenge);
+                global.io.emit("notifications", challenge);
 
                 res.send(challenge);
             });

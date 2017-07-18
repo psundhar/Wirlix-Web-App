@@ -199,10 +199,14 @@ const server = app.listen(3000, function () {
 
 const io = require('socket.io')(server);
 
+global.io = io; // TODO remove vars from global
+
 io.on('connection', function(socket) {
     console.log("Socket.io: User Connected");
 
-    global.socket = socket; // TODO remove vars from global
+    socket.on('disconnect', function() {
+        console.log("Socket.io: User Disconnected");
+    });
 });
 
 module.exports = app;
