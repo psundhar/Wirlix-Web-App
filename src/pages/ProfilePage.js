@@ -86,6 +86,9 @@ const ProfilePage = React.createClass({
             })
             .then(res => res.json())
             .then(challenge => {
+                if(status == "declined") {
+                    return Promise.resolve({});
+                }
                 return apiFetch('/api/debates/', 'POST', {
                     topic: challenge.topic,
                     challenger: challenge.challenger,
