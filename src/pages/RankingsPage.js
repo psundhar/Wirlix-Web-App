@@ -85,7 +85,7 @@ const RankingsPage = React.createClass({
                             <p className="my-info"><a href={"/profile/" + user._id } style={{background: "url(" + profileImage + ") center center no-repeat"}}></a> { user.username }</p>
                         </div>
                         <div className="my-rank-num">
-                            <p className="my-rank">{ factualRank ? '#' + factualRank : 'N/A' }</p>
+                            <p className="my-rank">{ view == 'factual' ? (factualRank ? '#' + factualRank : 'N/A') : (emotionalRank ? '#' + emotionalRank : 'N/A')}</p>
                         </div>
                         <div className="top-ranks">
                             <div className="rank-content">
