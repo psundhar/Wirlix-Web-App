@@ -6,7 +6,8 @@ const RankingsPage = React.createClass({
     getInitialState() {
         return {
             user: {},
-            statements: []
+            statements: [],
+            view: 'factual',
         }
     },
 
@@ -16,8 +17,26 @@ const RankingsPage = React.createClass({
         }
     },
 
+    handleNext() {
+        const { view } = this.state;
+
+        if(view == 'factual') {
+            this.setState({view: 'emotional'});
+        }
+    },
+
+    handleBack() {
+        const { view } = this.state;
+
+        if(view == 'emotional') {
+            this.setState({view: 'factual'});
+        }
+    },
+
     render() {
-        const popularStatements = this.state.statements.filter(s => s.voters.length > 0);
+        const { user, statements, view } = this.state;
+
+        const popularStatements = statements.filter(s => s.voters.length > 0);
 
         const cachedVoteStatements = popularStatements.map((s) => {
             s.rational = s.voters.filter(v => v.isRational).length;
@@ -41,21 +60,35 @@ const RankingsPage = React.createClass({
 
         const topFactualStatement = factualStatements.shift();
         const topEmotionalStatement = emotionalStatements.shift();
-        console.log(emotionalStatements);
 
+        const factualIndex = factualStatements.findIndex(s => s.user._id == user._id);
+        const emotionalIndex = emotionalStatements.findIndex(s => s.user._id == user._id);
+
+        let factualRank, emotionalRank;
+
+        if(factualIndex > -1) {
+            factualRank = factualIndex + 2;
+        }
+
+        if(emotionalIndex > -1) {
+            emotionalRank = emotionalIndex + 2;
+        }
+
+        console.log(view);
         return (
             <section className="rankings-section pb4">
-                <NavBar user={this.state.user}/>
+                <NavBar user={user}/>
                 <div className="modal-dialog">
                     <div className="modal-content" style={{ backgroundColor: "#CCCCCC" }}>
                         <div className="my-ranking">
-                            <p className="my-info"><a href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat"}}></a> Priyanka Sundhar</p>
+                            <p className="my-info"><a href={"/profile/" + user._id } style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat"}}></a> { user.username }</p>
                         </div>
                         <div className="my-rank-num">
-                            <p className="my-rank">#434</p>
+                            <p className="my-rank">{ factualRank ? '#' + factualRank : 'N/A' }</p>
                         </div>
                         <div className="top-ranks">
-                            <div className="factual rank-content">
+                            <div className="rank-content">
+                                { view == 'factual' && (<div>
                                 <h2><img src="images/best-debater.png" /> Most Factual Debater</h2>
                                 { factualStatements.length == 0 && (<p className="mt4 center">Waiting for more votes.</p>) }
                                 <div className="rank-container">
@@ -80,49 +113,40 @@ const RankingsPage = React.createClass({
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
+                                </div></div>) }
+                                { view == 'emotional' && (<div>
+                                    <h2><i className="fa fa-hand-peace-o" aria-hidden="true" /> Most <span className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span><span className="I">I</span><span className="N">N</span><span className="G">G</span></span>
+                                        Debater</h2>
+                                    { emotionalStatements.length == 0 && (<p className="mt4 center">Waiting for more votes.</p>) }
+                                    <div className="rank-container">
+                                        { topEmotionalStatement && (
+                                            <div className="first-place">
+                                                <div className="rank-item"><span className="rank-number">1</span> { topEmotionalStatement.user.username }</div>
+                                            </div>
+                                        )}
+                                        <div className="clearfix" style={{minHeight: "520px"}}>
+                                            <div className="col col-6 pr1">
+                                                <ul>
+                                                    { emotionalStatements.slice(0,13).map((d, i) => {
+                                                        return (<li className="rank-item" key={i}><span className="rank-number">{ i + 2 }</span> { d.user.username }</li>)
+                                                    }) }
+                                                </ul>
+                                            </div>
+                                            <div className="col col-6 pl1">
+                                                <ul>
+                                                    { emotionalStatements.slice(13,24).map((d, i) => {
+                                                        return (<li className="rank-item" key={i}><span className="rank-number">{ i + 2 }</span> { d.user.username }</li>)
+                                                    }) }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div></div> )}
                                 <div className="next-buttons col-md-12 col-sm-12">
                                     <div className="col-md-6 col-sm-6">
-                                        <button className="back">Back</button>
+                                        <button className="back" onClick={ this.handleBack }>Back</button>
                                     </div>
                                     <div className="col-md-6 col-sm-6">
-                                        <button className="next">Next</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="emotional rank-content">
-                                <h2><i className="fa fa-hand-peace-o" aria-hidden="true"></i> Most <span className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span><span className="I">I</span><span className="N">N</span><span className="G">G</span></span>
-                                    Debater</h2>
-                                { emotionalStatements.length == 0 && (<p className="mt4 center">Waiting for more votes.</p>) }
-                                <div className="rank-container">
-                                    { topEmotionalStatement && (
-                                        <div className="first-place">
-                                            <div className="rank-item"><span className="rank-number">1</span> { topEmotionalStatement.user.username }</div>
-                                        </div>
-                                    )}
-                                    <div className="clearfix" style={{minHeight: "520px"}}>
-                                        <div className="col col-6 pr1">
-                                            <ul>
-                                                { emotionalStatements.slice(0,13).map((d, i) => {
-                                                    return (<li className="rank-item" key={i}><span className="rank-number">{ i + 2 }</span> { d.user.username }</li>)
-                                                }) }
-                                            </ul>
-                                        </div>
-                                        <div className="col col-6 pl1">
-                                            <ul>
-                                                { emotionalStatements.slice(13,24).map((d, i) => {
-                                                    return (<li className="rank-item" key={i}><span className="rank-number">{ i + 2 }</span> { d.user.username }</li>)
-                                                }) }
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="next-buttons col-md-12 col-sm-12">
-                                    <div className="col-md-6 col-sm-6">
-                                        <button className="back">Back</button>
-                                    </div>
-                                    <div className="col-md-6 col-sm-6">
-                                        <button className="next">Next</button>
+                                        <button className="next" onClick={ this.handleNext }>Next</button>
                                     </div>
                                 </div>
                             </div>
