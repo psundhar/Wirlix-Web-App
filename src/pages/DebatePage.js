@@ -86,7 +86,6 @@ const DebatePage = React.createClass({
         };
 
         newMessageDebate.messages.push(newMessageObj);
-
         this.setState({debates});
 
         // Update db state
@@ -94,6 +93,11 @@ const DebatePage = React.createClass({
             message: newMessageObj
         })
         .then(res => res.json())
+        .then(debate => {
+            newMessageDebate.updated = debate.updated;
+            console.log(newMessageDebate);
+            this.setState({debates});
+        })
         .catch(err => console.log(err));
     },
 
