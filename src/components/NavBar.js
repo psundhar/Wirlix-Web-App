@@ -67,7 +67,7 @@ const NavBar = React.createClass({
                                 <li><a href="/home">News</a></li>
                                 <li><a href="/debate">Debate</a></li>
                                 <li><a href="/rankings">Ranking</a></li>
-                                <li><a href="about.html">About</a></li>
+                                <li><a href="/about.html">About</a></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a className="profile-nav" href={ "/profile/" + user._id } style={{background: "url(" + profileImage + ") center center no-repeat" }}>
