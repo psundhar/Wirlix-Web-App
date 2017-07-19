@@ -15,6 +15,11 @@ const topicSchema = mongoose.Schema({
     image: {
         type: String,
     },
+    questions: {
+        1: { type: String },
+        2: { type: String },
+        3: { type: String },
+    },
 });
 
 const model = mongoose.model('Topic', topicSchema);

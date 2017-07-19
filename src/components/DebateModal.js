@@ -22,7 +22,7 @@ const DebateModal = React.createClass({
     handleQuestionClick(num) {
         const visibleQuestions = this.state.visibleQuestions;
 
-        visibleQuestions[num] = true;
+        visibleQuestions[num] = !visibleQuestions[num];
 
         this.setState({
             visibleQuestions
@@ -135,34 +135,28 @@ const DebateModal = React.createClass({
                             <p className="number" onClick={ () => this.handleQuestionClick(3) }>3</p>
                         </div>
                     </div>
-                    { visibleQuestions[1] && (<div className="question one">
+                    { visibleQuestions[1] && (<div onClick={ () => this.handleQuestionClick(1)}className="question one">
                         <div className="message-box question-box one">
                             <div className="username">
                                 <p className="wirlix-img" style={{background: "url(/images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
-                                <p> Wirlix</p>
                             </div>
                             <p className="message">this is question #1</p>
-                            <p className="time-posted">25m</p>
                         </div>
                     </div>) }
-                    { visibleQuestions[2] && (<div className="question two">
+                    { visibleQuestions[2] && (<div onClick={ () => this.handleQuestionClick(2)}className="question two">
                         <div className="message-box question-box one">
                             <div className="username">
                                 <p className="wirlix-img" style={{background: "url(/images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
-                                <p> Wirlix</p>
                             </div>
                             <p className="message">this is question #2</p>
-                            <p className="time-posted">25m</p>
                         </div>
                     </div>) }
-                    { visibleQuestions[3] && (<div className="question three">
+                    { visibleQuestions[3] && (<div onClick={ () => this.handleQuestionClick(3)}className="question three">
                         <div className="message-box question-box one">
                             <div className="username">
                                 <p className="wirlix-img" style={{background: "url(/images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
-                                <p> Wirlix</p>
                             </div>
                             <p className="message">this is question #3</p>
-                            <p className="time-posted">25m</p>
                         </div>
                     </div>) }
                 </div>
