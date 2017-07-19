@@ -148,12 +148,12 @@ const ImagePage = React.createClass({
                         <input type="file" name="profile-picture" className="inputfile" data-multiple-caption="{count} files selected"/>
                         <label htmlFor="file"><i className="fa fa-upload" aria-hidden="true"/> <span>Change Image</span></label>
                     </div>
-                    <div className="col-md-4 col-md-offset-4">
+                    <div className="col col-12">
                         <div className="continue">
-                            <button onClick={ this.handleUploadClick } disabled={ isUploading }>Save Photo</button>
+                            <button onClick={ this.handleUploadClick } disabled={ isUploading }>Save Photo{ isUploading && (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />)}</button>
                         </div>
                         <div className="continue">
-                            <button onClick={ this.handleContinueClick }>To Profile <i className="fa fa-arrow-right" aria-hidden="true"/></button>
+                            <button onClick={ this.handleContinueClick }  disabled={ isUploading }>Continue { isUploading ? (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />) : (<i className="fa fa-arrow-right" aria-hidden="true"/>) }</button>
                         </div>
                     </div>
                     <div className="col-md-4 continue">
