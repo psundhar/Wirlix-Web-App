@@ -112,20 +112,21 @@ const DebatePage = React.createClass({
     },
 
     render: function() {
+        const { topic, user, debates } = this.state;
         return (
     <div>
     <section className="debate-section" style={{minHeight:"1400px"}}>
-        <NavBar user={ this.state.user }/>
+        <NavBar user={ user }/>
         <div className="response">
             <div className="container">
-            <h1 className="main-question col-md-12" id="debate-prompt">{ this.state.topic.prompt }</h1>
+            <h1 className="main-question col-md-12" id="debate-prompt">{ topic.prompt }</h1>
         <div className="col-md-4 col-md-offset-4 my-debates-button">
             <a className="col-md-12" href="#">My Debates</a>
         </div>
         </div>
         </div>
 
-        <MyDebates handleReplyClick={this.handleEnterDebate} debates={ this.state.debates } userId={ this.state.user._id}/>
+        <MyDebates handleReplyClick={this.handleEnterDebate} debates={ debates } userId={ user._id}/>
         <div className="comments">
             <div className="container">
             <div className="border decide">
@@ -140,11 +141,11 @@ const DebatePage = React.createClass({
             <div className="col-md-4 vote-col factual active" id ="factual">
             <h2 className="col-md-12"><img src="images/eye-w.png" /><br/>Best Debates</h2>
             <div className="debates col-md-12" id="best-debates-list">
-                { this.state.debates.filter((d) => {
+                { debates.filter((d) => {
                     return d.views > 10;
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard key={i} user={this.state.user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                     )
                 })}
             </div>
@@ -153,11 +154,11 @@ const DebatePage = React.createClass({
         <div className="col-md-4 vote-col middle" id ="middle">
             <h2 className="col-md-12"><br/>Live Right Now</h2>
             <div className="debates col-md-12 live-debates">
-                { this.state.debates.filter((d) => {
+                { debates.filter((d) => {
                     return Date.parse(d.updated) >= (Date.now() - 600000) //10 minutes ago
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard key={i} user={this.state.user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                     )
                 })}
             </div>
@@ -166,11 +167,11 @@ const DebatePage = React.createClass({
         <div className="col-md-4 vote-col emotional" id = "emotional">
             <h2 className="col-md-12"><img src="images/check-mark.png" /><br/>Subscribed Debates</h2>
         <div className="debates col-md-12" id="subscribed-debates-list">
-            { this.state.debates.filter((d) => {
-                return d.subscribers.includes(this.state.user._id);
+            { debates.filter((d) => {
+                return d.subscribers.includes(user._id);
             }).map((d,i)=> {
                 return (
-                    <FlippableDebateCard key={i} user={this.state.user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                    <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                 )
             })}
         </div>
@@ -182,7 +183,7 @@ const DebatePage = React.createClass({
         <div className="overlay"></div>
         </section>
 
-        <DebateModal handleEndDebate={this.handleEndDebate} user={this.state.user} handleNewMessage={this.handleNewMessage} debate={this.state.debateModal.debate} />
+        <DebateModal questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} handleNewMessage={this.handleNewMessage} debate={this.state.debateModal.debate} />
         { this.state.showEndDebateMessage && (<div className="end-message">
             <p className="quote">Change will not come if we wait for some other person or some other time. We are the ones we've been waiting for. We are the change that we seek.</p>
             <p className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span></p>
