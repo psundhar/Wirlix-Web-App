@@ -77,7 +77,6 @@ const DebateModal = React.createClass({
                                         </p>
                                     </div>
                                     <p className="message">{ statement.text }</p>
-                                    <p className="time-posted">25m</p>
                                 </div>
                             )}
                             { messages.map(m => {
@@ -92,7 +91,6 @@ const DebateModal = React.createClass({
                                             </p>
                                         </div>
                                         <p className="message">{ m.text }</p>
-                                        <p className="time-posted">25m</p>
                                     </div>
                                 );
                             }) }
