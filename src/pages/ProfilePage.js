@@ -43,18 +43,23 @@ const ProfilePage = React.createClass({
         this.setState({debates, debateModal: { debate }});
     },
 
-    handleNewMessage(debate, text) {
+    handleNewMessage(debate, text, isModerator = false) {
         const debates = this.state.debates;
 
         const newMessageDebate = debates.find(d => d._id == debate._id);
 
         const newMessageObj = {
-            user: this.state.user._id,
             text,
         };
 
-        newMessageDebate.messages.push(newMessageObj);
+        if(!isModerator) {
+            newMessageObj['user'] = this.state.user._id;
+        }
+        else {
+            newMessageObj['moderator'] = true;
+        }
 
+        newMessageDebate.messages.push(newMessageObj);
         this.setState({debates});
 
         // Update db state
@@ -62,6 +67,10 @@ const ProfilePage = React.createClass({
             message: newMessageObj
         })
             .then(res => res.json())
+            .then(debate => {
+                newMessageDebate.updated = debate.updated;
+                this.setState({debates});
+            })
             .catch(err => console.log(err));
     },
 

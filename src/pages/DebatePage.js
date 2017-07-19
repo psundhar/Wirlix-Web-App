@@ -101,7 +101,6 @@ const DebatePage = React.createClass({
         .then(res => res.json())
         .then(debate => {
             newMessageDebate.updated = debate.updated;
-            console.log(newMessageDebate);
             this.setState({debates});
         })
         .catch(err => console.log(err));
