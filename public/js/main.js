@@ -245,14 +245,15 @@ $(function animate() { //Scrolls to element
     });
   });
 
-// document.addEventListener('DOMContentLoaded', function(){
-//   Typed.new('.typewriter', {
-//     strings: ["Launching this Fall.", "Stay tuned for our app"],
-//     typeSpeed: 100,
-//     loop: true
-//   });
-//
-// });
+document.addEventListener('DOMContentLoaded', function(){
+  if(typeof Typed != 'undefined') {
+    Typed.new('.typewriter', {
+      strings: ["Launching this Fall.", "Stay tuned for our app"],
+      typeSpeed: 100,
+      loop: true
+    });
+  }
+});
 
 // $(".debate").flip({
 //   trigger: 'manual'
