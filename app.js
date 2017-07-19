@@ -193,7 +193,7 @@ var quotes = [
 	"“It is important that students bring a certain ragamuffin, barefoot irreverence to their studies; they are not here to worship what is known, but to question it.”  <br><br>—  Jacob Bronowski"
 ];
 
-const server = app.listen(3000, function () {
+const server = app.listen(process.env.PORT, function () {
     console.log("Example port is listening on app!");
 });
 
