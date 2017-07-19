@@ -7,6 +7,11 @@ const DebateModal = React.createClass({
             text: '',
             showEndDebateDialog: false,
             showEndDebateMessage: false,
+            visibleQuestions: {
+                1: false,
+                2: false,
+                3: false,
+            },
         };
     },
 
@@ -14,7 +19,18 @@ const DebateModal = React.createClass({
         this.setState({text: e.target.value });
     },
 
+    handleQuestionClick(num) {
+        const visibleQuestions = this.state.visibleQuestions;
+
+        visibleQuestions[num] = true;
+
+        this.setState({
+            visibleQuestions
+        });
+    },
+
     render() {
+        const { visibleQuestions } = this.state;
         const {handleNewMessage, debate, user, handleEndDebate } = this.props;
         const { statement, challenger = {}, challengee = {}, messages = [], views, subscribers = [] } = debate;
 
@@ -110,45 +126,45 @@ const DebateModal = React.createClass({
                     </div>
                     <div className="q-container">
                         <div className="question-box one">
-                            <p className="number">1</p>
+                            <p className="number" onClick={ () => this.handleQuestionClick(1) }>1</p>
                         </div>
                         <div className="question-box two">
-                            <p className="number">2</p>
+                            <p className="number" onClick={ () => this.handleQuestionClick(2) }>2</p>
                         </div>
                         <div className="question-box three">
-                            <p className="number">3</p>
+                            <p className="number" onClick={ () => this.handleQuestionClick(3) }>3</p>
                         </div>
                     </div>
-                    <div className="question one" style={{display: "none"}}>
+                    { visibleQuestions[1] && (<div className="question one">
                         <div className="message-box question-box one">
                             <div className="username">
-                                <p className="wirlix-img" style={{background: "url(images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
+                                <p className="wirlix-img" style={{background: "url(/images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
                                 <p> Wirlix</p>
                             </div>
                             <p className="message">this is question #1</p>
                             <p className="time-posted">25m</p>
                         </div>
-                    </div>
-                    <div className="question two" style={{display: "none"}}>
+                    </div>) }
+                    { visibleQuestions[2] && (<div className="question two">
                         <div className="message-box question-box one">
                             <div className="username">
-                                <p className="wirlix-img" style={{background: "url(images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
+                                <p className="wirlix-img" style={{background: "url(/images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
                                 <p> Wirlix</p>
                             </div>
                             <p className="message">this is question #2</p>
                             <p className="time-posted">25m</p>
                         </div>
-                    </div>
-                    <div className="question three" style={{display: "none"}}>
+                    </div>) }
+                    { visibleQuestions[3] && (<div className="question three">
                         <div className="message-box question-box one">
                             <div className="username">
-                                <p className="wirlix-img" style={{background: "url(images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
+                                <p className="wirlix-img" style={{background: "url(/images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
                                 <p> Wirlix</p>
                             </div>
                             <p className="message">this is question #3</p>
                             <p className="time-posted">25m</p>
                         </div>
-                    </div>
+                    </div>) }
                 </div>
             </div>
         );
