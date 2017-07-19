@@ -15,7 +15,7 @@ module.exports = function(passport) {
         var body = req.body;
         var username = body.username;
         var password = body.password;
-        User.findOne({username: username, password: password})
+        User.findOne({$or: [{ username: username }, { email: username }], password: password})
             .exec()
             .then(function(user) {
                 if(user) {
