@@ -33,7 +33,11 @@ const debatesSchema = mongoose.Schema({
             created: {
                 type: Date,
                 default: Date.now(),
-            }
+            },
+            moderator: {
+                type: Boolean,
+                default: false,
+            },
         }
     ],
     created: {

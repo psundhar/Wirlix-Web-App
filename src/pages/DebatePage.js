@@ -75,15 +75,21 @@ const DebatePage = React.createClass({
         this.setState({debates, debateModal: { debate }});
     },
 
-    handleNewMessage(debate, text) {
+    handleNewMessage(debate, text, isModerator = false) {
         const debates = this.state.debates;
 
         const newMessageDebate = debates.find(d => d._id == debate._id);
 
         const newMessageObj = {
-            user: this.state.user._id,
             text,
         };
+
+        if(!isModerator) {
+           newMessageObj['user'] = this.state.user._id;
+        }
+        else {
+            newMessageObj['moderator'] = true;
+        }
 
         newMessageDebate.messages.push(newMessageObj);
         this.setState({debates});

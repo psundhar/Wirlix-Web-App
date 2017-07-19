@@ -7,11 +7,11 @@ const DebateModal = React.createClass({
             text: '',
             showEndDebateDialog: false,
             showEndDebateMessage: false,
-            visibleQuestions: {
-                1: false,
-                2: false,
-                3: false,
-            },
+            // visibleQuestions: {
+            //     1: false,
+            //     2: false,
+            //     3: false,
+            // },
         };
     },
 
@@ -20,17 +20,12 @@ const DebateModal = React.createClass({
     },
 
     handleQuestionClick(num) {
-        const visibleQuestions = this.state.visibleQuestions;
+        const { handleNewMessage, debate, questions } = this.props;
 
-        visibleQuestions[num] = !visibleQuestions[num];
-
-        this.setState({
-            visibleQuestions
-        });
+        handleNewMessage(debate, questions[num.toString()], true);
     },
 
     render() {
-        const { visibleQuestions } = this.state;
         const {handleNewMessage, debate, user, handleEndDebate, questions } = this.props;
         const { statement, challenger = {}, challengee = {}, messages = [], views, subscribers = [] } = debate;
 
@@ -81,12 +76,32 @@ const DebateModal = React.createClass({
                             )}
                             { messages.map(m => {
                                 const isChallenger = m.user == challenger._id;
-                                const profileImage = ( isChallenger ? challenger.image : challengee.image ) || "/images/pexels-photo-103123.jpeg";
+                                const isChallengee = m.user == challengee._id;
+
+                                let profileImage = "/images/pexels-photo-103123.jpeg";
+                                let profileLink;
+
+                                if(m.moderator) {
+                                    profileImage = "/images/Wirlix_InvertedLogo.png";
+                                }
+                                else if(isChallenger) {
+                                    profileImage = challenger.image;
+                                }
+                                else if(isChallengee) {
+                                    profileImage = challengee.image;
+                                }
+
+                                if(m.moderator) {
+                                    profileLink = null;
+                                }
+                                else {
+                                    profileLink = "/profile/" + m.user;
+                                }
 
                                 return (
                                     <div className={ "message-box " + ( isChallenger ? "agr-message" : "dis-message" )  }>
                                         <div className="username">
-                                            <p><a href={"/profile/" + ( isChallenger ? challenger._id : challengee._id )}
+                                            <p><a href={profileLink}
                                                   style={{background: "url(" + profileImage + ") center center no-repeat"}}></a>
                                             </p>
                                         </div>
@@ -123,41 +138,19 @@ const DebateModal = React.createClass({
 
                         </div>
                     </div>
-                    <div className="q-container">
-                        <div className="question-box one">
-                            <p className="number" onClick={ () => this.handleQuestionClick(1) }>1</p>
-                        </div>
-                        <div className="question-box two">
-                            <p className="number" onClick={ () => this.handleQuestionClick(2) }>2</p>
-                        </div>
-                        <div className="question-box three">
-                            <p className="number" onClick={ () => this.handleQuestionClick(3) }>3</p>
-                        </div>
-                    </div>
-                    { visibleQuestions[1] && (<div onClick={ () => this.handleQuestionClick(1)} className="question one">
-                        <div className="message-box question-box one">
-                            <div className="username">
-                                <p className="wirlix-img" style={{background: "url(/images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
+                    { isChallengee || isChallenger && (
+                        <div className="q-container">
+                            <div className="question-box one">
+                                <p className="number" onClick={ () => this.handleQuestionClick(1) }>1</p>
                             </div>
-                            <p className="message">{ questions["1"] }</p>
-                        </div>
-                    </div>) }
-                    { visibleQuestions[2] && (<div onClick={ () => this.handleQuestionClick(2)} className="question two">
-                        <div className="message-box question-box one">
-                            <div className="username">
-                                <p className="wirlix-img" style={{background: "url(/images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
+                            <div className="question-box two">
+                                <p className="number" onClick={ () => this.handleQuestionClick(2) }>2</p>
                             </div>
-                            <p className="message">{ questions["2"] }</p>
-                        </div>
-                    </div>) }
-                    { visibleQuestions[3] && (<div onClick={ () => this.handleQuestionClick(3)} className="question three">
-                        <div className="message-box question-box one">
-                            <div className="username">
-                                <p className="wirlix-img" style={{background: "url(/images/Wirlix_InvertedLogo.png) center center no-repeat"}}></p>
+                            <div className="question-box three">
+                                <p className="number" onClick={ () => this.handleQuestionClick(3) }>3</p>
                             </div>
-                            <p className="message">{ questions["3"] }</p>
                         </div>
-                    </div>) }
+                    )}
                 </div>
             </div>
         );
