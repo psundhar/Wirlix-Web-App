@@ -49,13 +49,13 @@ const DebateModal = React.createClass({
                         <div className="chat-header col-md-12">
                             <div className="col-md-6 col-sm-6 col-xs-6">
                                 <div className="user-img">
-                                    <p><a href="profile.html" style={{background: "url(" + challengeeImage + " ) center center no-repeat"}}></a></p>
+                                    <p><a href={ "/profile/" +  challengee._id } style={{background: "url(" + challengeeImage + " ) center center no-repeat"}}></a></p>
                                     <p>{ challengee.username }</p>
                                 </div>
                             </div>
                             <div className="col-md-6 col-sm-6 col-xs-6">
                                 <div className="user-img">
-                                    <p><a href="profile.html" style={{background: "url(" + challengerImage + " ) center center no-repeat"}}></a></p>
+                                    <p><a href={ "/profile/" +  challenger._id } style={{background: "url(" + challengerImage + " ) center center no-repeat"}}></a></p>
                                     <p>{ challenger.username }</p>
                                 </div>
                             </div>
@@ -72,8 +72,8 @@ const DebateModal = React.createClass({
                             { statement && (
                                 <div className="message-box dis-message">
                                     <div className="username">
-                                        <p><a href="profile.html"
-                                              style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
+                                        <p><a href={"/profile/" + challengee._id}
+                                              style={{background: "url(" + challengee.image + ") center center no-repeat"}}></a>
                                         </p>
                                     </div>
                                     <p className="message">{ statement.text }</p>
@@ -82,12 +82,13 @@ const DebateModal = React.createClass({
                             )}
                             { messages.map(m => {
                                 const isChallenger = m.user == challenger._id;
+                                const profileImage = ( isChallenger ? challenger.image : challengee.image ) || "/images/pexels-photo-103123.jpeg";
 
                                 return (
                                     <div className={ "message-box " + ( isChallenger ? "agr-message" : "dis-message" )  }>
                                         <div className="username">
-                                            <p><a href="profile.html"
-                                                  style={{background: "url(/images/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
+                                            <p><a href={"/profile/" + ( isChallenger ? challenger._id : challengee._id )}
+                                                  style={{background: "url(" + profileImage + ") center center no-repeat"}}></a>
                                             </p>
                                         </div>
                                         <p className="message">{ m.text }</p>
