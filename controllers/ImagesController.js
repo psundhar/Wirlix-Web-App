@@ -45,7 +45,7 @@ const ImagesController = {
 
                             req.login(savedUser, function(err) { // Save new image info to logged-in user
                                 if(err) {
-                                    return next(err);
+                                    throw err;
                                 }
                                 res.send(savedUser);
                             });
