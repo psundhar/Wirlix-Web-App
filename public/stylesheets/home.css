@@ -273,7 +273,7 @@ h1, h2, h3, h4{
 /* ================================== News / Comment Section ================================== */
 
 .news-section{
-  background: url(../images/missile.jpg) center center no-repeat;
+  background: url(../images/missile3.jpg) center center no-repeat;
     background-size: cover;
     position: relative;
 }
@@ -647,7 +647,7 @@ z-index: 5;
 
 /* ================================== Debate ================================== */
 .debate-section, .ran{
-    background: url(../images/missile.jpg) center center no-repeat;
+    background: url(../images/missile3.jpg) center center no-repeat;
     background-size: cover;
     position: relative;
 }
@@ -1278,7 +1278,7 @@ z-index: 5;
 
 /* ================================== Rankings ================================== */
 .rankings-section {
-  background: url(../images/missile.jpg) center center no-repeat;
+  background: url(../images/missile3.jpg) center center no-repeat;
   background-size: cover;
 }
 
@@ -1442,7 +1442,7 @@ z-index: 5;
 /* ================================== Profile ================================== */
 
 .main-content.profile{
-  background: url(../images/missile.jpg) center center no-repeat;
+  background: url(../images/missile3.jpg) center center no-repeat;
   background-size: cover;
 }
 
