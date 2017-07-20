@@ -41,22 +41,22 @@ module.exports = function(passport) {
     //     res.render('profile', { name: req.body.fullName });
     // });
 
-    router.get('/lit', function(req, res) {
-        res.render('lit', {name: req.body.fullName});
-    });
+    // router.get('/lit', function(req, res) {
+    //     res.render('lit', {name: req.body.fullName});
+    // });
 
     // router.get('/testtwilio', function(req, res) {
     //     res.render('testtwilio', {name: req.body.firstName})
     // })
 
-    router.get('/about', function(req, res) {
-        res.render('about', { name: req.body.fullName });
+    // router.get('/about', function(req, res) {
+    //     res.render('about', { name: req.body.fullName });
+    //
+    // })
 
-    })
-
-    router.get('/email', function(req, res) {
-        res.render('email', { name: req.body.fullName });
-    })
+    // router.get('/email', function(req, res) {
+    //     res.render('email', { name: req.body.fullName });
+    // })
 
     router.get('/logout', function(req, res) {
         req.logout();
