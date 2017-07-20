@@ -4,9 +4,9 @@ const Topic = require('../models/topics');
 
 const ChallengesController = {
     getNotifications: function(req, res, next) {
-        Topic.queryLatest()
+        Topic.queryLatest().exec()
             .then(function(topic) {
-                return Challenge.queryByUserAndTopicAndNotification(req.user._id, topic._id);
+                return Challenge.queryByUserAndTopicAndNotification(req.user._id, topic[0]._id);
             })
             .then(function(challenges) {
                 res.send(challenges);
