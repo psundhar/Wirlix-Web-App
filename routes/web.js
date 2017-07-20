@@ -22,7 +22,7 @@ router.get('/debate', function(req, res) {
             const topic = promiseResultsArray[0];
             const debates = promiseResultsArray[1];
 
-            var bgImage = "../images/piccool.jpeg", prompt = "Should abortion be legal?";
+            var bgImage = "../images/north-korea-image.jpg", prompt = "Do you think that the United States should be getting involved in North Korea?";
 
             if(topic) {
                 bgImage = topic.image;

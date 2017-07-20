@@ -241,7 +241,7 @@ const ProfilePage = React.createClass({
                         <div className="modal-content">
                             <div className="my-ranking">
                                 <p className="my-info"><a href="profile.html"
-                                                          style={{background: "url(img/pexels-photo-103123.jpeg) center center no-repeat"}}></a>
+                                                          style={{background: "url(img/north-korea-image.jpg) center center no-repeat"}}></a>
                                     Priyanka Sundhar</p>
                             </div>
                             <div className="my-rank-num">

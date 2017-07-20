@@ -153,7 +153,7 @@ const ImagePage = React.createClass({
                             <button onClick={ this.handleUploadClick } disabled={ isUploading }>Save Photo</button>
                         </div>
                         <div className="continue">
-                            <button onClick={ this.handleContinueClick }>To Profile <i className="fa fa-arrow-right" aria-hidden="true"/></button>
+                            <button onClick={ this.handleContinueClick }>Continue<i className="fa fa-arrow-right" aria-hidden="true"/></button>
                         </div>
                     </div>
                     <div className="col-md-4 continue">
