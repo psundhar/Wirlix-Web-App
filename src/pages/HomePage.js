@@ -4,6 +4,8 @@ import apiFetch from '../utilities/apiFetch';
 import NavBar from '../components/NavBar';
 import ChallengeDialog from '../components/ChallengeDialog';
 
+const MIN_VOTES = 5;
+
 const HomePage = React.createClass({
 
     getInitialState() {
@@ -154,7 +156,7 @@ const HomePage = React.createClass({
                             <div className="col-md-4 vote-col factual active" id ="factual">
                                 <h2 className="col-md-12"><img src="images/factual-w.png"/></h2>
                                 <div className="comment-container col-md-12">
-                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length >= 10).map((s, i) => {
+                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length >= MIN_VOTES).map((s, i) => {
                                         return (
                                             <StatementCard key={i} handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
@@ -166,7 +168,7 @@ const HomePage = React.createClass({
                             <div className="col-md-4 vote-col middle" id ="middle">
                                 <h2 className="col-md-12">You Decide</h2>
                                 <div className="comment-container col-md-12">
-                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length < 10 && s.voters.filter(v => !v.isRational).length < 10).map(s => {
+                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length < MIN_VOTES && s.voters.filter(v => !v.isRational).length < MIN_VOTES).map(s => {
                                         return (
                                             <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
@@ -174,11 +176,10 @@ const HomePage = React.createClass({
                                 </div>
                             </div>
 
-
                             <div className="col-md-4 vote-col emotional" id = "emotional">
                                 <h2 className="col-md-12"><img src="images/emotional-w.png" /></h2>
                                 <div className="comment-container col-md-12">
-                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => !v.isRational).length >= 10).map(s => {
+                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => !v.isRational).length >= MIN_VOTES).map(s => {
                                         return (
                                             <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
                                         )
@@ -193,112 +194,6 @@ const HomePage = React.createClass({
 
             </div>
         </section>
-        <div id="rankings" className="modal fade" role="dialog">
-            <div className="modal-dialog">
-                <div className="modal-content">
-                    <div className="my-ranking">
-                        <p className="my-info"><a href="profile.html" style={{background: "url(images/pexels-photo-103123.jpeg) center center no-repeat" }}></a> Priyanka Sundhar</p>
-                    </div>
-                    <div className="my-rank-num">
-                        <p className="my-rank">#434</p>
-                    </div>
-                    <div className="top-ranks">
-                        <div className="factual rank-content">
-                            <h2><img src="images/best-debater.png" /> Most Factual Debater</h2>
-                            <ul className="rank-container col-md-12">
-                                <div className="first-place">
-                                    <li><span className="rank-number">1</span> John Appleseed</li>
-                                </div>
-                                <div className="col-md-6 col-sm-6">
-                                    <li><span className="rank-number">2</span> John Appleseed</li>
-                                    <li><span className="rank-number">3</span> John Appleseed</li>
-                                    <li><span className="rank-number">4</span> John Appleseed</li>
-                                    <li><span className="rank-number">5</span> John Appleseed</li>
-                                    <li><span className="rank-number">6</span> John Appleseed</li>
-                                    <li><span className="rank-number">7</span> John Appleseed</li>
-                                    <li><span className="rank-number">8</span> John Appleseed</li>
-                                    <li><span className="rank-number">9</span> John Appleseed</li>
-                                    <li><span className="rank-number">10</span> John Appleseed</li>
-                                    <li><span className="rank-number">11</span> John Appleseed</li>
-                                    <li><span className="rank-number">12</span> John Appleseed</li>
-                                    <li><span className="rank-number">13</span> John Appleseed</li>
-                                </div>
-                                <div className="col-md-6 col-sm-6">
-                                    <li><span className="rank-number">14</span> John Appleseed</li>
-                                    <li><span className="rank-number">15</span> John Appleseed</li>
-                                    <li><span className="rank-number">16</span> John Appleseed</li>
-                                    <li><span className="rank-number">17</span> John Appleseed</li>
-                                    <li><span className="rank-number">18</span> John Appleseed</li>
-                                    <li><span className="rank-number">19</span> John Appleseed</li>
-                                    <li><span className="rank-number">20</span> John Appleseed</li>
-                                    <li><span className="rank-number">21</span> John Appleseed</li>
-                                    <li><span className="rank-number">22</span> John Appleseed</li>
-                                    <li><span className="rank-number">23</span> John Appleseed</li>
-                                    <li><span className="rank-number">24</span> John Appleseed</li>
-                                    <li><span className="rank-number">25</span> John Appleseed</li>
-                                </div>
-                            </ul>
-                            <div className="next-buttons col-md-12 col-sm-12">
-                                <div className="col-md-6 col-sm-6">
-                                    <button className="back">Back</button>
-                                </div>
-                                <div className="col-md-6 col-sm-6">
-                                    <button className="next">Next</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="emotional rank-content">
-                            <h2><i className="fa fa-hand-peace-o" aria-hidden="true"></i> Most <span className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span><span className="I">I</span><span className="N">N</span><span className="G">G</span></span>
-                                Debater</h2>
-                            <ul className="rank-container col-md-12">
-                                <div className="first-place">
-                                    <li><span className="rank-number">1</span> John Appleseed</li>
-                                </div>
-                                <div className="col-md-6 col-sm-6">
-                                    <li><span className="rank-number">2</span> John Appleseed</li>
-                                    <li><span className="rank-number">3</span> John Appleseed</li>
-                                    <li><span className="rank-number">4</span> John Appleseed</li>
-                                    <li><span className="rank-number">5</span> John Appleseed</li>
-                                    <li><span className="rank-number">6</span> John Appleseed</li>
-                                    <li><span className="rank-number">7</span> John Appleseed</li>
-                                    <li><span className="rank-number">8</span> John Appleseed</li>
-                                    <li><span className="rank-number">9</span> John Appleseed</li>
-                                    <li><span className="rank-number">10</span> John Appleseed</li>
-                                    <li><span className="rank-number">11</span> John Appleseed</li>
-                                    <li><span className="rank-number">12</span> John Appleseed</li>
-                                    <li><span className="rank-number">13</span> John Appleseed</li>
-                                </div>
-                                <div className="col-md-6 col-sm-6">
-                                    <li><span className="rank-number">14</span> John Appleseed</li>
-                                    <li><span className="rank-number">15</span> John Appleseed</li>
-                                    <li><span className="rank-number">16</span> John Appleseed</li>
-                                    <li><span className="rank-number">17</span> John Appleseed</li>
-                                    <li><span className="rank-number">18</span> John Appleseed</li>
-                                    <li><span className="rank-number">19</span> John Appleseed</li>
-                                    <li><span className="rank-number">20</span> John Appleseed</li>
-                                    <li><span className="rank-number">21</span> John Appleseed</li>
-                                    <li><span className="rank-number">22</span> John Appleseed</li>
-                                    <li><span className="rank-number">23</span> John Appleseed</li>
-                                    <li><span className="rank-number">24</span> John Appleseed</li>
-                                    <li><span className="rank-number">25</span> John Appleseed</li>
-                                </div>
-                            </ul>
-                            <div className="next-buttons col-md-12 col-sm-12">
-                                <div className="col-md-6 col-sm-6">
-                                    <button className="back">Back</button>
-                                </div>
-                                <div className="col-md-6 col-sm-6">
-                                    <button className="next">Next</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="close-bottom">
-                        <button type="button" className="btn btn-default" data-dismiss="modal"><i className="fa fa-times-circle" aria-hidden="true"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} topicId={ this.state.challenge.topicId } statementId={ this.state.challenge.statementId } user={ user } />
         </div>
         )
