@@ -4,8 +4,8 @@ module.exports = {
     getCurrent: function(req, res) {
         Topic.queryLatest()
             .exec()
-            .then(function(topic) {
-                res.send(topic);
+            .then(function(topicResults) {
+                res.send(topicResults[0]);
             })
             .catch(function(err) {
                 console.log(err);

@@ -17,27 +17,25 @@ router.use(function(req, res, next) { // TODO - for some reason couldn't get pas
 });
 
 router.get('/debate', function(req, res) {
-    Promise.all([Topic.queryLatest().exec(), Debate.queryAll().exec()])
-        .then(function(promiseResultsArray) {
-            const topic = promiseResultsArray[0][0];
-            const debates = promiseResultsArray[1];
+    Topic.queryLatest().exec()
+    .then(function(topicResults) {
+        const topic = topicResults[0];
 
-            var bgImage = "../images/north-korea-image.jpg", prompt = "Do you think that the United States should be getting involved in North Korea?";
+        return Promise.all([topic, Debate.queryByTopic(topic._id).exec()]);
+    })
+    .then(function(promiseResultsArray) {
+        const topic = promiseResultsArray[0];
+        const debates = promiseResultsArray[1];
 
-            if(topic) {
-                bgImage = topic.image;
-                prompt = topic.prompt;
-            }
+        const data = {
+            topic: topic,
+            debates: debates,
+            user: req.user,
+        };
 
-            const data = {
-                topic: topic,
-                debates: debates,
-                user: req.user,
-            };
-
-            res.render('react_main', { page: 'debate', data: JSON.stringify(data) });
-        }).
-    catch(function(err) {
+        res.render('react_main', { page: 'debate', data: JSON.stringify(data) });
+    })
+    .catch(function(err) {
         console.log(err);
         res.status(500);
     })
