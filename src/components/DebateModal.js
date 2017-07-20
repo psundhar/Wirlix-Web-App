@@ -110,7 +110,7 @@ const DebateModal = React.createClass({
                                 );
                             }) }
                         </div>
-                        { isParticipant && (<div className="reply-box col-md-12">
+                        <div className="reply-box col-md-12">
                             <textarea placeholder="Write your opinion...." onChange={this.handleReplyTextChange} value={this.state.text}></textarea>
                             <div className="col-md-4 col-sm-4 col-xs-4 end-button">
                                 <button className="end-debate" onClick={() => this.setState({ showEndDebateDialog: true })}>End Debate</button>
@@ -118,7 +118,7 @@ const DebateModal = React.createClass({
                             <div className="col-md-8 col-sm-8 col-xs-8 reply-button">
                                 <button className="reply-submit" onClick={ () => { handleNewMessage(debate, this.state.text); this.setState({text: ''}); } }>Reply</button>
                             </div>
-                        </div>) }
+                        </div>
                         <div className="close-bottom">
                             <button type="button" style={{width:"50px", height:"50px"}} className="btn btn-default" data-dismiss="modal"><i className="fa fa-times-circle" aria-hidden="true"></i></button>
                         </div>

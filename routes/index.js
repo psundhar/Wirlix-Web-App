@@ -36,10 +36,10 @@ module.exports = function(passport) {
             })
     });
 
-    router.get('/profile', function(req, res) {
-        //res.send('Successfully authenticated');
-        res.render('profile', { name: req.body.fullName });
-    });
+    // router.get('/profile', function(req, res) {
+    //     //res.send('Successfully authenticated');
+    //     res.render('profile', { name: req.body.fullName });
+    // });
 
     router.get('/lit', function(req, res) {
         res.render('lit', {name: req.body.fullName});
