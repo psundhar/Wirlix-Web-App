@@ -181,7 +181,7 @@ const ProfilePage = React.createClass({
                                         <p><img src="/images/peace.png" className="peace"/> { statement.voters && statement.voters.filter(v => !v.isRational).length }</p>
                                     </div>
                                 </div>
-                                <div className="qotd col-md-10 col-md-offset-1">
+                                <div className="qotd col-md-12">
                                     <div className="gotd-banner">
                                         <h3 className="mb2">{ topic.prompt }</h3>
                                         { statement.agreement && (<div style={{backgroundColor: "white", border: "4px solid " + (statement.agreement == 'agree' ? 'slateblue' : 'crimson')}} className="p2">
