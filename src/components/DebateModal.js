@@ -120,7 +120,7 @@ const DebateModal = React.createClass({
                             </div>
                         </div>) }
                         <div className="close-bottom">
-                            <button type="button" className="btn btn-default" data-dismiss="modal"><i className="fa fa-times-circle" aria-hidden="true"></i></button>
+                            <button type="button" style={{width:"50px", height:"50px"}} className="btn btn-default" data-dismiss="modal"><i className="fa fa-times-circle" aria-hidden="true"></i></button>
                         </div>
                         { this.state.showEndDebateDialog && (<div className="end-confirm">
                             <p>Are you sure you want to end this debate?</p>
