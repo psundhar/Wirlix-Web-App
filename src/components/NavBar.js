@@ -60,7 +60,7 @@ const NavBar = React.createClass({
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                             </button>
-                            <a className="navbar-brand" href="#"><img src="/images/Wirlix_InvertedLogo.png" /></a>
+                            <a className="navbar-brand" href="/home"><img src="/images/Wirlix_InvertedLogo.png" /></a>
                         </div>
                         <div className="collapse navbar-collapse center-m" id="bs-example-navbar-collapse-1">
                             <ul className="nav navbar-nav center">
