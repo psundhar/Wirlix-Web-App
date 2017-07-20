@@ -21,16 +21,17 @@ router.get('/debate', function(req, res) {
     .then(function(topicResults) {
         const topic = topicResults[0];
 
-        return Promise.all([topic, Debate.queryByTopic(topic._id).exec()]);
+        return Promise.all([topic, Debate.queryByTopic(topic._id).exec(), User.findById(req.user._id).exec()]);
     })
     .then(function(promiseResultsArray) {
         const topic = promiseResultsArray[0];
         const debates = promiseResultsArray[1];
+        const user = promiseResultsArray[2];
 
         const data = {
             topic: topic,
             debates: debates,
-            user: req.user,
+            user: user,
         };
 
         res.render('react_main', { page: 'debate', data: JSON.stringify(data) });
@@ -44,16 +45,17 @@ router.get('/debate', function(req, res) {
 router.get('/home', function(req, res) {
     Topic.queryLatest().exec()
         .then(function(topic) {
-            return Promise.all([Promise.resolve(topic), Statement.queryTopic(topic[0]._id)]);
+            return Promise.all([Promise.resolve(topic), Statement.queryTopic(topic[0]._id), User.findById(req.user._id).exec()]);
         })
         .then(function(resultsArr) {
             const topic = resultsArr[0][0];
             const statements = resultsArr[1];
+            const user = resultsArr[2];
 
             const data = {
                 topic: topic,
                 statements: statements,
-                user: req.user,
+                user: user,
             };
 
             res.render('react_main', { page: 'home', data: JSON.stringify(data)});
@@ -123,12 +125,12 @@ router.get('/image', function(req, res, next) {
 router.get('/rankings', function(req, res, next) {
     Topic.queryLatest().exec()
     .then(function(topic) {
-        return Statement.queryTopic(topic[0]._id);
+        return Promise.all([Statement.queryTopic(topic[0]._id), User.findById(req.user._id).exec()]);
     })
-    .then(function(statements) {
+    .then(function(promiseResultsArray) {
         const data = {
-            user: req.user,
-            statements,
+            statements: promiseResultsArray[0],
+            user: promiseResultsArray[1],
         };
 
         res.render('react_main', { page: 'rankings', data: JSON.stringify(data)});
