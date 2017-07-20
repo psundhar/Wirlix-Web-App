@@ -89,7 +89,7 @@ router.get('/profile/:id', function(req, res, next) {
         })
         .then(function(resultsArray) {
             const user = resultsArray[0];
-            const topic = resultsArray[1];
+            const topic = resultsArray[1][0];
             const statement = resultsArray[2];
             const debates = resultsArray[3];
             const challenges = resultsArray[4];

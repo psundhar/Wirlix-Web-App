@@ -7,11 +7,6 @@ const DebateModal = React.createClass({
             text: '',
             showEndDebateDialog: false,
             showEndDebateMessage: false,
-            // visibleQuestions: {
-            //     1: false,
-            //     2: false,
-            //     3: false,
-            // },
         };
     },
 
@@ -21,7 +16,6 @@ const DebateModal = React.createClass({
 
     handleQuestionClick(num) {
         const { handleNewMessage, debate, questions } = this.props;
-
         handleNewMessage(debate, questions[num.toString()], true);
     },
 
@@ -138,7 +132,7 @@ const DebateModal = React.createClass({
 
                         </div>
                     </div>
-                    { isChallengee || isChallenger && (
+                    { isParticipant && (
                         <div className="q-container">
                             <div className="question-box one">
                                 <p className="number" onClick={ () => this.handleQuestionClick(1) }>1</p>
