@@ -26,7 +26,7 @@ const model = mongoose.model('Topic', topicSchema);
 
 module.exports = {
     queryLatest: function() {
-        return model.findOne({expires: {$gte: Date.now()}});
+        return model.find({expires: {$gte: Date.now()}}).sort({expires: -1}).limit(1);
     },
     default: model,
 };

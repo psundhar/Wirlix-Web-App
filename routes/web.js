@@ -19,7 +19,7 @@ router.use(function(req, res, next) { // TODO - for some reason couldn't get pas
 router.get('/debate', function(req, res) {
     Promise.all([Topic.queryLatest().exec(), Debate.queryAll().exec()])
         .then(function(promiseResultsArray) {
-            const topic = promiseResultsArray[0];
+            const topic = promiseResultsArray[0][0];
             const debates = promiseResultsArray[1];
 
             var bgImage = "../images/north-korea-image.jpg", prompt = "Do you think that the United States should be getting involved in North Korea?";
@@ -49,7 +49,7 @@ router.get('/home', function(req, res) {
             return Promise.all([Promise.resolve(topic), Statement.queryTopic(topic._id)]);
         })
         .then(function(resultsArr) {
-            const topic = resultsArr[0];
+            const topic = resultsArr[0][0];
             const statements = resultsArr[1];
 
             const data = {
@@ -74,7 +74,7 @@ router.get('/profile/:id', function(req, res, next) {
         })
         .then(function(resultsArray) {
             const user = resultsArray[0];
-            const topic = resultsArray[1];
+            const topic = resultsArray[1][0];
 
             resultsArray.push(Statement.queryByTopicAndUser(topic._id, user._id).exec());
             resultsArray.push(Debate.queryByTopicAndUser(topic._id, user._id).exec());
@@ -125,7 +125,7 @@ router.get('/image', function(req, res, next) {
 router.get('/rankings', function(req, res, next) {
     Topic.queryLatest().exec()
     .then(function(topic) {
-        return Statement.queryTopic(topic._id);
+        return Statement.queryTopic(topic[0]._id);
     })
     .then(function(statements) {
         const data = {
