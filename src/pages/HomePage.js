@@ -58,6 +58,10 @@ const HomePage = React.createClass({
     handleSubmit(agree) {
         let that = this;
 
+        if(this.state.statementText.length == 0) {
+            return; // Don't submit empty statements
+        }
+
         apiFetch('/api/statements', 'POST', {
             topic: this.state.topic._id,
             text: this.state.statementText,
