@@ -44,7 +44,7 @@ router.get('/debate', function(req, res) {
 router.get('/home', function(req, res) {
     Topic.queryLatest().exec()
         .then(function(topic) {
-            return Promise.all([Promise.resolve(topic), Statement.queryTopic(topic._id)]);
+            return Promise.all([Promise.resolve(topic), Statement.queryTopic(topic[0]._id)]);
         })
         .then(function(resultsArr) {
             const topic = resultsArr[0][0];
