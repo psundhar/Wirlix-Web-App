@@ -79,10 +79,10 @@ const DebateModal = React.createClass({
                                     profileImage = "/images/Wirlix_InvertedLogo.png";
                                 }
                                 else if(isChallenger) {
-                                    profileImage = challenger.image;
+                                    profileImage = challengerImage;
                                 }
                                 else if(isChallengee) {
-                                    profileImage = challengee.image;
+                                    profileImage = challengeeImage;
                                 }
 
                                 if(m.moderator) {
