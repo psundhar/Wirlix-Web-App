@@ -73,7 +73,7 @@ const NavBar = React.createClass({
                                 <li><a className="profile-nav" href={ "/profile/" + user._id } style={{background: "url(" + profileImage + ") center center no-repeat" }}>
                                     { notify && (<div style={{position:'absolute',top:0,left:0,height:"13px",width:"13px",borderRadius:"100px",backgroundColor:"crimson"}}></div>) }
                                 </a></li>
-                                <li><a className="help" href="tutorial.html">? <br/><span>See Tutorial</span></a></li>
+                                <li><a className="help" href="/tutorial.html">? <br/><span>See Tutorial</span></a></li>
                             </ul>
                         </div>
                     </div>
