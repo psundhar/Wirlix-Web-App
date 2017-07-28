@@ -29,6 +29,8 @@ module.exports = function(passport) {
             })
             .then(function(resArray) {
                 if(resArray[0]) {
+                    req.logOut();
+
                     req.logIn(resArray[1], function(err) {
                         if(err) {
                             return next(err);
