@@ -17,23 +17,30 @@ module.exports = function(passport) {
         var body = req.body;
         var username = body.username;
         var password = body.password;
-        User.findOne({$or: [{ username: username }, { email: username }], password: password})
+        User.findOne({$or: [{ username: username }, { email: username }]})
             .exec()
             .then(function(user) {
                 if(user) {
-                    req.logIn(user, function(err) {
+                    return Promise.all([bcrypt.compare(password, user.password), user]);
+                }
+                throw "Couldn't find user with username or email";
+            })
+            .then(function(resArray) {
+                if(resArray[0]) {
+                    req.logIn(resArray[1], function(err) {
                         if(err) {
                             return next(err);
                         }
-                        return res.redirect('/home');
+                        res.redirect('/home');
                     });
                 }
                 else {
-                    return res.render('index', { title: 'Wirlix', error: 'Invalid Username or Password' });
+                    throw "Couldn't verify password hash";
                 }
             })
             .catch(function(err) {
                 console.log(err);
+                return res.render('index', { title: 'Wirlix', error: 'Invalid Username or Password' });
             })
     });
 
