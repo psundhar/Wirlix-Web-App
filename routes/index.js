@@ -10,7 +10,9 @@ var R = require('ramda')
 module.exports = function(passport) {
     /* GET home page. */
     router.get('/', function(req, res) {
-        res.render('index', { title: 'Wirlix' });
+        let signup_error = req.query.sue ? decodeURIComponent(req.query.sue) : false;
+
+        res.render('index', { title: 'Wirlix', signup_error: signup_error });
     });
 
     router.post('/login', function(req, res, next) {
@@ -99,7 +101,7 @@ module.exports = function(passport) {
     });
 
 
-    router.post('/user', function(req, res) {
+    router.post('/user', function(req, res, next) {
         // client.sendMessage({
         //     to: req.body.phoneNumber,
         //     from:'+16176525428',
@@ -301,16 +303,23 @@ module.exports = function(passport) {
             newUser.save(function(err,savedUser) {
                 if(err) {
                     console.log(err);
-                    res.redirect('/');
-                    res.end();
-                }
-                // Log in user
-                req.login(savedUser, function(err) {
-                    if(err) {
-                        return next(err);
+                    let message = '';
+                    if(err.name == 'MongoError') {
+                        message = 'Your username or e-mail already exists. Please try another.';
                     }
-                    res.redirect('/image/');
-                })
+                    res.redirect('/?sue=' + message);
+                }
+                else {
+                    // Log out existing user if any
+                    req.logOut();
+                    // Log in user
+                    req.logIn(savedUser, function(err) {
+                        if(err) {
+                            return next(err);
+                        }
+                        res.redirect('/image/');
+                    })
+                }
             });
         })
         .catch(function(err) {

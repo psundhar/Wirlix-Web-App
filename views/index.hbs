@@ -194,6 +194,9 @@
     <div class = "text-home">
         Get ready for the world experience.
     </div>
+    {{#if signup_error }}
+        <p style="text-align: center">{{ signup_error }}</p>
+    {{/if}}
     <form action = "/user" method=post>
         <div class="container">
             <div class="row">
@@ -213,7 +216,7 @@
                 </div>
                 <div class="col-xs-12">
                         <span class="input">
-                            <input type="tel" name= "username" placeholder= "Username" maxlength="12" class="input__field" id="input-8" />
+                        <input type="tel" name= "username" placeholder= "Username" maxlength="30" class="input__field" id="input-8" />
                             <!--<label for="input-8" class="input__label">
                                 <span class="input__label-content"></span>
                             </label>-->

@@ -104,7 +104,6 @@ const ImagePage = React.createClass({
                 uri = uri + '?' + queryString;
             }
 
-            console.log(queries, queryString);
             fetch(uri, {
                 method: 'POST',
                 body: data,
