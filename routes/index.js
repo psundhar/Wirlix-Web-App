@@ -15,39 +15,6 @@ module.exports = function(passport) {
         res.render('index', { title: 'Wirlix', signup_error: signup_error });
     });
 
-    router.post('/login', function(req, res, next) {
-        var body = req.body;
-        var username = body.username;
-        var password = body.password;
-        User.findOne({$or: [{ username: username }, { email: username }]})
-            .exec()
-            .then(function(user) {
-                if(user) {
-                    return Promise.all([bcrypt.compare(password, user.password), user]);
-                }
-                throw "Couldn't find user with username or email";
-            })
-            .then(function(resArray) {
-                if(resArray[0]) {
-                    req.logOut();
-
-                    req.logIn(resArray[1], function(err) {
-                        if(err) {
-                            return next(err);
-                        }
-                        res.redirect('/home');
-                    });
-                }
-                else {
-                    throw "Couldn't verify password hash";
-                }
-            })
-            .catch(function(err) {
-                console.log(err);
-                return res.render('index', { title: 'Wirlix', error: 'Invalid Username or Password' });
-            })
-    });
-
     // router.get('/profile', function(req, res) {
     //     //res.send('Successfully authenticated');
     //     res.render('profile', { name: req.body.fullName });

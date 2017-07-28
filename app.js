@@ -15,7 +15,8 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var connect = process.env.MONGODB_URI;
-
+const bcrypt = require('bcrypt');
+const flash = require('connect-flash');
 const apiRoutes = require('./routes/api');
 // const webRoutes = require('./routes/web');
 
@@ -49,28 +50,38 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-passport.use(new LocalStrategy({passReqToCallback : true}, function(req, username, password, done) {
-    users.findOne({
-      email: username
-    }, function(err, user) {
-      if (err) {
-        console.log(err);
-        return done(err);
-      }
+passport.use(new LocalStrategy(function(username, password, done) {
+    User.findOne({$or: [{ username: username }, { email: username }]})
+        .exec()
+        .then(function(user) {
+            if(user) {
+                return Promise.all([bcrypt.compare(password, user.password), user]);
+            }
+            return done(null, false, { message: 'Invalid username or password.' });
+        })
+        .then(function(resArray) {
+            if(resArray[0]) {
+                req.logOut();
 
-      if (!user) {
-        return done(null, false, { message: 'Invalid Username or Password!' });
-      }
+                req.logIn(resArray[1], function(err) {
+                    if(err) {
+                        throw err;
+                    }
+                    return done(null, true);
+                });
+            }
+            else {
+                return done(null, false, { message: 'Password incorrect' });
 
-      if (user.password != password) {
-        return done(null, false, { message: 'Invalid Username or Password!' });
-      }
-
-      return done(null, user);
-    });
+            }
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.send(500);
+        });
 }));
 
-
+app.use(flash());
 
 // passport.serializeUser(function(user, done) {
 //   done(null, user._id);

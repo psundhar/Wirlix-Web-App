@@ -7,14 +7,10 @@ const Statement = require('../models/statements');
 const User = require('../models/users');
 const Challenge = require('../models/challenges');
 
-router.use(function(req, res, next) { // TODO - for some reason couldn't get passport's default middleware to work
-    if(!req.user) {
-        res.redirect('/');
-    }
-    else {
-        return next();
-    }
-});
+router.use(passport.authenticate('local', {
+    failureRedirect: '/',
+    failureFlash: true
+}));
 
 router.get('/debate', function(req, res) {
     Topic.queryLatest().exec()
