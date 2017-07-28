@@ -3,6 +3,8 @@ var router = express.Router();
 var User = require('../models/users.js');
 var client= require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 const nodemailer = require('nodemailer');
+const bcrypt = require('bcrypt');
+
 var R = require('ramda')
 
 module.exports = function(passport) {
@@ -22,7 +24,6 @@ module.exports = function(passport) {
                     req.logIn(user, function(err) {
                         if(err) {
                             return next(err);
-
                         }
                         return res.redirect('/home');
                     });
@@ -279,31 +280,37 @@ module.exports = function(passport) {
 
         const nameArr = fullName.split(' ');
 
-        var newUser = new User({
-            fullName: fullName,
-            firstName: nameArr[0],
-            lastName: nameArr.length > 1 ? nameArr[1] : null,
-            password: password,
-            email: email,
-            phoneNumber: phoneNumber,
-            username: req.body.username,
-        });
+        bcrypt.hash(password, 10).then(function(hashedPass) {
+            var newUser = new User({
+                fullName: fullName,
+                firstName: nameArr[0],
+                lastName: nameArr.length > 1 ? nameArr[1] : null,
+                password: hashedPass,
+                email: email,
+                phoneNumber: phoneNumber,
+                username: req.body.username,
+            });
 
-        newUser.save(function(err,savedUser) {
-            if(err) {
-                console.log(err);
-                res.redirect('/');
-                res.end();
-            }
-            // Log in user
-            req.login(savedUser, function(err) {
+            newUser.save(function(err,savedUser) {
                 if(err) {
-                    return next(err);
+                    console.log(err);
+                    res.redirect('/');
+                    res.end();
                 }
-                res.redirect('/image/');
-            })
+                // Log in user
+                req.login(savedUser, function(err) {
+                    if(err) {
+                        return next(err);
+                    }
+                    res.redirect('/image/');
+                })
+            });
+        })
+        .catch(function(err) {
+           console.log(err);
+           res.status(500);
+           res.end();
         });
-
     });
     // TOKBOX Video Chat Technology
 
