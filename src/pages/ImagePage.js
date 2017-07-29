@@ -4,6 +4,7 @@ import Draggable from 'react-draggable';
 
 
 
+
 const ImagePage = React.createClass({
 
     getInitialState() {
@@ -93,7 +94,7 @@ const ImagePage = React.createClass({
             }
 
             const queryStrings = queries.map(q => {
-               return q.key + '=' + q.value;
+                return q.key + '=' + q.value;
             });
 
             const queryString = queryStrings.join('&');
@@ -110,14 +111,18 @@ const ImagePage = React.createClass({
                 body: data,
                 credentials: 'include',
             })
-            .then(res => res.json())
-            .then(user => {
-                this.setState({user, isUploading: false});
-            })
-            .catch(err =>  {
-                console.log(err);
-                this.setState({ isUploading: false });
-            });
+                .then(res => res.json())
+                .then(user => {
+                    this.setState({user, isUploading: false});
+                })
+                .catch(err =>  {
+                    console.log(err);
+                    this.setState({ isUploading: false });
+                });
+            window.location =('/home');
+        }
+        else {
+            window.location = "/tutorial.html";
         }
     },
 
@@ -139,8 +144,8 @@ const ImagePage = React.createClass({
                         <img onLoad={ () => imageFile.preview ? this.handleReposition() : null } src={ previewImage } id = "profile-img" alt="your profile img" data-top="0"  data-left="0" />
                         <div className="upload-group col-md-12">
                             <Dropzone style={{visibility: "none"}} onDrop={ this.onImageDrop }>
-                            <div className="inputfile"/>
-                            <label htmlFor="file"><i className="fa fa-upload" aria-hidden="true"/> <span id = "filename">Profile Photo</span></label>
+                                <div className="inputfile"/>
+                                <label htmlFor="file"><i className="fa fa-upload" aria-hidden="true"/> <span id = "filename">Profile Photo</span></label>
                             </Dropzone>
                         </div>
                     </div>
@@ -150,10 +155,7 @@ const ImagePage = React.createClass({
                     </div>
                     <div className="col col-12">
                         <div className="continue">
-                            <button onClick={ this.handleUploadClick } disabled={ isUploading }>Save Photo{ isUploading && (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />)}</button>
-                        </div>
-                        <div className="continue">
-                            <button onClick={ this.handleContinueClick }  disabled={ isUploading }>Continue { isUploading ? (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />) : (<i className="fa fa-arrow-right" aria-hidden="true"/>) }</button>
+                            <button onClick={ this.handleUploadClick } disabled={ isUploading }>Save & Continue{ isUploading && (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />)}</button>
                         </div>
                     </div>
                     <div className="col-md-4 continue">
