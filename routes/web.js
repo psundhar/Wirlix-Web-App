@@ -9,7 +9,8 @@ const Challenge = require('../models/challenges');
 
 router.use(passport.authenticate('local', {
     failureRedirect: '/',
-    failureFlash: true
+    failureFlash: true,
+    successRedirect: '/home',
 }));
 
 router.get('/debate', function(req, res) {
