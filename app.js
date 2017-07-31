@@ -65,13 +65,10 @@ passport.use(new LocalStrategy(function(username, password, done) {
             if(resArray && resArray[0]) {
                 return done(null, resArray[1]);
             }
-            else {
-                return done(null, false, { message: 'Password incorrect' });
-            }
+            return done(null, false, { message: 'Password incorrect' });
         })
         .catch(function(err) {
             console.log(err);
-            return done(err);
         });
 }));
 
