@@ -283,7 +283,6 @@ module.exports = function(passport) {
                     res.redirect('/');
                 }
                 else {
-                    console.log("HERE");
                     // Log out existing user if any
                     req.logOut();
                     // Log in user
