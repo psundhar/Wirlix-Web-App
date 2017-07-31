@@ -109,14 +109,14 @@ const RankingsPage = React.createClass({
                                         <div className="col col-6 pl1">
                                             <ul>
                                                 { factualStatements.slice(13,24).map((d, i) => {
-                                                    return (<li className="rank-item" key={i}><span className="rank-number">{ i + 2 }</span> { d.user.username }</li>)
+                                                    return (<li className="rank-item" key={i}><span className="rank-number">{ i + 15 }</span> { d.user.username }</li>)
                                                 }) }
                                             </ul>
                                         </div>
                                     </div>
                                 </div></div>) }
                                 { view == 'emotional' && (<div>
-                                    <h2><i className="fa fa-hand-peace-o" aria-hidden="true" /> Most <span className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span><span className="I">I</span><span className="N">N</span><span className="G">G</span></span>
+                                    <h2><i className="fa fa-hand-peace-o" aria-hidden="true" /> Most <span className="coexist mr2"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span><span className="I">I</span><span className="N">N</span><span className="G">G</span></span>
                                         Debater</h2>
                                     { emotionalStatements.length == 0 && (<p className="mt4 center">Waiting for more votes.</p>) }
                                     <div className="rank-container">
@@ -136,7 +136,7 @@ const RankingsPage = React.createClass({
                                             <div className="col col-6 pl1">
                                                 <ul>
                                                     { emotionalStatements.slice(13,24).map((d, i) => {
-                                                        return (<li className="rank-item" key={i}><span className="rank-number">{ i + 2 }</span> { d.user.username }</li>)
+                                                        return (<li className="rank-item" key={i}><span className="rank-number">{ i + 15 }</span> { d.user.username }</li>)
                                                     }) }
                                                 </ul>
                                             </div>
