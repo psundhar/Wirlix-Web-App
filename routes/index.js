@@ -283,11 +283,13 @@ module.exports = function(passport) {
                     res.redirect('/');
                 }
                 else {
+                    console.log("HERE");
                     // Log out existing user if any
                     req.logOut();
                     // Log in user
                     req.logIn(savedUser, function(err) {
                         if(err) {
+                            console.log(err);
                             return next(err);
                         }
                         res.redirect('/image/');

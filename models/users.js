@@ -18,7 +18,8 @@ var userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: [true, 'Oops you forgot your password']
+        required: [true, 'Oops you forgot your e-mail'],
+        unique: true,
     },
     phoneNumber: {
         type: String,
