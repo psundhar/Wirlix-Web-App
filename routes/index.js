@@ -10,8 +10,8 @@ var R = require('ramda')
 module.exports = function(passport) {
     /* GET home page. */
     router.get('/', function(req, res) {
-        let signup_error = req.query.sue ? decodeURIComponent(req.query.sue) : false;
-        res.render('index', { title: 'Wirlix', signup_error: signup_error });
+        // let signup_error = req.query.sue ? decodeURIComponent(req.query.sue) : false;
+        res.render('index', { title: 'Wirlix' });
     });
 
     // router.get('/profile', function(req, res) {
