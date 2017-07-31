@@ -110,7 +110,7 @@ const DebateModal = React.createClass({
                                 <button className="end-debate" onClick={() => this.setState({ showEndDebateDialog: true })}>End Debate</button>
                             </div>
                             <div className="col-md-8 col-sm-8 col-xs-8 reply-button">
-                                <button className="reply-submit" onClick={ () => { handleNewMessage(debate, this.state.text); this.setState({text: ''}); } }>Reply</button>
+                                <button className="reply-submit" onClick={ () => { if(this.state.text.length > 0) handleNewMessage(debate, this.state.text); this.setState({text: ''}); } }>Reply</button>
                             </div>
                         </div>
                         <div className="close-bottom">
