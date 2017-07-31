@@ -7,11 +7,12 @@ const Statement = require('../models/statements');
 const User = require('../models/users');
 const Challenge = require('../models/challenges');
 
-router.use(passport.authenticate('local', {
-    failureRedirect: '/',
-    failureFlash: true,
-    successRedirect: '/home',
-}));
+router.use(function(req, res, next) {
+    if(!req.user) {
+        return res.redirect('/');
+    }
+    return next();
+});
 
 router.get('/debate', function(req, res) {
     Topic.queryLatest().exec()

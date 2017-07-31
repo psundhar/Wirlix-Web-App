@@ -35,6 +35,11 @@ module.exports = function(passport) {
     // router.get('/email', function(req, res) {
     //     res.render('email', { name: req.body.fullName });
     // })
+    router.post('/login', passport.authenticate('local', {
+        failureRedirect: '/',
+        failureFlash: true,
+        successRedirect: '/home',
+    }));
 
     router.get('/logout', function(req, res) {
         req.logout();

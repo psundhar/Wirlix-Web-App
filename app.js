@@ -55,14 +55,12 @@ passport.use(new LocalStrategy(function(username, password, done) {
         .exec()
         .then(function(user) {
             if(user) {
-                console.log(user);
                 return Promise.all([bcrypt.compare(password, user.password), user]);
             }
             return done(null, false, { message: 'Invalid username or password.' });
         })
         .then(function(resArray) {
             if(resArray[0]) {
-                console.log("HERE", resArray[1]);
                 return done(null, resArray[1]);
             }
             else {
