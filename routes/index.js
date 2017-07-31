@@ -10,7 +10,7 @@ var R = require('ramda')
 module.exports = function(passport) {
     /* GET home page. */
     router.get('/', function(req, res) {
-        res.render('index', { title: 'Wirlix', error: req.flash('error')});
+        res.render('index', { title: 'Wirlix', error: req.flash('error'), signupError: req.flash('signup')});
     });
 
     // router.get('/profile', function(req, res) {
@@ -44,11 +44,11 @@ module.exports = function(passport) {
         req.logout();
 
         res.render('logout', { name: req.body.fullName})
-    })
+    });
 
     router.get('/enterdebate', function(req, res) {
         res.render('enterdebate', { name: req.body.fullName})
-    })
+    });
 
     //router.get('/about', function(req, res) {
     //res.send('Successfully authenticated');
@@ -66,7 +66,7 @@ module.exports = function(passport) {
             body: "Thanks for joining" + " " + req.body.fullName + "! Make sure to check out our site we have a ton of amazing shit coming up for you. At Wirlix, we are one world in unity and we believe in the power of people and the power in you. It's a movement and a revolution and we can't wait to change the world with you. We care about your experience and your happiness so please reach out anytime and stay tuned for an amazing journey. Welcome to Wirlix."
         });
         res.redirect('/testtwilio');
-    })
+    });
 
     router.get('/testtwilio', function(req, res) {
         res.render('testtwilio.hbs')
@@ -278,8 +278,9 @@ module.exports = function(passport) {
                     let message = '';
                     if(err.name == 'MongoError') {
                         message = 'Your username or e-mail already exists. Please try another.';
+                        req.flash('signup', message);
                     }
-                    res.redirect('/?sue=' + message);
+                    res.redirect('/');
                 }
                 else {
                     // Log out existing user if any
