@@ -159,6 +159,14 @@ const ProfilePage = React.createClass({
 
         const profileImage = user.image || '/images/pexels-photo-103123.jpeg';
 
+        let profileName = [ user.firstName ];
+
+        if(user.lastName) {
+            profileName.push(user.lastName);
+        }
+
+        profileName = profileName.join(' ');
+
         return (
             <div>
                 <div className="main-content profile" style={{minHeight:"1400px"}}>
@@ -172,7 +180,8 @@ const ProfilePage = React.createClass({
                         </div>
                         <div className="container">
                             <div className="profile-content col-md-8 col-md-offset-2">
-                                <h2 className="profile-name">{ user.username }</h2>
+                                <h2 className="profile-name">{ profileName }</h2>
+                                <h3>{ user.username }</h3>
                                 <div className="scores">
                                     <div className="col-md-6">
                                         <p><img src="/images/best-debater-w.png"/> { statement.voters && statement.voters.filter(v => v.isRational).length }</p>
