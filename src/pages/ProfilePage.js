@@ -170,7 +170,7 @@ const ProfilePage = React.createClass({
         return (
             <div>
                 <div className="main-content profile" style={{minHeight:"1400px"}}>
-                    <NavBar user={user}/>
+                    <NavBar user={loggedInUser}/>
                     <section className="profile-container">
                         <div className="container">
                             <div className="profile-pic col-md-4 col-md-offset-4">
