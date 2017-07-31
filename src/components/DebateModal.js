@@ -62,7 +62,7 @@ const DebateModal = React.createClass({
                                 <div className="message-box dis-message">
                                     <div className="username">
                                         <p><a href={"/profile/" + challengee._id}
-                                              style={{background: "url(" + challengee.image + ") center center no-repeat"}}></a>
+                                              style={{background: "url(" + challengeeImage + ") center center no-repeat"}}></a>
                                         </p>
                                     </div>
                                     <p className="message">{ statement.text }</p>
