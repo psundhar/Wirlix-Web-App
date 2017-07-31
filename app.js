@@ -50,6 +50,8 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+app.use(flash());
+
 passport.use(new LocalStrategy(function(username, password, done) {
     User.findOne({$or: [{ username: username }, { email: username }]})
         .exec()
@@ -60,7 +62,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
             return done(null, false, { message: 'Invalid username or password.' });
         })
         .then(function(resArray) {
-            if(resArray[0]) {
+            if(resArray && resArray[0]) {
                 return done(null, resArray[1]);
             }
             else {
@@ -72,8 +74,6 @@ passport.use(new LocalStrategy(function(username, password, done) {
             return done(err);
         });
 }));
-
-app.use(flash());
 
 app.use('/api', apiRoutes);
 
