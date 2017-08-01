@@ -4,6 +4,9 @@ import NavBar from '../components/NavBar';
 import ChallengeNotificationsList from '../components/ChallengeNotificationsList';
 import apiFetch from '../utilities/apiFetch';
 import DebateModal from '../components/DebateModal';
+import { registerDebateUpdater } from '../utilities/componentMethods';
+import { getDebate } from '../utilities/data';
+import IO from 'socket.io-client';
 
 const ProfilePage = React.createClass({
 
@@ -20,10 +23,34 @@ const ProfilePage = React.createClass({
         };
     },
 
+    updateDebate(debateId) {
+        getDebate(debateId, json => {
+            const debates = this.state.debates;
+
+            const indexToEdit = debates.findIndex(d => d._id == debateId);
+
+            if(indexToEdit > -1) {
+                debates[indexToEdit] = json;
+            }
+
+            const updates = {debates};
+
+            if(this.state.debateModal.debate._id === debateId) { // Update debate modal as necessary
+                updates['debateModal'] = { debate: json };
+            }
+
+            this.setState(updates);
+        });
+    },
+
     componentDidMount() {
         if(initialState) { // Globally set into hbs templates
             this.setState(initialState);
         }
+
+        const socket = IO(); // Will need to be altered in production
+
+        registerDebateUpdater(socket, this.updateDebate);
     },
 
     handleEnterDebate(debate) {
