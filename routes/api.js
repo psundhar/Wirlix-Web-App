@@ -8,6 +8,7 @@ const ImagesController = require('../controllers/ImagesController');
 
 router.get('/debates', DebatesController.getCollection);
 router.get('/debates/my', DebatesController.getMyDebates);
+router.get('/debates/:id', DebatesController.getObject);
 router.post('/debates', DebatesController.postCollection);
 router.put('/debates/:id', DebatesController.putObject);
 router.delete('/debates/:id', DebatesController.deleteObject);

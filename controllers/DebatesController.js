@@ -14,6 +14,16 @@ module.exports = {
             });
     },
 
+    getObject: function (req, res, next) {
+        Debate.default.findById(req.params.id).exec()
+        .then(function(debate) {
+            res.send(debate);
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
+    },
+
     getMyDebates: function(req, res) {
         // grab user info from passport middleware
         // Find debates where either the challenger or challengee
