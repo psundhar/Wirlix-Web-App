@@ -66,7 +66,10 @@ const FlippableDebateCard = React.createClass({
                     <div className="back" onClick={ this.flip }>
                         <div className="flex justify-between">
                             <div className="username">
-                                <p><a onClick={e => e.stopPropagation()} href={ "/profile/" + challengee._id } style={{background: "url(" + challengeeImage + ") center center no-repeat"}}></a> { challengee.username }</p>
+                                <div className="flex">
+                                    <a className="image mr2" onClick={e => e.stopPropagation()} href={ "/profile/" + challengee._id } style={{background: "url(" + challengeeImage + ") center center no-repeat"}}></a>
+                                    <p>{ challengee.username }</p>
+                                </div>
                             </div>
                             <span className="small"><TimeElapsedString elapsed={debate.updated} /></span>
                         </div>

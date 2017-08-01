@@ -3,7 +3,7 @@ body, p, a, ul, li{
 }
 
 h1, h2, h3, h4{
-  font-family: "Raleway", sans-serif;
+  font-family: "Raleway", Arial, sans-serif;;
   text-transform: uppercase;
   font-weight: 200;
   letter-spacing: 3px;
@@ -712,7 +712,7 @@ z-index: 5;
   width: 30%;
 }
 
-.debates .debate .user p a{
+.debates .debate .user .image{
   display: block;
   width: 44px;
   height: 44px;
@@ -854,7 +854,7 @@ z-index: 5;
   text-decoration: underline;
 }
 
-.back .username p a{
+.back .username .image{
   display: inline-block;
   width: 44px;
   height: 44px;
