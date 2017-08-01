@@ -1,4 +1,5 @@
 import React from 'react';
+import TimeElapsedString from './TimeElapsedString';
 
 const DebateModal = React.createClass({
 
@@ -100,6 +101,7 @@ const DebateModal = React.createClass({
                                             </p>
                                         </div>
                                         <p className="message">{ m.text }</p>
+                                        <TimeElapsedString elapsed={m.created} />
                                     </div>
                                 );
                             }) }
