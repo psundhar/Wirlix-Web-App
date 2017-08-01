@@ -88,6 +88,11 @@ module.exports = {
             .populate(standardRelations);
     },
 
+    queryById: function(id) {
+        return model.findOne({_id: id, deleted: false})
+            .populate(standardRelations);
+    },
+
     queryByTopic: function(topicId) {
         return model.find({deleted: false, topic: topicId})
             .populate(standardRelations);

@@ -15,7 +15,7 @@ module.exports = {
     },
 
     getObject: function (req, res, next) {
-        Debate.default.findById(req.params.id).exec()
+        Debate.queryById(req.params.id).exec()
         .then(function(debate) {
             res.send(debate);
         })
@@ -90,8 +90,6 @@ module.exports = {
                 if(req.user._id == debate.challengee) {
                     debate.challengeeRead = true;
                 }
-
-                console.log(debate);
             }
             if(subscribed == 'subscribe') {
                 debate.subscribers.push(req.user._id);
@@ -110,6 +108,7 @@ module.exports = {
         })
         .then(function(savedDebate) {
             res.send(savedDebate);
+            global.io.emit('updates:debates', {_id: savedDebate._id});
         })
         .catch(function(err) {
             console.log(err);

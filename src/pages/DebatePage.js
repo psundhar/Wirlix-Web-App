@@ -4,6 +4,7 @@ import FlippableDebateCard from '../components/FlippableDebateCard';
 import NavBar from '../components/NavBar';
 import DebateModal from '../components/DebateModal';
 import apiFetch from '../utilities/apiFetch';
+import IO from 'socket.io-client';
 
 const DebatePage = React.createClass({
     getInitialState() {
@@ -16,10 +17,39 @@ const DebatePage = React.createClass({
         }
     },
 
+    updateDebate(debateId) {
+        apiFetch('/api/debates/' + debateId, 'GET')
+        .then(res => res.json())
+        .then(json => {
+            const debates = this.state.debates;
+
+            const indexToEdit = debates.findIndex(d => d._id == debateId);
+
+            if(indexToEdit > -1) {
+                debates[indexToEdit] = json;
+            }
+
+            const updates = {debates};
+
+            if(this.state.debateModal.debate._id === debateId) { // Update debate modal as necessary
+                updates['debateModal'] = { debate: json };
+            }
+
+            this.setState(updates);
+        });
+    },
+
     componentDidMount() {
         if(initialState) { // Globally set into hbs templates
             this.setState(initialState);
         }
+
+        const socket = IO(); // Will need to be altered in production
+
+        socket.on('updates:debates', (data) => {
+            console.log("debate update received");
+            this.updateDebate(data._id);
+        });
     },
 
     handleSubscribeToggle: function(debateId) {
