@@ -192,7 +192,13 @@ const DebatePage = React.createClass({
             <div className="debates col-md-12 live-debates">
                 { debates.filter((d) => {
                     return Date.parse(d.updated) >= (Date.now() - 600000) //10 minutes ago
+                }).sort((a,b) => {
+                    if(a.updated < b.updated) {
+                        return 1;
+                    }
+                    return -1;
                 }).map((d, i) => {
+                    console.log(d.updated);
                     return (
                         <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                     )
