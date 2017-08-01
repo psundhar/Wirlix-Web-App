@@ -1834,8 +1834,12 @@ body {
     -webkit-font-smoothing: antialiased;
     padding-bottom: 2rem;
     padding-top: 10px;
-
 }
+
+.comment-preview {
+    text-align: left;
+}
+
 .watch-comment {
     text-align: center;
     color: #fff;
