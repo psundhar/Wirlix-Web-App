@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 const FlippableDebateCard = React.createClass({
     getInitialState() {
@@ -27,6 +28,15 @@ const FlippableDebateCard = React.createClass({
         const isChallenger = user._id == challenger._id;
         const isChallengee = user._id == challengee._id;
 
+        const now = moment();
+        let minsSinceUpdate, hoursSinceUpdate, daysSinceUpdate;
+
+        minsSinceUpdate = Math.floor(( now - moment(debate.updated) ) / 60000);
+
+        if(minsSinceUpdate > 60) {
+            hoursSinceUpdate = Math.floor(minsSinceUpdate / 60);
+        }
+
         return (
             <div className="debate">
                 { frontVisible && (<div className="front">
@@ -49,6 +59,7 @@ const FlippableDebateCard = React.createClass({
                                 </div>
                             </div>
                             <span className="small">{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
+                            <span className="small">{ hoursSinceUpdate ? hoursSinceUpdate + 'h' : minsSinceUpdate + 'm' }</span>
                         </div>
                     </div>
                     <div className="clearfix mb3">

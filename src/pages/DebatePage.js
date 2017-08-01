@@ -198,7 +198,6 @@ const DebatePage = React.createClass({
                     }
                     return -1;
                 }).map((d, i) => {
-                    console.log(d.updated);
                     return (
                         <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                     )
