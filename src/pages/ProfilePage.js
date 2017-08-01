@@ -179,6 +179,42 @@ const ProfilePage = React.createClass({
         apiFetch('/api/debates/' + debateObj._id, 'DELETE');
     },
 
+    handleSubscribeToggle: function(debateId) {
+        let debates = [...this.state.debates];
+        const selectedDebate = debates.find(d => d._id == debateId);
+
+        const sdSubscribers = selectedDebate.subscribers;
+        let subscribed = "subscribe";
+
+        if(sdSubscribers.some(sid => {
+                return sid == this.state.user._id;
+            })) { // Remove
+            subscribed = "unsubscribe";
+            selectedDebate.subscribers = sdSubscribers.filter(sid => { return sid != this.state.user._id});
+        }
+        else { // Add
+            sdSubscribers.push(this.state.user._id);
+        }
+
+        this.setState({ debates });
+
+        fetch('/api/debates/' + debateId, {
+            method: 'PUT',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+            }),
+            body: JSON.stringify({
+                subscribed,
+            }),
+            credentials: "include",
+        })
+            .then(function(res) {
+                if(!res.ok) {
+                    console.log("Unable to update");
+                }
+            })
+    },
+
     render() {
         const { user, statement, debates, loggedInUser, topic, challenges, debateModal } = this.state;
 
@@ -231,7 +267,7 @@ const ProfilePage = React.createClass({
 
                                 <div className="debates col-md-12">
                                     { debates.map((d, i) => {
-                                        return (<FlippableDebateCard key={i} user={user} debate={ d } handleEnterDebate={ this.handleEnterDebate } />)
+                                        return (<FlippableDebateCard handleSubscribeToggle={this.handleSubscribeToggle} key={i} user={loggedInUser} debate={ d } handleEnterDebate={ this.handleEnterDebate } />)
                                     })}
                                 </div>
                                 {isMyProfile && (
