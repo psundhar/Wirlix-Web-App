@@ -1,4 +1,5 @@
 import React from 'react';
+import TimeElapsedString from './TimeElapsedString';
 
 export default ({ debate, handleReplyClick }) => {
     const {statement = {}, challengee } = debate;
@@ -15,7 +16,7 @@ export default ({ debate, handleReplyClick }) => {
             </div>
             <p className="comment-preview">{ statement.text }</p>
             <p><button type="button" className="reply-button col-md-4 col-md-offset-8 col-xs-12" data-toggle="modal" data-target="#view-debate" onClick={ () => handleReplyClick(debate) }>Reply</button></p>
-            <p className="time-posted">25m</p>
+            <p className="time-posted"><TimeElapsedString elapsed={ statement.created } /></p>
         </div>
     );
 };

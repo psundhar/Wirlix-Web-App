@@ -1,5 +1,5 @@
 import React from 'react';
-import { timeElapsed } from '../utilities/dateTime';
+import TimeElapsedString from './TimeElapsedString';
 
 const FlippableDebateCard = React.createClass({
     getInitialState() {
@@ -28,8 +28,6 @@ const FlippableDebateCard = React.createClass({
         const isChallenger = user._id == challenger._id;
         const isChallengee = user._id == challengee._id;
 
-        const [ minsSinceUpdate, hoursSinceUpdate ] = timeElapsed(debate.updated);
-
         return (
             <div className="debate">
                 { frontVisible && (<div className="front">
@@ -52,7 +50,7 @@ const FlippableDebateCard = React.createClass({
                                 </div>
                             </div>
                             <span className="small">{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
-                            <span className="small">{ hoursSinceUpdate ? hoursSinceUpdate + 'h' : minsSinceUpdate + ' m' }</span>
+                            <span className="small"><TimeElapsedString elapsed={debate.updated} /></span>
                         </div>
                     </div>
                     <div className="clearfix mb3">
