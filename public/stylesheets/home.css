@@ -48,9 +48,9 @@ h1, h2, h3, h4{
     position: absolute;
     top: 50%;
     left: 50%;
-    min-width: 100%;
+    min-width: 50%;
     min-height: 100%;
-    width: auto;
+    width: 100%;
     height: auto;
     z-index: -100;
     -ms-transform: translateX(-50%) translateY(-50%);
@@ -269,6 +269,7 @@ h1, h2, h3, h4{
   color: #ffffff;
   text-align: center;
 }
+
 
 /* ================================== News / Comment Section ================================== */
 
@@ -551,6 +552,10 @@ right: 100px;
 z-index: 5;
 }
 
+.container_socialIcons{
+  margin-right: auto;
+  margin-left: auto;
+}
 .svg-cont p{
   text-align: center;
   color: #ffffff;
@@ -570,12 +575,17 @@ z-index: 5;
   letter-spacing: 3px;
 }
 
+.ohoo {
+  width: 100%;
+}
+
 
 .about-more .footer{
   margin-top: 200px;
   padding-top: 50px;
   padding-bottom: 50px;
   background-color: #1F1F1F;
+  width: 100%;
 }
 
 .about-more .footer .social-icons{
@@ -587,6 +597,7 @@ z-index: 5;
 
 .about-more .footer .social-icons a{
   color: #ffffff;
+  display:inline;
 }
 
 .about-more .footer p{

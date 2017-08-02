@@ -1666,6 +1666,12 @@ body {
     width: 0;
 }
 
+.ohoo {
+    width: 100%
+}
+
+
+
 .fp-player {
     display: flex;
     justify-content: center;
@@ -2675,6 +2681,8 @@ font-size: 25px;
     }
 
 }
+
+
 
 @media screen and (max-width:540px){
     .video-foreground {
