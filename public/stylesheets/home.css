@@ -887,7 +887,6 @@ z-index: 5;
 .modal-content{
   border-top: 0;
   overflow: auto;
-  background-color: rgba(255,255,255, .8);
 }
 
 .modal-backdrop.in{

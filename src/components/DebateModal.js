@@ -35,7 +35,7 @@ const DebateModal = React.createClass({
         return (
             <div id="view-debate" className="modal fade" role="dialog">
                 <div className="modal-dialog">
-                    <div className="modal-content">
+                    <div className="modal-content" style={{backgroundColor: "rgba(255,255,255, .8)"}}>
                         <div className="chat-header col-md-12">
                             <div className="col-md-6 col-sm-6 col-xs-6">
                                 <div className="user-img">
