@@ -33,10 +33,10 @@ const DebateModal = React.createClass({
         const isParticipant = isChallenger || isChallengee;
 
         return (
-            <div id="view-debate" className="modal fade" role="dialog" style={{backgroundColor: "black"}}>
+            <div id="view-debate" className="modal fade" role="dialog" style={{backgroundColor: "black"}}>oklp
                 <div className="modal-dialog">
                     <div className="modal-content" style={{backgroundColor: "rgba(255,255,255, .8)"}}>
-                        <div className="chat-header col-md-12">
+                        <div className="chat-header clearfix">
                             <div className="col-md-6 col-sm-6 col-xs-6">
                                 <div className="user-img">
                                     <p><a href={ "/profile/" +  challengee._id } style={{background: "url(" + challengeeImage + " ) center center no-repeat"}}></a></p>
@@ -51,10 +51,10 @@ const DebateModal = React.createClass({
                             </div>
                             <div className="vote-bar">
                                 <div className="vote-amt">
-                                    <p><img src="/images/eye-b.png" /> { views }</p>
+                                    <p><img src="/images/eye-b.png"/> { views }</p>
                                 </div>
                                 <div className="vote-amt">
-                                    <p><img src="/images/check-mark-b.png" /> { subscribers.length }</p>
+                                    <p><img src="/images/check-mark-b.png"/> { subscribers.length }</p>
                                 </div>
                             </div>
                         </div>

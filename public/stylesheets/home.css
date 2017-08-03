@@ -1098,10 +1098,12 @@ z-index: 5;
 .chat-header .vote-amt img{
   display: inline-block;
   width: 20px;
+  margin: 0;
 }
 
 .chat-header .vote-amt p{
   margin: 0;
+
 }
 
 .vote-box{
