@@ -31,6 +31,9 @@ const DebateModal = React.createClass({
         const isChallengee = user._id == challengee._id;
 
         const isParticipant = isChallenger || isChallengee;
+        const isSubscriber = subscribers.includes(user._id);
+
+        console.log(subscribers, user);
 
         return (
             <div id="view-debate" className="modal fade" role="dialog" style={{backgroundColor: "black"}}>
@@ -120,7 +123,7 @@ const DebateModal = React.createClass({
                         )}
                         <div className="vote-box col-md-12">
                             <div className="col-md-6 col-md-offset-3">
-                                <p><i className="fa fa-check"></i> Subscribe</p>
+                                <p><i className={ "fa fa-check " + ( isSubscriber ? 'checked' : '' ) } /> Subscribe</p>
                             </div>
                         </div>
                         <div className="close-bottom">
