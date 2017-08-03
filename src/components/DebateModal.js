@@ -67,6 +67,7 @@ const DebateModal = React.createClass({
                                         </p>
                                     </div>
                                     <p className="message">{ statement.text }</p>
+                                    <p className="time-posted"><TimeElapsedString elapsed={statement.created} /></p>
                                 </div>
                             )}
                             { messages.map(m => {
