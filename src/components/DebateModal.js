@@ -101,7 +101,7 @@ const DebateModal = React.createClass({
                                             </p>
                                         </div>
                                         <p className="message">{ m.text }</p>
-                                        <TimeElapsedString elapsed={m.created} />
+                                        <p className="time-posted"><TimeElapsedString elapsed={m.created} /></p>
                                     </div>
                                 );
                             }) }
