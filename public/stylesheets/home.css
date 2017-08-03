@@ -896,7 +896,7 @@ z-index: 5;
 .chat-box{
   padding: 10px;
   overflow: scroll;
-  height: 400px;
+  height: 500px;
 }
 
 .message-box{
