@@ -21,7 +21,7 @@ const DebateModal = React.createClass({
     },
 
     render() {
-        const {handleNewMessage, debate, user, handleEndDebate, questions } = this.props;
+        const { handleNewMessage, debate, user, handleEndDebate } = this.props;
         const { statement, challenger = {}, challengee = {}, messages = [], views, subscribers = [] } = debate;
 
         const challengerImage = challenger.image || '/images/pexels-photo-103123.jpeg';
@@ -32,8 +32,6 @@ const DebateModal = React.createClass({
 
         const isParticipant = isChallenger || isChallengee;
         const isSubscriber = subscribers.includes(user._id);
-
-        console.log(subscribers, user);
 
         return (
             <div id="view-debate" className="modal fade" role="dialog" style={{backgroundColor: "black"}}>
