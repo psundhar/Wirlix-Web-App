@@ -33,7 +33,7 @@ const DebateModal = React.createClass({
         const isParticipant = isChallenger || isChallengee;
 
         return (
-            <div id="view-debate" className="modal fade" role="dialog" style={{backgroundColor: "black"}}>oklp
+            <div id="view-debate" className="modal fade" role="dialog" style={{backgroundColor: "black"}}>
                 <div className="modal-dialog">
                     <div className="modal-content" style={{backgroundColor: "rgba(255,255,255, .8)"}}>
                         <div className="chat-header clearfix">
@@ -118,6 +118,11 @@ const DebateModal = React.createClass({
                                 </div>
                             </div>
                         )}
+                        <div className="vote-box col-md-12">
+                            <div className="col-md-6 col-md-offset-3">
+                                <p><i className="fa fa-check"></i> Subscribe</p>
+                            </div>
+                        </div>
                         <div className="close-bottom">
                             <button type="button" style={{width:"50px", height:"50px"}} className="btn btn-default" data-dismiss="modal"><i className="fa fa-times-circle" aria-hidden="true"></i></button>
                         </div>
