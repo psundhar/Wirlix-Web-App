@@ -106,15 +106,17 @@ const DebateModal = React.createClass({
                                 );
                             }) }
                         </div>
-                        <div className="reply-box col-md-12">
-                            <textarea placeholder="Write your opinion...." onChange={this.handleReplyTextChange} value={this.state.text}></textarea>
-                            <div className="col-md-4 col-sm-4 col-xs-4 end-button">
-                                { isParticipant && (<button className="end-debate" onClick={() => this.setState({ showEndDebateDialog: true })}>End Debate</button>) }
+                        { isParticipant && (
+                            <div className="reply-box col-md-12">
+                                <textarea placeholder="Write your opinion...." onChange={this.handleReplyTextChange} value={this.state.text}></textarea>
+                                <div className="col-md-4 col-sm-4 col-xs-4 end-button">
+                                    <button className="end-debate" onClick={() => this.setState({ showEndDebateDialog: true })}>End Debate</button>)
+                                </div>
+                                <div className="col-md-8 col-sm-8 col-xs-8 reply-button">
+                                    <button className="reply-submit" onClick={ () => { if(this.state.text.length > 0) handleNewMessage(debate, this.state.text); this.setState({text: ''}); } }>Reply</button>
+                                </div>
                             </div>
-                            <div className="col-md-8 col-sm-8 col-xs-8 reply-button">
-                                <button className="reply-submit" onClick={ () => { if(this.state.text.length > 0) handleNewMessage(debate, this.state.text); this.setState({text: ''}); } }>Reply</button>
-                            </div>
-                        </div>
+                        )}
                         <div className="close-bottom">
                             <button type="button" style={{width:"50px", height:"50px"}} className="btn btn-default" data-dismiss="modal"><i className="fa fa-times-circle" aria-hidden="true"></i></button>
                         </div>
