@@ -1,4 +1,5 @@
 /* ------------------ INDEX.HBS ---------------- */
+
 @keyframes back-flip-in {
     0% {
         transform: rotateY(-90deg);
@@ -35,6 +36,12 @@
 
 .Card-Front-Flip {
     animation: 1s 1 forwards front-flip-in;
+}
+
+.Fade-Out {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 1s, opacity 1s linear;
 }
 /* ------------------ Background Video ---------- */
 

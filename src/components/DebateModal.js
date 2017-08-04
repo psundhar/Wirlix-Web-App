@@ -139,9 +139,6 @@ const DebateModal = React.createClass({
                                 }}>Yes</button>
                             </div>
                         </div>) }
-                        <div className="end-overlay">
-
-                        </div>
                     </div>
                     { isParticipant && (
                         <div className="q-container">
