@@ -101,7 +101,6 @@ module.exports = {
             }
             if(message) {
                 debate.updated = Date.now();
-                message.created = Date.now();
                 debate.messages.push(message);
             }
 
