@@ -5,16 +5,23 @@ export default class TempPopup extends Component {
         super(props);
 
         this.state = {
-
+            expired: false,
         };
     };
 
     render() {
-        const {show, backgroundColor = "white", duration} = this.props;
-
+        const {show, backgroundColor = "white", color = "black", children} = this.props;
+        console.log(this.state.expired);
         let body = (<span></span>);
 
-        if(show) {
+        if(show && !this.state.expired) {
+            setTimeout(() => { // TODO Setting state within render seems a bit fishy
+                console.log("SETTING EXPIRED");
+                this.setState({
+                    expired: true,
+                });
+            }, this.props.duration);
+
             body = (
                 <div style={{
                     position: "fixed",
@@ -26,10 +33,11 @@ export default class TempPopup extends Component {
                         width: "400px",
                         margin: "0 auto",
                         backgroundColor,
+                        color,
                         boxShadow: "0px 2px 5px 1px rgba(0, 0, 0, 0.75)",
-                        border: "3px solid darken(backgroundColor, 10%)",
+                        fontFamily: "'Source Code Pro', Helvetica, Arial, Sans-Serif",
                     }}
-                    >Popup</div>
+                    >{ children }</div>
                 </div>
             )
         }

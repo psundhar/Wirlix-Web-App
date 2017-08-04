@@ -19,6 +19,7 @@ const HomePage = React.createClass({
                 statementId: null,
                 topicId: null,
             },
+            showChallengePopup: false,
         };
     },
 
@@ -96,20 +97,21 @@ const HomePage = React.createClass({
     },
 
     handleConfirm(statementId, topicId, user) {
+        this.setState({ showChallengePopup: true });
         // Make api call to create a challenge and then update state
-        apiFetch('/api/challenges', 'POST', {
-            statement: statementId,
-            challenger: user._id,
-            topic: topicId,
-        })
-        .then(res => res.json())
-        .then(json => {
-            console.log(json);
-        });
+        // apiFetch('/api/challenges', 'POST', {
+        //     statement: statementId,
+        //     challenger: user._id,
+        //     topic: topicId,
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     console.log(json);
+        // });
     },
 
     render() {
-        const { topic, user } = this.state;
+        const { topic, user, showChallengePopup } = this.state;
 
         return (
         <div>
@@ -199,7 +201,7 @@ const HomePage = React.createClass({
             </div>
         </section>
         <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} topicId={ this.state.challenge.topicId } statementId={ this.state.challenge.statementId } user={ user } />
-        <TempPopup show={true}/>
+        <TempPopup show={ showChallengePopup } duration={ 2500 } color="white" backgroundColor="crimson"><div className="center bold">Challenge Sent!</div></TempPopup>
         </div>
         )
     },
