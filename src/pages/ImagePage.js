@@ -1,6 +1,8 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
+import ImageDialog from '../components/ImageDialog';
 import Draggable from 'react-draggable';
+
 
 
 
@@ -10,6 +12,7 @@ const ImagePage = React.createClass({
         return {
             imageFile: {},
             user: {},
+            isNewUser:{},
             isUploading: false,
             edits: {
                 top: 0,
@@ -76,8 +79,7 @@ const ImagePage = React.createClass({
     handleUploadClick() {
         this.setState({isUploading: true});
 
-        const { imageFile, user } = this.state;
-
+        const { imageFile, user, isNewUser } = this.state;
         if(imageFile.preview) {
             // Initiate upload
             const data = new FormData();
@@ -93,7 +95,7 @@ const ImagePage = React.createClass({
             }
 
             const queryStrings = queries.map(q => {
-               return q.key + '=' + q.value;
+                return q.key + '=' + q.value;
             });
 
             const queryString = queryStrings.join('&');
@@ -110,20 +112,30 @@ const ImagePage = React.createClass({
                 body: data,
                 credentials: 'include',
             })
-            .then(res => res.json())
-            .then(user => {
-                this.setState({user, isUploading: false});
-            })
-            .catch(err =>  {
-                console.log(err);
-                this.setState({ isUploading: false });
-            });
+                .then(res => res.json())
+                .then(user => {
+                    this.setState({user, isUploading: false});
+                })
+                .then(newUser => {
+                    this.setState({newUser, isUploading: false});
+                })
+                .catch(err =>  {
+                    console.log(err);
+                    this.setState({ isUploading: false });
+                });
         }
+        isNewUser ?  window.location = "/tutorial.html" : window.location =('/home');
     },
 
     handleContinueClick() {
-        window.location = "/tutorial.html";
+        const { isNewUser } = this.state;
+        isNewUser ?  window.location = "/tutorial.html" : window.location =('/home');
     },
+
+    handleCancel() {
+
+    },
+
 
     render() {
         const { user, imageFile, isUploading } = this.state;
@@ -140,8 +152,8 @@ const ImagePage = React.createClass({
                         <img onLoad={ () => imageFile.preview ? this.handleReposition() : null } src={ previewImage } id = "profile-img" alt="your profile img" data-top="0"  data-left="0" />
                         <div className="upload-group col-md-12">
                             <Dropzone style={{visibility: "none"}} onDrop={ this.onImageDrop }>
-                            <div className="inputfile"/>
-                            <label htmlFor="file"><i className="fa fa-upload" aria-hidden="true"/> <span id = "filename">Profile Photo</span></label>
+                                <div className="inputfile"/>
+                                <label htmlFor="file"><i className="fa fa-upload" aria-hidden="true"/> <span id = "filename">Profile Photo</span></label>
                             </Dropzone>
                         </div>
                     </div>
@@ -151,10 +163,8 @@ const ImagePage = React.createClass({
                     </div>
                     <div className="col col-12">
                         <div className="continue">
-                            <button onClick={ this.handleUploadClick } disabled={ isUploading }>Save Photo{ isUploading && (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />)}</button>
-                        </div>
-                        <div className="continue">
-                            <button onClick={ this.handleContinueClick }  disabled={ isUploading }>Continue { isUploading ? (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />) : (<i className="fa fa-arrow-right" aria-hidden="true"/>) }</button>
+                            {user.image? <button onClick={ this.handleUploadClick } disabled={ isUploading }>Save & Continue{ isUploading && (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />)}</button> :
+                                <button  data-toggle="modal"  data-target="#image-conf" aria-hidden="true"  onClick={ () => this.handleUploadClick } disabled={ isUploading }>Save & Continue{ isUploading && (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />)}</button>}
                         </div>
                     </div>
                     <div className="col-md-4 continue">
@@ -162,18 +172,7 @@ const ImagePage = React.createClass({
                     </div>
                 </div>
             </div>
-            <div className="col-md-4 col-md-offset-4 modal-continue">
-                <p>Are you sure you want to continue without a profile picture?</p>
-                <div className="button-group">
-                    <div className="col-md-6">
-                        <a href="#" className="cancel">Cancel</a>
-                    </div>
-                    <div className="col-md-6">
-                        <button onClick={ this.handleContinueClick }>Continue</button>
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript" src="js/fileinput.js"></script>
+            <ImageDialog showModal="user.image" handleConfirm={this.handleContinueClick} />
         </div>)
     },
 });

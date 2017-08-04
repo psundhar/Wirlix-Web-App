@@ -3,6 +3,15 @@ import apiFetch from '../utilities/apiFetch';
 import IO from 'socket.io-client';
 
 const NavBar = React.createClass({
+    toggleMenu: function(e)
+    {
+        e.stopPropagation();
+        this.setState({isOpen: !this.state.isOpen});
+    },
+    onClose: function()
+    {
+        this.setState({isOpen: false});
+    },
     _fetchNotifications() {
         const that = this;
         apiFetch('/api/notifications', 'GET')
@@ -35,17 +44,26 @@ const NavBar = React.createClass({
                 this._fetchNotifications();
             });
         }
+
+        document.body.addEventListener('click', this.onClose);
     },
 
     getInitialState() {
         return {
             notify: false,
+            isOpen: false
         }
+    },
+
+    componentWillUnmount: function ()
+    {
+        document.body.removeEventListener('click', this.onClose);
     },
 
     render() {
         const { user } = this.props;
-        const { notify } = this.state;
+        // const { isOpen } = this.props;
+        const { notify, isOpen } = this.state;
 
         const profileImage = user.image || "/images/pexels-photo-103123.jpeg";
 
@@ -70,10 +88,35 @@ const NavBar = React.createClass({
                                 <li><a href="/about">About</a></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
+<<<<<<< HEAD
                                 <li><a className="profile-nav" href={ "/profile/" + user._id } style={{background: "url(" + profileImage + ") center center no-repeat" }}>
                                     { notify && (<div style={{position:'absolute',top:0,left:0,height:"13px",width:"13px",borderRadius:"100px",backgroundColor:"crimson"}}></div>) }
                                 </a></li>
                                 <li><a className="help" href="/tutorial">? <br/><span>See Tutorial</span></a></li>
+=======
+                                <li>{/*<a className="profile-nav" href={"/profile/" + user._id}
+                                       style={{background: "url(" + profileImage + ") center center no-repeat"}}>
+                                    {notify && (<div style={{
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        height: "13px",
+                                        width: "13px",
+                                        borderRadius: "100px",
+                                        backgroundColor: "crimson"
+                                    }}></div>)}
+                                </a>*/}
+                                    {<a className="profile-nav" onClick={this.toggleMenu} href="#" style={{background: "url(" + profileImage + ") center center no-repeat" }}>
+                                        { notify && (<div style={{position:'absolute',top:0,left:0,height:"13px",width:"13px",borderRadius:"100px",backgroundColor:"crimson"}}></div>) }
+                                    </a>}
+                                    {isOpen ?  <ul className="dropdown-menu" id="dropdown" style={{display:"inline-block", background: "red"}}>
+                                        <li><a href={"/profile/" + user._id}>Profile</a></li>
+                                        <li><a href={"/image/"}>Upload Image</a></li>
+                                        <li><a href="#">Settings</a></li>
+                                    </ul>: null}
+                                </li>
+                                <li><a className="help" href="/tutorial.html">? <br/><span>See Tutorial</span></a></li>
+>>>>>>> feature/upload_image
                             </ul>
                         </div>
                     </div>
