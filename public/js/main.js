@@ -87,6 +87,39 @@ $(document).ready(function(){
   });
 
 
+  $(".icon-debate").click(function(){
+    $("#icon-1").fadeIn();
+    $("#icon-modal").fadeIn();
+    $("#icon-overlay1").fadeIn();
+    $("#icon-overlay1").addClass("bg");
+   
+  });
+  $(".icon-debate2").click(function(){
+    $("#icon-message2").fadeIn();
+    $("#icon-modal2").fadeIn();
+    $("#icon-overlay2").fadeIn();
+    $("#icon-overlay2").addClass("bg");
+   
+  });
+  $(".icon-debate3").click(function(){
+    $("#icon-message3").fadeIn();
+    $("#icon-modal3").fadeIn();
+    $("#icon-overlay3").fadeIn();
+    $("#icon-overlay3").addClass("bg");
+   
+  });
+
+  $(".close-button").click(function(){
+    $(".icon-modal").fadeOut();
+    $(".icon-message").fadeOut();
+    $(".icon-message2").fadeOut();
+    $(".icon-message3").fadeOut();
+    $(".icon-confirm").fadeOut();
+    $(".icon-overlay").fadeOut();
+    $(".icon-overlay").removeClass("ended");
+  });
+
+
   //Adding questions for demo purposes
   var q1 = $(".question.one").html();
   var q2 = $(".question.two").html();
