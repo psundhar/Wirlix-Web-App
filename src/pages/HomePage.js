@@ -3,6 +3,7 @@ import StatementCard from '../components/StatementCard';
 import apiFetch from '../utilities/apiFetch';
 import NavBar from '../components/NavBar';
 import ChallengeDialog from '../components/ChallengeDialog';
+import TempPopup from '../components/TempPopup';
 
 const MIN_VOTES = 5;
 
@@ -195,10 +196,10 @@ const HomePage = React.createClass({
                 </div>
             </div>
             <div className="overlay">
-
             </div>
         </section>
         <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} topicId={ this.state.challenge.topicId } statementId={ this.state.challenge.statementId } user={ user } />
+        <TempPopup show={true}/>
         </div>
         )
     },
