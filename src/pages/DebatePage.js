@@ -150,7 +150,7 @@ const DebatePage = React.createClass({
             this.setState({ showEndDebateMessageFadeOut: true});
         }, 3000);
 
-        // apiFetch('/api/debates/' + debateObj._id, 'DELETE');
+        apiFetch('/api/debates/' + debateObj._id, 'DELETE');
     },
 
     render: function() {
