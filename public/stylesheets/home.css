@@ -838,7 +838,7 @@ z-index: 5;
   border: 3px solid #c41717;
 }
 
-.my-debate .username p .pic{
+.my-debate .username .pic{
   display: inline-block;
   width: 35px;
   height: 35px;

@@ -18,10 +18,10 @@ export default ({ debate, handleReplyClick, user }) => {
     return (
         <div className="my-debate col-md-6 col-md-offset-3 no-response">
             <div className="username">
-                <p>
+                <div className="flex">
                     { showImage && (<a className="pic" href={ profileLink } style={{background: "url(" + profileImage + ") center center no-repeat"}}></a>) }
                     <a className="un" href={profileLink}>{ challengee.username }</a>
-                </p>
+                </div>
             </div>
             <p className="comment-preview">{ statement.text }</p>
             <p><button type="button" className="reply-button col-md-4 col-md-offset-8 col-xs-12" data-toggle="modal" data-target="#view-debate" onClick={ () => handleReplyClick(debate) }>Reply</button></p>
