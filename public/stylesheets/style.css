@@ -5,7 +5,7 @@
         z-index: -1
     }
     50% {
-        transform: rotateY(0deg) perspective(20rem);
+        transform: rotateY(0deg) perspective(500px);
         z-index: -1
     }
     100% {
@@ -20,7 +20,7 @@
         z-index: -1;
     }
     50% {
-        transform: rotateY(0deg) perspective(20rem);
+        transform: rotateY(0deg) perspective(500px);
         z-index: -1
     }
     100% {
@@ -34,7 +34,7 @@
 }
 
 .Card-Front-Flip {
-    animation: 1s 1 forwards front-flip;
+    animation: 1s 1 forwards front-flip-in;
 }
 /* ------------------ Background Video ---------- */
 

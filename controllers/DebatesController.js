@@ -100,8 +100,8 @@ module.exports = {
                 });
             }
             if(message) {
-                debate.messages.push(message);
                 debate.updated = Date.now();
+                debate.messages.push(message);
             }
 
             return debate.save();
