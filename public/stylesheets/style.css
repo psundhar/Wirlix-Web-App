@@ -1,5 +1,41 @@
 /* ------------------ INDEX.HBS ---------------- */
+@keyframes back-flip {
+    0% {
+        transform: rotateY(-90deg);
+        z-index: -1
+    }
+    50% {
+        transform: rotateY(0deg) perspective(15rem);
+        z-index: -1
+    }
+    100% {
+        transform: rotateY(0deg);
+        z-index: 1
+    }
+}
 
+@keyframes front-flip {
+    0% {
+        transform: rotateY(90deg);
+        z-index: -1;
+    }
+    50% {
+        transform: rotateY(0deg) perspective(15rem);
+        z-index: -1
+    }
+    100% {
+        transform: rotateY(0deg);
+        z-index: 1
+    }
+}
+
+.Card-Back-Flip {
+    animation: 1s 1 forwards back-flip;
+}
+
+.Card-Front-Flip {
+    animation: 1s 1 forwards front-flip;
+}
 /* ------------------ Background Video ---------- */
 
 body {

@@ -9,7 +9,6 @@ const NavBar = React.createClass({
             .then(res => res.json())
             .then(json => {
                 if(json.length > 0) {
-                    console.log(that);
                     that.setState({
                         notify: true,
                     });

@@ -28,9 +28,11 @@ const FlippableDebateCard = React.createClass({
         const isChallenger = user._id == challenger._id;
         const isChallengee = user._id == challengee._id;
 
+        // const classes = "debate " + ( !frontVisible ? 'Card-Back-Flip' : '' );
+
         return (
             <div className="debate">
-                { frontVisible && (<div className="front">
+                { frontVisible && (<div className={ "front " + (frontVisible ? 'Card-Front-Flip': '')}>
                     <div className="content"  onClick={ this.flip }>
                         <div className="flex justify-between">
                             <div>
@@ -63,7 +65,7 @@ const FlippableDebateCard = React.createClass({
                     </div>
                 </div>) }
                 { !frontVisible && (
-                    <div className="back" onClick={ this.flip }>
+                    <div className={ "back Card-Back-Flip"} onClick={ this.flip } >
                         <div className="flex justify-between">
                             <div className="username mb2">
                                 <div className="flex items-center">
