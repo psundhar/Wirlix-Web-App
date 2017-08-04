@@ -76,7 +76,7 @@ const FlippableDebateCard = React.createClass({
                             <span className="small"><TimeElapsedString elapsed={debate.updated} /></span>
                         </div>
                         <p className="pl2 pr2 small" style={{textAlign: "left"}}>{ statement.text }</p>
-                        <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate" onClick={ () => handleEnterDebate(debate) }>Full Debate &#8250;</button></p>
+                        <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate" onClick={ e => { e.stopPropagation(); handleEnterDebate(debate); }}>Full Debate &#8250;</button></p>
                     </div>
                 )}
 
