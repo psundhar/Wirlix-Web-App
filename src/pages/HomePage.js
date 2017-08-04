@@ -99,15 +99,15 @@ const HomePage = React.createClass({
     handleConfirm(statementId, topicId, user) {
         this.setState({ showChallengePopup: true });
         // Make api call to create a challenge and then update state
-        // apiFetch('/api/challenges', 'POST', {
-        //     statement: statementId,
-        //     challenger: user._id,
-        //     topic: topicId,
-        // })
-        // .then(res => res.json())
-        // .then(json => {
-        //     console.log(json);
-        // });
+        apiFetch('/api/challenges', 'POST', {
+            statement: statementId,
+            challenger: user._id,
+            topic: topicId,
+        })
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+        });
     },
 
     render() {

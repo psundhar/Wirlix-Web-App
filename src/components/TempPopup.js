@@ -11,12 +11,12 @@ export default class TempPopup extends Component {
 
     render() {
         const {show, backgroundColor = "white", color = "black", children} = this.props;
-        console.log(this.state.expired);
+
         let body = (<span></span>);
 
         if(show && !this.state.expired) {
             setTimeout(() => { // TODO Setting state within render seems a bit fishy
-                console.log("SETTING EXPIRED");
+
                 this.setState({
                     expired: true,
                 });
@@ -29,12 +29,12 @@ export default class TempPopup extends Component {
                     zIndex: 100,
                     width: "100%"
                 }}>
-                    <div className="p4 rounded" style={{
+                    <div className="p3 rounded" style={{
                         width: "400px",
                         margin: "0 auto",
                         backgroundColor,
                         color,
-                        boxShadow: "0px 2px 5px 1px rgba(0, 0, 0, 0.75)",
+                        boxShadow: "0px 2px 3px 1px rgba(0, 0, 0, 0.4)",
                         fontFamily: "'Source Code Pro', Helvetica, Arial, Sans-Serif",
                     }}
                     >{ children }</div>
