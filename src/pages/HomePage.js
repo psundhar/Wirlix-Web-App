@@ -19,7 +19,7 @@ const HomePage = React.createClass({
                 statementId: null,
                 topicId: null,
             },
-            showChallengePopup: false,
+            showChallengeSent: false
         };
     },
 
@@ -105,12 +105,16 @@ const HomePage = React.createClass({
         })
         .then(res => res.json())
         .then(json => {
-            this.setState({ showChallengePopup: true });
+            this.setState({showChallengeSent: true});
+
+            setTimeout(() => {
+                this.setState({showChallengeSent: false});
+            }, 2500);
         });
     },
 
     render() {
-        const { topic, user, showChallengePopup } = this.state;
+        const { topic, user } = this.state;
 
         return (
         <div>
@@ -200,7 +204,7 @@ const HomePage = React.createClass({
             </div>
         </section>
         <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} topicId={ this.state.challenge.topicId } statementId={ this.state.challenge.statementId } user={ user } />
-        <TempPopup show={ showChallengePopup } duration={ 2500 } color="white" backgroundColor="crimson"><div className="center bold">Challenge Sent!</div></TempPopup>
+        <TempPopup show={ this.state.showChallengeSent } color="white" backgroundColor="crimson"><div className="center bold">Challenge Sent!</div></TempPopup>
         </div>
         )
     },

@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 export default class TempPopup extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            expired: false,
-        };
     };
 
     render() {
@@ -14,13 +10,7 @@ export default class TempPopup extends Component {
 
         let body = (<span></span>);
 
-        if(show && !this.state.expired) {
-            setTimeout(() => { // TODO Setting state within render seems a bit fishy
-
-                this.setState({
-                    expired: true,
-                });
-            }, this.props.duration);
+        if(show) {
 
             body = (
                 <div style={{
