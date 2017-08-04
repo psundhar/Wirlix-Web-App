@@ -1,5 +1,5 @@
 /* ------------------ INDEX.HBS ---------------- */
-@keyframes back-flip {
+@keyframes back-flip-in {
     0% {
         transform: rotateY(-90deg);
         z-index: -1
@@ -14,7 +14,7 @@
     }
 }
 
-@keyframes front-flip {
+@keyframes front-flip-in {
     0% {
         transform: rotateY(90deg);
         z-index: -1;
@@ -30,11 +30,11 @@
 }
 
 .Card-Back-Flip {
-    animation: 1s 1 forwards back-flip;
+    animation: 1s 1 forwards back-flip-in;
 }
 
 .Card-Front-Flip {
-    animation: 1s 1 forwards front-flip;
+    animation: 1s 1 forwards front-flip-in;
 }
 /* ------------------ Background Video ---------- */
 
