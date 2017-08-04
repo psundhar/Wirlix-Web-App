@@ -7,6 +7,7 @@ import DebateModal from '../components/DebateModal';
 import { registerDebateUpdater } from '../utilities/componentMethods';
 import { getDebate } from '../utilities/data';
 import IO from 'socket.io-client';
+import EndDebateOverlay from '../components/EndDebateOverlay';
 
 const ProfilePage = React.createClass({
 
@@ -20,6 +21,7 @@ const ProfilePage = React.createClass({
             challenges: [],
             debateModal: { visible: false, debate: {} },
             showEndDebateMessage: false,
+            showEndDebateMessageFadeOut: false,
         };
     },
 
@@ -159,7 +161,7 @@ const ProfilePage = React.createClass({
         const indexToDelete = debates.findIndex(d => d._id == debateObj._id);
 
         if(indexToDelete > -1) {
-            delete debates[indexToDelete];
+            debates.splice(indexToDelete, 1);
         }
 
         const dIndexToDelete = challenges.findIndex(c => {
@@ -167,16 +169,16 @@ const ProfilePage = React.createClass({
         });
 
         if(dIndexToDelete > -1) {
-            delete challenges[dIndexToDelete];
+            challenges.splice(dIndexToDelete, 1);
         }
 
         this.setState({debates, challenges, showEndDebateMessage: true});
 
         setTimeout(() => {
-            this.setState({ showEndDebateMessage: false});
-        }, 4000);
+            this.setState({ showEndDebateMessageFadeOut: true});
+        }, 3000);
 
-        apiFetch('/api/debates/' + debateObj._id, 'DELETE');
+        // apiFetch('/api/debates/' + debateObj._id, 'DELETE');
     },
 
     handleSubscribeToggle: function(debateId) {
@@ -216,7 +218,7 @@ const ProfilePage = React.createClass({
     },
 
     render() {
-        const { user, statement, debates, loggedInUser, topic, challenges, debateModal } = this.state;
+        const { user, statement, debates, loggedInUser, topic, challenges, debateModal, showEndDebateMessage, showEndDebateMessageFadeOut } = this.state;
 
         const isMyProfile = loggedInUser._id == user._id;
 
@@ -315,12 +317,7 @@ const ProfilePage = React.createClass({
 
                 <DebateModal questions={topic.questions} handleEndDebate={ this.handleEndDebate } user={this.state.loggedInUser} handleNewMessage={this.handleNewMessage} debate={ this.state.debateModal.debate }/>
 
-                {/*{ this.state.showEndDebateMessage && (<div className="end-overlay">*/}
-                    {/*<div className="end-message" style={{backgroundColor: "black"}}>*/}
-                    {/*<p className="quote" style={{color: "white"}}>Change will not come if we wait for some other person or some other time. We are the ones we've been waiting for. We are the change that we seek.</p>*/}
-                    {/*<p className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span></p>*/}
-                    {/*</div>*/}
-                {/*</div>) }*/}
+                { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
                 <div id="challenge-conf" className="modal fade" role="dialog">
                     <div className="modal-dialog">

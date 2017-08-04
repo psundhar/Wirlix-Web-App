@@ -7,6 +7,7 @@ import apiFetch from '../utilities/apiFetch';
 import IO from 'socket.io-client';
 import { registerDebateUpdater } from '../utilities/componentMethods';
 import { getDebate } from '../utilities/data';
+import EndDebateOverlay from '../components/EndDebateOverlay';
 
 const DebatePage = React.createClass({
     getInitialState() {
@@ -16,6 +17,7 @@ const DebatePage = React.createClass({
             user: {},
             debateModal: {debate: {}},
             showEndDebateMessage: false,
+            showEndDebateMessageFadeOut: false,
         }
     },
 
@@ -139,21 +141,21 @@ const DebatePage = React.createClass({
         const indexToDelete = debates.findIndex(d => d._id == debateObj._id);
 
         if(indexToDelete > -1) {
-            delete debates[indexToDelete];
+            debates.splice(indexToDelete, 1);
         }
 
         this.setState({debates, showEndDebateMessage: true});
 
         setTimeout(() => {
-            this.setState({ showEndDebateMessage: false});
-        }, 4000);
+            this.setState({ showEndDebateMessageFadeOut: true});
+        }, 3000);
 
         // apiFetch('/api/debates/' + debateObj._id, 'DELETE');
     },
 
     render: function() {
-        const { topic, user, debates, showEndDebateMessage } = this.state;
-        console.log(showEndDebateMessage);
+        const { topic, user, debates, showEndDebateMessage, showEndDebateMessageFadeOut } = this.state;
+
         return (
     <div>
     <section className="debate-section" style={{minHeight:"1400px"}}>
@@ -231,10 +233,7 @@ const DebatePage = React.createClass({
 
 
         <DebateModal questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} handleNewMessage={this.handleNewMessage} debate={this.state.debateModal.debate} />
-        { showEndDebateMessage && (<div className="end-overlay"><div className="end-message">
-            <p className="quote">Change will not come if we wait for some other person or some other time. We are the ones we've been waiting for. We are the change that we seek.</p>
-            <p className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span></p>
-        </div></div>) }
+        { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
             </div>)
 
