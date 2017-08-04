@@ -3,6 +3,7 @@ import StatementCard from '../components/StatementCard';
 import apiFetch from '../utilities/apiFetch';
 import NavBar from '../components/NavBar';
 import ChallengeDialog from '../components/ChallengeDialog';
+import TempPopup from '../components/TempPopup';
 
 const MIN_VOTES = 5;
 
@@ -18,6 +19,7 @@ const HomePage = React.createClass({
                 statementId: null,
                 topicId: null,
             },
+            showChallengeSent: false
         };
     },
 
@@ -103,7 +105,11 @@ const HomePage = React.createClass({
         })
         .then(res => res.json())
         .then(json => {
-            console.log(json);
+            this.setState({showChallengeSent: true});
+
+            setTimeout(() => {
+                this.setState({showChallengeSent: false});
+            }, 2500);
         });
     },
 
@@ -195,10 +201,10 @@ const HomePage = React.createClass({
                 </div>
             </div>
             <div className="overlay">
-
             </div>
         </section>
         <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} topicId={ this.state.challenge.topicId } statementId={ this.state.challenge.statementId } user={ user } />
+        <TempPopup show={ this.state.showChallengeSent } color="white" backgroundColor="crimson"><div className="center bold">Challenge Sent!</div></TempPopup>
         </div>
         )
     },
