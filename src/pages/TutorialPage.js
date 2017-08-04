@@ -1,6 +1,5 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
-import Overlays from 'react-overlays'
 
 const TutorialPage = React.createClass({
 
