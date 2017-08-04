@@ -1665,6 +1665,12 @@ body {
     width: 0;
 }
 
+.ohoo {
+    width: 100%
+}
+
+
+
 .fp-player {
     display: flex;
     justify-content: center;
@@ -2674,6 +2680,8 @@ body {
     }
 
 }
+
+
 
 @media screen and (max-width:540px){
     .video-foreground {

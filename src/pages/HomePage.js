@@ -128,7 +128,7 @@ const HomePage = React.createClass({
             </div>
             <video playsInline autoPlay muted loop poster="" id="bgvid">
                 <source src="video/1 North Korea.mp4" type="video/mp4" />
-                // <source src="video/wirlix_promo_video_v1.webm" type="video/webm" />
+                 <source src="video/wirlix_promo_video_v1.webm" type="video/webm" />
             </video>
         </div>
         <section className="news-section" id="cont-section">

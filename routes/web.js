@@ -135,4 +135,20 @@ router.get('/rankings', function(req, res, next) {
     });
 });
 
+router.get('/about', function(req, res, next) {
+    const data = {
+        user: req.user,
+    };
+
+    res.render('react_main', { page: 'about', data: JSON.stringify(data)});
+});
+
+router.get('/tutorial', function(req, res, next) {
+    const data = {
+        user: req.user,
+    };
+
+    res.render('react_main', { page: 'tutorial', data: JSON.stringify(data)});
+});
+
 module.exports = router;

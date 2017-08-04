@@ -129,7 +129,8 @@ const ImagePage = React.createClass({
 
         const previewImage = imageFile.preview || user.image || "/images/profile-pic-placeholder.png";
 
-        return (<div>
+        return (
+            <div>
             <link rel = "stylesheet" type= "text/css" href="/stylesheets/styles.css" />
             <div className="upload-container">
                 <div className="container">
