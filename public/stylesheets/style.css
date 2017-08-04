@@ -34,7 +34,7 @@
 }
 
 .Card-Front-Flip {
-    animation: 1s 1 forwards front-flip-in;
+    animation: 1s 1 forwards front-flip;
 }
 /* ------------------ Background Video ---------- */
 
