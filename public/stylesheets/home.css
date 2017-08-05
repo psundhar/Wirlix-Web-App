@@ -95,6 +95,14 @@ h1, h2, h3, h4{
   width: 100%;
 }
 
+.button-home a:hover {
+    background-color: white;
+    color: black;
+    transition: .2s ease;
+    text-decoration: none;
+    /*font-family: "Nunito", sans-serif;
+    font-size: 24px;*/
+}
 
 
 /* ================================== Navbar ================================== */
@@ -900,6 +908,9 @@ z-index: 5;
   overflow: auto;
 }
 
+.modal-content button{
+  border: solid 1px;
+}
 .modal-backdrop.in{
 
 }
@@ -1645,7 +1656,7 @@ z-index: 5;
   /* Medium Devices, Desktops */
   @media only screen and (max-width : 992px) {
 
-
+       
 
         .button-home{
           bottom: 20px;
@@ -1693,6 +1704,7 @@ z-index: 5;
 
   /* Small Devices, Tablets */
   @media only screen and (max-width : 768px) {
+
 
     .change label{
       margin-bottom: 50px;

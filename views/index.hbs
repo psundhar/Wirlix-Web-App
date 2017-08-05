@@ -14,7 +14,11 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700" rel="stylesheet">
     <title>Wirlix</title>
-
+<script type="text/javascript">
+    $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
+})
+</script>
 
 </head>
 <body>
@@ -26,7 +30,8 @@
     <div class="homenav">
         <div class="container">
             <div class="row">
-                <img id = "main-logo" src="/images/Wirlix_InvertedLogo.png">
+                <div id="main-title-mobile">WIRLIX</div>
+                <div class="motto-mobile">SPARK CONTROVERSY</div>
                 <div class = "text-home-red mobile">
                     <i>Real People &nbsp;&nbsp; Real Stories &nbsp;&nbsp; Real Conversation</i>
                     <!-- <b>Sign up Below</b> to enter the first social media created to empower you. -->
@@ -38,6 +43,7 @@
                                   <!--<label for="input-1" class="input__label">
                                       <span class="input__label-content"></span>
                                   </label>-->
+
                               </span>
                         <span class="input">
                                   <input type="password" name="password" placeholder="Password" class="input__field" id="input-2" required/>
@@ -46,8 +52,12 @@
                             </label>-->
                               </span>
                         <button id="send-button" class="bootn ghost" type="submit">Login<i class="fa fa-angle-double-right"></i></button>
+                       <div class ="signup-top">
+                       <p>Don't Have an Account? <a href=#signupForm>Sign Up</a></p>
+                      </div>
                     </div>
                 </form>
+                 
             </div>
             <div class ="signup mobile">
                 <p>Don't Have an Account? <a href=#signupForm>Sign Up</a></p>
@@ -58,7 +68,7 @@
               </div>
               {{/if}}
         </div>
-        <div class="arrow-group" onclick="#icon-align">
+        <div class="arrow-group">
             <a href="#icon-align">
                 <div class="arrow-container see-more" href="#icon-align">
                     <div class="arrow">
@@ -143,48 +153,50 @@
             <!-- <b>Sign up Below</b> to enter the first social media created to empower you. -->
         </div>
         <div class ="signup">
-            <p>Don't Have an Account? <a href=#signupForm>Sign Up</a></p>
+            <p>“I'm not saying I'm gonna change the world, but I guarantee that I will spark the brain that will change the world.” - Tupac Shakur</p>
         </div>
         <div id="icon-align" class="container-fluid">
             <div class="container">
-                <div class="row">
+               <!--  <div class="row">
                     <div class="col-xs-12 weAreOne">WE ARE ONE</div>
-                </div>
+                </div> -->
                 <div class="row icons">
                     <div id="div-1" class="col-xs-12 col-sm-4">
-                        <div>
-                            <i class="fa fa-comments-o"></i>
+                        <div class="icon-row">
+                            <a class= "icon-debate" href="#"><i class="fa fa-comments-o"></i></a>
+
                             <h3>DEBATE</h3>
-                            <span>Speak Things into Existence</span>
+                            <span>...</span>
+
                         </div>
                         <!--<img src="../public/images/test3.png" alt="Mountain View" style="width:280px;height:200px;"></img>-->
                     </div>
                     <div id="div-2" class="col-xs-12 col-sm-4">
-                        <div>
-                            <i class="fa fa-eye"></i>
+                        <div class="icon-row">
+                            <a class= "icon-debate2" href="#"><i class="fa fa-eye"></i></a>
                             <h3>OPEN YOUR PERSPECTIVE</h3>
-                            <span>Unbias News Updated Every 24 Hours</span>
+                            <span>...</span>
                         </div>
-                    </div>
+                    </div class="icon-row">
                     <div id="div-3" class="col-xs-12 col-sm-4">
                         <div>
-                            <i class="fa fa-trophy"></i>
-                            <h3>COMPETE</h3>
-                            <span>against the world's best debaters</span>
+                            <a class= "icon-debate3" href="#"><i class="fa fa-gavel"></i></a>
+                            <h3>DEFY</h3>
+                            <span>...</span>
+                     
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <!--<div class = "submit">
         <button id="send-button" type="submit">Be Bold</button>
     </div> -->
-
-    <div class="overlay">
-
-    </div>
+     </div>
+        
 
 </div>
 <div id = "signupForm">
@@ -209,6 +221,8 @@
                         </span>
                     <span class="input">
                             <input type="email" name= "email" placeholder= "Email" class="input__field" id="input-7" required/>
+
+                           
                         <!--<label for="input-7" class="input__label">
                             <span class="input__label-content"></span>
                         </label>-->
@@ -216,7 +230,8 @@
                 </div>
                 <div class="col-xs-12">
                         <span class="input">
-                        <input type="tel" name= "username" placeholder= "Username" maxlength="30" class="input__field" id="input-8" />
+                            <input type="text" name= "username" placeholder= "Username" maxlength="12" class="input__field" id="input-8" />
+
                             <!--<label for="input-8" class="input__label">
                                 <span class="input__label-content"></span>
                             </label>-->
@@ -236,5 +251,71 @@
     </form>
 </div>
 </div>
+ 
+<!-- modal1 !-->
+
+<div id="icon-modal" class="icon-modal">
+      <div id="icon-1" class="icon-message">
+           <p class="quotet">
+
+           Debate</p>
+          <p class="quote">
+          Debaters can submit their first argument expressing their perspective on the controversial topic and rate other debater’s first arguments as either emotionally appealing or factually appealing. Debaters can also challenge one another’s first arguments and enter a moderated live chat room where they can proceed with their debate or discussion, and subscribe to their favorite debates.
+
+           </p>
+          <p class="coexist"><span class="C">C</span><span class="O">O</span><span class="E">E</span><span class="X">X</span><span class="I">I</span><span class="S">S</span><span class="T">T</span></p>
+        </div>
+        
+        <div class="close-button close-button">
+            <button type="button" class="close-button btn btn-default" ><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+        </div>
+ </div>
+
+<!-- modal1 !-->
+
+<div id="icon-modal2" class="icon-modal">
+      <div id="icon-message2" class="icon-message">
+           <p class="quotet">
+
+            Perspective</p>
+          <p class="quote">
+
+            Wirlix is a social media debate and news platform revolutionizing the way you see the world and interact with humans around you. We believe the power of social media and technology should be used to truly connect one another and open minds rather than isolate opinions. We are challenging the status quo. by obliterating the echo chamber We are a platform that produces non-bias and multi-faceted information for the purpose of live discussion, debate, and real world solution creation. We exist to show you the world through real people, real stories and real conversation.
+
+            Seriously, the world is messed up and we all have the power to start a revolution. Join ours today.</p>
+          <p class="coexist"><span class="C">C</span><span class="O">O</span><span class="E">E</span><span class="X">X</span><span class="I">I</span><span class="S">S</span><span class="T">T</span></p>
+        </div>
+        
+        <div class="close-button close-button">
+            <button type="button" class="close-button btn btn-default" data-dismiss="icon-message"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+        </div>
+ </div>   
+
+ <!-- modal1 !-->
+
+<div id="icon-modal3" class="icon-modal">
+      <div id="icon-message3" class="icon-message">
+           <p class="quotet">
+
+           Defy The Status Quo</p>
+          <p class="quote">
+           Much too often, we see the public follow popular ideologies from the status quo, rather than construct their own thoughts. On Wirlix, videos will be uploaded on a daily basis, depicting unique controversial topics (politics, the current education system, religion, social issues, etc.). We are not mainstream media. We give you perspective with no bias. We provide you the platform to broaden your horizons, to show you the world from different perspectives obliterating the echo chamber. Think for YOU.</p>
+          <p class="coexist"><span class="C">C</span><span class="O">O</span><span class="E">E</span><span class="X">X</span><span class="I">I</span><span class="S">S</span><span class="T">T</span></p>
+        </div>
+        
+        <div class="close-button close-button">
+            <button type="button" class="close-button btn btn-default" data-dismiss="icon-message"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+        </div>
+ </div>
+        <div id="icon-overlay1" class="icon-overlay">
+        </div>
+         <div id="icon-overlay2" class="icon-overlay">
+        </div>
+         <div id="icon-overlay3" class="icon-overlay">
+        </div>
+
+        
+   
+
 </body>
 </html>

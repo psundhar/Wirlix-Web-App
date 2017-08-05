@@ -57,7 +57,7 @@ const ImagesController = {
                         res.end();
                     });
                 }
-                else console.log(error);
+                else console.log(error + '   test');
             });
     } ],
 };

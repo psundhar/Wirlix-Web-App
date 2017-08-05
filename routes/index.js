@@ -79,24 +79,27 @@ module.exports = function(passport) {
         //     from:'+16176525428',
         //     body: "Thanks for joining" + " " + req.body.fullName + "! Make sure to check out our site we have a ton of amazing shit coming up for you. At Wirlix, we are one world in unity and we believe in the power of people and the power in you. It's a movement and a revolution and we can't wait to change the world with you. We care about your experience and your happiness so please reach out anytime and stay tuned for an amazing journey. Welcome to Wirlix."
         // });
+        /*let transporter = nodemailer.createTransport({
+            service: 'gmail',
+            secure: false,
+            port: 25,
+            auth: {
+                user: 'wirlixtest@gmail.com',
+                pass: 'test@W!rl!x'
+            },
+            tls : {
+                rejectUnauthorized: false
+            }
+        });
 
-
-
-            // let transporter = nodemailer.createTransport({
-            //     service: 'gmail',
-            //     auth: {
-            //         user: 'priyanka@wirlix.com',
-            //         pass: 'federer1998'
-            //     }
-            // });
-            // var name = req.body.firstName;
-            // var password = req.body.password;
-            let mailOptions = {
-                from: 'priyanka@wirlix.com',
-                to: req.body.email,
-                subject: 'Welcome to Wirlix',
-                text: 'Welcome to Wirlix',
-                html: `
+        var name = req.body.firstName;
+        //var password = req.body.password;
+        let mailOptions = {
+            from: 'wirlixtest@gmail.com',
+            to: req.body.email,
+            subject: 'Welcome to Wirlix',
+            text: 'Welcome to Wirlix',
+            html:*/ `
         <div>
           <div style="
             text-align: center;
@@ -109,9 +112,8 @@ module.exports = function(passport) {
             letter-spacing: 0px;
             line-height: 1em;
             text-transform: uppercase;
-            letter-spacing: 7px;
             font-weight: 200;
-            font-style: lighter;
+            font-style: normal;
             -webkit-font-smoothing: antialiased;
             padding-bottom: 2rem;
             padding-top: 75px;">
@@ -127,9 +129,8 @@ module.exports = function(passport) {
             /*line-height: 1.2em;*/
             letter-spacing: 0px;
             line-height: 1em;
-            letter-spacing: 2px;
             font-weight: 200;
-            font-style: lighter;
+            font-style: normal;
             -webkit-font-smoothing: antialiased;
             padding-bottom: 2rem;
             padding-top: 10px;">
@@ -146,11 +147,10 @@ module.exports = function(passport) {
             word-wrap: normal;
             font-family: Raleway,Arial,sans-serif;
             /*line-height: 1.2em;*/
-            letter-spacing: 0px;
             line-height: 1em;
             letter-spacing: 2px;
             font-weight: 200;
-            font-style: lighter;
+            font-style: normal;
             -webkit-font-smoothing: antialiased;
             padding-top: 10px;">
             <br />
@@ -164,11 +164,10 @@ module.exports = function(passport) {
            word-wrap: normal;
            font-family: Raleway,Arial,sans-serif;
            /*line-height: 1.2em;*/
-           letter-spacing: 0px;
            line-height: 1em;
            letter-spacing: 2px;
            font-weight: 200;
-           font-style: lighter;
+           font-style: normal;
            -webkit-font-smoothing: antialiased;
            padding-bottom: 2rem;
            padding-top: 5px;">
@@ -196,11 +195,9 @@ module.exports = function(passport) {
             font-family: Times New Roman, serif;
             font-style: oblique;
             /*line-height: 1.2em;*/
-            letter-spacing: 0px;
             line-height: 1em;
             letter-spacing: 2px;
             font-weight: 200;
-            font-style: lighter;
             -webkit-font-smoothing: antialiased;
             padding-bottom: 2rem;
             padding-top: 10px;">
@@ -221,9 +218,7 @@ module.exports = function(passport) {
             /*line-height: 1.2em;*/
             letter-spacing: 0px;
             line-height: 1em;
-            letter-spacing: 2px;
             font-weight: 200;
-            font-style: lighter;
             -webkit-font-smoothing: antialiased;
             padding-bottom: 2rem;
             padding-top: 10px;">
@@ -233,26 +228,26 @@ module.exports = function(passport) {
           </div>
         </div>
             `
-                // attachments: [{
-                //     filename: 'image.png',
-                //     path: 'https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/30423_pets-products_january-site-flip_3-cathealth_short-tile_592x304._CB286975940_.jpg',
-                //     cid: 'unique@nodemailer.com' //same cid value as in the html img src
-                // }
-                // ]
-                //alternatives: [
-                //         {
-                //         contentType: 'text/html',
-                //         content: '/views/email.hbs'
-                //     }
-                // ]
-            };
+           /* attachments: [{
+                filename: 'image.png',
+                path: 'https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/30423_pets-products_january-site-flip_3-cathealth_short-tile_592x304._CB286975940_.jpg',
+                cid: 'unique@nodemailer.com' //same cid value as in the html img src
+            }
+            ],
+           alternatives: [
+                {
+                    contentType: 'text/html',
+                    content: '/views/email.hbs'
+                }
+            ]
+        };
 
-            // transporter.sendMail(mailOptions, (error, info) => {
-            //     if(error) {
-            //         return console.log(error);
-            //     }
-            //     console.log('Message % s sent: %s', info.messageId, info.response);
-            // });
+        transporter.sendMail(mailOptions, (error, info) => {
+            if(error) {
+                return console.log(error);
+            }
+            console.log('Message % s sent: %s', info.messageId, info.response);
+        });*/
 
         var fullName = req.body.fullName;
         var password = req.body.password;
@@ -291,18 +286,20 @@ module.exports = function(passport) {
                             console.log(err);
                             return next(err);
                         }
-                        res.redirect('/image/');
+                        res.redirect('/image?isNewUser=true');
                     })
                 }
             });
         })
-        .catch(function(err) {
-           console.log(err);
-           res.status(500);
-           res.end();
-        });
+            .catch(function(err) {
+                console.log(err);
+                res.status(500);
+                res.end();
+            });
     });
     // TOKBOX Video Chat Technology
+
+
 
 const opentok = require('./opentok-api');
 const broadcast = require('./broadcast-api');
