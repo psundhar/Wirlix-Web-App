@@ -2,7 +2,6 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import Typed from 'typed.js';
 
-
 const AboutPage = React.createClass({
 
     getInitialState() {
