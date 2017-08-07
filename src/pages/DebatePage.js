@@ -156,6 +156,14 @@ const DebatePage = React.createClass({
     render: function() {
         const { topic, user, debates, showEndDebateMessage, showEndDebateMessageFadeOut } = this.state;
 
+        const myDebates = debates.filter((d) => {
+            return d.challenger._id == user._id || d.challengee._id == user._id;
+        });
+
+        const anythingUnread = myDebates.find(d => {
+            return (d.challenger._id == user._id && !d.challengerRead) || (d.challengee._id == user._id && !d.challengeeRead);
+        })
+
         return (
     <div>
     <section className="debate-section" style={{minHeight:"1400px"}}>
@@ -165,11 +173,12 @@ const DebatePage = React.createClass({
             <h1 className="main-question col-md-12" id="debate-prompt">{ topic.prompt }</h1>
         <div className="col-md-4 col-md-offset-4 my-debates-button">
             <a className="col-md-12" href="#">My Debates</a>
+            { anythingUnread && (<div style={{width: "15px", height: "15px", borderRadius: "15px", boxShadow: "0px 1px 2px black", left:"5px", top: "5px", position: "relative", backgroundColor: "crimson"}}></div>) }
         </div>
         </div>
         </div>
 
-        <MyDebates handleReplyClick={this.handleEnterDebate} debates={ debates } user={ user }/>
+        <MyDebates handleReplyClick={this.handleEnterDebate} debates={ myDebates } user={ user }/>
         <div className="comments">
             <div className="container">
             <div className="border decide">
