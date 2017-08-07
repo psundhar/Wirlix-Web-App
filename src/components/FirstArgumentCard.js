@@ -35,7 +35,7 @@ export default ({ debate, handleReplyClick, user }) => {
             </div>
             <p className="comment-preview">{ statement.text }</p>
             <p><button type="button" className="reply-button col-md-4 col-md-offset-8 col-xs-12" data-toggle="modal" data-target="#view-debate" onClick={ () => handleReplyClick(debate) }>Reply</button></p>
-            <p className="time-posted">{ showNotification && (<span className="small mr1" style={{color: "crimson"}}><i className="glyphicon glyphicon-envelope" /></span>) }<TimeElapsedString elapsed={ statement.created } /></p>
+            <p className="time-posted">{ showNotification && (<span className="small mr1" style={{color: "crimson"}}><i className="glyphicon glyphicon-envelope" /></span>) }<TimeElapsedString elapsed={ debate.updated } /></p>
         </div>
     );
 };
