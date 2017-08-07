@@ -73,6 +73,9 @@ module.exports = {
             next();
         }
 
+        const isChallenger = req.user._id == debate.challenger;
+        const isChallengee = req.user._id == debate.challengee;
+
         Debate.default.findById(id).then(function(debate) {
             if(rational) {
                 debate.rational += 1;
@@ -83,11 +86,11 @@ module.exports = {
             if(viewed) {
                 debate.views += 1
 
-                if(req.user._id == debate.challenger) {
+                if(isChallenger) {
                     debate.challengerRead = true;
                 }
 
-                if(req.user._id == debate.challengee) {
+                if(isChallengee) {
                     debate.challengeeRead = true;
                 }
             }
@@ -102,6 +105,16 @@ module.exports = {
             if(message) {
                 debate.updated = Date.now();
                 debate.messages.push(message);
+
+                // Notify other party
+                if(isChallenger) {
+                    debate.challengeeRead = false;
+                    debate.challengerRead = true;
+                }
+                else if(isChallengee) {
+                    debate.challengerRead = false;
+                    debate.challengeeRead = true;
+                }
             }
 
             return debate.save();

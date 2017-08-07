@@ -51,8 +51,8 @@ const FlippableDebateCard = React.createClass({
                                     <p className="small">{ challengee.username }</p>
                                 </div>
                             </div>
-                            <span className="small">{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
-                            <span className="small"><TimeElapsedString elapsed={debate.updated} /></span>
+                            <span className="small" style={{color: "crimson"}}>{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
+                            <span className="small ml1"><TimeElapsedString elapsed={debate.updated} /></span>
                         </div>
                     </div>
                     <div className="clearfix mb3">
