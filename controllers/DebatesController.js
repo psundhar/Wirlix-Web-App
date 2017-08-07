@@ -73,10 +73,11 @@ module.exports = {
             next();
         }
 
-        const isChallenger = req.user._id == debate.challenger;
-        const isChallengee = req.user._id == debate.challengee;
-
         Debate.default.findById(id).then(function(debate) {
+
+            const isChallenger = req.user._id == debate.challenger;
+            const isChallengee = req.user._id == debate.challengee;
+
             if(rational) {
                 debate.rational += 1;
             }
