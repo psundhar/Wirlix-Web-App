@@ -21,7 +21,7 @@ const DebateModal = React.createClass({
     },
 
     render() {
-        const { handleNewMessage, debate, user, handleEndDebate } = this.props;
+        const { handleNewMessage, debate, user, handleEndDebate, handleSubscribeToggle } = this.props;
         const { statement, challenger = {}, challengee = {}, messages = [], views, subscribers = [] } = debate;
 
         const challengerImage = challenger.image || '/images/pexels-photo-103123.jpeg';
@@ -121,7 +121,7 @@ const DebateModal = React.createClass({
                         )}
                         <div className="vote-box col-md-12">
                             <div className="col-md-6 col-md-offset-3">
-                                <p><i className={ "fa fa-check " + ( isSubscriber ? 'checked' : '' ) } /> Subscribe</p>
+                                <p onClick={ () => handleSubscribeToggle(debate._id) }><i className={ "fa fa-check " + ( isSubscriber ? 'checked' : '' ) } /> Subscribe</p>
                             </div>
                         </div>
                         <div className="close-bottom">
