@@ -61,7 +61,8 @@ const HomePage = React.createClass({
         let that = this;
 
         if(this.state.statementText.length == 0) {
-            return; // Don't submit empty statements
+            console.log('your cannot submit empty opinion');
+            return ; // Don't submit empty statements
         }
 
         apiFetch('/api/statements', 'POST', {
@@ -112,9 +113,13 @@ const HomePage = React.createClass({
             }, 2500);
         });
     },
+    handleCancel() {
+
+    },
 
     render() {
         const { topic, user } = this.state;
+        const opinion=this.state.statementText.length!=0;
 
         return (
         <div>
@@ -124,7 +129,10 @@ const HomePage = React.createClass({
 
             </div>
             <div className="button-home col-md-4" style={{ position: "absolute" }}>
-                <a href="#">Spark Controversy</a>
+                <a href="#">What's Trending</a>
+                <div className="arrow animated bounce">
+                    <a href="#" id="arrow_button"> <img src="images/arrow.jpg" style={{width:"10px"}}/></a>
+                </div>
             </div>
             <div className="mute">
                 <img src="images/sound.png" />
@@ -144,10 +152,12 @@ const HomePage = React.createClass({
                     <div className="col-md-8 col-md-offset-2">
                         <textarea className="col-md-12 col-xs-12 col-sm-12" placeholder="What's your first opinion?" onChange={ this.handleStatementTextChange } value={ this.state.statementText }></textarea>
                         <div className="col-md-6 res-button agr">
-                            <button onClick={() => { this.handleSubmit(true);}}>Agree</button>
+                            {opinion ? <button onClick={() => { this.handleSubmit(true);}}>Agree</button>:
+                                <button data-toggle="modal" data-target="#opinion-conf" onClick={() => { this.handleSubmit(true);}}>Agree</button> }
                         </div>
                         <div className="col-md-6 res-button dis">
-                            <button onClick={() => { this.handleSubmit(false)}}>Disagree</button>
+                            {opinion ? <button onClick={() => { this.handleSubmit(false);}}>Disagree<img src="images/thumbs_down.jpg" style={{height:"3px" ,width:"5px"}}/></button>:
+                                <button data-toggle="modal" data-target="#opinion-conf" onClick={() => { this.handleSubmit(false);}}>Disagree &nbsp;<img src="images/thumbs_down.jpg" style={{height:"10px" ,width:"10px"}}/></button> }
                         </div>
                     </div>
                 </div>
@@ -168,7 +178,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length >= MIN_VOTES).map((s, i) => {
                                         return (
-                                            <StatementCard key={i} handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard key={i} handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created}{ ...s }/>
                                         )
                                     })}
 
@@ -177,10 +187,11 @@ const HomePage = React.createClass({
 
                             <div className="col-md-4 vote-col middle" id ="middle">
                                 <h2 className="col-md-12">You Decide</h2>
-                                <div className="comment-container col-md-12">
+                                <div className="comment-container col-md-12" id="you_decide">
+
                                     { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length < MIN_VOTES && s.voters.filter(v => !v.isRational).length < MIN_VOTES).map(s => {
                                         return (
-                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
                                         )
                                     })}
                                 </div>
@@ -191,7 +202,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.voters && s.voters.filter(v => !v.isRational).length >= MIN_VOTES).map(s => {
                                         return (
-                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
+                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
                                         )
                                     })}
                                 </div>
@@ -205,8 +216,19 @@ const HomePage = React.createClass({
         </section>
         <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} topicId={ this.state.challenge.topicId } statementId={ this.state.challenge.statementId } user={ user } />
         <TempPopup show={ this.state.showChallengeSent } color="white" backgroundColor="crimson"><div className="center bold">Challenge Sent!</div></TempPopup>
+            <div id ="opinion-conf" className="modal fade" data-toggle="opinion" role="modal">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <p>Your opinion matters!!! Please Enter your opinion</p>
+                        <div className="col-xs-6 col-sm-6 col-md-6 cancel">
+                            <div className="col-xs-6 col-sm-6 col-md-6 cancel">
+                                <button data-dismiss="modal" onClick={ () => handleCancel() }>Continue</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        )
+        </div>)
     },
 });
 

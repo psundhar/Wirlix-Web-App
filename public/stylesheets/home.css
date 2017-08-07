@@ -20,6 +20,61 @@ h1, h2, h3, h4{
   z-index: 2;
 }
 
+
+.arrow {
+  position: relative;
+  bottom: 0;
+  margin:auto;
+  height: 10px;
+
+}
+
+.bounce {
+  -webkit-animation-name: bounce;
+  -moz-animation-name: bounce;
+  -o-animation-name: bounce;
+  animation-name: bounce;
+}
+.animated{-webkit-animation-fill-mode:both;
+  -moz-animation-fill-mode:both;
+  -ms-animation-fill-mode:both;
+  -o-animation-fill-mode:both;
+
+  animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+
+  animation-fill-mode:both;
+  -webkit-animation-duration:2s;
+  -moz-animation-duration:2s;
+  -ms-animation-duration:2s;
+  -o-animation-duration:2s;
+  animation-duration:2s;
+}
+
+
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}	40% {-webkit-transform: translateY(-30px);}
+  60% {-webkit-transform: translateY(-15px);}
+}
+
+@-moz-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {-moz-transform: translateY(0);}
+  40% {-moz-transform: translateY(-30px);}
+  60% {-moz-transform: translateY(-15px);}
+}
+
+@-o-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {-o-transform: translateY(0);}
+  40% {-o-transform: translateY(-30px);}
+  60% {-o-transform: translateY(-15px);}
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-30px);}
+  60% {transform: translateY(-15px);}
+}
+
 /* ================================== Video ================================== */
 
 .main-section-home .mute{
@@ -102,6 +157,21 @@ h1, h2, h3, h4{
     text-decoration: none;
     /*font-family: "Nunito", sans-serif;
     font-size: 24px;*/
+}
+
+.button-home a#arrow_button{
+  font-family: "Oswald", sans-serif;
+  display: block;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 200;
+  border: none;
+  text-decoration: none;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 20px;
+  width: 100%;
 }
 
 
@@ -380,8 +450,6 @@ button:focus{
   color: #ffffff;
 }
 
-
-
 .comment-container{
   overflow: auto;
 }
@@ -392,6 +460,7 @@ button:focus{
   font-weight: 200;
   overflow: auto;
   margin-bottom: 20px;
+
 }
 
 .comment p.disagree{
@@ -416,7 +485,9 @@ button:focus{
   font-weight: 400;
   font-style: normal;
   transition: all .2s;
+  word-wrap: break-word;
 }
+
 
 .comment .profile-pic{
   width: 25px;

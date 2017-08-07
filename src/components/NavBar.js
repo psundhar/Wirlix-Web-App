@@ -81,7 +81,7 @@ const NavBar = React.createClass({
                         </div>
                         <div className="collapse navbar-collapse center-m" id="bs-example-navbar-collapse-1">
                             <ul className="nav navbar-nav center">
-                                <li><a href="/home">News</a></li>
+                                <li><a href="/home">Live</a></li>
                                 <li><a href="/debate">Debate</a></li>
                                 <li><a href="/rankings">Ranking</a></li>
                                 <li><a href="/about">About</a></li>
@@ -92,8 +92,9 @@ const NavBar = React.createClass({
                                 </a>
                                     {isOpen ?  <ul className="dropdown-menu" id="dropdown" style={{display:"inline-block", background: "red"}}>
                                         <li><a href={"/profile/" + user._id}>Profile</a></li>
+                                        <li><a href={"/profile/"+ user._id +"#profile-notification"}>Notifications</a></li>
                                         <li><a href={"/image/"}>Upload Image</a></li>
-                                        <li><a href="#">Settings</a></li>
+                                        <li><a href="/logout">Logout</a></li>
                                     </ul>: null}</li>
                                 <li><a className="help" href="/tutorial">? <br/><span>See Tutorial</span></a></li>
                             </ul>
