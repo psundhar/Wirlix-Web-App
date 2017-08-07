@@ -8,8 +8,9 @@ export default ({ debate, handleReplyClick, user }) => {
     let showNotification = false;
 
     if(challengee) {
-        profileLink = "/profile/" + statement.user
-        if(!debate.challengeeRead) {
+        profileLink = "/profile/" + statement.user;
+
+        if(user._id == challengee._id && !debate.challengeeRead) {
             showNotification = true;
         }
     }
