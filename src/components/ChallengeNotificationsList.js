@@ -16,7 +16,7 @@ const ChallengeNotificationsList = ({challenges, debates, user, handleAcceptChal
                 const thisDebate = debates.find(d => d.statement && d.statement._id == c.statement._id && d.challenger._id == c.challenger._id && d.challengee._id == c.challengee._id);
 
                 return (
-                    <div className="notification" key={i}>
+                    <div className="notification rounded" key={i}>
                         <div className="p1">
                             { isChallenger ? 'You' : (<a style={profileLinkStyles} href={ "/profile/" + c.challenger._id }>{c.challenger.username}</a>) } challenged { !isChallenger ? 'you' : (<a style={profileLinkStyles} href={ "/profile/" + c.challengee._id }>{c.challengee.username}</a>) } to debate
                         </div>
