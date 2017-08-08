@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar';
 import ChallengeNotificationsList from '../components/ChallengeNotificationsList';
 import apiFetch from '../utilities/apiFetch';
 import DebateModal from '../components/DebateModal';
-import { registerDebateUpdater } from '../utilities/componentMethods';
+import { registerSocketEventHandler } from '../utilities/realTime';
 import { getDebate } from '../utilities/data';
 import IO from 'socket.io-client';
 import EndDebateOverlay from '../components/EndDebateOverlay';
@@ -52,7 +52,7 @@ const ProfilePage = React.createClass({
 
         const socket = IO(); // Will need to be altered in production
 
-        registerDebateUpdater(socket, this.updateDebate);
+        registerSocketEventHandler(socket, 'updates:debates', this.updateDebate);
     },
 
     handleEnterDebate(debate) {

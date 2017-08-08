@@ -15,9 +15,11 @@ module.exports = {
             if(err) {
                 console.log(err);
                 res.status(422);
+
                 next();
             }
             else {
+                global.io.emit("updates:opinions", {_id: statement._id}); // Send message via socket.io
                 res.send(statement);
             }
         });

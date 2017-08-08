@@ -23,7 +23,7 @@ const numEmotional = (voters) => {
     });
 };
 
-const sortOutcome = (a, b, primaryQualifier, secondaryQualifier) => {
+const sortOutcome = (a, b, primaryQualifier, secondaryQualifier = null) => {
     if(primaryQualifier(a) > primaryQualifier(b)) {
         return -1;
     }
@@ -55,6 +55,8 @@ const HomePage = React.createClass({
         if(initialState) { // Globally set into hbs templates
             this.setState(initialState);
         }
+
+        // Connect to server via websocket for live updates
     },
 
     handleStatementTextChange(e) {

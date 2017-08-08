@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar';
 import DebateModal from '../components/DebateModal';
 import apiFetch from '../utilities/apiFetch';
 import IO from 'socket.io-client';
-import { registerDebateUpdater } from '../utilities/componentMethods';
+import { registerSocketEventHandler } from '../utilities/realTime';
 import { getDebate } from '../utilities/data';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 
@@ -21,7 +21,9 @@ const DebatePage = React.createClass({
         }
     },
 
-    updateDebate(debateId) {
+    updateDebate(data) {
+        const debateId = data._id;
+
         getDebate(debateId, json => {
             const debates = this.state.debates;
 
@@ -46,9 +48,9 @@ const DebatePage = React.createClass({
             this.setState(initialState);
         }
 
-        const socket = IO(); // Will need to be altered in production
+        const socket = IO();
 
-        registerDebateUpdater(socket, this.updateDebate);
+        registerSocketEventHandler(socket, 'updates:debates', this.updateDebate);
     },
 
     handleSubscribeToggle: function(debateId) {
