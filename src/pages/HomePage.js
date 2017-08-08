@@ -23,6 +23,18 @@ const numEmotional = (voters) => {
     });
 };
 
+const sortOutcome = (a, b, primaryQualifier, secondaryQualifier) => {
+    if(primaryQualifier(a) > primaryQualifier(b)) {
+        return -1;
+    }
+    else if(primaryQualifier(a) < primaryQualifier(b)) {
+        return 1;
+    }
+    else if(secondaryQualifier) {
+        return secondaryQualifier(a) >= secondaryQualifier(b) ? -1 : 1;
+    }
+};
+
 const HomePage = React.createClass({
 
     getInitialState() {
@@ -194,7 +206,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numRational(s.voters) >= MIN_VOTES)
                                         .sort((a, b) => {
-                                            return numRational(a.voters) >= numRational(b.voters) ? -1 : 1;
+                                            return sortOutcome(a, b, s => numRational(s.voters), s => s.voters.length );
                                         })
                                         .map((s, i) => {
                                         return (
@@ -226,7 +238,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numEmotional(s.voters) >= MIN_VOTES)
                                         .sort((a, b) => {
-                                            return numEmotional(a.voters) >= numEmotional(b.voters) ? -1 : 1;
+                                            return sortOutcome(a, b, s => numEmotional(s.voters), s => s.voters.length);
                                         })
                                         .map(s => {
                                         return (
