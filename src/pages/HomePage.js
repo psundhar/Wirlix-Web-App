@@ -7,6 +7,22 @@ import TempPopup from '../components/TempPopup';
 
 const MIN_VOTES = 5;
 
+const numVoters = (voters, filterFn) => {
+    return voters.filter(filterFn).length;
+};
+
+const numRational = (voters) => {
+    return numVoters(voters, (v) => {
+        return v.isRational;
+    });
+};
+
+const numEmotional = (voters) => {
+    return numVoters(voters, (v) => {
+        return !v.isRational;
+    });
+};
+
 const HomePage = React.createClass({
 
     getInitialState() {
@@ -118,7 +134,7 @@ const HomePage = React.createClass({
     },
 
     render() {
-        const { topic, user } = this.state;
+        const { topic, user, statements } = this.state;
         const opinion=this.state.statementText.length!=0;
 
         return (
@@ -176,7 +192,7 @@ const HomePage = React.createClass({
                             <div className="col-md-4 vote-col factual active" id ="factual">
                                 <h2 className="col-md-12"><img src="images/factual-w.png"/></h2>
                                 <div className="comment-container col-md-12">
-                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length >= MIN_VOTES).map((s, i) => {
+                                    { statements.filter(s => s.voters && numRational(s.voters) >= MIN_VOTES).map((s, i) => {
                                         return (
                                             <StatementCard key={i} handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created}{ ...s }/>
                                         )
@@ -189,7 +205,11 @@ const HomePage = React.createClass({
                                 <h2 className="col-md-12">You Decide</h2>
                                 <div className="comment-container col-md-12" id="you_decide">
 
-                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length < MIN_VOTES && s.voters.filter(v => !v.isRational).length < MIN_VOTES).map(s => {
+                                    { statements.filter(s => s.voters && numRational(s.voters) < MIN_VOTES && numEmotional(s.voters) < MIN_VOTES)
+                                        .sort((a, b) => {
+                                            return a.created >= b.created ? -1 : 1;
+                                        })
+                                        .map(s => {
                                         return (
                                             <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
                                         )
@@ -200,7 +220,11 @@ const HomePage = React.createClass({
                             <div className="col-md-4 vote-col emotional" id = "emotional">
                                 <h2 className="col-md-12"><img src="images/emotional-w.png" /></h2>
                                 <div className="comment-container col-md-12">
-                                    { this.state.statements.filter(s => s.voters && s.voters.filter(v => !v.isRational).length >= MIN_VOTES).map(s => {
+                                    { statements.filter(s => s.voters && numEmotional(s.voters) >= MIN_VOTES)
+                                        .sort((a, b) => {
+
+                                        })
+                                        .map(s => {
                                         return (
                                             <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
                                         )
