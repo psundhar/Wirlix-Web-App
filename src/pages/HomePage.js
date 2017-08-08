@@ -4,6 +4,9 @@ import apiFetch from '../utilities/apiFetch';
 import NavBar from '../components/NavBar';
 import ChallengeDialog from '../components/ChallengeDialog';
 import TempPopup from '../components/TempPopup';
+import { registerSocketEventHandler } from '../utilities/realTime';
+import IO from 'socket.io-client';
+import { getStatement } from '../utilities/data';
 
 const MIN_VOTES = 5;
 
@@ -57,6 +60,12 @@ const HomePage = React.createClass({
         }
 
         // Connect to server via websocket for live updates
+        registerSocketEventHandler(IO(), 'updates:opinions', this.updateStatement);
+    },
+
+    updateStatement(data) {
+
+        apiFetch
     },
 
     handleStatementTextChange(e) {

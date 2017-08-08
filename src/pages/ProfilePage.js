@@ -25,7 +25,9 @@ const ProfilePage = React.createClass({
         };
     },
 
-    updateDebate(debateId) {
+    updateDebate(data) {
+        const debateId = data._id;
+
         getDebate(debateId, json => {
             const debates = this.state.debates;
 

@@ -25,6 +25,20 @@ module.exports = {
         });
     },
 
+    getObject: function(req, res, next) {
+        Statement.default.findById(req.params.id)
+        .exec()
+        .then(function(s) {
+            if(s) {
+                res.send(s);
+            }
+        })
+        .catch(function(err) {
+            console.log(err);
+            return next();
+        });
+    },
+
     putObject: function(req, res, next) {
         Statement
             .default
