@@ -1,5 +1,11 @@
 import React from 'react';
 
+const profileLinkStyles = {
+    display: "inline",
+    textDecoration: "underline",
+    fontSize: "1em",
+};
+
 const ChallengeNotificationsList = ({challenges, debates, user, handleAcceptChallenge, handleDeclineChallenge, handleEnterDebate }) => {
     return (
         <div className="notifications col-md-12">
@@ -12,7 +18,7 @@ const ChallengeNotificationsList = ({challenges, debates, user, handleAcceptChal
                 return (
                     <div className="notification" key={i}>
                         <div className="p1">
-                            { isChallenger ? 'You' : c.challenger.username } challenged { !isChallenger ? 'you' : c.challengee.username } to debate
+                            { isChallenger ? 'You' : (<a style={profileLinkStyles} href={ "/profile/" + c.challenger._id }>{c.challenger.username}</a>) } challenged { !isChallenger ? 'you' : (<a style={profileLinkStyles} href={ "/profile/" + c.challengee._id }>{c.challengee.username}</a>) } to debate
                         </div>
                         <div>
                             { c.status == 'accepted' && (<span className="mr2">Challenge accepted! <button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate" onClick={ () => handleEnterDebate(thisDebate) }>Enter Debate</button></span>)}
