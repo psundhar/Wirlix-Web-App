@@ -60,12 +60,26 @@ const HomePage = React.createClass({
         }
 
         // Connect to server via websocket for live updates
-        registerSocketEventHandler(IO(), 'updates:opinions', this.updateStatement);
+        registerSocketEventHandler(IO(), 'updates:opinions', this.getUpdatedStatement);
     },
 
-    updateStatement(data) {
+    getUpdatedStatement(data) {
+        getStatement(data._id, json => {
+            const statements = this.state.statements;
 
-        apiFetch
+            const indexToEdit = statements.findIndex(s => s._id == data._id);
+
+            console.log(indexToEdit, statements);
+
+            if(indexToEdit > -1) {
+                statements[indexToEdit] = json;
+            }
+            else {
+                statements.push(json);
+            }
+
+            this.setState(statements);
+        })
     },
 
     handleStatementTextChange(e) {

@@ -1,7 +1,7 @@
 import apiFetch from './apiFetch';
 
 const GETOne = (path, id, cb) => {
-    apiFetch(path + id, 'GET')
+    return apiFetch(path + id, 'GET')
     .then(res => res.json())
     .then(json => {
         cb(json);
@@ -9,9 +9,9 @@ const GETOne = (path, id, cb) => {
 };
 
 export const getDebate = (debateId, cb) => {
-    GETOne('/api/debates/', debateId, cb);
+    return GETOne('/api/debates/', debateId, cb);
 };
 
 export const getStatement = (statementId, cb) => {
-    GETOne('/api/statements/', statementId, cb);
+    return GETOne('/api/statements/', statementId, cb);
 }

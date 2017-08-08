@@ -16,6 +16,7 @@ router.get('/topics', TopicsController.getCurrent);
 
 router.post('/statements', StatementsController.postCollection);
 router.put('/statements/:id', StatementsController.putObject);
+router.get('/statements/:id', StatementsController.getObject);
 
 router.post('/challenges', ChallengesController.postCollection);
 router.put('/challenges/:id', ChallengesController.putObject);
