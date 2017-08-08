@@ -166,9 +166,6 @@ const HomePage = React.createClass({
             }, 2500);
         });
     },
-    handleCancel() {
-
-    },
 
     render() {
         const { topic, user, statements } = this.state;

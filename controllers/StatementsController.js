@@ -20,7 +20,6 @@ module.exports = {
             }
             else {
                 global.io.emit("updates:opinions", {_id: statement._id}); // Send message via socket.io
-                console.log("updates:opinions:emitted");
                 res.send(statement);
             }
         });
@@ -67,6 +66,7 @@ module.exports = {
                 }
             })
             .then(function(s) {
+                global.io.emit("updates:opinions", {_id: s._id}); // Send message via socket.io
                 res.send(s);
             })
             .catch(function(err) {
