@@ -192,7 +192,11 @@ const HomePage = React.createClass({
                             <div className="col-md-4 vote-col factual active" id ="factual">
                                 <h2 className="col-md-12"><img src="images/factual-w.png"/></h2>
                                 <div className="comment-container col-md-12">
-                                    { statements.filter(s => s.voters && numRational(s.voters) >= MIN_VOTES).map((s, i) => {
+                                    { statements.filter(s => s.voters && numRational(s.voters) >= MIN_VOTES)
+                                        .sort((a, b) => {
+                                            return numRational(a.voters) >= numRational(b.voters) ? -1 : 1;
+                                        })
+                                        .map((s, i) => {
                                         return (
                                             <StatementCard key={i} handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created}{ ...s }/>
                                         )
@@ -222,7 +226,7 @@ const HomePage = React.createClass({
                                 <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numEmotional(s.voters) >= MIN_VOTES)
                                         .sort((a, b) => {
-
+                                            return numEmotional(a.voters) >= numEmotional(b.voters) ? -1 : 1;
                                         })
                                         .map(s => {
                                         return (
