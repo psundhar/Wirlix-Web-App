@@ -90,7 +90,7 @@ const NavBar = React.createClass({
                                 <li><a className="profile-nav" onClick={this.toggleMenu} href="#" style={{background: "url(" + profileImage + ") center center no-repeat" }}>
                                     { notify && (<div style={{position:'absolute',top:0,left:0,height:"13px",width:"13px",borderRadius:"100px",backgroundColor:"crimson"}}></div>) }
                                 </a>
-                                    {isOpen ?  <ul className="dropdown-menu" id="dropdown" style={{display:"inline-block", background: "red"}}>
+                                    {isOpen ?  <ul className="dropdown-menu" id="dropdown" style={{display:"inline-block", background: "black"}}>
                                         <li><a href={"/profile/" + user._id}>Profile</a></li>
                                         <li><a href={"/profile/"+ user._id +"#profile-notification"}>Notifications</a></li>
                                         <li><a href={"/image/"}>Upload Image</a></li>

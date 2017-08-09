@@ -8,6 +8,8 @@ import { registerSocketEventHandler } from '../utilities/realTime';
 import IO from 'socket.io-client';
 import { getStatement } from '../utilities/data';
 
+
+import ReactTooltip from 'react-tooltip';
 const MIN_VOTES = 5;
 
 const numVoters = (voters, filterFn) => {
@@ -180,10 +182,13 @@ const HomePage = React.createClass({
             </div>
             <div className="button-home col-md-4" style={{ position: "absolute" }}>
                 <a href="#">What's Trending</a>
-                <div className="arrow animated bounce">
-                    <a href="#" id="arrow_button"> <img src="images/arrow.jpg" style={{width:"10px"}}/></a>
-                </div>
             </div>
+            {/*<div className="button-home-arrow" >
+                <div className="arrow animated bounce">
+                    <a className="border-less" href="#"><img src="images/arrow-w.png" style={{width:"40px", height:"40px"}}/></a>
+                </div>
+            </div>*/}
+
             <div className="mute">
                 <img src="images/sound.png" />
             </div>
@@ -201,16 +206,20 @@ const HomePage = React.createClass({
                     <h1 className="main-question col-md-12">{ topic.prompt }</h1>
                     <div className="col-md-8 col-md-offset-2">
                         <textarea className="col-md-12 col-xs-12 col-sm-12" placeholder="What's your first opinion?" onChange={ this.handleStatementTextChange } value={ this.state.statementText }></textarea>
+                        <p data-tip="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempor sapien metus, id viverra risus gravida non">?</p>
+                        <ReactTooltip place="top" type="dark" effect="float"/>
                         <div className="col-md-6 res-button agr">
-                            {opinion ? <button onClick={() => { this.handleSubmit(true);}}>Agree</button>:
-                                <button data-toggle="modal" data-target="#opinion-conf" onClick={() => { this.handleSubmit(true);}}>Agree</button> }
+                            {opinion ? <button onClick={() => { this.handleSubmit(true);}}>Submit in Agreement</button>:
+                                <button data-toggle="modal" data-target="#opinion-conf" onClick={() => { this.handleSubmit(true);}}>Submit in Agreement<img src="images/thumbs-up.png" style={{height:"25px" ,width:"25px"}}/></button> }
                         </div>
                         <div className="col-md-6 res-button dis">
-                            {opinion ? <button onClick={() => { this.handleSubmit(false);}}>Disagree<img src="images/thumbs_down.jpg" style={{height:"3px" ,width:"5px"}}/></button>:
-                                <button data-toggle="modal" data-target="#opinion-conf" onClick={() => { this.handleSubmit(false);}}>Disagree &nbsp;<img src="images/thumbs_down.jpg" style={{height:"10px" ,width:"10px"}}/></button> }
+                            {opinion ? <button onClick={() => { this.handleSubmit(false);}}>Submit in Disagreement<img src="images/thumbs-down.png"/></button>:
+                                <button data-toggle="modal" data-target="#opinion-conf" onClick={() => { this.handleSubmit(false);}}>Submit in Disagreement &nbsp;<img src="images/thumbs-down.png" style={{height:"25px" ,width:"25px"}}/></button> }
                         </div>
                     </div>
                 </div>
+
+
             </div>
             <div className="comments">
                 <div className="container">
@@ -224,7 +233,7 @@ const HomePage = React.createClass({
                         </ul>
                         <div className="tab-content">
                             <div className="col-md-4 vote-col factual active" id ="factual">
-                                <h2 className="col-md-12"><img src="images/factual-w.png"/></h2>
+                                <h2 className="col-md-12"><img src="images/best-debater-w.png"/></h2>
                                 <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numRational(s.voters) >= MIN_VOTES)
                                         .sort((a, b) => {
@@ -256,7 +265,7 @@ const HomePage = React.createClass({
                             </div>
 
                             <div className="col-md-4 vote-col emotional" id = "emotional">
-                                <h2 className="col-md-12"><img src="images/emotional-w.png" /></h2>
+                                <h2 className="col-md-12"><img style= {{height: "48px", width:"48px"}}src="images/heart-w.gif" /></h2>
                                 <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numEmotional(s.voters) >= MIN_VOTES)
                                         .sort((a, b) => {
@@ -278,14 +287,13 @@ const HomePage = React.createClass({
         </section>
         <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} topicId={ this.state.challenge.topicId } statementId={ this.state.challenge.statementId } user={ user } />
         <TempPopup show={ this.state.showChallengeSent } color="white" backgroundColor="crimson"><div className="center bold">Challenge Sent!</div></TempPopup>
-            <div id ="opinion-conf" className="modal fade" data-toggle="opinion" role="modal">
+            <div id ="opinion-conf" className="modal fade in" data-toggle="opinion" role="modal">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <p>Your opinion matters!!! Please Enter your opinion</p>
-                        <div className="col-xs-6 col-sm-6 col-md-6 cancel">
-                            <div className="col-xs-6 col-sm-6 col-md-6 cancel">
+
+                            <div className="col-md-6 cancel">
                                 <button data-dismiss="modal" onClick={ () => handleCancel() }>Continue</button>
-                            </div>
                     </div>
                 </div>
             </div>

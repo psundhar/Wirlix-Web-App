@@ -21,12 +21,13 @@ h1, h2, h3, h4{
 }
 
 
-.arrow {
-  position: relative;
-  bottom: 0;
-  margin:auto;
-  height: 10px;
+/* ================================== ARROW/LIVE ================================== */
 
+.arrow {
+  bottom: 0;
+  left: 50%;
+  margin: auto;
+  border: 0;
 }
 
 .bounce {
@@ -35,7 +36,8 @@ h1, h2, h3, h4{
   -o-animation-name: bounce;
   animation-name: bounce;
 }
-.animated{-webkit-animation-fill-mode:both;
+.animated{
+  -webkit-animation-fill-mode:both;
   -moz-animation-fill-mode:both;
   -ms-animation-fill-mode:both;
   -o-animation-fill-mode:both;
@@ -54,7 +56,7 @@ h1, h2, h3, h4{
 
 
 @-webkit-keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}	40% {-webkit-transform: translateY(-30px);}
+  0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);} 40% {-webkit-transform: translateY(-30px);}
   60% {-webkit-transform: translateY(-15px);}
 }
 
@@ -74,7 +76,6 @@ h1, h2, h3, h4{
   40% {transform: translateY(-30px);}
   60% {transform: translateY(-15px);}
 }
-
 /* ================================== Video ================================== */
 
 .main-section-home .mute{
@@ -134,7 +135,7 @@ h1, h2, h3, h4{
   right: 0;
 }
 
-.button-home a{
+.button-home p {
   font-family: "Oswald", sans-serif;
   display: block;
   text-align: center;
@@ -148,6 +149,40 @@ h1, h2, h3, h4{
   border: 2px solid #ffffff;
   padding: 20px;
   width: 100%;
+}
+.button-home a {
+  font-family: "Oswald", sans-serif;
+  display: block;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 200;
+  text-decoration: none;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+  padding: 20px;
+  width: 100%;
+}
+.border-less{
+  border: 0px;
+  background-color: green;
+}
+.button-home-arrow a{
+  font-family: "Oswald", sans-serif;
+  display: block;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 200;
+  text-decoration: none;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 10px;
+  width: 100%;
+  margin-top: 450px;
+  position: fixed;
 }
 
 .button-home a:hover {
@@ -327,6 +362,8 @@ h1, h2, h3, h4{
 .navbar .nav{
   margin-top: 30px;
 }
+
+
 
 /* ================================== Tutorial ================================== */
 
@@ -564,6 +601,9 @@ button:focus{
   border: 2px solid #ffffff;
 }
 
+.button-vote img{
+  margin: 0;
+}
 .view-amt{
   background-color: transparent;
   border: none;
@@ -1372,7 +1412,7 @@ z-index: 5;
 
 /* ================================== Rankings ================================== */
 .rankings-section {
-  background: url(../images/missile3.jpg) center center no-repeat;
+  background: black;
   background-size: cover;
 }
 
@@ -1391,7 +1431,6 @@ z-index: 5;
 }
 
 .my-rank-num{
-  background-color: #f5f5f5;
   padding: 5px;
   text-align: center;
 }
