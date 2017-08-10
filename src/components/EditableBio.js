@@ -24,7 +24,8 @@ class EditableBio extends Component {
 
         const { isEditable, bio, handleEdit } = this.props;
         const { inputText} = this.state;
-        const isDirty = !!inputText != !!bio;
+
+        const isDirty = (typeof inputText != 'undefined' && typeof bio != 'undefined' && inputText != bio);
 
         return (
             <div className="rounded p3 align-left" style={{backgroundColor: "rgba(255,255,255,.5)", border: "2px solid white", color: "black", textAlign: "left"}}>

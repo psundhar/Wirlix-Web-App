@@ -14,7 +14,7 @@ module.exports = {
                 // Make update;
                 const body = req.body;
 
-                if(body.bio) {
+                if(typeof body.bio != 'undefined') { // Keep in mind this may be an empty string
                     user.bio = body.bio;
                 }
 
