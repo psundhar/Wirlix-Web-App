@@ -275,10 +275,10 @@ const ProfilePage = React.createClass({
                                     </div>
                                     <div className="scores">
                                         <div className="col-md-6">
-                                            <p><img src="/images/best-debater-w.png" className="m0"/> { statement.voters && statement.voters.filter(v => v.isRational).length }</p>
+                                            <p className="p1"><img src="/images/best-debater-w.png" className="m0"/> { statement.voters && statement.voters.filter(v => v.isRational).length }</p>
                                         </div>
                                         <div className="col-md-6">
-                                            <p><img src="/images/peace.png" className="peace m0"/> { statement.voters && statement.voters.filter(v => !v.isRational).length }</p>
+                                            <p className="p1"><img src="/images/peace.png" className="peace m0"/> { statement.voters && statement.voters.filter(v => !v.isRational).length }</p>
                                         </div>
                                     </div>
                                 </div>
