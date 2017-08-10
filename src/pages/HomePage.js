@@ -206,7 +206,7 @@ const HomePage = React.createClass({
                     <h1 className="main-question col-md-12">{ topic.prompt }</h1>
                     <div className="col-md-8 col-md-offset-2">
                         <textarea className="col-md-12 col-xs-12 col-sm-12" placeholder="What's your first opinion?" onChange={ this.handleStatementTextChange } value={ this.state.statementText }></textarea>
-                        <p data-tip="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempor sapien metus, id viverra risus gravida non">?</p>
+                        <p className="homepagetooltip" data-tip="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempor sapien metus, id viverra risus gravida non">?</p>
                         <ReactTooltip place="top" type="dark" effect="float"/>
                         <div className="col-md-6 res-button agr">
                             {opinion ? <button onClick={() => { this.handleSubmit(true);}}>Submit in Agreement</button>:
@@ -290,10 +290,10 @@ const HomePage = React.createClass({
             <div id ="opinion-conf" className="modal fade in" data-toggle="opinion" role="modal">
                 <div className="modal-dialog">
                     <div className="modal-content">
-                        <p>Your opinion matters!!! Please Enter your opinion</p>
+                        <p id="modalpar">Please Enter your opinion</p>
 
-                            <div className="col-md-6 cancel">
-                                <button data-dismiss="modal" onClick={ () => handleCancel() }>Continue</button>
+                            <div id="modalbut" className="cancel">
+                                <button data-dismiss="modal" onClick={ () => handleCancel() }>X</button>
                     </div>
                 </div>
             </div>

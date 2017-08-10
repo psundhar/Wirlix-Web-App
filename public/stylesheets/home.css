@@ -385,6 +385,28 @@ h1, h2, h3, h4{
   text-align: center;
 }
 
+#modalpar{
+  padding: 30px;
+  padding-bottom: 60px;
+  font-size: 22px;
+  text-align: center;
+  font-family: "Oswald";
+
+}
+
+#modalbut{
+  width: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+}
+#modalbut button{
+  width: 50px;
+  color: white;
+  border: solid 1px red;
+
+}
 
 /* ================================== News / Comment Section ================================== */
 
@@ -661,6 +683,12 @@ button:focus{
 
 .nav.nav-pills li a:hover{
   color: #262626;
+}
+
+.homepagetooltip{
+  position: absolute;
+  top: 51%;
+  left: 95%;
 }
 /* ================================== About ================================== */
 
@@ -1760,13 +1788,21 @@ z-index: 5;
 
 /* Large Devices, Wide Screens */
   @media only screen and (max-width : 1200px) {
-
+    .homepagetooltip{
+      position: absolute;
+      top: 51%;
+      left: 95%;
+    }
   }
 
   /* Medium Devices, Desktops */
   @media only screen and (max-width : 992px) {
 
-       
+      .homepagetooltip{
+          position: absolute;
+          top: 50%;
+          left: 95%;
+      }
 
         .button-home{
           bottom: 20px;
