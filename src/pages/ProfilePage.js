@@ -255,7 +255,7 @@ const ProfilePage = React.createClass({
                                         <p><img src="/images/peace.png" className="peace"/> { statement.voters && statement.voters.filter(v => !v.isRational).length }</p>
                                     </div>
                                 </div>
-                                <div className="qotd col-md-12">
+                                <div className="qotd col-md-12 mb4">
                                     <div className="gotd-banner">
                                         <h3 className="mb2">{ topic.prompt }</h3>
                                         { statement.text && statement.agreement && (<div style={{backgroundColor: "white", border: "4px solid " + (statement.agreement == 'agree' ? 'slateblue' : 'crimson')}} className="p2">
@@ -264,6 +264,7 @@ const ProfilePage = React.createClass({
                                         {
                                             !statement.text && (<h4 className="mt4">No opinion available</h4>)
                                         }
+                                        { !isMyProfile && statement.text && (<button>Challenge this statement</button>) }
                                     </div>
                                 </div>
 
