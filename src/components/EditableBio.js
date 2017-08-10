@@ -3,6 +3,16 @@ import React, { Component } from 'react';
 class EditableBio extends Component {
     constructor(props) {
         super(props);
+
+        this.handleTextChange = this.handleTextChange.bind(this);
+
+        this.state = {
+            inputText: props.text || '',
+        }
+    };
+
+    handleTextChange(e) {
+        this.setState({inputText: e.target.value});
     };
 
     render() {
@@ -19,7 +29,7 @@ class EditableBio extends Component {
                     outline: "none",
                     color: "black",
                     backgroundColor: "white"
-                }} defaultValue={ text }></textarea>) :
+                }} value={ this.state.inputText } onChange={ this.handleTextChange }></textarea>) :
                     (
                         <p>{ text }</p>
                     )

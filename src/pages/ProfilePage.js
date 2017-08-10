@@ -246,8 +246,8 @@ const ProfilePage = React.createClass({
                         </div>
                         <div className="container">
                             <div className="profile-content col-md-8 col-md-offset-2">
-                                <h2 className="mb1">{ profileName }</h2>
-                                <h3 className="small italic">@{ user.username }</h3>
+                                <h2 className="mb0">{ profileName }</h2>
+                                <h3 className="small italic mb3">@{ user.username }</h3>
                                 <div className="mb2 col-md-12">
                                     <EditableBio isEditable={ loggedInUser._id == user._id } text={ user.bio } />
                                 </div>
