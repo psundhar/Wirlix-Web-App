@@ -6,20 +6,26 @@ class EditableBio extends Component {
 
         this.handleTextChange = this.handleTextChange.bind(this);
 
-        this.state = {
-            inputText: props.text || '',
-        }
+        this.state = {inputText: ''};
     };
 
     handleTextChange(e) {
         this.setState({inputText: e.target.value});
     };
 
+    componentWillReceiveProps(nextProps) {
+
+        this.setState({
+            inputText: nextProps.bio || '',
+        });
+    };
+
     render() {
 
-        const { isEditable, text, handleEdit } = this.props;
+        const { isEditable, bio, handleEdit } = this.props;
         const { inputText} = this.state;
-        const isDirty = !!inputText != !!text;
+        const isDirty = !!inputText != !!bio;
+
         return (
             <div className="rounded p3 align-left" style={{backgroundColor: "rgba(255,255,255,.5)", border: "2px solid white", color: "black", textAlign: "left"}}>
                 <div className="mb1">
