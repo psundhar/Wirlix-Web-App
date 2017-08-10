@@ -8,6 +8,7 @@ import { registerDebateUpdater } from '../utilities/componentMethods';
 import { getDebate } from '../utilities/data';
 import IO from 'socket.io-client';
 import EndDebateOverlay from '../components/EndDebateOverlay';
+import EditableBio from '../components/EditableBio';
 
 const ProfilePage = React.createClass({
 
@@ -246,7 +247,10 @@ const ProfilePage = React.createClass({
                         <div className="container">
                             <div className="profile-content col-md-8 col-md-offset-2">
                                 <h2 className="mb1">{ profileName }</h2>
-                                <h3 className="small">@{ user.username }</h3>
+                                <h3 className="small italic">@{ user.username }</h3>
+                                <div className="mb2">
+                                    <EditableBio canEdit={ loggedInUser._id == user._id } />
+                                </div>
                                 <div className="scores">
                                     <div className="col-md-6">
                                         <p><img src="/images/best-debater-w.png"/> { statement.voters && statement.voters.filter(v => v.isRational).length }</p>
