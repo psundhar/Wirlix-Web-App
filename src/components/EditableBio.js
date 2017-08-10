@@ -22,10 +22,11 @@ class EditableBio extends Component {
 
     render() {
 
-        const { isEditable, bio, handleEdit } = this.props;
+        const { isEditable = false, bio, handleEdit } = this.props;
         const { inputText} = this.state;
 
         const isDirty = (typeof inputText != 'undefined' && typeof bio != 'undefined' && inputText != bio);
+        console.log(isEditable);
 
         return (
             <div className="rounded p3 align-left" style={{backgroundColor: "rgba(255,255,255,.5)", border: "2px solid white", color: "black", textAlign: "left"}}>
@@ -39,7 +40,7 @@ class EditableBio extends Component {
                     backgroundColor: "white"
                 }} value={ inputText } onChange={ this.handleTextChange }></textarea>) :
                     (
-                        <p>{ text }</p>
+                        <p>{ bio || 'None added yet' }</p>
                     )
                 }
                 { isEditable && isDirty && (<div className="flex justify-end mt1">
