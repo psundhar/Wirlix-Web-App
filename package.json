@@ -42,6 +42,7 @@
     "react-draggable": "^2.2.6",
     "react-dropzone": "^3.13.3",
     "react-flipcard": "^0.2.1",
+    "react-joyride": "^1.10.1",
     "react-overlays": "^0.8.0",
     "serve-favicon": "~2.4.2",
     "socket.io": "^1.7.2",
