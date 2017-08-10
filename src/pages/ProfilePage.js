@@ -267,17 +267,19 @@ const ProfilePage = React.createClass({
                         </div>
                         <div className="container">
                             <div className="profile-content col-md-8 col-md-offset-2">
-                                <h2 className="mb0">{ profileName }</h2>
-                                <h3 className="small italic mb3">@{ user.username }</h3>
-                                <div className="mb2 col-md-12">
-                                    <EditableBio isEditable={ loggedInUser._id == user._id } handleEdit={this.handleBioEdit} bio={ user.bio } />
-                                </div>
-                                <div className="scores">
-                                    <div className="col-md-6">
-                                        <p><img src="/images/best-debater-w.png"/> { statement.voters && statement.voters.filter(v => v.isRational).length }</p>
+                                <div className="border-bottom border-white clearfix pb3">
+                                    <h2 className="mb0">{ profileName }</h2>
+                                    <h3 className="small italic mb3">@{ user.username }</h3>
+                                    <div className="mb2 col-md-12">
+                                        <EditableBio isEditable={ loggedInUser._id == user._id } handleEdit={this.handleBioEdit} bio={ user.bio } />
                                     </div>
-                                    <div className="col-md-6">
-                                        <p><img src="/images/peace.png" className="peace"/> { statement.voters && statement.voters.filter(v => !v.isRational).length }</p>
+                                    <div className="scores">
+                                        <div className="col-md-6">
+                                            <p><img src="/images/best-debater-w.png" className="m0"/> { statement.voters && statement.voters.filter(v => v.isRational).length }</p>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <p><img src="/images/peace.png" className="peace m0"/> { statement.voters && statement.voters.filter(v => !v.isRational).length }</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="qotd col-md-12 mb4">
