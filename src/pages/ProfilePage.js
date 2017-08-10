@@ -218,6 +218,14 @@ const ProfilePage = React.createClass({
             })
     },
 
+    handleBioEdit(text) {
+        const user = this.state.user;
+
+        user.bio = text;
+        
+        this.setState({user,});
+    },
+
     render() {
         const { user, statement, debates, loggedInUser, topic, challenges, debateModal, showEndDebateMessage, showEndDebateMessageFadeOut } = this.state;
 
@@ -249,7 +257,7 @@ const ProfilePage = React.createClass({
                                 <h2 className="mb0">{ profileName }</h2>
                                 <h3 className="small italic mb3">@{ user.username }</h3>
                                 <div className="mb2 col-md-12">
-                                    <EditableBio isEditable={ loggedInUser._id == user._id } text={ user.bio } />
+                                    <EditableBio isEditable={ loggedInUser._id == user._id } handleEdit={this.handleBioEdit} text={ user.bio } />
                                 </div>
                                 <div className="scores">
                                     <div className="col-md-6">

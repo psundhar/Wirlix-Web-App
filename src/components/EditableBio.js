@@ -17,7 +17,7 @@ class EditableBio extends Component {
 
     render() {
 
-        const { isEditable, text } = this.props;
+        const { isEditable, text, handleEdit } = this.props;
         const { inputText} = this.state;
         const isDirty = !!inputText != !!text;
         return (
@@ -36,7 +36,7 @@ class EditableBio extends Component {
                     )
                 }
                 { isEditable && isDirty && (<div className="flex justify-end mt1">
-                    <button className="caps p1" style={{border:"1px solid black", display:"inline-block", width:"auto"}}>Edit</button>
+                    <button onClick={ () => handleEdit(inputText) } className="caps p1" style={{border:"1px solid black", display:"inline-block", width:"auto"}}>Edit</button>
                 </div>) }
             </div>
         )
