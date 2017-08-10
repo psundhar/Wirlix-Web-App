@@ -5,6 +5,7 @@ const TopicsController = require('../controllers/TopicsController');
 const StatementsController = require('../controllers/StatementsController');
 const ChallengesController = require('../controllers/ChallengesController');
 const ImagesController = require('../controllers/ImagesController');
+const UsersController = require('../controllers/UsersController');
 
 router.get('/debates', DebatesController.getCollection);
 router.get('/debates/my', DebatesController.getMyDebates);
@@ -23,6 +24,8 @@ router.put('/challenges/:id', ChallengesController.putObject);
 router.get('/notifications', ChallengesController.getNotifications);
 
 router.post('/images/:id', ImagesController.postCollection);
+
+router.put('/users/:id', UsersController.putObject);
 
 router.use('*', jsonErrorResponse);
 

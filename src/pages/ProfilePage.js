@@ -219,11 +219,24 @@ const ProfilePage = React.createClass({
     },
 
     handleBioEdit(text) {
-        const user = this.state.user;
+        const { user, loggedInUser } = this.state;
 
-        user.bio = text;
-        
-        this.setState({user,});
+        if(user._id != loggedInUser._id) {
+            return;
+        }
+
+
+
+        apiFetch('/api/users/' + loggedInUser._id, 'PUT', {
+            bio: text,
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then(json => {
+            user.bio = text;
+            this.setState({user,});
+        })
     },
 
     render() {

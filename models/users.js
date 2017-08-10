@@ -31,6 +31,9 @@ var userSchema = mongoose.Schema({
     image: {
         type: String,
     },
+    bio: {
+        type: String,
+    },
 });
 
 module.exports = mongoose.model('User', userSchema);
