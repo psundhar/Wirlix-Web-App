@@ -4,6 +4,8 @@ import apiFetch from '../utilities/apiFetch';
 import NavBar from '../components/NavBar';
 import ChallengeDialog from '../components/ChallengeDialog';
 import TempPopup from '../components/TempPopup';
+import Joyride from 'react-joyride';
+import 'react-joyride/lib/react-joyride.scss';
 
 const MIN_VOTES = 5;
 
@@ -19,7 +21,8 @@ const HomePage = React.createClass({
                 statementId: null,
                 topicId: null,
             },
-            showChallengeSent: false
+            showChallengeSent: false,
+            joyrideSteps: [],
         };
     },
 
@@ -27,6 +30,24 @@ const HomePage = React.createClass({
         if(initialState) { // Globally set into hbs templates
             this.setState(initialState);
         }
+
+        this.setState({
+            joyrideSteps: [{
+                title: 'Trigger Action',
+                text: 'This button mutes the video',
+                selector: '.mute',
+                position: 'top',
+                type: 'hover',
+            },
+            {
+                title: 'Trigger Action',
+                    text: 'This button allows you to play or pause the video',
+                selector: '.control',
+                position: 'top',
+                type: 'hover',
+            }],
+        });
+
     },
 
     handleStatementTextChange(e) {
@@ -115,7 +136,7 @@ const HomePage = React.createClass({
 
     render() {
         const { topic, user } = this.state;
-
+        console.log(this.state.steps);
         return (
         <div>
         <div className="main-section-home">
@@ -126,12 +147,30 @@ const HomePage = React.createClass({
             <div className="button-home col-md-4" style={{ position: "absolute" }}>
                 <a href="#">Spark Controversy</a>
             </div>
-            <div className="mute">
-                <img src="images/sound.png" />
-            </div>
-            <div className="control">
-                <img src="images/pause.png" />
-            </div>
+            <Joyride
+                ref="joyride"
+                steps={this.state.joyrideSteps}
+                run={true}
+                showOverlay={true}
+                autoStart={true}
+                locale={{
+                    back: (<span>Back</span>),
+                    close: (<span>Close</span>),
+                    last: (<span>Last</span>),
+                    next: (<span>Next</span>),
+                    skip: (<span>Skip</span>),
+                }}
+                debug={true}
+                type="continuous"
+                callback={(obj) => console.log(obj)}
+            ></Joyride>
+                <div className="mute">
+                    <img src="images/sound.png" />
+                </div>
+                <div className="control">
+                    <img src="images/pause.png" />
+                </div>
+
             <video playsInline autoPlay muted loop poster="" id="bgvid">
                 <source src="video/1 North Korea.mp4" type="video/mp4" />
                  <source src="video/wirlix_promo_video_v1.webm" type="video/webm" />
@@ -203,6 +242,7 @@ const HomePage = React.createClass({
             <div className="overlay">
             </div>
         </section>
+
         <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} topicId={ this.state.challenge.topicId } statementId={ this.state.challenge.statementId } user={ user } />
         <TempPopup show={ this.state.showChallengeSent } color="white" backgroundColor="crimson"><div className="center bold">Challenge Sent!</div></TempPopup>
         </div>
