@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
+import { countVoteTypes, hasVotesFilter, countFactualVotes, countEmotionalVotes } from '../utilities/rankings';
 
 const RankingsPage = React.createClass({
 
@@ -36,30 +37,11 @@ const RankingsPage = React.createClass({
     render() {
         const { user, statements, view } = this.state;
 
-        const popularStatements = statements.filter(s => s.voters.length > 0);
+        const cachedVoteStatements = countVoteTypes(statements.filter(hasVotesFilter));
 
-        const cachedVoteStatements = popularStatements.map((s) => {
-            s.rational = s.voters.filter(v => v.isRational).length;
-            s.emotional = s.voters.length - s.rational;
-            return s;
-        });
+        const factualStatements = countFactualVotes([...cachedVoteStatements]);
 
-        const factualStatements = [...cachedVoteStatements].filter(s => s.rational > 0).sort((a,b) => {
-            if(a.rational == b.rational) {
-                return 0;
-            }
-            if(a.rational > b.rational) {
-                return -1;
-            }
-            return 1;
-        });
-
-        const emotionalStatements = [...cachedVoteStatements].filter(s => s.emotional > 0).sort((a,b) => {
-            if(a.emotional > b.emotional) {
-                return -1;
-            }
-            return 1;
-        });
+        const emotionalStatements = countEmotionalVotes([...cachedVoteStatements]);
 
         const topFactualStatement = factualStatements.shift();
         const topEmotionalStatement = emotionalStatements.shift();
