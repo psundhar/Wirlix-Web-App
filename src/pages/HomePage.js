@@ -35,24 +35,18 @@ const HomePage = React.createClass({
         }
 
         this.setState({
-            joyrideSteps: [{
-                title: 'Trigger Action',
-                text: 'This button mutes the video',
-                selector: '.mute',
-                position: 'top',
-                type: 'hover',
-            },
+            joyrideSteps: [
             {
-                title: 'Trigger Action',
-                    text: 'This button allows you to play or pause the video',
-                selector: '.control',
+                title: 'Factual Arguments',
+                text: 'This is the factual argument section',
+                selector: '.factual-img',
                 position: 'top',
                 type: 'hover',
             },
                 {
                     title: 'Trigger Action',
                     text: 'Scroll to correct position if required',
-                    selector: '.main question',
+                    selector: 'h1.main-question',
                     position: 'top',
                     style: {
                         mainColor: '#a350f0',
@@ -62,13 +56,7 @@ const HomePage = React.createClass({
                         },
                     },
                 },
-                {
-                    title: 'Trigger Action',
-                    text: 'This button allows you to play or pause the video',
-                    selector: '.factual',
-                    position: 'top',
-                    type: 'hover',
-                }],
+            ],
 
         });
 
@@ -165,6 +153,23 @@ const HomePage = React.createClass({
         console.log(this.state.steps);
         return (
         <div>
+        <Joyride
+            ref="joyride"
+            steps={this.state.joyrideSteps}
+            run={true}
+            showOverlay={true}
+            autoStart={true}
+            locale={{
+                back: (<span>Back</span>),
+                close: (<span>Close</span>),
+                last: (<span>Last</span>),
+                next: (<span>Next</span>),
+                skip: (<span>Skip</span>),
+            }}
+            debug={true}
+            type="continuous"
+            callback={(obj) => console.log(obj)}
+        />
         <div className="main-section-home">
             { Object.keys(user).length > 0 && (<NavBar user={ user } />) }
             <div className="overlay">
@@ -173,23 +178,6 @@ const HomePage = React.createClass({
             <div className="button-home col-md-4" style={{ position: "absolute" }}>
                 <a href="#">Spark Controversy</a>
             </div>
-            <Joyride
-                ref="joyride"
-                steps={this.state.joyrideSteps}
-                run={true}
-                showOverlay={true}
-                autoStart={true}
-                locale={{
-                    back: (<span>Back</span>),
-                    close: (<span>Close</span>),
-                    last: (<span>Last</span>),
-                    next: (<span>Next</span>),
-                    skip: (<span>Skip</span>),
-                }}
-                debug={true}
-                type="continuous"
-                callback={(obj) => console.log(obj)}
-            ></Joyride>
                 <div className="mute">
                     <img src="images/sound.png" />
                 </div>
@@ -229,7 +217,7 @@ const HomePage = React.createClass({
                         </ul>
                         <div className="tab-content">
                             <div className="col-md-4 vote-col factual active" id ="factual">
-                                <h2 className="col-md-12"><img src="images/factual-w.png"/></h2>
+                                <h2 className="col-md-12"><img className="factual-img" src="images/factual-w.png"/></h2>
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length >= MIN_VOTES).map((s, i) => {
                                         return (
