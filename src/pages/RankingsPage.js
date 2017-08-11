@@ -45,6 +45,9 @@ const RankingsPage = React.createClass({
         });
 
         const factualStatements = [...cachedVoteStatements].filter(s => s.rational > 0).sort((a,b) => {
+            if(a.rational == b.rational) {
+                return 0;
+            }
             if(a.rational > b.rational) {
                 return -1;
             }
