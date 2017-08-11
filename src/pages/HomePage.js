@@ -11,6 +11,9 @@ const MIN_VOTES = 5;
 
 const HomePage = React.createClass({
 
+
+
+
     getInitialState() {
         return {
             topic: {},
@@ -45,10 +48,33 @@ const HomePage = React.createClass({
                 selector: '.control',
                 position: 'top',
                 type: 'hover',
-            }],
+            },
+                {
+                    title: 'Trigger Action',
+                    text: 'Scroll to correct position if required',
+                    selector: '.main question',
+                    position: 'top',
+                    style: {
+                        mainColor: '#a350f0',
+                        beacon: {
+                            inner: '#a350f0',
+                            outer: '#a350f0',
+                        },
+                    },
+                },
+                {
+                    title: 'Trigger Action',
+                    text: 'This button allows you to play or pause the video',
+                    selector: '.factual',
+                    position: 'top',
+                    type: 'hover',
+                }],
+
         });
 
+
     },
+
 
     handleStatementTextChange(e) {
         this.setState({ statementText: e.target.value });
@@ -181,7 +207,7 @@ const HomePage = React.createClass({
                 <div className="container">
                     <h1 className="main-question col-md-12">{ topic.prompt }</h1>
                     <div className="col-md-8 col-md-offset-2">
-                        <textarea className="col-md-12 col-xs-12 col-sm-12" placeholder="What's your first opinion?" onChange={ this.handleStatementTextChange } value={ this.state.statementText }></textarea>
+                        <textarea  className="col-md-12 col-xs-12 col-sm-12" placeholder="What's your first opinion?" onChange={ this.handleStatementTextChange } value={ this.state.statementText }></textarea>
                         <div className="col-md-6 res-button agr">
                             <button onClick={() => { this.handleSubmit(true);}}>Agree</button>
                         </div>

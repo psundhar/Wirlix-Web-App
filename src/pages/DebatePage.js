@@ -8,6 +8,8 @@ import IO from 'socket.io-client';
 import { registerDebateUpdater } from '../utilities/componentMethods';
 import { getDebate } from '../utilities/data';
 import EndDebateOverlay from '../components/EndDebateOverlay';
+import Joyride from 'react-joyride';
+import 'react-joyride/lib/react-joyride.scss';
 
 const DebatePage = React.createClass({
     getInitialState() {
@@ -18,6 +20,7 @@ const DebatePage = React.createClass({
             debateModal: {debate: {}},
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
+            joyrideSteps: [],
         }
     },
 
@@ -49,6 +52,23 @@ const DebatePage = React.createClass({
         const socket = IO(); // Will need to be altered in production
 
         registerDebateUpdater(socket, this.updateDebate);
+        this.setState({
+            joyrideSteps: [{
+                title: 'Trigger Action',
+                text: 'This button mutes the video',
+                selector: '.container h1',
+                position: 'top',
+                type: 'hover',
+            },
+                {
+                    title: 'Trigger Action',
+                    text: 'This button allows you to play or pause the video',
+                    selector: '.my-debates-button',
+                    position: 'top',
+                    type: 'hover',
+                },
+               ]
+        });
     },
 
     handleSubscribeToggle: function(debateId) {
@@ -166,6 +186,23 @@ const DebatePage = React.createClass({
 
         return (
     <div>
+        <Joyride
+            ref="joyride"
+            steps={this.state.joyrideSteps}
+            run={true}
+            showOverlay={true}
+            autoStart={true}
+            locale={{
+                back: (<span>Back</span>),
+                close: (<span>Close</span>),
+                last: (<span>Last</span>),
+                next: (<span>Next</span>),
+                skip: (<span>Skip</span>),
+            }}
+            debug={true}
+            type="continuous"
+            callback={(obj) => console.log(obj)}
+        ></Joyride>
     <section className="debate-section" style={{minHeight:"1400px"}}>
         <NavBar user={ user }/>
         <div className="response">
