@@ -301,7 +301,6 @@ const ProfilePage = React.createClass({
                                         {
                                             !statement.text && (<h4 className="mt4">No opinion available</h4>)
                                         }
-                                        { !isMyProfile && statement.text && (<button>Challenge this statement</button>) }
                                     </div>
                                 </div>
 
