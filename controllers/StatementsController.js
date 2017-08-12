@@ -34,11 +34,19 @@ module.exports = {
                     const existingVote = s.voters.find(v => v.user == user._id)
                     const isRational = req.body.isRational;
 
-                    if(existingVote) { // Change it to the new vote
-                        existingVote.isRational = isRational;
+                    const text = req.body.text;
+
+                    if(typeof text != 'undefined') {
+                        s.text = text;
                     }
-                    else {
-                        s.voters.push({user: user._id, isRational});
+
+                    if(typeof isRational != 'undefined') {
+                        if(existingVote) { // Change it to the new vote
+                            existingVote.isRational = isRational;
+                        }
+                        else {
+                            s.voters.push({user: user._id, isRational});
+                        }
                     }
 
                     return s.save();

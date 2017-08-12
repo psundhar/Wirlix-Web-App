@@ -221,14 +221,32 @@ const ProfilePage = React.createClass({
             })
     },
 
+    handleStatementEdit(text) {
+        const { user, loggedInUser, statement } = this.state;
+
+        if(user._id != loggedInUser._id) {
+            return;
+        }
+
+        apiFetch('/api/statements/' + statement._id, 'PUT', {
+            text,
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then(json => {
+            statement.text = json.text;
+
+            this.setState({statement,});
+        });
+    },
+
     handleBioEdit(text) {
         const { user, loggedInUser } = this.state;
 
         if(user._id != loggedInUser._id) {
             return;
         }
-
-
 
         apiFetch('/api/users/' + loggedInUser._id, 'PUT', {
             bio: text,
@@ -296,8 +314,7 @@ const ProfilePage = React.createClass({
                                 <div className="qotd col-md-12 mb4 border-bottom border-white pb3">
                                     <div className="gotd-banner">
                                         <h3 className="mb2">{ topic.prompt }</h3>
-                                        <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text } agree={ statement.agreement == 'agree'} />
-
+                                        <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text } agree={ statement.agreement == 'agree'} handleEdit={ this.handleStatementEdit }/>
                                     </div>
                                 </div>
 

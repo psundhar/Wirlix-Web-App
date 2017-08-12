@@ -25,7 +25,7 @@ export default class EditableFirstArgument extends Component {
     };
 
     render() {
-        const { isEditable, text, agree } = this.props;
+        const { isEditable, text, agree, handleEdit } = this.props;
         const { inputText } = this.state;
 
         const isDirty = (typeof inputText != 'undefined' && typeof text != 'undefined' && inputText != text);
@@ -41,7 +41,7 @@ export default class EditableFirstArgument extends Component {
                         }} value={ inputText } onChange={ this.handleTextChange }>
                     </textarea></div>)}
                     { isEditable && isDirty && (<div className="flex justify-end mt1">
-                        <button onClick={ () => console.log(inputText) } className="caps p1" style={{border:"1px solid black", color: "black", display:"inline-block", padding: ".5rem", width:"auto"}}>Edit</button>
+                        <button onClick={ () => { handleEdit(inputText); }} className="caps p1" style={{border:"1px solid black", color: "black", display:"inline-block", padding: ".5rem", width:"auto"}}>Edit</button>
                     </div>) }
                     { !isEditable && text && (<h4 style={{color: 'black', fontStyle: 'italic', textTransform: 'none'}}>{ text }</h4>) }
                 </div>
