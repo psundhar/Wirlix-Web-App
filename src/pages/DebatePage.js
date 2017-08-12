@@ -53,17 +53,53 @@ const DebatePage = React.createClass({
 
         registerDebateUpdater(socket, this.updateDebate);
         this.setState({
-            joyrideSteps: [{
-                title: 'Trigger Action',
-                text: 'This button mutes the video',
-                selector: '.container h1',
-                position: 'top',
-                type: 'hover',
-            },
+            joyrideSteps: [
                 {
-                    title: 'Trigger Action',
-                    text: 'This button allows you to play or pause the video',
+                    title: 'Users can view the status of the debates that they are apart of using the My Debates Section ',
+                    text: 'This button allows you to see your debates',
                     selector: '.my-debates-button',
+                    position: 'top',
+                    type: 'hover',
+                },
+                {
+                    title: 'Live Debates',
+                    text: 'The middle column organizes all debates of that day based on time.(the most recent debates will be at the top of this column) ',
+                    selector: '.middle h2',
+                    position: 'top',
+                    type: 'hover',
+                },
+                {
+                    title: 'Best Debates',
+                    text: 'This Column shows the best debates',
+                    selector: '.best-debates-img',
+                    position: 'top',
+                    type: 'hover',
+                },
+                {
+                    title: 'Subscribed Debates',
+                    text: 'The column organizes the debates by amount of subscribes',
+                    selector: '.subs-debates-img',
+                    position: 'top',
+                    type: 'hover',
+                },
+                {
+                    title: 'Debate views ',
+                    text: 'This column shows the no.of views',
+                    selector: '.debate-view',
+                    position: 'top',
+                    type: 'hover',
+                },
+                {
+                    title: 'Subscribed Debates',
+                    text: 'This column shows the number subscription to the debate',
+                    selector: '.sub-debate',
+                    position: 'top',
+                    type: 'hover',
+                },
+                {
+                    title: 'Subscribe the Debate',
+                    text: 'You can subscribe to others debate',
+                    selector: '.subscribe',
                     position: 'top',
                     type: 'hover',
                 },
@@ -228,7 +264,7 @@ const DebatePage = React.createClass({
             </ul>
             <div className="tab-content">
             <div className="col-md-4 vote-col factual active" id ="factual">
-            <h2 className="col-md-12"><img src="images/eye-w.png" /><br/>Best Debates</h2>
+            <h2 className="col-md-12"><img className="best-debates-img" src="images/eye-w.png" /><br/>Best Debates</h2>
             <div className="debates col-md-12" id="best-debates-list">
                 { debates.filter((d) => {
                     return d.views > 10;
@@ -259,7 +295,7 @@ const DebatePage = React.createClass({
         </div>
 
         <div className="col-md-4 vote-col emotional" id = "emotional">
-            <h2 className="col-md-12"><img src="images/check-mark.png" /><br/>Subscribed Debates</h2>
+            <h2 className="col-md-12"><img className="subs-debates-img" src="images/check-mark.png" /><br/>Subscribed Debates</h2>
         <div className="debates col-md-12" id="subscribed-debates-list">
             { debates.filter((d) => {
                 return d.subscribers.includes(user._id);

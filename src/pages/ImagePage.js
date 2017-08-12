@@ -2,8 +2,8 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import ImageDialog from '../components/ImageDialog';
 import Draggable from 'react-draggable';
-
-
+import Joyride from 'react-joyride';
+import 'react-joyride/lib/react-joyride.scss';
 
 
 const ImagePage = React.createClass({
@@ -17,7 +17,9 @@ const ImagePage = React.createClass({
             edits: {
                 top: 0,
                 left: 0,
-            }
+            },
+            joyrideSteps: [],
+
         };
     },
 
@@ -68,6 +70,23 @@ const ImagePage = React.createClass({
         if(initialState) {
             this.setState(initialState);
         }
+        this.setState({
+            joyrideSteps: [{
+                title: 'Upload Image',
+                text: 'On click of this section you can upload an image for your profile',
+                selector: '.fa-upload',
+                position: 'top',
+                type: 'hover',
+            },
+                {
+                    title: 'Save and Continue',
+                    text: 'This button allows you save and navigate to home page',
+                    selector: '.save-continue',
+                    position: 'top',
+                    type: 'hover',
+                },
+            ]
+        });
     },
 
     onImageDrop(f) {
@@ -143,6 +162,23 @@ const ImagePage = React.createClass({
 
         return (
             <div>
+                <Joyride
+                    ref="joyride"
+                    steps={this.state.joyrideSteps}
+                    run={true}
+                    showOverlay={true}
+                    autoStart={true}
+                    locale={{
+                        back: (<span>Back</span>),
+                        close: (<span>Close</span>),
+                        last: (<span>Last</span>),
+                        next: (<span>Next</span>),
+                        skip: (<span>Skip</span>),
+                    }}
+                    debug={true}
+                    type="continuous"
+                    callback={(obj) => console.log(obj)}
+                ></Joyride>
             <link rel = "stylesheet" type= "text/css" href="/stylesheets/styles.css" />
             <div className="upload-container">
                 <div className="container">
@@ -162,7 +198,7 @@ const ImagePage = React.createClass({
                     </div>
                     <div className="col col-12">
                         <div className="continue">
-                            {user.image? <button onClick={ this.handleUploadClick } disabled={ isUploading }>Save & Continue{ isUploading && (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />)}</button> :
+                            {user.image? <button className="save-continue" onClick={ this.handleUploadClick } disabled={ isUploading }>Save & Continue{ isUploading && (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />)}</button> :
                                 <button  data-toggle="modal"  data-target="#image-conf" aria-hidden="true"  onClick={ () => this.handleUploadClick } disabled={ isUploading }>Save & Continue{ isUploading && (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />)}</button>}
                         </div>
                     </div>

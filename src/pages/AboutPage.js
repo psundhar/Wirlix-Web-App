@@ -1,13 +1,15 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import Typed from 'typed.js';
-
+import Joyride from 'react-joyride';
+import 'react-joyride/lib/react-joyride.scss';
 const AboutPage = React.createClass({
 
     getInitialState() {
         return {
             user: {},
             strings:[],
+            joyrideSteps:[],
         }
     },
 
@@ -32,6 +34,18 @@ const AboutPage = React.createClass({
         };
         this.typed = new Typed(this.el, options);
 
+        this.setState({
+            joyrideSteps: [
+                {
+                    title: 'Contact-Us',
+                    text: 'More information and how to contact and get in touch with us',
+                    selector: '.social-icons',
+                    position: 'top',
+                    type: 'hover',
+                },
+            ]
+        });
+
 },
     componentWillUnmount() {
         this.typed.destroy();
@@ -46,6 +60,23 @@ const AboutPage = React.createClass({
 
         return (
             <div>
+                <Joyride
+                ref="joyride"
+                steps={this.state.joyrideSteps}
+                run={true}
+                showOverlay={true}
+                autoStart={true}
+                locale={{
+                    back: (<span>Back</span>),
+                    close: (<span>Close</span>),
+                    last: (<span>Last</span>),
+                    next: (<span>Next</span>),
+                    skip: (<span>Skip</span>),
+                }}
+                debug={true}
+                type="continuous"
+                callback={(obj) => console.log(obj)}
+            />
                 <div className="main-section-home about">
                 <NavBar user={ user }  />
                 <div className="overlay">

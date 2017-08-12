@@ -9,6 +9,8 @@ import { getDebate } from '../utilities/data';
 import IO from 'socket.io-client';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 import EditableBio from '../components/EditableBio';
+import Joyride from 'react-joyride';
+import 'react-joyride/lib/react-joyride.scss';
 
 const ProfilePage = React.createClass({
 
@@ -23,6 +25,7 @@ const ProfilePage = React.createClass({
             debateModal: { visible: false, debate: {} },
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
+            joyrideSteps:[],
         };
     },
 
@@ -54,6 +57,43 @@ const ProfilePage = React.createClass({
         const socket = IO(); // Will need to be altered in production
 
         registerDebateUpdater(socket, this.updateDebate);
+
+        this.setState({
+            joyrideSteps: [
+                {
+                    title: 'User’s information per that day',
+                    text: 'This is your emotional rank',
+                    selector: '.debate-img',
+                    position: 'top',
+                    type: 'hover',
+                },
+                {
+                    title: 'User’s information per that day',
+                    text: 'This is your factual rank',
+                    selector: '.peace-img',
+                    position: 'top',
+                    type: 'hover',
+                },
+
+                {
+                    title: 'The user’s first opinion',
+                    text: 'This is your first argument for the day',
+                    selector: '.argument-tutorial',
+                    position: 'top',
+                    type: 'hover',
+                },
+                {
+                    title: 'Debates',
+                    text: 'Your active debates is dispalyed in this section ',
+                    selector: '.debates-tutorial',
+                    position: 'top',
+                    type: 'hover',
+                },
+
+            ],
+
+        });
+
     },
 
     handleEnterDebate(debate) {
@@ -256,6 +296,23 @@ const ProfilePage = React.createClass({
 
         return (
             <div>
+                <Joyride
+                    ref="joyride"
+                    steps={this.state.joyrideSteps}
+                    run={true}
+                    showOverlay={true}
+                    autoStart={true}
+                    locale={{
+                        back: (<span>Back</span>),
+                        close: (<span>Close</span>),
+                        last: (<span>Last</span>),
+                        next: (<span>Next</span>),
+                        skip: (<span>Skip</span>),
+                    }}
+                    debug={true}
+                    type="continuous"
+                    callback={(obj) => console.log(obj)}
+                />
                 <div className="main-content profile" style={{minHeight:"1400px"}}>
                     <NavBar user={loggedInUser}/>
                     <section className="profile-container">
@@ -274,10 +331,10 @@ const ProfilePage = React.createClass({
                                         <EditableBio isEditable={ loggedInUser._id == user._id } handleEdit={this.handleBioEdit} bio={ user.bio } />
                                     </div>
                                     <div className="scores">
-                                        <div className="col-md-6">
+                                        <div className="col-md-6 debate-img">
                                             <p className="p1"><img src="/images/best-debater-w.png" className="m0"/> { statement.voters && statement.voters.filter(v => v.isRational).length }</p>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-md-6 peace-img">
                                             <p className="p1"><img src="/images/peace.png" className="peace m0"/> { statement.voters && statement.voters.filter(v => !v.isRational).length }</p>
                                         </div>
                                     </div>
@@ -285,7 +342,7 @@ const ProfilePage = React.createClass({
                                 <div className="qotd col-md-12 mb4">
                                     <div className="gotd-banner">
                                         <h3 className="mb2">{ topic.prompt }</h3>
-                                        { statement.text && statement.agreement && (<div style={{backgroundColor: "white", border: "4px solid " + (statement.agreement == 'agree' ? 'slateblue' : 'crimson')}} className="p2">
+                                        { statement.text && statement.agreement && (<div style={{backgroundColor: "white", border: "4px solid " + (statement.agreement == 'agree' ? 'slateblue' : 'crimson')}} className="p2 argument-tutorial">
                                             <h4 style={{color: 'black'}}>{ statement.text }</h4>
                                         </div>) }
                                         {
@@ -295,7 +352,7 @@ const ProfilePage = React.createClass({
                                     </div>
                                 </div>
 
-                                <div className="debates col-md-12">
+                                <div className="debates debates-tutorial col-md-12">
                                     { debates.map((d, i) => {
                                         return (<FlippableDebateCard handleSubscribeToggle={this.handleSubscribeToggle} key={i} user={loggedInUser} debate={ d } handleEnterDebate={ this.handleEnterDebate } />)
                                     })}

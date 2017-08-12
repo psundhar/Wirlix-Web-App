@@ -36,26 +36,50 @@ const HomePage = React.createClass({
 
         this.setState({
             joyrideSteps: [
-            {
-                title: 'Factual Arguments',
-                text: 'This is the factual argument section',
-                selector: '.factual-img',
-                position: 'top',
-                type: 'hover',
-            },
+
                 {
-                    title: 'Trigger Action',
-                    text: 'Scroll to correct position if required',
+                    title: 'Controversial Question',
+                    text: 'Everyday the whole platform is refreshed and the topic & Video changes </br> as well as all the information refreshes as well',
                     selector: 'h1.main-question',
                     position: 'top',
-                    style: {
-                        mainColor: '#a350f0',
-                        beacon: {
-                            inner: '#a350f0',
-                            outer: '#a350f0',
-                        },
-                    },
+                    type: 'hover',
                 },
+                {
+                    title: 'User’s can submit first arguments',
+                    text: 'First Arguments are the user’s original stance on the controversy without discussing, </br> debating or learning more about the controversy ',
+                    selector: 'textarea.col-sm-12',
+                    position: 'top',
+                    type: 'hover',
+                },
+
+                {
+                    title: 'User’s can rate their own and other individuals first opinions based on emotional appeal and factual appeal',
+                    text: 'This is place where your comments are placed',
+                    selector: '.you-decide',
+                    position: 'top',
+                    type: 'hover',
+                },
+                {
+                    title: 'Emotional Vote',
+                    text: '(Ethos) the argument is appealing to people’s emotions',
+                    selector: '.emotional-vote ',
+                    position: 'top',
+                    type: 'hover',
+                },
+                {
+                    title: 'Factual Vote',
+                    text: '(Logos) the argument is appealing to people’s logic',
+                    selector: '.factual-vote',
+                    position: 'top',
+                    type: 'hover',
+                },
+                {
+                    title: 'User’s can challenge another user to a debate using the challenge icon',
+                        text: 'The challenge will send a notification to the other user who then has the option to accept or deny the challenge.</br> If accepted, both users will be taken into a Live Chat Room',
+                    selector: '.challenge',
+                    position: 'top',
+                    type: 'hover',
+                }
             ],
 
         });
@@ -185,7 +209,7 @@ const HomePage = React.createClass({
                     <img src="images/pause.png" />
                 </div>
 
-            <video playsInline autoPlay muted loop poster="" id="bgvid">
+            <video className="video_controversy" playsInline autoPlay muted loop poster="" id="bgvid">
                 <source src="video/1 North Korea.mp4" type="video/mp4" />
                  <source src="video/wirlix_promo_video_v1.webm" type="video/webm" />
             </video>
@@ -229,8 +253,8 @@ const HomePage = React.createClass({
                             </div>
 
                             <div className="col-md-4 vote-col middle" id ="middle">
-                                <h2 className="col-md-12">You Decide</h2>
-                                <div className="comment-container col-md-12">
+                                <h2 className="col-md-12 you_decide">You Decide</h2>
+                                <div className="comment-container col-md-12 you-decide">
                                     { this.state.statements.filter(s => s.voters && s.voters.filter(v => v.isRational).length < MIN_VOTES && s.voters.filter(v => !v.isRational).length < MIN_VOTES).map(s => {
                                         return (
                                             <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } { ...s }/>
@@ -240,7 +264,7 @@ const HomePage = React.createClass({
                             </div>
 
                             <div className="col-md-4 vote-col emotional" id = "emotional">
-                                <h2 className="col-md-12"><img src="images/emotional-w.png" /></h2>
+                                <h2 className="col-md-12"><img className="emotional-img" src="images/emotional-w.png" /></h2>
                                 <div className="comment-container col-md-12">
                                     { this.state.statements.filter(s => s.voters && s.voters.filter(v => !v.isRational).length >= MIN_VOTES).map(s => {
                                         return (

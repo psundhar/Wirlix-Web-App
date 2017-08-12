@@ -52,10 +52,10 @@ const DebateModal = React.createClass({
                             </div>
                             <div className="vote-bar">
                                 <div className="vote-amt">
-                                    <p><img src="/images/eye-b.png"/> { views }</p>
+                                    <p><img  src="/images/eye-b.png"/> { views }</p>
                                 </div>
                                 <div className="vote-amt">
-                                    <p><img src="/images/check-mark-b.png"/> { subscribers.length }</p>
+                                    <p><img  src="/images/check-mark-b.png"/> { subscribers.length }</p>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +121,7 @@ const DebateModal = React.createClass({
                         )}
                         <div className="vote-box col-md-12">
                             <div className="col-md-6 col-md-offset-3">
-                                <p onClick={ () => handleSubscribeToggle(debate._id) }><i className={ "fa fa-check " + ( isSubscriber ? 'checked' : '' ) } /> Subscribe</p>
+                                <p onClick={ () => handleSubscribeToggle(debate._id) }><i className={ "fa fa-sub-debate " + ( isSubscriber ? 'checked' : '' ) } /> Subscribe</p>
                             </div>
                         </div>
                         <div className="close-bottom">

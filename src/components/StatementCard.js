@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import TempPopup from './TempPopup';
+import Joyride from 'react-joyride';
+import 'react-joyride/lib/react-joyride.scss';
 
 class StatementCard extends Component {
     constructor(props) {
@@ -7,6 +9,7 @@ class StatementCard extends Component {
 
         this.state = {
             showChallengesSent: false,
+
         }
     };
 
@@ -28,10 +31,10 @@ class StatementCard extends Component {
                     {text} { showChallenge && (<i className="fa fa-plus-circle challenge" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" onClick={ () => handleChallenge(_id, topic._id) }/>) }
                 </p>
                 <div className="col-md-6 button-container">
-                    <button className={ "button-vote up " + ((loggedInUsersVote && loggedInUsersVote.isRational) ? "clicked" : "") } onClick={ () => handleVote(true, _id) }><img src="images/factual-w.png"/> <span className="vote-num">{ voters.filter(v => v.isRational).length }</span></button>
+                    <button className={ "button-vote up " + ((loggedInUsersVote && loggedInUsersVote.isRational) ? "clicked" : "") } onClick={ () => handleVote(true, _id) }><img className="factual-vote" src="images/factual-w.png"/> <span className="vote-num">{ voters.filter(v => v.isRational).length }</span></button>
                 </div>
                 <div className="col-md-6 button-container">
-                    <button className={ "button-vote down " + ((loggedInUsersVote && !loggedInUsersVote.isRational) ? "clicked" : "") } onClick={ () => handleVote(false, _id) }><img src="images/emotional-w.png" /><span className="vote-num">{ voters.filter(v => !v.isRational).length }</span></button>
+                    <button className={ "button-vote down " + ((loggedInUsersVote && !loggedInUsersVote.isRational) ? "clicked" : "") } onClick={ () => handleVote(false, _id) }><img className="emotional-vote" src="images/emotional-w.png" /><span className="vote-num">{ voters.filter(v => !v.isRational).length }</span></button>
                 </div>
             </div>
         );
