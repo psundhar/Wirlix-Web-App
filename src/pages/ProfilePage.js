@@ -292,11 +292,11 @@ const ProfilePage = React.createClass({
                                         </div>
                                     </div>
                                 </div>
-                                <div className="qotd col-md-12 mb4">
+                                <div className="qotd col-md-12 mb4 border-bottom border-white pb3">
                                     <div className="gotd-banner">
                                         <h3 className="mb2">{ topic.prompt }</h3>
                                         { statement.text && statement.agreement && (<div style={{backgroundColor: "white", border: "4px solid " + (statement.agreement == 'agree' ? 'slateblue' : 'crimson')}} className="p2">
-                                            <h4 style={{color: 'black'}}>{ statement.text }</h4>
+                                            <h4 style={{color: 'black', fontStyle: 'italic', textTransform: 'none'}}>{ statement.text }</h4>
                                         </div>) }
                                         {
                                             !statement.text && (<h4 className="mt4">No opinion available</h4>)
