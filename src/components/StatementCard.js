@@ -14,7 +14,7 @@ class StatementCard extends Component {
     render() {
         const {showChallenge, loggedInUser, user, topic, voters, text, agreement, handleVote, _id, handleChallenge,createdDate} = this.props;
 
-        const border = agreement == 'disagree' ? '3px solid crimson' : '3px solid slateblue';
+        const border = agreement == 'disagree' ? '3px solid #990000' : '3px solid white';
 
         const profileLink = "/profile/" + user._id;
 
@@ -33,7 +33,7 @@ class StatementCard extends Component {
                 <p className="col-md-12" style={{border}}>
                     <a className="profile-pic" href={ profileLink } style={{background: "url(" + userImage + ") center center no-repeat" }}></a> <a href={ profileLink } className="username">{ user.username }</a> <br/>
                     {text} <br/>
-                    { showChallenge &&(<button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" onClick={ () => handleChallenge(_id, topic._id)}> Challenge &#8250;</button>)}
+                    { showChallenge &&(<button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" onClick={ () => handleChallenge(_id, topic._id)}><b> CHALLENGE! &#8250;</b></button>)}
                 </p>
 
                 <div className="col-md-6 button-container">

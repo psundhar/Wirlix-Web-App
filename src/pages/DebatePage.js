@@ -166,7 +166,7 @@ const DebatePage = React.createClass({
             <div className="container">
             <h1 className="main-question col-md-12" id="debate-prompt">{ topic.prompt }</h1>
         <div className="col-md-4 col-md-offset-4 my-debates-button">
-            <a className="col-md-12" href="#">My Debates</a>
+            <a className="col-md-12" href="#" style={{fontFamily: 'Oswald'}}>My Debates</a>
         </div>
         </div>
         </div>
@@ -177,14 +177,14 @@ const DebatePage = React.createClass({
             <div className="border decide">
             <ul  className="nav nav-pills">
                 <li className="active col-xs-12">
-                <a  href="#factual" data-toggle="tab">Best Debates</a>
+                <a  href="#factual" data-toggle="tab" >Best Debates</a>
                 </li>
                 <li className="col-xs-12"><a href="#middle" data-toggle="tab">Live Right Now</a></li>
                 <li className="col-xs-12"><a href="#emotional" data-toggle="tab">Subscribed</a></li>
             </ul>
             <div className="tab-content">
             <div className="col-md-4 vote-col factual active" id ="factual">
-            <h2 className="col-md-12"><img src="images/eye-w.png" /><br/>Best Debates</h2>
+            <h2 className="col-md-12" style={{marginBottom:"90px", fontFamily: 'Oswald'}}><img src="images/eye-w.png" /><br/>Best Debates</h2>
             <div className="debates col-md-12" id="best-debates-list">
                 { debates.filter((d) => {
                     return d.views > 10;
@@ -197,7 +197,7 @@ const DebatePage = React.createClass({
         </div>
 
         <div className="col-md-4 vote-col middle" id ="middle">
-            <h2 className="col-md-12"><br/>Live Right Now</h2>
+            <h2 className="col-md-12" style={{marginBottom:"90px", fontFamily: 'Oswald'}}><br/>Live Right Now</h2>
             <div className="debates col-md-12 live-debates">
                 { debates.filter((d) => {
                     return Date.parse(d.updated) >= (Date.now() - 600000) //10 minutes ago
@@ -215,7 +215,7 @@ const DebatePage = React.createClass({
         </div>
 
         <div className="col-md-4 vote-col emotional" id = "emotional">
-            <h2 className="col-md-12"><img src="images/check-mark.png" /><br/>Subscribed Debates</h2>
+            <h2 className="col-md-12" style={{marginBottom:"90px", fontFamily: 'Oswald'}}><img src="images/check-mark.png" /><br/>Subscribed Debates</h2>
         <div className="debates col-md-12" id="subscribed-debates-list">
             { debates.filter((d) => {
                 return d.subscribers.includes(user._id);

@@ -7,8 +7,6 @@ import TempPopup from '../components/TempPopup';
 import { registerSocketEventHandler } from '../utilities/realTime';
 import IO from 'socket.io-client';
 import { getStatement } from '../utilities/data';
-
-
 import ReactTooltip from 'react-tooltip';
 const MIN_VOTES = 5;
 
@@ -181,7 +179,7 @@ const HomePage = React.createClass({
 
             </div>
             <div className="button-home col-md-4" style={{ position: "absolute" }}>
-                <a href="#">What's Trending</a>
+                <a href="#"><span style={{fontSize: "1.4em", fontFamily: 'Source Code Pro'}}>What's Trending</span></a>
             </div>
             {/*<div className="button-home-arrow" >
                 <div className="arrow animated bounce">
@@ -209,12 +207,12 @@ const HomePage = React.createClass({
                         <p className="homepagetooltip" data-tip="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempor sapien metus, id viverra risus gravida non">?</p>
                         <ReactTooltip place="top" type="dark" effect="float"/>
                         <div className="col-md-6 res-button agr">
-                            {opinion ? <button onClick={() => { this.handleSubmit(true);}}>Submit in Agreement</button>:
-                                <button data-toggle="modal" data-target="#opinion-conf" onClick={() => { this.handleSubmit(true);}}>Submit in Agreement<img src="images/thumbs-up.png" style={{height:"25px" ,width:"25px"}}/></button> }
+                            {opinion ? <button onClick={() => { this.handleSubmit(true);}}><span style={{fontFamily: "Raleway"}}>Submit in Agreement</span></button>:
+                                <button data-toggle="modal" data-target="#opinion-conf" onClick={() => { this.handleSubmit(true);}}><span style={{fontFamily: "Raleway"}}>Submit in Agreement</span></button> }
                         </div>
                         <div className="col-md-6 res-button dis">
-                            {opinion ? <button onClick={() => { this.handleSubmit(false);}}>Submit in Disagreement<img src="images/thumbs-down.png"/></button>:
-                                <button data-toggle="modal" data-target="#opinion-conf" onClick={() => { this.handleSubmit(false);}}>Submit in Disagreement &nbsp;<img src="images/thumbs-down.png" style={{height:"25px" ,width:"25px"}}/></button> }
+                            {opinion ? <button onClick={() => { this.handleSubmit(false);}}><span style={{fontFamily: "Raleway"}}>Submit in Disagreement</span></button>:
+                                <button data-toggle="modal" data-target="#opinion-conf" onClick={() => { this.handleSubmit(false);}}><span style={{fontFamily: "Raleway"}}>Submit in Disagreement</span></button> }
                         </div>
                     </div>
                 </div>
@@ -233,7 +231,7 @@ const HomePage = React.createClass({
                         </ul>
                         <div className="tab-content">
                             <div className="col-md-4 vote-col factual active" id ="factual">
-                                <h2 className="col-md-12"><img src="images/best-debater-w.png"/></h2>
+                                <h2 className="col-md-12"><span style={{marginRight:"70px", marginLeft:"70px"}}>Factual</span><img src="images/best-debater-w.png"/ ></h2>
                                 <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numRational(s.voters) >= MIN_VOTES)
                                         .sort((a, b) => {
@@ -265,7 +263,7 @@ const HomePage = React.createClass({
                             </div>
 
                             <div className="col-md-4 vote-col emotional" id = "emotional">
-                                <h2 className="col-md-12"><img style= {{height: "48px", width:"48px"}}src="images/heart-w.gif" /></h2>
+                                <h2 className="col-md-12"><span style={{marginRight:"70px", marginLeft:"70px"}}>Emotional</span><img style= {{height: "48px", width:"48px"}}src="images/heart-w.gif" /></h2>
                                 <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numEmotional(s.voters) >= MIN_VOTES)
                                         .sort((a, b) => {

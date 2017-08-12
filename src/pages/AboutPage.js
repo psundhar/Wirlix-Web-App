@@ -76,7 +76,7 @@ const AboutPage = React.createClass({
                 </div>
 
                 <section className="about-more">
-                    <div className="container">
+                    <div className="container" style={{ width: '100%', paddingRight: '0px', paddingLeft: '0px' }}>
                         <div className="container">
                             <div className="main-title-about">
                                 <h1><span className ="typewriter" style={{ whiteSpace: 'pre' }}
@@ -88,7 +88,12 @@ const AboutPage = React.createClass({
                             <div className="ohoo">
                             {/*<div className="container">*/}
                                 <div className="social-icons">
-                                      <p><a href="#" ><i className="fa fa-facebook" aria-hidden="true"></i></a><a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a><a href="#"><i className="fa fa-envelope-o" aria-hidden="true"></i></a></p>
+                                      <p><a target="_blank" href="https://www.facebook.com/SparkControversy/" ><i className="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a target="_blank" href="https://twitter.com/@officialwirlix">
+                                        <i className="fa fa-twitter" aria-hidden="true"></i></a>
+                                    <a target="_blank"href="https://www.instagram.com/sparkcontroversy/">
+                                        <i className="fa fa-instagram" aria-hidden="true"></i></a>
+                                   <a target="_blank" href= "https://mail.google.com/mail/?view=cm&fs=1&to=priyanka@wirlix.com"><i className="fa fa-envelope-o" aria-hidden="true"></i></a></p>
                                 </div>
                                 <p>Spark Controversy</p>
                                 <p className="coexist"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span></p>

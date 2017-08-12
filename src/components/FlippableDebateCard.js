@@ -36,7 +36,7 @@ const FlippableDebateCard = React.createClass({
                     <div className="content"  onClick={ this.flip }>
                         <div className="flex justify-between">
                             <div>
-                                <input type="checkbox" onClick={e => e.stopPropagation()} onChange={ e => { e.stopPropagation(); handleSubscribeToggle(_id); } } checked={ subscribed }/>
+                                <input type="checkbox" style={{position:'absolute', top:'3%'}} onClick={e => e.stopPropagation()} onChange={ e => { e.stopPropagation(); handleSubscribeToggle(_id); } } checked={ subscribed }/>
                             </div>
                             <div className="flex justify-around flex-auto">
                                 <div className="flex flex-column" style={{width: "40%"}}>
@@ -52,7 +52,7 @@ const FlippableDebateCard = React.createClass({
                                 </div>
                             </div>
                             <span className="small">{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
-                            <span className="small"><TimeElapsedString elapsed={debate.updated} /></span>
+                            <span className="small" style={{ position:'absolute', top:'1%', right:'3%'}}><TimeElapsedString elapsed={debate.updated} /></span>
                         </div>
                     </div>
                     <div className="clearfix mb3">

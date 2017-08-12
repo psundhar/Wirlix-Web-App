@@ -80,21 +80,22 @@ const NavBar = React.createClass({
                             <a className="navbar-brand" href="/home"><img src="/images/Wirlix_InvertedLogo.png" /></a>
                         </div>
                         <div className="collapse navbar-collapse center-m" id="bs-example-navbar-collapse-1">
-                            <ul className="nav navbar-nav center">
-                                <li><a href="/home">Live</a></li>
-                                <li><a href="/debate">Debate</a></li>
-                                <li><a href="/rankings">Ranking</a></li>
-                                <li><a href="/about">About</a></li>
+                          
+                            <ul className="nav navbar-nav center" style={{backgroundColor: "rgba(0, 0, 0, 0.30)", marginLeft: "110px",borderRadius:'15px'  }}>
+                                <li><a href="/home"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Live</span></a></li>
+                                <li><a href="/debate"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Debate</span></a></li>
+                                <li><a href="/rankings"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Ranking</span></a></li>
+                                <li><a href="/about"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>About</span></a></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
-                                <li><a className="profile-nav" onClick={this.toggleMenu} href="#" style={{background: "url(" + profileImage + ") center center no-repeat" }}>
+                                <li><a className="profile-nav" onClick={this.toggleMenu} href="#" style={{background: "url(" + profileImage + ") center center no-repeat" }} >
                                     { notify && (<div style={{position:'absolute',top:0,left:0,height:"13px",width:"13px",borderRadius:"100px",backgroundColor:"crimson"}}></div>) }
                                 </a>
-                                    {isOpen ?  <ul className="dropdown-menu" id="dropdown" style={{display:"inline-block", background: "black"}}>
-                                        <li><a href={"/profile/" + user._id}>Profile</a></li>
-                                        <li><a href={"/profile/"+ user._id +"#profile-notification"}>Notifications</a></li>
-                                        <li><a href={"/image/"}>Upload Image</a></li>
-                                        <li><a href="/logout">Logout</a></li>
+                                    {isOpen ?  <ul className="dropdown-menu" id="dropdown" style={{display:"inline-block", background: "white", borderRadius:"15px"}}>
+                                        <li><a href={"/profile/" + user._id}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Profile   ></b></span></a></li>
+                                        <li><a href={"/profile/"+ user._id +"#profile-notification"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Notifications      ></b></span></a></li>
+                                        <li><a href={"/image/"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Upload Image        ></b></span></a></li>
+                                        <li><a href="/logout"><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Logout       ></b></span></a></li>
                                     </ul>: null}</li>
                                 <li><a className="help" href="/tutorial">? <br/><span>See Tutorial</span></a></li>
                             </ul>
