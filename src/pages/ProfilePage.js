@@ -283,10 +283,12 @@ const ProfilePage = React.createClass({
                                     </div>
                                     <div className="scores">
                                         <div className="col-md-6">
-                                            <p className="p1"><img src="/images/best-debater-w.png" className="m0"/> { factualRank }</p>
+                                            <h4>Factual Appeal Rank</h4>
+                                            <p className="p1"><img src="/images/best-debater-w.png" className="m0"/> { factualRank ? factualRank : 'N/A' }</p>
                                         </div>
                                         <div className="col-md-6">
-                                            <p className="p1"><img src="/images/peace.png" className="peace m0"/> { emotionalRank }</p>
+                                            <h4>Emotional Appeal Rank</h4>
+                                            <p className="p1"><img src="/images/peace.png" className="peace m0"/> { emotionalRank ? emotionalRank : 'N/A' }</p>
                                         </div>
                                     </div>
                                 </div>
