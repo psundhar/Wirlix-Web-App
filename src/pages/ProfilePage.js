@@ -318,7 +318,7 @@ const ProfilePage = React.createClass({
                                     </div>
                                 </div>
 
-                                <div className="debates col-md-12">
+                                <div className="debates col-md-12 border-bottom border-white pb3">
                                     { debates.map((d, i) => {
                                         return (<FlippableDebateCard handleSubscribeToggle={this.handleSubscribeToggle} key={i} user={loggedInUser} debate={ d } handleEnterDebate={ this.handleEnterDebate } />)
                                     })}
