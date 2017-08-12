@@ -84,6 +84,7 @@ router.get('/profile/:id', function(req, res, next) {
             }
 
             resultsArray.push(challenges);
+            resultsArray.push(Statement.queryTopic(topic._id).exec());
 
             return Promise.all(resultsArray);
         })
@@ -93,6 +94,7 @@ router.get('/profile/:id', function(req, res, next) {
             const statement = resultsArray[2];
             const debates = resultsArray[3];
             const challenges = resultsArray[4];
+            const allStatements = resultsArray[5];
 
             const data = {
                 user: user,
@@ -101,6 +103,7 @@ router.get('/profile/:id', function(req, res, next) {
                 debates: debates,
                 loggedInUser: req.user,
                 challenges: challenges,
+                statements: allStatements,
             };
 
             res.render('react_main', { page: 'profile', data: JSON.stringify(data)});

@@ -9,6 +9,7 @@ import { getDebate } from '../utilities/data';
 import IO from 'socket.io-client';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 import EditableBio from '../components/EditableBio';
+import { factualRankings, emotionalRankings, findRank, countVoteTypes } from '../utilities/rankings';
 
 const ProfilePage = React.createClass({
 
@@ -23,6 +24,7 @@ const ProfilePage = React.createClass({
             debateModal: { visible: false, debate: {} },
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
+            statements: [],
         };
     },
 
@@ -240,7 +242,7 @@ const ProfilePage = React.createClass({
     },
 
     render() {
-        const { user, statement, debates, loggedInUser, topic, challenges, debateModal, showEndDebateMessage, showEndDebateMessageFadeOut } = this.state;
+        const { user, statements, statement, debates, loggedInUser, topic, challenges, debateModal, showEndDebateMessage, showEndDebateMessageFadeOut } = this.state;
 
         const isMyProfile = loggedInUser._id == user._id;
 
@@ -253,6 +255,12 @@ const ProfilePage = React.createClass({
         }
 
         profileName = profileName.join(' ');
+
+        const cachedStatements = countVoteTypes(statements);
+
+        const factualRank = findRank(factualRankings([...cachedStatements]), user._id);
+
+        const emotionalRank = findRank(emotionalRankings([...cachedStatements]), user._id);
 
         return (
             <div>
@@ -275,10 +283,10 @@ const ProfilePage = React.createClass({
                                     </div>
                                     <div className="scores">
                                         <div className="col-md-6">
-                                            <p className="p1"><img src="/images/best-debater-w.png" className="m0"/> { statement.voters && statement.voters.filter(v => v.isRational).length }</p>
+                                            <p className="p1"><img src="/images/best-debater-w.png" className="m0"/> { factualRank }</p>
                                         </div>
                                         <div className="col-md-6">
-                                            <p className="p1"><img src="/images/peace.png" className="peace m0"/> { statement.voters && statement.voters.filter(v => !v.isRational).length }</p>
+                                            <p className="p1"><img src="/images/peace.png" className="peace m0"/> { emotionalRank }</p>
                                         </div>
                                     </div>
                                 </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
-import { countVoteTypes, hasVotesFilter, countFactualVotes, countEmotionalVotes } from '../utilities/rankings';
+import { countVoteTypes, hasVotesFilter, factualRankings, emotionalRankings, findRank } from '../utilities/rankings';
 
 const RankingsPage = React.createClass({
 
@@ -39,25 +39,16 @@ const RankingsPage = React.createClass({
 
         const cachedVoteStatements = countVoteTypes(statements.filter(hasVotesFilter));
 
-        const factualStatements = countFactualVotes([...cachedVoteStatements]);
+        const factualStatements = factualRankings([...cachedVoteStatements]);
 
-        const emotionalStatements = countEmotionalVotes([...cachedVoteStatements]);
+        const emotionalStatements = emotionalRankings([...cachedVoteStatements]);
+
+        const factualRank = findRank(factualStatements, user._id);
+
+        const emotionalRank = findRank(emotionalStatements, user._id); // Set these vars before shifts below
 
         const topFactualStatement = factualStatements.shift();
         const topEmotionalStatement = emotionalStatements.shift();
-
-        const factualIndex = factualStatements.findIndex(s => s.user._id == user._id);
-        const emotionalIndex = emotionalStatements.findIndex(s => s.user._id == user._id);
-
-        let factualRank, emotionalRank;
-
-        if(factualIndex > -1) {
-            factualRank = factualIndex + 2;
-        }
-
-        if(emotionalIndex > -1) {
-            emotionalRank = emotionalIndex + 2;
-        }
 
         const profileImage = user.image || "images/pexels-photo-103123.jpeg";
 
