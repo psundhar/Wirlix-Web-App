@@ -411,7 +411,7 @@ h1, h2, h3, h4{
 /* ================================== News / Comment Section ================================== */
 
 .news-section{
-  background: url(../images/missile3.jpg) center center no-repeat;
+  background: url(../images/bgimg2.jpg) center center no-repeat;
     background-size: cover;
     position: relative;
 }
@@ -454,8 +454,9 @@ h1, h2, h3, h4{
 }
 
 .response .res-button.agr button:hover{
-  background-color: #ffffff;
-  color: #262626;
+  background-color: #004900;
+  color: white;
+  border: 3px solid #004900;
 }
 
 .response .res-button.dis button:hover{
@@ -691,6 +692,7 @@ button:focus{
 }
 
 .homepagetooltip{
+ 
   position: absolute;
   bottom: 85%;
   left: 95%;
@@ -931,7 +933,7 @@ z-index: 5;
   text-align: center;
   width: 100%;
   color: #262626;
-  background-color: rgba(0, 0, 0, 0.00);
+  background-color: rgba(255, 255, 255, 0.40);
   display: inline-block;
   text-decoration: none;
   border: 2px solid #262626;
@@ -1608,7 +1610,7 @@ z-index: 5;
 /* ================================== Profile ================================== */
 
 .main-content.profile{
-  background: url(../images/missile3.jpg) center center no-repeat;
+  background:url(../images/bgimg2.jpg) center center no-repeat ;
   background-size: cover;
 }
 

@@ -184,7 +184,7 @@ const DebatePage = React.createClass({
             </ul>
             <div className="tab-content">
             <div className="col-md-4 vote-col factual active" id ="factual">
-            <h2 className="col-md-12" style={{marginBottom:"90px", fontFamily: 'Oswald'}}><img src="images/eye-w.png" /><br/>Best Debates</h2>
+            <h2 className="col-md-12" style={{marginBottom:"90px", fontFamily: 'Oswald'}}><img src="images/eye-w.png" /><br/>Most Viewed</h2>
             <div className="debates col-md-12" id="best-debates-list">
                 { debates.filter((d) => {
                     return d.views > 10;

@@ -204,7 +204,7 @@ const HomePage = React.createClass({
                     <h1 className="main-question col-md-12">{ topic.prompt }</h1>
                     <div className="col-md-8 col-md-offset-2">
                         <textarea className="col-md-12 col-xs-12 col-sm-12" placeholder="What's your first opinion?" onChange={ this.handleStatementTextChange } value={ this.state.statementText }></textarea>
-                        <p className="homepagetooltip" data-tip="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempor sapien metus, id viverra risus gravida non">?</p>
+                        <p className="homepagetooltip" data-tip="First Arguments are the user’s original stance on the controversy without discussing, debating or learning more about the controversy ">?</p>
                         <ReactTooltip place="top" type="dark" effect="float"/>
                         <div className="col-md-6 res-button agr">
                             {opinion ? <button onClick={() => { this.handleSubmit(true);}}><span style={{fontFamily: "Raleway"}}>Submit in Agreement</span></button>:
@@ -231,7 +231,12 @@ const HomePage = React.createClass({
                         </ul>
                         <div className="tab-content">
                             <div className="col-md-4 vote-col factual active" id ="factual">
-                                <h2 className="col-md-12"><span style={{marginRight:"70px", marginLeft:"70px"}}>Factual</span><img src="images/best-debater-w.png"/ ></h2>
+                                <h2 className="col-md-12"><span data-tip="These arguments are more appealing to people's logic" style={{marginRight:"20px", marginLeft:"20px"}}>Most Factual</span><img src="images/best-debater-w.png"/ ></h2>
+                                    <ReactTooltip place="top" type="dark" effect="float"/>
+                                
+                               
+                                
+                                
                                 <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numRational(s.voters) >= MIN_VOTES)
                                         .sort((a, b) => {
@@ -247,7 +252,9 @@ const HomePage = React.createClass({
                             </div>
 
                             <div className="col-md-4 vote-col middle" id ="middle">
-                                <h2 className="col-md-12">You Decide</h2>
+                                <h2 className="col-md-12"><span data-tip="These arguments require atleast five votes before being categorized">You Decide</span></h2>
+                                <ReactTooltip place="top" type="dark" effect="float"/>
+                                    
                                 <div className="comment-container col-md-12" id="you_decide">
 
                                     { statements.filter(s => s.voters && numRational(s.voters) < MIN_VOTES && numEmotional(s.voters) < MIN_VOTES)
@@ -263,7 +270,9 @@ const HomePage = React.createClass({
                             </div>
 
                             <div className="col-md-4 vote-col emotional" id = "emotional">
-                                <h2 className="col-md-12"><span style={{marginRight:"70px", marginLeft:"70px"}}>Emotional</span><img style= {{height: "48px", width:"48px"}}src="images/heart-w.gif" /></h2>
+                                <h2 className="col-md-12"><span data-tip="These arguments are more appealing to people's emotions">Most Emotional</span><img style= {{height: "48px", width:"48px"}}src="images/heart-w.gif" /></h2>
+                                <ReactTooltip place="top" type="dark" effect="float"/>
+                                    
                                 <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numEmotional(s.voters) >= MIN_VOTES)
                                         .sort((a, b) => {

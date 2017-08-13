@@ -249,18 +249,19 @@ const ProfilePage = React.createClass({
                             <div className="profile-content col-md-8 col-md-offset-2">
                                 <h2 className="profile-name">{ profileName }</h2>
                                 <h3>{ user.username }</h3>
-                                <div className="scores">
+                                <div className="scores" style={{marginBottom: "250px"}}>
                                     <div className="col-md-6">
-                                        <p><img src="/images/best-debater-w.png"/> { statement.voters && statement.voters.filter(v => v.isRational).length }</p>
+                                        <p><span style={{marginLeft:"40px", marginRight: "40px", fontFamily: "Raleway", fontSize:"1.5em"}}>Your factual rank</span><img src="/images/best-debater-w.png"/> { statement.voters && statement.voters.filter(v => v.isRational).length }</p>
                                     </div>
                                     <div className="col-md-6">
-                                        <p><img src="/images/peace.png" className="peace"/> { statement.voters && statement.voters.filter(v => !v.isRational).length }</p>
+                                        <p><span style={{marginLeft:"40px", marginRight: "40px", fontFamily: "Raleway", fontSize:"1.5em"}}>Your emotional rank</span><img src="/images/heart-w.gif" className="peace"/> { statement.voters && statement.voters.filter(v => !v.isRational).length }</p>
                                     </div>
                                 </div>
                                 <div className="qotd col-md-12">
                                     <div className="gotd-banner">
+                                        <p style={{fontSize:"1.5em"}}> Topic of the Day</p>
                                         <h3 className="mb2">{ topic.prompt }</h3>
-                                        { statement.text && statement.agreement && (<div style={{backgroundColor: "white", border: "4px solid " + (statement.agreement == 'agree' ? 'slateblue' : 'crimson')}} className="p2">
+                                        { statement.text && statement.agreement && (<div style={{backgroundColor: "white", border: "4px solid " + (statement.agreement == 'agree' ? '#006600.' : '#990000')}} className="p2">
                                             <h4 style={{color: 'black'}}>{ statement.text }</h4>
                                         </div>) }
                                         {
@@ -270,16 +271,18 @@ const ProfilePage = React.createClass({
                                 </div>
 
                                 <div className="debates col-md-12">
+                                      <div style={{backgroundColor: "#990000", color:"white", paddingBottom: "5px",paddingTop:"10px", textAlign:"center", marginBottom: "20px", fontSize:"1.5em"}}><p> My Debates</p></div>
                                     { debates.map((d, i) => {
                                         return (<FlippableDebateCard handleSubscribeToggle={this.handleSubscribeToggle} key={i} user={loggedInUser} debate={ d } handleEnterDebate={ this.handleEnterDebate } />)
                                     })}
                                 </div>
+                                
                                 {isMyProfile && (
                                     <div className="logout">
                                         <a href="/logout" className="logout"><img src="/images/logout.png"/></a>
                                     </div>
                                 )}
-
+                                
                                 {!isMyProfile && ( <div className="challenge">
                                     <p><i className="fa fa-plus-circle" aria-hidden="true" data-toggle="modal"
                                           data-target="#challenge-conf"/></p>

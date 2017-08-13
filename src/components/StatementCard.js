@@ -14,7 +14,7 @@ class StatementCard extends Component {
     render() {
         const {showChallenge, loggedInUser, user, topic, voters, text, agreement, handleVote, _id, handleChallenge,createdDate} = this.props;
 
-        const border = agreement == 'disagree' ? '3px solid #990000' : '3px solid white';
+        const border = agreement == 'disagree' ? '3px solid #990000' : '3px solid #006600';
 
         const profileLink = "/profile/" + user._id;
 
