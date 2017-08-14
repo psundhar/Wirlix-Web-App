@@ -50,8 +50,8 @@
     "twilio": "^2.11.1",
     "typed.js": "^2.0.5",
     "webpack": "^3.1.0",
-    "react-tabs-navigation":"^0.4.4",
-    "react-tooltip":"^3.3.0"
+    "react-tabs-navigation": "^0.4.4",
+    "react-tooltip": "^3.3.0"
   },
   "description": "wirlix official",
   "main": "app.js",
