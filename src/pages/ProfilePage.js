@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar';
 import ChallengeNotificationsList from '../components/ChallengeNotificationsList';
 import apiFetch from '../utilities/apiFetch';
 import DebateModal from '../components/DebateModal';
-import { registerDebateUpdater } from '../utilities/componentMethods';
+import { registerSocketEventHandler } from '../utilities/realTime';
 import { getDebate } from '../utilities/data';
 import IO from 'socket.io-client';
 import EndDebateOverlay from '../components/EndDebateOverlay';
@@ -31,7 +31,9 @@ const ProfilePage = React.createClass({
         };
     },
 
-    updateDebate(debateId) {
+    updateDebate(data) {
+        const debateId = data._id;
+
         getDebate(debateId, json => {
             const debates = this.state.debates;
 
@@ -58,7 +60,7 @@ const ProfilePage = React.createClass({
 
         const socket = IO(); // Will need to be altered in production
 
-        registerDebateUpdater(socket, this.updateDebate);
+        registerSocketEventHandler(socket, 'updates:debates', this.updateDebate);
     },
 
     handleEnterDebate(debate) {
@@ -325,6 +327,7 @@ const ProfilePage = React.createClass({
                                 </div>
                                 <div className="qotd col-md-12 mb4 border-bottom border-white pb3">
                                     <div className="gotd-banner">
+                                        <p style={{fontSize:"1.5em"}}> Topic of the Day</p>
                                         <h3 className="mb2">{ topic.prompt }</h3>
                                         <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text } agree={ statement.agreement == 'agree'} handleEdit={ this.handleStatementEdit }/>
                                     </div>
@@ -342,19 +345,19 @@ const ProfilePage = React.createClass({
                                         return (<FlippableDebateCard handleSubscribeToggle={this.handleSubscribeToggle} key={i} user={loggedInUser} debate={ d } handleEnterDebate={ this.handleEnterDebate } />)
                                     })}
                                 </div>) }
-
                                 {isMyProfile && (
                                     <div className="logout">
                                         <a href="/logout" className="logout"><img src="/images/logout.png"/></a>
                                     </div>
                                 )}
-
+                                
                                 {!isMyProfile && ( <div className="challenge">
                                     <p><i className="fa fa-plus-circle" aria-hidden="true" data-toggle="modal"
                                           data-target="#challenge-conf"/></p>
                                 </div> ) }
 
-                                { isMyProfile && (<ChallengeNotificationsList handleEnterDebate={this.handleEnterDebate} debates={debates} handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} challenges={ challenges }/>) }
+                               <div id ="profile-notification"> { isMyProfile && (<ChallengeNotificationsList handleEnterDebate={this.handleEnterDebate} debates={debates} handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} challenges={ challenges } />) }
+                               </div>
                             </div>
                             <div className="profile-content notifications col-md-8 col-md-offset-2">
                                 <h2 className="profile-name">Name goes here</h2>

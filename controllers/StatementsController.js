@@ -15,11 +15,29 @@ module.exports = {
             if(err) {
                 console.log(err);
                 res.status(422);
+
                 next();
             }
             else {
+                global.io.emit("updates:opinions", {_id: statement._id}); // Send message via socket.io
                 res.send(statement);
             }
+        });
+    },
+
+    getObject: function(req, res, next) {
+        Statement.default.findById(req.params.id)
+        .populate(['user', 'topic'])
+        .exec()
+        .then(function(s) {
+            if(s) {
+                res.send(s);
+            }
+            else throw ("Not found");
+        })
+        .catch(function(err) {
+            console.log(err);
+            return next();
         });
     },
 
@@ -56,6 +74,7 @@ module.exports = {
                 }
             })
             .then(function(s) {
+                global.io.emit("updates:opinions", {_id: s._id}); // Send message via socket.io
                 res.send(s);
             })
             .catch(function(err) {

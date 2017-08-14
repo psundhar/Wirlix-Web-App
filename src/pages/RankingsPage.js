@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import { countVoteTypes, hasVotesFilter, factualRankings, emotionalRankings, findRank } from '../utilities/rankings';
+import Tabs from 'react-tabs-navigation';
 
 const RankingsPage = React.createClass({
 
@@ -9,6 +10,7 @@ const RankingsPage = React.createClass({
             user: {},
             statements: [],
             view: 'factual',
+            view1:'emotional',
         }
     },
 
@@ -18,7 +20,7 @@ const RankingsPage = React.createClass({
         }
     },
 
-    handleNext() {
+    /*handleNext() {
         const { view } = this.state;
 
         if(view == 'factual') {
@@ -32,10 +34,10 @@ const RankingsPage = React.createClass({
         if(view == 'emotional') {
             this.setState({view: 'factual'});
         }
-    },
+    },*/
 
     render() {
-        const { user, statements, view } = this.state;
+        const { user, statements, view ,view1} = this.state;
 
         const cachedVoteStatements = countVoteTypes(statements.filter(hasVotesFilter));
 
@@ -60,13 +62,20 @@ const RankingsPage = React.createClass({
                         <div className="my-ranking">
                             <p className="my-info"><a href={"/profile/" + user._id } style={{background: "url(" + profileImage + ") center center no-repeat"}}></a> { user.username }</p>
                         </div>
-                        <div className="my-rank-num">
-                            <p className="my-rank">{ view == 'factual' ? (factualRank ? '#' + factualRank : 'N/A') : (emotionalRank ? '#' + emotionalRank : 'N/A')}</p>
-                        </div>
                         <div className="top-ranks">
-                            <div className="rank-content">
+
+                        <Tabs
+                            tabs={[
+                                {
+                                    children: () => (
+
+                                        <div className="rank-content">
                                 { view == 'factual' && (<div>
-                                <h2><img src="images/best-debater.png" className="m0" style={{maxHeight:"28px"}}/> Most Factual Debater</h2>
+                                        <div className="my-rank-num ">
+                                            <p className="my-rank">My Rank : { view == 'factual' ? (factualRank ? '#' + factualRank : 'N/A'): 'N/A'}</p>
+                                        </div>
+                                            <h2><img src="images/best-debater.png" className="m0" style={{maxHeight:"28px"}}/> Most Factual Debater</h2>
+                                    <p style={{fontSize:"15px", textAlign: "center"}}> Rank on the basis of votes received for factual arguments </p>
                                 { factualStatements.length == 0 && (<p className="mt4 center">Waiting for more votes.</p>) }
                                 <div className="rank-container">
                                     { topFactualStatement && (
@@ -78,7 +87,7 @@ const RankingsPage = React.createClass({
                                         <div className="col col-6 pr1">
                                             <ul>
                                                 { factualStatements.slice(0,13).map((d, i) => {
-                                                    return (<li className="rank-item" key={i}><span className="rank-number">{ i + 2 }</span> { d.user.username }</li>)
+                                                    return (<li className="rank-item" key={i}><span className="rank-number">{ i + 2 }</span> { d.user.username}</li>)
                                                 }) }
                                             </ul>
                                         </div>
@@ -91,9 +100,21 @@ const RankingsPage = React.createClass({
                                         </div>
                                     </div>
                                 </div></div>) }
-                                { view == 'emotional' && (<div>
-                                    <h2><i className="fa fa-hand-peace-o" aria-hidden="true" /> Most <span className="coexist mr2"><span className="C">C</span><span className="O">O</span><span className="E">E</span><span className="X">X</span><span className="I">I</span><span className="S">S</span><span className="T">T</span><span className="I">I</span><span className="N">N</span><span className="G">G</span></span>
-                                        Debater</h2>
+                                        </div>
+                                ),
+                                displayName: 'Most Factual Debater'
+                                },
+                                            {
+                                                children : () => (
+                                                    <div className="rank-content">
+                                { view1 == 'emotional' && (<div>
+                                    <div className="my-rank-num">
+                                        <p className="my-rank">My Rank : { view1 == 'emotional' ? (emotionalRank ? '#' + emotionalRank : 'N/A'): 'N/A'}</p>
+                                    </div>
+                                    <h2><i className="fa fa-hand-peace-o" aria-hidden="true" /> Most Emotional Debater</h2>
+
+                                        <p style = {{fontSize:"15px", textAlign: "center"}}>Rank on the basis of votes received for most emotional appeal</p>
+
                                     { emotionalStatements.length == 0 && (<p className="mt4 center">Waiting for more votes.</p>) }
                                     <div className="rank-container">
                                         { topEmotionalStatement && (
@@ -118,17 +139,14 @@ const RankingsPage = React.createClass({
                                             </div>
                                         </div>
                                     </div></div> )}
-                                <div className="next-buttons col-md-12 col-sm-12">
-                                    <div className="col-md-6 col-sm-6">
-                                        <button className="back" onClick={ this.handleBack }>Back</button>
-                                    </div>
-                                    <div className="col-md-6 col-sm-6">
-                                        <button className="next" onClick={ this.handleNext }>Next</button>
-                                    </div>
-                                </div>
-                            </div>
+                                                    </div>
+                                                        ),
+                                                        displayName: 'Most Emotional Debater'
+                                                        },
+                            ]}
+                        />
                         </div>
-                    </div>
+                        </div>
                 </div>
             </section>
         );

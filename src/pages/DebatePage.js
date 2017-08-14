@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar';
 import DebateModal from '../components/DebateModal';
 import apiFetch from '../utilities/apiFetch';
 import IO from 'socket.io-client';
-import { registerDebateUpdater } from '../utilities/componentMethods';
+import { registerSocketEventHandler } from '../utilities/realTime';
 import { getDebate } from '../utilities/data';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 
@@ -22,7 +22,9 @@ const DebatePage = React.createClass({
         }
     },
 
-    updateDebate(debateId) {
+    updateDebate(data) {
+        const debateId = data._id;
+
         getDebate(debateId, json => {
             const debates = this.state.debates;
 
@@ -47,9 +49,9 @@ const DebatePage = React.createClass({
             this.setState(initialState);
         }
 
-        const socket = IO(); // Will need to be altered in production
+        const socket = IO();
 
-        registerDebateUpdater(socket, this.updateDebate);
+        registerSocketEventHandler(socket, 'updates:debates', this.updateDebate);
     },
 
     handleSubscribeToggle: function(debateId) {
@@ -189,14 +191,14 @@ const DebatePage = React.createClass({
             <div className="border decide">
             <ul  className="nav nav-pills">
                 <li className="active col-xs-12">
-                <a  href="#factual" data-toggle="tab">Best Debates</a>
+                <a  href="#factual" data-toggle="tab" >Best Debates</a>
                 </li>
                 <li className="col-xs-12"><a href="#middle" data-toggle="tab">Live Right Now</a></li>
                 <li className="col-xs-12"><a href="#emotional" data-toggle="tab">Subscribed</a></li>
             </ul>
             <div className="tab-content">
             <div className="col-md-4 vote-col factual active" id ="factual">
-            <h2 className="col-md-12"><img src="images/eye-w.png" /><br/>Best Debates</h2>
+            <h2 className="col-md-12" style={{marginBottom:"90px", fontFamily: 'Oswald'}}><img src="images/eye-w.png" /><br/>Most Viewed</h2>
             <div className="debates col-md-12" id="best-debates-list">
                 { debates.filter((d) => {
                     return d.views > 10;
@@ -209,7 +211,7 @@ const DebatePage = React.createClass({
         </div>
 
         <div className="col-md-4 vote-col middle" id ="middle">
-            <h2 className="col-md-12"><br/>Live Right Now</h2>
+            <h2 className="col-md-12" style={{marginBottom:"90px", fontFamily: 'Oswald'}}><br/>Live Right Now</h2>
             <div className="debates col-md-12 live-debates">
                 { debates.filter((d) => {
                     return Date.parse(d.updated) >= (Date.now() - 600000) //10 minutes ago
@@ -227,7 +229,7 @@ const DebatePage = React.createClass({
         </div>
 
         <div className="col-md-4 vote-col emotional" id = "emotional">
-            <h2 className="col-md-12"><img src="images/check-mark.png" /><br/>Subscribed Debates</h2>
+            <h2 className="col-md-12" style={{marginBottom:"90px", fontFamily: 'Oswald'}}><img src="images/check-mark.png" /><br/>Subscribed Debates</h2>
         <div className="debates col-md-12" id="subscribed-debates-list">
             { debates.filter((d) => {
                 return d.subscribers.includes(user._id);

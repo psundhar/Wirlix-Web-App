@@ -23,7 +23,7 @@ const TutorialPage = React.createClass({
     },
     handleContinueClick() {
         const { isNewUser } = this.state;
-        isNewUser ?  window.location = "/tutorial.html" : window.location =('/home');
+        isNewUser ?  window.location = "/tutorial" : window.location =('/home');
     },
 
     handleCancel() {
@@ -45,7 +45,7 @@ const TutorialPage = React.createClass({
                         <div className="overlay">
                         </div>
                         <div className="button-home col-md-4" style={{ position: "absolute" }}>
-                            <a href="/home#cont-section">Join the Movement</a>
+                            <a href="/home#cont-section">Welcome to Wirlix</a>
                         </div>
                         <div className="mute">
                             <img src="/images/sound.png"></img>

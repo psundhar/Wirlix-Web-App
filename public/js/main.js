@@ -258,6 +258,14 @@ $(function animate() { //Scrolls to element
           event.preventDefault();
       });
   });
+$(function animate() { //Scrolls to element
+    $('.button-home-arrow a').on('click',function(event){
+        $('html, body').stop().animate({
+            scrollTop: $(".news-section").offset().top
+        }, 700,'easeInOutExpo');
+        event.preventDefault();
+    });
+});
 
 
   $(".comment p i").each(function(){
