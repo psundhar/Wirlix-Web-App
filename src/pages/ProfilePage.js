@@ -11,6 +11,7 @@ import EndDebateOverlay from '../components/EndDebateOverlay';
 import EditableBio from '../components/EditableBio';
 import EditableFirstArgument from '../components/EditableFirstArgument';
 import { factualRankings, emotionalRankings, findRank, countVoteTypes } from '../utilities/rankings';
+import MyDebates from '../components/MyDebates';
 
 const ProfilePage = React.createClass({
 
@@ -281,6 +282,12 @@ const ProfilePage = React.createClass({
 
         const emotionalRank = findRank(emotionalRankings([...cachedStatements]), user._id);
 
+        const myDebates = debates.filter((d) => {
+            return d.challenger._id == user._id || d.challengee._id == user._id;
+        });
+
+        console.log(myDebates);
+
         return (
             <div>
                 <div className="main-content profile" style={{minHeight:"1400px"}}>
@@ -318,11 +325,25 @@ const ProfilePage = React.createClass({
                                     </div>
                                 </div>
 
-                                <div className="debates col-md-12 border-bottom border-white pb3">
+                                { isMyProfile && (
+                                    <section className="col-md-12 border-bottom border-white pb3 mb2">
+                                        <div className="container">
+                                            <div className="my-debates-button">
+                                                <a className="col-md-12" href="#">My Debates</a>
+                                            </div>
+                                            <div>
+                                                <MyDebates handleReplyClick={this.handleEnterDebate} debates={ myDebates } user={ user }/>
+                                            </div>
+                                        </div>
+                                    </section>
+                                )}
+
+                                { !isMyProfile && (<div className="debates col-md-12 border-bottom border-white pb3">
                                     { debates.map((d, i) => {
                                         return (<FlippableDebateCard handleSubscribeToggle={this.handleSubscribeToggle} key={i} user={loggedInUser} debate={ d } handleEnterDebate={ this.handleEnterDebate } />)
                                     })}
-                                </div>
+                                </div>) }
+
                                 {isMyProfile && (
                                     <div className="logout">
                                         <a href="/logout" className="logout"><img src="/images/logout.png"/></a>

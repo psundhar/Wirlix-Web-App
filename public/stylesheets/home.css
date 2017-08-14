@@ -671,7 +671,7 @@ z-index: 5;
     position: relative;
 }
 
-.debate-section .my-debates-button a{
+.debate-section .my-debates-button .my-debates-button-link{
   font-family: "Source Code Pro", sans-serif;
     display: block;
     text-align: center;
@@ -808,7 +808,6 @@ z-index: 5;
   padding: 0;
   position: relative;
   z-index: 10;
-  height: 0px;
   overflow: hidden;
   margin-bottom: 50px;
 }

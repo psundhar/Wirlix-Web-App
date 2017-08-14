@@ -18,6 +18,7 @@ const DebatePage = React.createClass({
             debateModal: {debate: {}},
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
+            showMyDebates: false,
         }
     },
 
@@ -104,6 +105,10 @@ const DebatePage = React.createClass({
         this.setState({debates, debateModal: { debate }});
     },
 
+    handleMyDebatesClick() {
+        this.setState({showMyDebates: !this.state.showMyDebates});
+    },
+
     handleNewMessage(debate, text, isModerator = false) {
         const debates = this.state.debates;
 
@@ -154,8 +159,8 @@ const DebatePage = React.createClass({
     },
 
     render: function() {
-        const { topic, user, debates, showEndDebateMessage, showEndDebateMessageFadeOut } = this.state;
-
+        const { topic, user, debates, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
+        console.log(showMyDebates);
         const myDebates = debates.filter((d) => {
             return d.challenger._id == user._id || d.challengee._id == user._id;
         });
@@ -172,13 +177,13 @@ const DebatePage = React.createClass({
             <div className="container">
             <h1 className="main-question col-md-12" id="debate-prompt">{ topic.prompt }</h1>
         <div className="col-md-4 col-md-offset-4 my-debates-button">
-            <a className="col-md-12" href="#">My Debates</a>
+            <button className="col-md-12 my-debates-button-link" onClick={ this.handleMyDebatesClick }>My Debates</button>
             { anythingUnread && (<div style={{width: "15px", height: "15px", borderRadius: "15px", boxShadow: "0px 1px 2px black", left:"5px", top: "5px", position: "relative", backgroundColor: "crimson"}}></div>) }
         </div>
         </div>
         </div>
 
-        <MyDebates handleReplyClick={this.handleEnterDebate} debates={ myDebates } user={ user }/>
+        { showMyDebates && (<MyDebates handleReplyClick={this.handleEnterDebate} debates={ myDebates } user={ user }/>) }
         <div className="comments">
             <div className="container">
             <div className="border decide">

@@ -228,17 +228,17 @@ path.style.strokeDashoffset = '0';
 });
 
 
-  var debates = $('.my-debates'),
-      animateTime = 200,
-      button = $('.my-debates-button a');
-  button.click(function(event){
-    event.preventDefault();
-    if(debates.height() === 0){
-      autoHeightAnimate(debates, animateTime);
-    } else {
-      debates.stop().animate({ height: '0' }, animateTime);
-    }
-  });
+  // var debates = $('.my-debates'),
+  //     animateTime = 200,
+  //     button = $('.my-debates-button a');
+  // button.click(function(event){
+  //   event.preventDefault();
+  //   if(debates.height() === 0){
+  //     autoHeightAnimate(debates, animateTime);
+  //   } else {
+  //     debates.stop().animate({ height: '0' }, animateTime);
+  //   }
+  // });
 
 
 
