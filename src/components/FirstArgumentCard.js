@@ -26,7 +26,7 @@ export default ({ debate, handleReplyClick, user }) => {
     }
 
     return (
-        <div className="my-debate col-md-6 col-md-offset-3 no-response">
+        <div className="my-debate no-response clearfix">
             <div className="username">
                 <div className="flex">
                     { showImage && (<a className="pic" href={ profileLink } style={{background: "url(" + profileImage + ") center center no-repeat"}}></a>) }

@@ -160,7 +160,7 @@ const DebatePage = React.createClass({
 
     render: function() {
         const { topic, user, debates, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
-        console.log(showMyDebates);
+
         const myDebates = debates.filter((d) => {
             return d.challenger._id == user._id || d.challengee._id == user._id;
         });
@@ -183,7 +183,7 @@ const DebatePage = React.createClass({
         </div>
         </div>
 
-        { showMyDebates && (<MyDebates handleReplyClick={this.handleEnterDebate} debates={ myDebates } user={ user }/>) }
+        { showMyDebates && (<div className="container"><div className="col-md-6 col-md-offset-3"><MyDebates handleReplyClick={this.handleEnterDebate} debates={ myDebates } user={ user }/></div></div>) }
         <div className="comments">
             <div className="container">
             <div className="border decide">

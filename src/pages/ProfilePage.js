@@ -27,6 +27,7 @@ const ProfilePage = React.createClass({
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
             statements: [],
+            showMyDebates: false,
         };
     },
 
@@ -261,8 +262,12 @@ const ProfilePage = React.createClass({
         })
     },
 
+    handleMyDebatesClick() {
+        this.setState({showMyDebates: !this.state.showMyDebates});
+    },
+
     render() {
-        const { user, statements, statement, debates, loggedInUser, topic, challenges, debateModal, showEndDebateMessage, showEndDebateMessageFadeOut } = this.state;
+        const { user, statements, statement, debates, loggedInUser, topic, challenges, debateModal, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
 
         const isMyProfile = loggedInUser._id == user._id;
 
@@ -326,16 +331,10 @@ const ProfilePage = React.createClass({
                                 </div>
 
                                 { isMyProfile && (
-                                    <section className="col-md-12 border-bottom border-white pb3 mb2">
-                                        <div className="container">
-                                            <div className="my-debates-button">
-                                                <a className="col-md-12" href="#">My Debates</a>
-                                            </div>
-                                            <div>
-                                                <MyDebates handleReplyClick={this.handleEnterDebate} debates={ myDebates } user={ user }/>
-                                            </div>
-                                        </div>
-                                    </section>
+                                    <div className="col-md-12 border-bottom border-white pb3 mb2">
+                                        <h3 className="large clickable mb3 mt0" onClick={ this.handleMyDebatesClick }>My Debates</h3>
+                                        <MyDebates handleReplyClick={this.handleEnterDebate} debates={ myDebates } user={ user }/>
+                                    </div>
                                 )}
 
                                 { !isMyProfile && (<div className="debates col-md-12 border-bottom border-white pb3">

@@ -2,8 +2,8 @@ import React from 'react';
 import FirstArgumentCard from './FirstArgumentCard';
 
 export default ({debates, user, handleReplyClick}) => {
-    return (<section className="my-debates">
-        <div className="container">
+    return (<section className="my-debates clearfix">
+        <div>
             { debates.length == 0 && (<p>You aren't active in any debates yet.</p>) }
             { debates.sort((a, b) => {
                 if(a.updated >= b.updated) {
