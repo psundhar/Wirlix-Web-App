@@ -5,7 +5,6 @@ import NavBar from '../components/NavBar';
 import DebateModal from '../components/DebateModal';
 import apiFetch from '../utilities/apiFetch';
 import IO from 'socket.io-client';
-import { registerDebateUpdater } from '../utilities/componentMethods';
 import { getDebate } from '../utilities/data';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 import Joyride from 'react-joyride';
@@ -55,7 +54,7 @@ const DebatePage = React.createClass({
 
         const socket = IO(); // Will need to be altered in production
 
-        registerDebateUpdater(socket, this.updateDebate);
+      //  registerDebateUpdater(socket, this.updateDebate);
         this.setState({
             joyrideSteps: [
                 {

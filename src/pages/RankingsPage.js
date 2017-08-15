@@ -2,6 +2,8 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import { countVoteTypes, hasVotesFilter, factualRankings, emotionalRankings, findRank } from '../utilities/rankings';
 import Tabs from 'react-tabs-navigation';
+import Joyride from 'react-joyride';
+import 'react-joyride/lib/react-joyride.scss';
 
 const RankingsPage = React.createClass({
 
@@ -11,30 +13,64 @@ const RankingsPage = React.createClass({
             statements: [],
             view: 'factual',
             view1:'emotional',
+            joyrideSteps: [],
+            isJoyrideRunning: false,
         }
     },
-
+    handleTutorialClick() {
+        this.setState({isJoyrideRunning: true});
+    },
     componentWillMount() {
         if(initialState) {
             this.setState(initialState);
         }
-    },
+    this.setState({
+    joyrideSteps: [
+        {
+            title: 'Select Tabs to Check Emotional & Factual Ranks',
+            text: 'Rankings are updated every day ',
+            selector: '.modal-dialog',
+            position: 'bottom-left',
+            type:'hover',
+        },
 
-    /*handleNext() {
-        const { view } = this.state;
+        {
+            title: 'User’s are ranked based on their first opinions',
+            text: 'This list displays the ranks of factual-debator',
+            selector: '.factual-rank-list',
+            position: 'top',
+            type: 'hover',
+        },
+        {
+            title: 'User’s are ranked based on their first opinions',
+            text: 'This is your Factual Rank',
+            selector: '.factual-rank',
+            position: 'top',
+            type: 'hover',
+        },
+    ],
 
-        if(view == 'factual') {
-            this.setState({view: 'emotional'});
-        }
-    },
+});
 
-    handleBack() {
-        const { view } = this.state;
+},
 
-        if(view == 'emotional') {
-            this.setState({view: 'factual'});
-        }
-    },*/
+
+
+/*handleNext() {
+    const { view } = this.state;
+
+    if(view == 'factual') {
+        this.setState({view: 'emotional'});
+    }
+},
+
+handleBack() {
+    const { view } = this.state;
+
+    if(view == 'emotional') {
+        this.setState({view: 'factual'});
+    }
+},*/
 
     render() {
         const { user, statements, view ,view1} = this.state;
@@ -55,8 +91,26 @@ const RankingsPage = React.createClass({
         const profileImage = user.image || "images/pexels-photo-103123.jpeg";
 
         return (
+            <div>
+            <Joyride
+                ref="joyride"
+                steps={this.state.joyrideSteps}
+                run={this.state.isJoyrideRunning}
+                showOverlay={true}
+                autoStart={true}
+                locale={{
+                    back: (<span>Back</span>),
+                    close: (<span>Close</span>),
+                    last: (<span>Last</span>),
+                    next: (<span>Next</span>),
+                    skip: (<span>Skip</span>),
+                }}
+                debug={true}
+                type="continuous"
+                callback={(obj) => console.log(obj)}
+            />
             <section className="rankings-section pb4">
-                <NavBar user={user}/>
+                <NavBar user={user} handleTutorialClick={ this.handleTutorialClick }/>
                 <div className="modal-dialog">
                     <div className="modal-content" style={{ backgroundColor: "#CCCCCC" }}>
                         <div className="my-ranking">
@@ -72,12 +126,12 @@ const RankingsPage = React.createClass({
                                         <div className="rank-content">
                                 { view == 'factual' && (<div>
                                         <div className="my-rank-num ">
-                                            <p className="my-rank">My Rank : { view == 'factual' ? (factualRank ? '#' + factualRank : 'N/A'): 'N/A'}</p>
+                                            <p className="my-rank factual-rank">My Rank : { view == 'factual' ? (factualRank ? '#' + factualRank : 'N/A'): 'N/A'}</p>
                                         </div>
                                             <h2><img src="images/best-debater.png" className="m0" style={{maxHeight:"28px"}}/> Most Factual Debater</h2>
                                     <p style={{fontSize:"15px", textAlign: "center"}}> Rank on the basis of votes received for factual arguments </p>
                                 { factualStatements.length == 0 && (<p className="mt4 center">Waiting for more votes.</p>) }
-                                <div className="rank-container">
+                                <div className="rank-container factual-rank-list">
                                     { topFactualStatement && (
                                         <div className="first-place">
                                             <div className="rank-item"><span className="rank-number">1</span> { topFactualStatement.user.username }</div>
@@ -149,6 +203,7 @@ const RankingsPage = React.createClass({
                         </div>
                 </div>
             </section>
+            </div>
         );
     }
 });
