@@ -13,9 +13,13 @@ const RankingsPage = React.createClass({
             view: 'factual',
             view1:'emotional',
             joyrideSteps: [],
+            isJoyrideRunning: false,
         }
 
     },
+    handleTutorialClick() {
+               this.setState({isJoyrideRunning: true});
+            },
 
     componentWillMount() {
         if(initialState) {
@@ -116,7 +120,7 @@ const RankingsPage = React.createClass({
             <Joyride
                 ref="joyride"
                 steps={this.state.joyrideSteps}
-                run={true}
+                run={this.state.isJoyrideRunning}
                 showOverlay={true}
                 autoStart={true}
                 locale={{
@@ -131,7 +135,7 @@ const RankingsPage = React.createClass({
                 callback={(obj) => console.log(obj)}
             />
             <section className="rankings-section pb4">
-                <NavBar user={user}/>
+                <NavBar user={user} handleTutorialClick={ this.handleTutorialClick }/>
                 <div className="modal-dialog">
                     <div className="modal-content" style={{ backgroundColor: "#CCCCCC" }}>
                         <div className="my-ranking">

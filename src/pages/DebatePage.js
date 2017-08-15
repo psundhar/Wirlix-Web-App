@@ -21,7 +21,11 @@ const DebatePage = React.createClass({
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
             joyrideSteps: [],
+            isJoyrideRunning: false,
         }
+    },
+    handleTutorialClick() {
+               this.setState({isJoyrideRunning: true});
     },
 
     updateDebate(debateId) {
@@ -225,7 +229,7 @@ const DebatePage = React.createClass({
         <Joyride
             ref="joyride"
             steps={this.state.joyrideSteps}
-            run={true}
+            run={this.state.isJoyrideRunning}
             showOverlay={true}
             autoStart={true}
             locale={{
@@ -240,7 +244,7 @@ const DebatePage = React.createClass({
             callback={(obj) => console.log(obj)}
         ></Joyride>
     <section className="debate-section" style={{minHeight:"1400px"}}>
-        <NavBar user={ user }/>
+        <NavBar user={ user } handleTutorialClick={ this.handleTutorialClick }/>
         <div className="response">
             <div className="container">
             <h1 className="main-question col-md-12" id="debate-prompt">{ topic.prompt }</h1>

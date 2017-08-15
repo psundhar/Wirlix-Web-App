@@ -26,8 +26,12 @@ const HomePage = React.createClass({
             },
             showChallengeSent: false,
             joyrideSteps: [],
+            isJoyrideRunning: false
         };
     },
+    handleTutorialClick() {
+              this.setState({isJoyrideRunning: true});
+           },
 
     componentDidMount() {
         if(initialState) { // Globally set into hbs templates
@@ -180,7 +184,7 @@ const HomePage = React.createClass({
         <Joyride
             ref="joyride"
             steps={this.state.joyrideSteps}
-            run={true}
+            run={this.state.isJoyrideRunning}
             showOverlay={true}
             autoStart={true}
             locale={{
@@ -195,7 +199,7 @@ const HomePage = React.createClass({
             callback={(obj) => console.log(obj)}
         />
         <div className="main-section-home">
-            { Object.keys(user).length > 0 && (<NavBar user={ user } />) }
+            { Object.keys(user).length > 0 && (<NavBar user={ user } handleTutorialClick={ this.handleTutorialClick }/>) }
             <div className="overlay">
 
             </div>

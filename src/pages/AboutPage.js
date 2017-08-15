@@ -10,6 +10,7 @@ const AboutPage = React.createClass({
             user: {},
             strings:[],
             joyrideSteps:[],
+            isJoyrideRunning: false,
         }
     },
 
@@ -47,6 +48,9 @@ const AboutPage = React.createClass({
         });
 
 },
+    handleTutorialClick() {
+               this.setState({isJoyrideRunning: true});
+    },
     componentWillUnmount() {
         this.typed.destroy();
     },
@@ -63,7 +67,7 @@ const AboutPage = React.createClass({
                 <Joyride
                 ref="joyride"
                 steps={this.state.joyrideSteps}
-                run={true}
+                run={this.state.isJoyrideRunning}
                 showOverlay={true}
                 autoStart={true}
                 locale={{
@@ -78,7 +82,7 @@ const AboutPage = React.createClass({
                 callback={(obj) => console.log(obj)}
             />
                 <div className="main-section-home about">
-                <NavBar user={ user }  />
+                <NavBar user={ user } handleTutorialClick={ this.handleTutorialClick } />
                 <div className="overlay">
                 </div>
                 <div className="mute">

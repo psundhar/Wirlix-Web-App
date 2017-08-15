@@ -18,7 +18,7 @@ const ImagePage = React.createClass({
                 top: 0,
                 left: 0,
             },
-            joyrideSteps: [],
+           // joyrideSteps: [],
 
         };
     },
@@ -70,7 +70,7 @@ const ImagePage = React.createClass({
         if(initialState) {
             this.setState(initialState);
         }
-        this.setState({
+        /*this.setState({
             joyrideSteps: [{
                 title: 'Upload Image',
                 text: 'On click of this section you can upload an image for your profile',
@@ -86,7 +86,7 @@ const ImagePage = React.createClass({
                     type: 'hover',
                 },
             ]
-        });
+        });*/
     },
 
     onImageDrop(f) {
@@ -162,7 +162,7 @@ const ImagePage = React.createClass({
 
         return (
             <div>
-                <Joyride
+                {/*<Joyride
                     ref="joyride"
                     steps={this.state.joyrideSteps}
                     run={true}
@@ -178,7 +178,7 @@ const ImagePage = React.createClass({
                     debug={true}
                     type="continuous"
                     callback={(obj) => console.log(obj)}
-                ></Joyride>
+                ></Joyride>*/}
             <link rel = "stylesheet" type= "text/css" href="/stylesheets/styles.css" />
             <div className="upload-container">
                 <div className="container">
