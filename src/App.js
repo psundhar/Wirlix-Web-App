@@ -14,6 +14,8 @@ const App = ({}) => {
         <Switch>
             <Route path="/home" component={ HomePage } />
             <Route path="/debate" component={ DebatePage } />
+            <Route path="/rankings" component={ RankingsPage } />
+            <Route path="/about" component={ AboutPage } />
         </Switch>
     </BrowserRouter>)
 };

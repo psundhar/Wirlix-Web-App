@@ -85,8 +85,8 @@ const NavBar = React.createClass({
                             <ul className="nav navbar-nav center" style={{backgroundColor: "rgba(0, 0, 0, 0.30)", marginLeft: "110px",borderRadius:'15px'  }}>
                                 <li><Link to="/home"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Live</span></Link></li>
                                 <li><Link to="/debate"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Debate</span></Link></li>
-                                <li><a href="/rankings"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Ranking</span></a></li>
-                                <li><a href="/about"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>About</span></a></li>
+                                <li><Link to="/rankings"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Ranking</span></Link></li>
+                                <li><Link to="/about"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>About</span></Link></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a className="profile-nav" onClick={this.toggleMenu} href="#" style={{background: "url(" + profileImage + ") center center no-repeat" }} >

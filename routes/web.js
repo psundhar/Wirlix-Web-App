@@ -40,7 +40,7 @@ router.use(function(req, res, next) {
 //     })
 // });
 
-router.get('/|home|debate|', function(req, res) {
+router.get('/|home|debate|rankings|about|/?', function(req, res) {
     Topic.queryLatest().exec()
         .then(function(topic) {
             const topicId = topic[0]._id;
@@ -128,28 +128,28 @@ router.get('/image', function(req, res, next) {
     res.render('react_main', { page: 'image', data: JSON.stringify(data)});
 });
 
-router.get('/rankings', function(req, res, next) {
-    Topic.queryLatest().exec()
-    .then(function(topic) {
-        return Promise.all([Statement.queryTopic(topic[0]._id), User.findById(req.user._id).exec()]);
-    })
-    .then(function(promiseResultsArray) {
-        const data = {
-            statements: promiseResultsArray[0],
-            user: promiseResultsArray[1],
-        };
+// router.get('/rankings', function(req, res, next) {
+//     Topic.queryLatest().exec()
+//     .then(function(topic) {
+//         return Promise.all([Statement.queryTopic(topic[0]._id), User.findById(req.user._id).exec()]);
+//     })
+//     .then(function(promiseResultsArray) {
+//         const data = {
+//             statements: promiseResultsArray[0],
+//             user: promiseResultsArray[1],
+//         };
+//
+//         res.render('react_main', { page: 'rankings', data: JSON.stringify(data)});
+//     });
+// });
 
-        res.render('react_main', { page: 'rankings', data: JSON.stringify(data)});
-    });
-});
-
-router.get('/about', function(req, res, next) {
-    const data = {
-        user: req.user,
-    };
-
-    res.render('react_main', { page: 'about', data: JSON.stringify(data)});
-});
+// router.get('/about', function(req, res, next) {
+//     const data = {
+//         user: req.user,
+//     };
+//
+//     res.render('react_main', { page: 'about', data: JSON.stringify(data)});
+// });
 
 router.get('/tutorial', function(req, res, next) {
     const data = {
