@@ -71,8 +71,13 @@ const ImagePage = React.createClass({
     },
 
     onImageDrop(f) {
+        console.log("test....." );
+        const { imageFile, user, isNewUser } = this.state;
+        user.image=f[0];
+        console.log(user);
         this.setState({
             imageFile: f[0],
+
         });
     },
 
