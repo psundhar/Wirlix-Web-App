@@ -20,6 +20,69 @@ h1, h2, h3, h4{
   z-index: 2;
 }
 
+<<<<<<< HEAD
+.clickable {
+  cursor: pointer;
+}
+
+=======
+
+/* ================================== ARROW/LIVE ================================== */
+
+.arrow {
+  bottom: 0;
+  left: 50%;
+  margin: auto;
+  border: 0;
+}
+
+.bounce {
+  -webkit-animation-name: bounce;
+  -moz-animation-name: bounce;
+  -o-animation-name: bounce;
+  animation-name: bounce;
+}
+.animated{
+  -webkit-animation-fill-mode:both;
+  -moz-animation-fill-mode:both;
+  -ms-animation-fill-mode:both;
+  -o-animation-fill-mode:both;
+
+  animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+
+  animation-fill-mode:both;
+  -webkit-animation-duration:2s;
+  -moz-animation-duration:2s;
+  -ms-animation-duration:2s;
+  -o-animation-duration:2s;
+  animation-duration:2s;
+}
+
+
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);} 40% {-webkit-transform: translateY(-30px);}
+  60% {-webkit-transform: translateY(-15px);}
+}
+
+@-moz-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {-moz-transform: translateY(0);}
+  40% {-moz-transform: translateY(-30px);}
+  60% {-moz-transform: translateY(-15px);}
+}
+
+@-o-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {-o-transform: translateY(0);}
+  40% {-o-transform: translateY(-30px);}
+  60% {-o-transform: translateY(-15px);}
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-30px);}
+  60% {transform: translateY(-15px);}
+}
+>>>>>>> feature/news_page
 /* ================================== Video ================================== */
 
 .main-section-home .mute{
@@ -79,7 +142,22 @@ h1, h2, h3, h4{
   right: 0;
 }
 
-.button-home a{
+.button-home p {
+  font-family: "Oswald", sans-serif;
+  display: block;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 250;
+  text-decoration: none;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+  padding: 20px;
+  width: 100%;
+}
+.button-home a {
   font-family: "Oswald", sans-serif;
   display: block;
   text-align: center;
@@ -94,6 +172,25 @@ h1, h2, h3, h4{
   padding: 20px;
   width: 100%;
 }
+.border-less{
+  border: 0px;
+  background-color: green;
+}
+.button-home-arrow a{
+  font-family: "Oswald", sans-serif;
+  display: block;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 200;
+  text-decoration: none;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 10px;
+  width: 100%;
+  margin-top: 450px;
+  position: fixed;
+}
 
 .button-home a:hover {
     background-color: white;
@@ -102,6 +199,21 @@ h1, h2, h3, h4{
     text-decoration: none;
     /*font-family: "Nunito", sans-serif;
     font-size: 24px;*/
+}
+
+.button-home a#arrow_button{
+  font-family: "Oswald", sans-serif;
+  display: block;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 200;
+  border: none;
+  text-decoration: none;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 20px;
+  width: 100%;
 }
 
 
@@ -258,6 +370,8 @@ h1, h2, h3, h4{
   margin-top: 30px;
 }
 
+
+
 /* ================================== Tutorial ================================== */
 
 .tutorial-heading{
@@ -278,11 +392,33 @@ h1, h2, h3, h4{
   text-align: center;
 }
 
+#modalpar{
+  padding: 30px;
+  padding-bottom: 60px;
+  font-size: 22px;
+  text-align: center;
+  font-family: "Oswald";
+
+}
+
+#modalbut{
+  width: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+}
+#modalbut button{
+  width: 50px;
+  color: white;
+  border: solid 1px red;
+
+}
 
 /* ================================== News / Comment Section ================================== */
 
 .news-section{
-  background: url(../images/missile3.jpg) center center no-repeat;
+  background: url(../images/bgimg2.jpg) center center no-repeat;
     background-size: cover;
     position: relative;
 }
@@ -294,7 +430,8 @@ h1, h2, h3, h4{
   margin-top: 100px;
   font-family: 'Source Code Pro', monospace;
   margin-bottom: 50px;
-  background-color: #c41717;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.50);
   font-size: 2.5em;
   padding: 20px;
   font-weight: 200;
@@ -324,14 +461,15 @@ h1, h2, h3, h4{
 }
 
 .response .res-button.agr button:hover{
-  background-color: #ffffff;
-  color: #262626;
+  background-color: #004900;
+  color: white;
+  border: 3px solid #004900;
 }
 
 .response .res-button.dis button:hover{
-  background-color: #262626;
+  background-color: #990000;
   color: #ffffff;
-  border: 3px solid #262626;
+  border: 3px solid #990000;
 }
 
 .response textarea{
@@ -380,8 +518,6 @@ button:focus{
   color: #ffffff;
 }
 
-
-
 .comment-container{
   overflow: auto;
 }
@@ -392,6 +528,7 @@ button:focus{
   font-weight: 200;
   overflow: auto;
   margin-bottom: 20px;
+
 }
 
 .comment p.disagree{
@@ -399,7 +536,7 @@ button:focus{
 }
 
 .comment p.disagree{
-  border: 3px solid #c41717;
+  border: 3px solid #990000;
 }
 
 .comment p{
@@ -416,7 +553,9 @@ button:focus{
   font-weight: 400;
   font-style: normal;
   transition: all .2s;
+  word-wrap: break-word;
 }
+
 
 .comment .profile-pic{
   width: 25px;
@@ -444,17 +583,17 @@ button:focus{
 }
 
 .comment p i.selected{
-  color: #c41717;
+  color: #990000;
 }
 
 .comment p i:hover{
-  color: #c41717;
+  color: #990000;
 }
 
 .comment.dislike p{
   background-color: #262626;
   color: #ffffff;
-  border: 3px solid #c41717;
+  border: 3px solid #990000;
 }
 
 .comment.like p{
@@ -468,15 +607,15 @@ button:focus{
 }
 
 .button-vote.up.clicked{
-  background-color: #c41717;
+  background-color: #990000;
   color: #ffffff;
-  border: 3px solid #c41717;
+  border: 3px solid #990000;
 }
 
 .button-vote.down.clicked{
-  background-color: #c41717;
+  background-color: #990000;
   color: #ffffff;
-  border: 3px solid #c41717;
+  border: 3px solid #990000;
 }
 
 .button-vote{
@@ -493,12 +632,19 @@ button:focus{
   border: 2px solid #ffffff;
 }
 
+.button-vote img{
+  margin: 0;
+}
 .view-amt{
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
   background-color: transparent;
   border: none;
   width: 100%;
   color: #ffffff;
-  padding: 5px;
+  
   border-radius: 3px;
   text-align: center;
   font-family: 'Raleway', sans-serif;
@@ -550,6 +696,13 @@ button:focus{
 
 .nav.nav-pills li a:hover{
   color: #262626;
+}
+
+.homepagetooltip{
+ 
+  position: absolute;
+  bottom: 85%;
+  left: 95%;
 }
 /* ================================== About ================================== */
 
@@ -671,7 +824,7 @@ z-index: 5;
     position: relative;
 }
 
-.debate-section .my-debates-button a{
+.debate-section .my-debates-button .my-debates-button-link{
   font-family: "Source Code Pro", sans-serif;
     display: block;
     text-align: center;
@@ -760,7 +913,7 @@ z-index: 5;
 .debate.like .content{
   background-color: #ffffff;
   color: #262626;
-  border: 3px solid #c41717;
+  border: 3px solid #990000;
 }
 
 
@@ -785,8 +938,8 @@ z-index: 5;
   padding: 5px;
   text-align: center;
   width: 100%;
-  color: #ffffff;
-  background-color: #262626;
+  color: #262626;
+  background-color: rgba(255, 255, 255, 0.40);
   display: inline-block;
   text-decoration: none;
   border: 2px solid #262626;
@@ -808,8 +961,6 @@ z-index: 5;
   padding: 0;
   position: relative;
   z-index: 10;
-  height: 0px;
-  overflow: hidden;
   margin-bottom: 50px;
 }
 
@@ -853,7 +1004,7 @@ z-index: 5;
 }
 
 .my-debate.no-response{
-  border: 3px solid #c41717;
+  border: 3px solid #990000;
 }
 
 .my-debate .username .pic{
@@ -957,14 +1108,14 @@ z-index: 5;
 }
 
 .message-box.dis-message .message{
-  border: 2px solid #c41717;
+  border: 2px solid #990000;
   background-color: #f5f5f5;
   float: left;
 }
 
 .message-box.question-box .message{
-  border: 2px solid #c41717;
-  background-color: #c41717;
+  border: 2px solid #990000;
+  background-color: #990000;
   color: #ffffff;
   font-size: 1.2em;
   font-family: "Raleway";
@@ -1024,8 +1175,8 @@ z-index: 5;
   text-align: center;
   border: none;
   background: transparent;
-  color: #c41717;
-  border: 3px solid #c41717;
+  color: #990000;
+  border: 3px solid #990000;
   margin-top: 10px;
 }
 
@@ -1081,7 +1232,7 @@ z-index: 5;
 
 .chat-header{
   padding: 5px 0 0 0;
-  background-color: #c41717;
+  background-color: #990000;
 }
 
 .chat-header .user-img p a{
@@ -1179,14 +1330,14 @@ z-index: 5;
   cursor: pointer;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
-  background-color: #c41717;
+  background-color: #990000;
 
 }
 
 
 .q-container .question-box .question{
   margin: 0;
-  background-color: #c41717;
+  background-color: #990000;
   top: 0;
   z-index: 10;
   display: inline-block;
@@ -1227,7 +1378,7 @@ z-index: 5;
 }
 
 .end-confirm .confirm button{
-  background-color: #c41717;
+  background-color: #990000;
   color: #ffffff;
 }
 
@@ -1300,7 +1451,7 @@ z-index: 5;
 
 /* ================================== Rankings ================================== */
 .rankings-section {
-  background: url(../images/missile3.jpg) center center no-repeat;
+  background: black;
   background-size: cover;
 }
 
@@ -1310,7 +1461,7 @@ z-index: 5;
   font-size: 1.25em;
   background-color: #f5f5f5;
   border-bottom: 1px solid #e8e8e8;
-  background-color: #c41717;
+  background-color: #990000;
 }
 
 .my-ranking p{
@@ -1319,7 +1470,6 @@ z-index: 5;
 }
 
 .my-rank-num{
-  background-color: #f5f5f5;
   padding: 5px;
   text-align: center;
 }
@@ -1332,7 +1482,7 @@ z-index: 5;
   display: inline-block;
   padding: 5px 15px;
   color: #ffffff;
-  background-color: #c41717;
+  background-color: #990000;
   font-family: "Source Code Pro";
 }
 
@@ -1390,7 +1540,7 @@ z-index: 5;
 }
 
 .rank-container .rank-number{
-  background-color: #c41717;
+  background-color: #990000;
   color: #ffffff;
   padding: 5px;
   display: inline-block;
@@ -1464,7 +1614,7 @@ z-index: 5;
 /* ================================== Profile ================================== */
 
 .main-content.profile{
-  background: url(../images/missile3.jpg) center center no-repeat;
+  background:url(../images/bgimg2.jpg) center center no-repeat ;
   background-size: cover;
 }
 
@@ -1544,7 +1694,7 @@ z-index: 5;
 }
 
 .challenge p i.selected{
-  color: #c41717;
+  color: #990000;
 }
 
 .qotd-banner{
@@ -1552,7 +1702,7 @@ z-index: 5;
   padding: 25px;
   color: #ffffff;
   cursor: pointer;
-  background-color: #c41717;
+  background-color: #990000;
   min-height: 75px;
   margin-top: 20px;
   border-radius: 3px;
@@ -1568,7 +1718,7 @@ z-index: 5;
   cursor: pointer;
   margin-bottom: 0;
   width: 100%;
-  background-color: #c41717;
+  background-color: #990000;
 }
 
 .qotd button{
@@ -1579,7 +1729,7 @@ z-index: 5;
 }
 
 .qotd button.selected{
-  color: #c41717;
+  color: #990000;
 }
 
 .qotd .fa{
@@ -1598,7 +1748,7 @@ z-index: 5;
 }
 
 .notification{
-  background-color: crimson;
+  background-color: #990000;
   margin-bottom: 10px;
   padding: 10px;
   color: #ffffff;
@@ -1643,13 +1793,21 @@ z-index: 5;
 
 /* Large Devices, Wide Screens */
   @media only screen and (max-width : 1200px) {
-
+    .homepagetooltip{
+      position: absolute;
+      bottom: 85%;
+      left: 93%;
+    }
   }
 
   /* Medium Devices, Desktops */
   @media only screen and (max-width : 992px) {
 
-       
+      .homepagetooltip{
+          position: absolute;
+          bottom: 88%;
+          left: 93%;
+      }
 
         .button-home{
           bottom: 20px;
@@ -1774,7 +1932,7 @@ z-index: 5;
       border-bottom-left-radius: 3px;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
-      background-color: #c41717;
+      background-color: #990000;
 
     }
 
@@ -1795,7 +1953,7 @@ z-index: 5;
     }
 
     .main-section-home{
-      background-color: #C41717;
+      background-color: #990000;
     }
 
     .vote-col.factual{

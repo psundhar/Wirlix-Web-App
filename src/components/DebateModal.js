@@ -1,5 +1,6 @@
 import React from 'react';
 import TimeElapsedString from './TimeElapsedString';
+import ReactTooltip from 'react-tooltip';
 
 const DebateModal = React.createClass({
 
@@ -143,13 +144,17 @@ const DebateModal = React.createClass({
                     { isParticipant && (
                         <div className="q-container">
                             <div className="question-box one">
-                                <p className="number" onClick={ () => this.handleQuestionClick(1) }>1</p>
+                        
+                                <p className="number" data-tip="Click to get the first question from Wirlix team to give structure to your debate" onClick={ () => this.handleQuestionClick(1) }>1</p>
+                    <ReactTooltip place="top" type="dark" effect="float"/>
                             </div>
                             <div className="question-box two">
-                                <p className="number" onClick={ () => this.handleQuestionClick(2) }>2</p>
+                                <p className="number" data-tip="Click to get the second question from Wirlix team to give structure to your debate" onClick={ () => this.handleQuestionClick(2) }>2</p>
+                                <ReactTooltip place="top" type="dark" effect="float"/>
                             </div>
                             <div className="question-box three">
-                                <p className="number" onClick={ () => this.handleQuestionClick(3) }>3</p>
+                                <p className="number" data-tip="Click to get the third question from Wirlix team to give structure to your debate" onClick={ () => this.handleQuestionClick(3) }>3</p>
+                                <ReactTooltip place="top" type="dark" effect="float"/>
                             </div>
                         </div>
                     )}
