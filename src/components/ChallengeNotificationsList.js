@@ -8,7 +8,7 @@ const profileLinkStyles = {
 
 const ChallengeNotificationsList = ({challenges, debates, user, handleAcceptChallenge, handleDeclineChallenge, handleEnterDebate }) => {
     return (
-        <div className="notifications col-md-12">
+        <div className="notifications col-md-12" id="profile-notifications">
             <h3>Notifications</h3>
             { challenges.map((c,i)=> {
                 const isChallenger = user._id == c.challenger._id;

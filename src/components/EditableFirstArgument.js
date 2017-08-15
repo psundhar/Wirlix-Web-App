@@ -32,7 +32,7 @@ export default class EditableFirstArgument extends Component {
 
         return (
             <div>
-                <div style={{backgroundColor: "white", border: "4px solid " + (agree ? 'slateblue' : 'crimson')}} className="p2">
+                <div style={{backgroundColor: "white", border: "4px solid " + (agree ? 'slateblue' : 'crimson')}} className="p2 argument-tutorial">
                     { isEditable && (<div><textarea style={{
                             width: "100%",
                             outline: "none",

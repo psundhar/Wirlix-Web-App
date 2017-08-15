@@ -4,11 +4,14 @@ import NavBar from '../components/NavBar';
 import ChallengeNotificationsList from '../components/ChallengeNotificationsList';
 import apiFetch from '../utilities/apiFetch';
 import DebateModal from '../components/DebateModal';
-import { registerDebateUpdater } from '../utilities/componentMethods';
+import { registerSocketEventHandler } from '../utilities/realTime';
 import { getDebate } from '../utilities/data';
 import IO from 'socket.io-client';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 import EditableBio from '../components/EditableBio';
+import EditableFirstArgument from '../components/EditableFirstArgument';
+import { factualRankings, emotionalRankings, findRank, countVoteTypes } from '../utilities/rankings';
+import MyDebates from '../components/MyDebates';
 import Joyride from 'react-joyride';
 import 'react-joyride/lib/react-joyride.scss';
 
@@ -25,12 +28,19 @@ const ProfilePage = React.createClass({
             debateModal: { visible: false, debate: {} },
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
+            statements: [],
+            showMyDebates: false,
             joyrideSteps:[],
             isJoyrideRunning: false,
         };
     },
+    handleTutorialClick() {
+        this.setState({isJoyrideRunning: true});
+    },
 
-    updateDebate(debateId) {
+    updateDebate(data) {
+        const debateId = data._id;
+
         getDebate(debateId, json => {
             const debates = this.state.debates;
 
@@ -57,44 +67,42 @@ const ProfilePage = React.createClass({
 
         const socket = IO(); // Will need to be altered in production
 
-        registerDebateUpdater(socket, this.updateDebate);
+        registerSocketEventHandler(socket, 'updates:debates', this.updateDebate);
 
         this.setState({
             joyrideSteps: [
                 {
                     title: 'User’s information per that day',
-                    text: 'This is your emotional rank',
+                    text: 'This is your factual rank',
                     selector: '.debate-img',
                     position: 'top',
                     type: 'hover',
                 },
                 {
                     title: 'User’s information per that day',
-                    text: 'This is your factual rank',
+                    text: 'This is your emotional  rank',
                     selector: '.peace-img',
                     position: 'top',
                     type: 'hover',
                 },
-
-                {
-                    title: 'The user’s first opinion',
-                    text: 'This is your first argument for the day',
-                    selector: '.argument-tutorial',
-                    position: 'top',
-                    type: 'hover',
-                },
-                {
-                    title: 'Debates',
-                    text: 'Your active debates is dispalyed in this section ',
-                    selector: '.debates-tutorial',
-                    position: 'top',
-                    type: 'hover',
-                },
+                 {
+                     title: 'The user’s first opinion',
+                     text: 'This is your first argument for the day',
+                     selector: '.argument-tutorial',
+                     position: 'top',
+                     type: 'hover',
+                 },
+                 {
+                     title: 'Debates',
+                     text: 'Your active debates is dispalyed in this section ',
+                     selector: '.debates-tutorial',
+                     position: 'top',
+                     type: 'hover',
+                 },
 
             ],
 
         });
-
     },
 
     handleEnterDebate(debate) {
@@ -164,34 +172,34 @@ const ProfilePage = React.createClass({
                 notifyChallengee: false,
                 notifyChallenger: status == 'accepted',
             })
-            .then(res => {
-                this.setState({challenges});
-                return res.json();
-            })
-            .then(challenge => {
-                if(status == "declined") {
-                    return Promise.resolve({ json: () => null });
-                }
-                else {
-                    return apiFetch('/api/debates/', 'POST', {
-                        topic: challenge.topic,
-                        challenger: challenge.challenger,
-                        challengee: challenge.challengee,
-                        statement: challenge.statement,
-                    });
-                }
-            })
-            .then((res) => res.json())
-            .then((debate) => {
-                if(!debate) {
-                    return;
-                }
+                .then(res => {
+                    this.setState({challenges});
+                    return res.json();
+                })
+                .then(challenge => {
+                    if(status == "declined") {
+                        return Promise.resolve({ json: () => null });
+                    }
+                    else {
+                        return apiFetch('/api/debates/', 'POST', {
+                            topic: challenge.topic,
+                            challenger: challenge.challenger,
+                            challengee: challenge.challengee,
+                            statement: challenge.statement,
+                        });
+                    }
+                })
+                .then((res) => res.json())
+                .then((debate) => {
+                    if(!debate) {
+                        return;
+                    }
 
-                const debates = this.state.debates;
-                debates.push(debate);
-                this.setState({ debates });
-            })
-            .catch((err) => console.log(err));
+                    const debates = this.state.debates;
+                    debates.push(debate);
+                    this.setState({ debates });
+                })
+                .catch((err) => console.log(err));
         }
 
     },
@@ -259,6 +267,26 @@ const ProfilePage = React.createClass({
             })
     },
 
+    handleStatementEdit(text) {
+        const { user, loggedInUser, statement } = this.state;
+
+        if(user._id != loggedInUser._id) {
+            return;
+        }
+
+        apiFetch('/api/statements/' + statement._id, 'PUT', {
+            text,
+        })
+            .then(res => {
+                return res.json();
+            })
+            .then(json => {
+                statement.text = json.text;
+
+                this.setState({statement,});
+            });
+    },
+
     handleBioEdit(text) {
         const { user, loggedInUser } = this.state;
 
@@ -266,26 +294,24 @@ const ProfilePage = React.createClass({
             return;
         }
 
-
-
         apiFetch('/api/users/' + loggedInUser._id, 'PUT', {
             bio: text,
         })
-        .then(res => {
-            return res.json();
-        })
-        .then(json => {
-            user.bio = text;
-            this.setState({user,});
-        })
+            .then(res => {
+                return res.json();
+            })
+            .then(json => {
+                user.bio = text;
+                this.setState({user,});
+            })
     },
 
-    handleTutorialClick() {
-        this.setState({isJoyrideRunning: true});
+    handleMyDebatesClick() {
+        this.setState({showMyDebates: !this.state.showMyDebates});
     },
 
     render() {
-        const { user, statement, debates, loggedInUser, topic, challenges, debateModal, showEndDebateMessage, showEndDebateMessageFadeOut } = this.state;
+        const { user, statements, statement, debates, loggedInUser, topic, challenges, debateModal, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
 
         const isMyProfile = loggedInUser._id == user._id;
 
@@ -298,6 +324,18 @@ const ProfilePage = React.createClass({
         }
 
         profileName = profileName.join(' ');
+
+        const cachedStatements = countVoteTypes(statements);
+
+        const factualRank = findRank(factualRankings([...cachedStatements]), user._id);
+
+        const emotionalRank = findRank(emotionalRankings([...cachedStatements]), user._id);
+
+        const myDebates = debates.filter((d) => {
+            return d.challenger._id == user._id || d.challengee._id == user._id;
+        });
+
+        console.log(myDebates);
 
         return (
             <div>
@@ -323,8 +361,7 @@ const ProfilePage = React.createClass({
                     <section className="profile-container">
                         <div className="container">
                             <div className="profile-pic col-md-4 col-md-offset-4">
-                                <div className="pic-crop"
-                                     style={{backgroundSize: "cover", background: "url(" + profileImage + ") center center no-repeat"}}></div>
+                                <div className="pic-crop" style={{backgroundSize: "cover", background: "url(" + profileImage + ") center center no-repeat"}}></div>
                             </div>
                         </div>
                         <div className="container">
@@ -337,31 +374,35 @@ const ProfilePage = React.createClass({
                                     </div>
                                     <div className="scores">
                                         <div className="col-md-6 debate-img">
-                                            <p className="p1"><img src="/images/best-debater-w.png" className="m0"/> { statement.voters && statement.voters.filter(v => v.isRational).length }</p>
+                                            <h4>Factual Appeal Rank</h4>
+                                            <p className="p1"><img src="/images/best-debater-w.png" className="m0"/> { factualRank ? factualRank : 'N/A' }</p>
                                         </div>
                                         <div className="col-md-6 peace-img">
-                                            <p className="p1"><img src="/images/peace.png" className="peace m0"/> { statement.voters && statement.voters.filter(v => !v.isRational).length }</p>
+                                            <h4>Emotional Appeal Rank</h4>
+                                            <p className="p1"><img src="/images/peace.png" className="peace m0"/> { emotionalRank ? emotionalRank : 'N/A' }</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="qotd col-md-12 mb4">
+                                <div className="qotd col-md-12 mb4 border-bottom border-white pb3">
                                     <div className="gotd-banner">
+                                        <p style={{fontSize:"1.5em"}}> Topic of the Day</p>
                                         <h3 className="mb2">{ topic.prompt }</h3>
-                                        { statement.text && statement.agreement && (<div style={{backgroundColor: "white", border: "4px solid " + (statement.agreement == 'agree' ? 'slateblue' : 'crimson')}} className="p2 argument-tutorial">
-                                            <h4 style={{color: 'black'}}>{ statement.text }</h4>
-                                        </div>) }
-                                        {
-                                            !statement.text && (<h4 className="mt4">No opinion available</h4>)
-                                        }
-                                        { !isMyProfile && statement.text && (<button>Challenge this statement</button>) }
+                                        <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text } agree={ statement.agreement == 'agree'} handleEdit={ this.handleStatementEdit }/>
                                     </div>
                                 </div>
 
-                                <div className="debates debates-tutorial col-md-12">
+                                { isMyProfile && (
+                                    <div className="col-md-12 border-bottom border-white pb3 mb2 debates-tutorial">
+                                        <h3 className="large clickable mb3 mt0" onClick={ this.handleMyDebatesClick }>My Debates</h3>
+                                        <MyDebates handleReplyClick={this.handleEnterDebate} debates={ myDebates } user={ user }/>
+                                    </div>
+                                )}
+
+                                { !isMyProfile && (<div className="debates col-md-12 border-bottom border-white pb3">
                                     { debates.map((d, i) => {
                                         return (<FlippableDebateCard handleSubscribeToggle={this.handleSubscribeToggle} key={i} user={loggedInUser} debate={ d } handleEnterDebate={ this.handleEnterDebate } />)
                                     })}
-                                </div>
+                                </div>) }
                                 {isMyProfile && (
                                     <div className="logout">
                                         <a href="/logout" className="logout"><img src="/images/logout.png"/></a>
@@ -373,7 +414,8 @@ const ProfilePage = React.createClass({
                                           data-target="#challenge-conf"/></p>
                                 </div> ) }
 
-                                { isMyProfile && (<ChallengeNotificationsList handleEnterDebate={this.handleEnterDebate} debates={debates} handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} challenges={ challenges }/>) }
+                                <div id ="profile-notification"> { isMyProfile && (<ChallengeNotificationsList handleEnterDebate={this.handleEnterDebate} debates={debates} handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} challenges={ challenges } />) }
+                                </div>
                             </div>
                             <div className="profile-content notifications col-md-8 col-md-offset-2">
                                 <h2 className="profile-name">Name goes here</h2>
