@@ -14,49 +14,53 @@ router.use(function(req, res, next) {
     return next();
 });
 
-router.get('/debate', function(req, res) {
-    Topic.queryLatest().exec()
-    .then(function(topicResults) {
-        const topic = topicResults[0];
+// router.get('/debate', function(req, res) {
+//     Topic.queryLatest().exec()
+//     .then(function(topicResults) {
+//         const topic = topicResults[0];
+//
+//         return Promise.all([topic, Debate.queryByTopic(topic._id).exec(), User.findById(req.user._id).exec()]);
+//     })
+//     .then(function(promiseResultsArray) {
+//         const topic = promiseResultsArray[0];
+//         const debates = promiseResultsArray[1];
+//         const user = promiseResultsArray[2];
+//
+//         const data = {
+//             topic: topic,
+//             debates: debates,
+//             user: user,
+//         };
+//
+//         res.render('react_main', { page: 'debate', data: JSON.stringify(data) });
+//     })
+//     .catch(function(err) {
+//         console.log(err);
+//         res.status(500);
+//     })
+// });
 
-        return Promise.all([topic, Debate.queryByTopic(topic._id).exec(), User.findById(req.user._id).exec()]);
-    })
-    .then(function(promiseResultsArray) {
-        const topic = promiseResultsArray[0];
-        const debates = promiseResultsArray[1];
-        const user = promiseResultsArray[2];
-
-        const data = {
-            topic: topic,
-            debates: debates,
-            user: user,
-        };
-
-        res.render('react_main', { page: 'debate', data: JSON.stringify(data) });
-    })
-    .catch(function(err) {
-        console.log(err);
-        res.status(500);
-    })
-});
-
-router.get('/home', function(req, res) {
+router.get('/|home|debate|', function(req, res) {
     Topic.queryLatest().exec()
         .then(function(topic) {
-            return Promise.all([Promise.resolve(topic), Statement.queryTopic(topic[0]._id), User.findById(req.user._id).exec()]);
+            const topicId = topic[0]._id;
+
+            return Promise.all([Promise.resolve(topic), Statement.queryTopic(topicId), User.findById(req.user._id).exec(), Debate.queryByTopic(topicId).exec()]);
         })
         .then(function(resultsArr) {
             const topic = resultsArr[0][0];
             const statements = resultsArr[1];
             const user = resultsArr[2];
+            const debates = resultsArr[3];
 
             const data = {
                 topic: topic,
                 statements: statements,
                 user: user,
+                debates: debates,
             };
 
-            res.render('react_main', { page: 'home', data: JSON.stringify(data)});
+            res.render('react_main', { data: JSON.stringify(data)});
         })
         .catch(function(err) {
             console.log(err);

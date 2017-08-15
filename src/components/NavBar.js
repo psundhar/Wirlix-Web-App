@@ -1,6 +1,7 @@
 import React from 'react';
 import apiFetch from '../utilities/apiFetch';
 import IO from 'socket.io-client';
+import { Link } from 'react-router-dom';
 
 const NavBar = React.createClass({
     toggleMenu: function(e)
@@ -82,8 +83,8 @@ const NavBar = React.createClass({
                         <div className="collapse navbar-collapse center-m" id="bs-example-navbar-collapse-1">
                           
                             <ul className="nav navbar-nav center" style={{backgroundColor: "rgba(0, 0, 0, 0.30)", marginLeft: "110px",borderRadius:'15px'  }}>
-                                <li><a href="/home"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Live</span></a></li>
-                                <li><a href="/debate"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Debate</span></a></li>
+                                <li><Link to="/home"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Live</span></Link></li>
+                                <li><Link to="/debate"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Debate</span></Link></li>
                                 <li><a href="/rankings"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Ranking</span></a></li>
                                 <li><a href="/about"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>About</span></a></li>
                             </ul>
