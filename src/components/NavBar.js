@@ -60,11 +60,13 @@ const NavBar = React.createClass({
     },
 
     render() {
-        const { user } = this.props;
+        const { user, handleTutorialClick = null } = this.props;
         // const { isOpen } = this.props;
         const { notify, isOpen } = this.state;
 
         const profileImage = user.image || "/images/pexels-photo-103123.jpeg";
+
+        const tutorialLinkText = (<span>? <br/><span>See Tutorial</span></span>);
 
         return (
             <div className="content">
@@ -95,7 +97,10 @@ const NavBar = React.createClass({
                                         <li><a href={"/image/"}>Upload Image</a></li>
                                         <li><a href="#">Settings</a></li>
                                     </ul>: null}</li>
-                                <li><a className="help" href="/tutorial">? <br/><span>See Tutorial</span></a></li>
+                                    <li>
+                                        { !handleTutorialClick && (<a className="help" href="/tutorial">{ tutorialLinkText }</a>) }
+                                        { handleTutorialClick && (<a className="help" onClick={ e => { e.preventDefault(); handleTutorialClick(); } }>{ tutorialLinkText }</a>) }
+                                    </li>
                             </ul>
                         </div>
                     </div>

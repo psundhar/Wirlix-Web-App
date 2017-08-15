@@ -46,6 +46,7 @@
     "react-flipcard": "^0.2.1",
     "react-joyride": "^1.10.1",
     "react-overlays": "^0.8.0",
+    "react-tabs-navigation": "^0.4.4",
     "sass-loader": "^6.0.6",
     "serve-favicon": "~2.4.2",
     "socket.io": "^1.7.2",

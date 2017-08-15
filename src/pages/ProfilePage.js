@@ -26,6 +26,7 @@ const ProfilePage = React.createClass({
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
             joyrideSteps:[],
+            isJoyrideRunning: false,
         };
     },
 
@@ -279,6 +280,10 @@ const ProfilePage = React.createClass({
         })
     },
 
+    handleTutorialClick() {
+        this.setState({isJoyrideRunning: true});
+    },
+
     render() {
         const { user, statement, debates, loggedInUser, topic, challenges, debateModal, showEndDebateMessage, showEndDebateMessageFadeOut } = this.state;
 
@@ -299,7 +304,7 @@ const ProfilePage = React.createClass({
                 <Joyride
                     ref="joyride"
                     steps={this.state.joyrideSteps}
-                    run={true}
+                    run={this.state.isJoyrideRunning}
                     showOverlay={true}
                     autoStart={true}
                     locale={{
@@ -314,7 +319,7 @@ const ProfilePage = React.createClass({
                     callback={(obj) => console.log(obj)}
                 />
                 <div className="main-content profile" style={{minHeight:"1400px"}}>
-                    <NavBar user={loggedInUser}/>
+                    <NavBar user={loggedInUser} handleTutorialClick={ this.handleTutorialClick }/>
                     <section className="profile-container">
                         <div className="container">
                             <div className="profile-pic col-md-4 col-md-offset-4">

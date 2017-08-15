@@ -2,8 +2,6 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import Joyride from 'react-joyride';
 import 'react-joyride/lib/react-joyride.scss';
-import HomePage from '/Users/pooja/WebstormProjects/Wirlix-Web-App/src/pages/HomePage.js';
-import DebatePage from '/Users/pooja/WebstormProjects/Wirlix-Web-App/src/pages/DebatePage.js';
 
 const TutorialPage = React.createClass({
 
