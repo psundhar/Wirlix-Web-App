@@ -40,24 +40,32 @@ router.use(function(req, res, next) {
 //     })
 // });
 
-router.get('/|home|debate|rankings|about|/?', function(req, res) {
+router.get('/|home|debate|rankings|about|profile/:id|/?', function(req, res) {
     Topic.queryLatest().exec()
         .then(function(topic) {
             const topicId = topic[0]._id;
 
-            return Promise.all([Promise.resolve(topic), Statement.queryTopic(topicId), User.findById(req.user._id).exec(), Debate.queryByTopic(topicId).exec()]);
+            const arrayOfPromises = [Promise.resolve(topic), Statement.queryTopic(topicId), User.findById(req.user._id).exec(), Debate.queryByTopic(topicId).exec(), Statement.queryByTopicAndUser(topic._id, req.user._id).exec(), Debate.queryByTopicAndUser(topic._id, req.user._id).exec(), Challenge.queryByUserAndTopic(req.user._id, topic._id).exec()];
+
+            return Promise.all(arrayOfPromises);
         })
         .then(function(resultsArr) {
             const topic = resultsArr[0][0];
             const statements = resultsArr[1];
             const user = resultsArr[2];
             const debates = resultsArr[3];
+            const userStatement = resultsArr[4];
+            const userDebates = resultsArr[5];
+            const userChallenges = resultsArr[6];
 
             const data = {
                 topic: topic,
                 statements: statements,
                 user: user,
                 debates: debates,
+                userStatement: userStatement,
+                userDebates: userDebates,
+                userChallenges: userChallenges,
             };
 
             res.render('react_main', { data: JSON.stringify(data)});
@@ -68,56 +76,56 @@ router.get('/|home|debate|rankings|about|/?', function(req, res) {
         });
 });
 
-router.get('/profile/:id', function(req, res, next) {
-    User.findById(req.params.id)
-        .exec()
-        .then(function(user) {
-            return Promise.all([user, Topic.queryLatest().exec()]);
-        })
-        .then(function(resultsArray) {
-            const user = resultsArray[0];
-            const topic = resultsArray[1][0];
-
-            resultsArray.push(Statement.queryByTopicAndUser(topic._id, user._id).exec());
-            resultsArray.push(Debate.queryByTopicAndUser(topic._id, user._id).exec());
-
-            let challenges = [];
-
-            if(req.params.id == user._id) { // Requesting own profile
-                challenges = Challenge.queryByUserAndTopic(user._id, topic._id).exec();
-            }
-
-            resultsArray.push(challenges);
-            resultsArray.push(Statement.queryTopic(topic._id).exec());
-
-            return Promise.all(resultsArray);
-        })
-        .then(function(resultsArray) {
-            const user = resultsArray[0];
-            const topic = resultsArray[1][0];
-            const statement = resultsArray[2];
-            const debates = resultsArray[3];
-            const challenges = resultsArray[4];
-            const allStatements = resultsArray[5];
-
-            const data = {
-                user: user,
-                topic: topic || {},
-                statement: statement || {},
-                debates: debates,
-                loggedInUser: req.user,
-                challenges: challenges,
-                statements: allStatements,
-            };
-
-            res.render('react_main', { page: 'profile', data: JSON.stringify(data)});
-        })
-        .catch(function(err) {
-            console.log(err);
-            res.status(404);
-            next();
-        });
-});
+// router.get('/profile/:id', function(req, res, next) {
+//     User.findById(req.params.id)
+//         .exec()
+//         .then(function(user) {
+//             return Promise.all([user, Topic.queryLatest().exec()]);
+//         })
+//         .then(function(resultsArray) {
+//             const user = resultsArray[0];
+//             const topic = resultsArray[1][0];
+//
+//             resultsArray.push(Statement.queryByTopicAndUser(topic._id, user._id).exec());
+//             resultsArray.push(Debate.queryByTopicAndUser(topic._id, user._id).exec());
+//
+//             let challenges = [];
+//
+//             if(req.params.id == user._id) { // Requesting own profile
+//                 challenges = Challenge.queryByUserAndTopic(user._id, topic._id).exec();
+//             }
+//
+//             resultsArray.push(challenges);
+//             resultsArray.push(Statement.queryTopic(topic._id).exec());
+//
+//             return Promise.all(resultsArray);
+//         })
+//         .then(function(resultsArray) {
+//             const user = resultsArray[0];
+//             const topic = resultsArray[1][0];
+//             const statement = resultsArray[2];
+//             const debates = resultsArray[3];
+//             const challenges = resultsArray[4];
+//             const allStatements = resultsArray[5];
+//
+//             const data = {
+//                 user: user,
+//                 topic: topic || {},
+//                 statement: statement || {},
+//                 debates: debates,
+//                 loggedInUser: req.user,
+//                 challenges: challenges,
+//                 statements: allStatements,
+//             };
+//
+//             res.render('react_main', { page: 'profile', data: JSON.stringify(data)});
+//         })
+//         .catch(function(err) {
+//             console.log(err);
+//             res.status(404);
+//             next();
+//         });
+// });
 
 router.get('/image', function(req, res, next) {
     const data = {
