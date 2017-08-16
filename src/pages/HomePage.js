@@ -10,7 +10,8 @@ import { getStatement } from '../utilities/data';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { updateStatementAction, createStatement, voteOnStatement } from '../actionCreators/statementActionCreators';
-
+import { createChallenge } from '../actionCreators/challengeActionCreators';
+2
 const MIN_VOTES = 5;
 
 const numVoters = (voters, filterFn) => {
@@ -55,7 +56,11 @@ const mapDispatchToProps = dispatch => {
         },
         handleVote: (isRational, statementId) => {
             dispatch(voteOnStatement(statementId, isRational));
-        }
+        },
+        handleConfirm(statementId, topicId, user) {
+            // Make api call to create a challenge and then update state
+            dispatch(createChallenge(statementId, topicId, user));
+        },
     };
 };
 
@@ -67,7 +72,8 @@ const HomePage = React.createClass({
             challenge: {
                 statementId: null,
                 topicId: null,
-            }
+            },
+            showChallengeSent: false,
         };
     },
 
@@ -113,20 +119,14 @@ const HomePage = React.createClass({
     },
 
     handleConfirm(statementId, topicId, user) {
-        // Make api call to create a challenge and then update state
-        apiFetch('/api/challenges', 'POST', {
-            statement: statementId,
-            challenger: user._id,
-            topic: topicId,
-        })
-        .then(res => res.json())
-        .then(json => {
-            this.setState({showChallengeSent: true});
+        console.log("HERE");
+        this.props.handleConfirm(statementId, topicId, user);
 
-            setTimeout(() => {
-                this.setState({showChallengeSent: false});
-            }, 2500);
-        });
+        this.setState({showChallengeSent: true});
+
+        setTimeout(() => {
+            this.setState({showChallengeSent: false});
+        }, 2500);
     },
 
     render() {
@@ -246,7 +246,7 @@ const HomePage = React.createClass({
             </div>
         </section>
         <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} topicId={ this.state.challenge.topicId } statementId={ this.state.challenge.statementId } user={ user } />
-        <TempPopup show={ this.props.showChallengeSent } color="white" backgroundColor="crimson"><div className="center bold">Challenge Sent!</div></TempPopup>
+        <TempPopup show={ this.state.showChallengeSent } color="white" backgroundColor="crimson"><div className="center bold">Challenge Sent!</div></TempPopup>
             <div id ="opinion-conf" className="modal fade in" data-toggle="opinion" role="modal">
                 <div className="modal-dialog">
                     <div className="modal-content">
