@@ -11,7 +11,7 @@ export default (state = [], action) => {
             else {
                 statements.push(action.statement);
             }
-            
+
             return statements;
         }
         case 'CREATE_STATEMENT': {

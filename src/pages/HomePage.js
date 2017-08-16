@@ -9,7 +9,7 @@ import IO from 'socket.io-client';
 import { getStatement } from '../utilities/data';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
-import { updateStatementAction, createStatement } from '../actionCreators/statementActionCreators';
+import { updateStatementAction, createStatement, voteOnStatement } from '../actionCreators/statementActionCreators';
 
 const MIN_VOTES = 5;
 
@@ -53,6 +53,9 @@ const mapDispatchToProps = dispatch => {
         addStatement: (statement, user) => {
             dispatch(createStatement(statement, user));
         },
+        handleVote: (isRational, statementId) => {
+            dispatch(voteOnStatement(statementId, isRational));
+        }
     };
 };
 
@@ -66,7 +69,6 @@ const HomePage = React.createClass({
                 topicId: null,
             }
         };
-
     },
 
     componentDidMount() {
@@ -82,30 +84,6 @@ const HomePage = React.createClass({
 
     handleStatementTextChange(e) {
         this.setState({ statementText: e.target.value });
-    },
-
-    handleVote(isRational, statementId) {
-        const statements = this.props.statements;
-
-        const s = statements.find(s => s._id == statementId);
-
-        if(s) {
-            apiFetch('/api/statements/' + s._id, 'PUT', {isRational})
-            .catch((err) => {
-                console.log(err);
-            });
-
-            const existingVote = s.voters.find(v => v.user == this.props.user._id);
-
-            if(existingVote) {
-                existingVote.isRational = isRational;
-            }
-            else {
-                s.voters.push({ user: this.props.user._id, isRational });
-            }
-
-            this.setState({ statements });
-        }
     },
 
     handleSubmit(agree) {
@@ -219,7 +197,7 @@ const HomePage = React.createClass({
                                         })
                                         .map((s, i) => {
                                         return (
-                                            <StatementCard key={i} handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created}{ ...s }/>
+                                            <StatementCard key={i} handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.props.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created}{ ...s }/>
                                         )
                                     })}
 

@@ -27,3 +27,18 @@ export const createStatement = (statement, userObj) => {
         })
     }
 }
+
+export const voteOnStatement = (statementId, isRational) => {
+    return (dispatch, getState) => {
+        apiFetch('/api/statements/' + statementId, 'PUT', {isRational})
+        .then(res => res.json())
+        .then(json => {
+            dispatch(updateStatementAction(json));
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    };
+};
+
+
