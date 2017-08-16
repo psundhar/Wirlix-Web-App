@@ -9,12 +9,19 @@ import { registerSocketEventHandler } from '../utilities/realTime';
 import { getDebate } from '../utilities/data';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => {
+    return {
+        debates: state.debates,
+        topic: state.topic,
+        user: state.user,
+    }
+};
+
 const DebatePage = React.createClass({
     getInitialState() {
         return {
-            debates: [],
-            topic: {},
-            user: {},
             debateModal: {debate: {}},
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
@@ -26,7 +33,7 @@ const DebatePage = React.createClass({
         const debateId = data._id;
 
         getDebate(debateId, json => {
-            const debates = this.state.debates;
+            const debates = this.props.debates;
 
             const indexToEdit = debates.findIndex(d => d._id == debateId);
 
@@ -45,30 +52,26 @@ const DebatePage = React.createClass({
     },
 
     componentDidMount() {
-        if(initialState) { // Globally set into hbs templates
-            this.setState(initialState);
-        }
-
         const socket = IO();
 
         registerSocketEventHandler(socket, 'updates:debates', this.updateDebate);
     },
 
     handleSubscribeToggle: function(debateId) {
-        let debates = [...this.state.debates];
+        let debates = [...this.props.debates];
         const selectedDebate = debates.find(d => d._id == debateId);
 
         const sdSubscribers = selectedDebate.subscribers;
         let subscribed = "subscribe";
 
         if(sdSubscribers.some(sid => {
-            return sid == this.state.user._id;
+            return sid == this.props.user._id;
         })) { // Remove
             subscribed = "unsubscribe";
-            selectedDebate.subscribers = sdSubscribers.filter(sid => { return sid != this.state.user._id});
+            selectedDebate.subscribers = sdSubscribers.filter(sid => { return sid != this.props.user._id});
         }
         else { // Add
-            sdSubscribers.push(this.state.user._id);
+            sdSubscribers.push(this.props.user._id);
         }
 
         this.setState({ debates });
@@ -112,7 +115,7 @@ const DebatePage = React.createClass({
     },
 
     handleNewMessage(debate, text, isModerator = false) {
-        const debates = this.state.debates;
+        const debates = this.props.debates;
 
         const newMessageDebate = debates.find(d => d._id == debate._id);
 
@@ -121,7 +124,7 @@ const DebatePage = React.createClass({
         };
 
         if(!isModerator) {
-           newMessageObj['user'] = this.state.user._id;
+           newMessageObj['user'] = this.props.user._id;
         }
         else {
             newMessageObj['moderator'] = true;
@@ -143,7 +146,7 @@ const DebatePage = React.createClass({
     },
 
     handleEndDebate(debateObj) {
-        const debates = this.state.debates;
+        const debates = this.props.debates;
 
         const indexToDelete = debates.findIndex(d => d._id == debateObj._id);
 
@@ -161,7 +164,8 @@ const DebatePage = React.createClass({
     },
 
     render: function() {
-        const { topic, user, debates, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
+        const { showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
+        const { topic, user, debates } = this.props;
 
         const myDebates = debates.filter((d) => {
             return d.challenger._id == user._id || d.challengee._id == user._id;
@@ -256,4 +260,4 @@ const DebatePage = React.createClass({
     },
 });
 
-export default DebatePage;
+export default connect(mapStateToProps)(DebatePage);
