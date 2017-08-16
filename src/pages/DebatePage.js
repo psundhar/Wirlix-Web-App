@@ -10,6 +10,7 @@ import { getDebate } from '../utilities/data';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 
 import { connect } from 'react-redux';
+import { updateDebate } from '../actionCreators/debateActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -21,22 +22,26 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateDebate: (data) => {
+        refreshDebate: (data) => {
             const debateId = data._id;
 
-            getDebate(debateId, json => {
-                const debates = this.props.debates;
+            // getDebate(debateId, json => {
+            //     const debates = this.props.debates;
+            //
+            //     const indexToEdit = debates.findIndex(d => d._id == debateId);
+            //
+            //     if(indexToEdit > -1) {
+            //         debates[indexToEdit] = json;
+            //     }
+            //
+            //     const updates = {debates};
+            //
+            //     this.setState(updates);
+            // });
+        },
 
-                const indexToEdit = debates.findIndex(d => d._id == debateId);
-
-                if(indexToEdit > -1) {
-                    debates[indexToEdit] = json;
-                }
-
-                const updates = {debates};
-
-                this.setState(updates);
-            });
+        viewDebate: (debateId) => {
+            dispatch(updateDebate(debateId, {viewed: true}));
         }
     };
 };
@@ -54,7 +59,7 @@ const DebatePage = React.createClass({
     componentDidMount() {
         const socket = IO();
 
-        registerSocketEventHandler(socket, 'updates:debates', this.updateDebate);
+        registerSocketEventHandler(socket, 'updates:debates', this.props.refreshDebate);
     },
 
     handleSubscribeToggle: function(debateId) {
@@ -94,20 +99,9 @@ const DebatePage = React.createClass({
     },
 
     handleEnterDebate(debate) {
-        const { debates, user } = this.state;
+        this.props.viewDebate(debate._id);
 
-        const viewedDebate = debates.find(d => d._id == debate._id);
-
-        viewedDebate.views += 1;
-
-        apiFetch('/api/debates/' + debate._id, 'PUT', {viewed: true})
-            .then(function(res) {
-                if(!res.ok) {
-                    console.log(res);
-                }
-            });
-
-        this.setState({ debates, debateModalId: debate._id });
+        this.setState({ debateModalId: debate._id });
     },
 
     handleMyDebatesClick() {
@@ -164,7 +158,7 @@ const DebatePage = React.createClass({
     },
 
     render: function() {
-        const { showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
+        const { showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates, debateModalId } = this.state;
         const { topic, user, debates } = this.props;
 
         const myDebates = debates.filter((d) => {
@@ -174,6 +168,8 @@ const DebatePage = React.createClass({
         const anythingUnread = myDebates.find(d => {
             return (d.challenger._id == user._id && !d.challengerRead) || (d.challengee._id == user._id && !d.challengeeRead);
         })
+
+        const debateModalDebate = debates.find(d => d._id == debateModalId );
 
         return (
     <div>
@@ -252,7 +248,7 @@ const DebatePage = React.createClass({
         </section>
 
 
-        <DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} handleNewMessage={this.handleNewMessage} debate={ this.props.debates.find(d => d._id == this.state.debateModalId ) } />
+        { debateModalId && (<DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} handleNewMessage={this.handleNewMessage} debate={ debateModalDebate } />) }
         { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
             </div>)
@@ -260,4 +256,4 @@ const DebatePage = React.createClass({
     },
 });
 
-export default connect(mapStateToProps)(DebatePage);
+export default connect(mapStateToProps, mapDispatchToProps)(DebatePage);
