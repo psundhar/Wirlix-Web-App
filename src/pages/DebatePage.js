@@ -19,36 +19,36 @@ const mapStateToProps = state => {
     }
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        updateDebate: (data) => {
+            const debateId = data._id;
+
+            getDebate(debateId, json => {
+                const debates = this.props.debates;
+
+                const indexToEdit = debates.findIndex(d => d._id == debateId);
+
+                if(indexToEdit > -1) {
+                    debates[indexToEdit] = json;
+                }
+
+                const updates = {debates};
+
+                this.setState(updates);
+            });
+        }
+    };
+};
+
 const DebatePage = React.createClass({
     getInitialState() {
         return {
-            debateModal: {debate: {}},
+            debateModalId: null,
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
             showMyDebates: false,
         }
-    },
-
-    updateDebate(data) {
-        const debateId = data._id;
-
-        getDebate(debateId, json => {
-            const debates = this.props.debates;
-
-            const indexToEdit = debates.findIndex(d => d._id == debateId);
-
-            if(indexToEdit > -1) {
-                debates[indexToEdit] = json;
-            }
-
-            const updates = {debates};
-
-            if(this.state.debateModal.debate._id === debateId) { // Update debate modal as necessary
-                updates['debateModal'] = { debate: json };
-            }
-
-            this.setState(updates);
-        });
     },
 
     componentDidMount() {
@@ -107,7 +107,7 @@ const DebatePage = React.createClass({
                 }
             });
 
-        this.setState({debates, debateModal: { debate }});
+        this.setState({ debates, debateModalId: debate._id });
     },
 
     handleMyDebatesClick() {
@@ -252,7 +252,7 @@ const DebatePage = React.createClass({
         </section>
 
 
-        <DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} handleNewMessage={this.handleNewMessage} debate={this.state.debateModal.debate} />
+        <DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} handleNewMessage={this.handleNewMessage} debate={ this.props.debates.find(d => d._id == this.state.debateModalId ) } />
         { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
             </div>)
