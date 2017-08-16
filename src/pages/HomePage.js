@@ -8,6 +8,8 @@ import { registerSocketEventHandler } from '../utilities/realTime';
 import IO from 'socket.io-client';
 import { getStatement } from '../utilities/data';
 import ReactTooltip from 'react-tooltip';
+import { connect } from 'react-redux';
+
 const MIN_VOTES = 5;
 
 const numVoters = (voters, filterFn) => {
@@ -38,34 +40,32 @@ const sortOutcome = (a, b, primaryQualifier, secondaryQualifier = null) => {
     }
 };
 
+const mapStateToProps = state => {
+    return state;
+};
+
 const HomePage = React.createClass({
 
     getInitialState() {
         return {
-            topic: {},
             statementText: '',
-            statements: [],
-            user: {},
             challenge: {
                 statementId: null,
                 topicId: null,
-            },
-            showChallengeSent: false
+            }
         };
+
     },
 
     componentDidMount() {
-        if(initialState) { // Globally set into hbs templates
-            this.setState(initialState);
-        }
-
         // Connect to server via websocket for live updates
         registerSocketEventHandler(IO(), 'updates:opinions', this.getUpdatedStatement);
     },
 
     getUpdatedStatement(data) {
         getStatement(data._id, json => {
-            const statements = this.state.statements;
+
+            const statements = this.props.statements;
 
             const indexToEdit = statements.findIndex(s => s._id == data._id);
 
@@ -87,7 +87,7 @@ const HomePage = React.createClass({
     },
 
     handleVote(isRational, statementId) {
-        const statements = this.state.statements;
+        const statements = this.props.statements;
 
         const s = statements.find(s => s._id == statementId);
 
@@ -97,13 +97,13 @@ const HomePage = React.createClass({
                 console.log(err);
             });
 
-            const existingVote = s.voters.find(v => v.user == this.state.user._id);
+            const existingVote = s.voters.find(v => v.user == this.props.user._id);
 
             if(existingVote) {
                 existingVote.isRational = isRational;
             }
             else {
-                s.voters.push({ user: this.state.user._id, isRational });
+                s.voters.push({ user: this.props.user._id, isRational });
             }
 
             this.setState({ statements });
@@ -119,7 +119,7 @@ const HomePage = React.createClass({
         }
 
         apiFetch('/api/statements', 'POST', {
-            topic: this.state.topic._id,
+            topic: this.props.topic._id,
             text: this.state.statementText,
             agreement: agree ? 'agree' : 'disagree',
         })
@@ -129,7 +129,7 @@ const HomePage = React.createClass({
         })
         .then(statement => {
             const statements = that.state.statements;
-            statement.user = this.state.user;
+            statement.user = this.props.user;
             statements.push(statement);
             that.setState({ statements });
         })
@@ -168,7 +168,8 @@ const HomePage = React.createClass({
     },
 
     render() {
-        const { topic, user, statements } = this.state;
+
+        const { topic, user, statements } = this.props;
         const opinion=this.state.statementText.length!=0;
 
         return (
@@ -181,11 +182,6 @@ const HomePage = React.createClass({
             <div className="button-home col-md-4" style={{ position: "absolute" }}>
                 <a href="#"><span style={{fontSize: "1.4em", fontFamily: 'Source Code Pro'}}>What's Trending</span></a>
             </div>
-            {/*<div className="button-home-arrow" >
-                <div className="arrow animated bounce">
-                    <a className="border-less" href="#"><img src="images/arrow-w.png" style={{width:"40px", height:"40px"}}/></a>
-                </div>
-            </div>*/}
 
             <div className="mute">
                 <img src="images/sound.png" />
@@ -216,8 +212,6 @@ const HomePage = React.createClass({
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <div className="comments">
                 <div className="container">
@@ -233,10 +227,7 @@ const HomePage = React.createClass({
                             <div className="col-md-4 vote-col factual active" id ="factual">
                                 <h2 className="col-md-12"><span data-tip="These arguments are more appealing to people's logic" style={{marginRight:"20px", marginLeft:"20px"}}>Most Factual</span><img src="images/best-debater-w.png"/ ></h2>
                                     <ReactTooltip place="top" type="dark" effect="float"/>
-                                
-                               
-                                
-                                
+
                                 <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numRational(s.voters) >= MIN_VOTES)
                                         .sort((a, b) => {
@@ -293,7 +284,7 @@ const HomePage = React.createClass({
             </div>
         </section>
         <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} topicId={ this.state.challenge.topicId } statementId={ this.state.challenge.statementId } user={ user } />
-        <TempPopup show={ this.state.showChallengeSent } color="white" backgroundColor="crimson"><div className="center bold">Challenge Sent!</div></TempPopup>
+        <TempPopup show={ this.props.showChallengeSent } color="white" backgroundColor="crimson"><div className="center bold">Challenge Sent!</div></TempPopup>
             <div id ="opinion-conf" className="modal fade in" data-toggle="opinion" role="modal">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -305,8 +296,8 @@ const HomePage = React.createClass({
                 </div>
             </div>
         </div>
-        </div>)
+    </div>)
     },
 });
 
-export default HomePage;
+export default connect(mapStateToProps)(HomePage);

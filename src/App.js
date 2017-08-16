@@ -9,14 +9,24 @@ import RankingsPage from './pages/RankingsPage';
 import AboutPage from './pages/AboutPage';
 import TutorialPage from './pages/TutorialPage';
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import masterReducer from './reducers/masterReducer';
+
+const initialState = window.initialState;
+
 const App = ({}) => {
     return (<BrowserRouter>
+        <Provider store={ createStore(masterReducer, initialState) }>
         <Switch>
             <Route path="/home" component={ HomePage } />
             <Route path="/debate" component={ DebatePage } />
             <Route path="/rankings" component={ RankingsPage } />
             <Route path="/about" component={ AboutPage } />
+            <Route path="/image" component={ ImagePage } />
+            <Route path="/profile/:id" component={ ProfilePage } />
         </Switch>
+        </Provider>
     </BrowserRouter>)
 };
 
