@@ -10,7 +10,7 @@ import { getDebate } from '../utilities/data';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 
 import { connect } from 'react-redux';
-import { updateDebate, updateDebateAction } from '../actionCreators/debateActionCreators';
+import { updateDebate, updateDebateAction, createDebateMessage } from '../actionCreators/debateActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -32,7 +32,11 @@ const mapDispatchToProps = dispatch => {
 
         viewDebate: (debateId) => {
             dispatch(updateDebate(debateId, {viewed: true}));
-        }
+        },
+
+        handleNewMessage: (debate, text, isModerator = false) => {
+            dispatch(createDebateMessage(debateId, text, isModerator));
+        },
     };
 };
 
@@ -89,44 +93,13 @@ const DebatePage = React.createClass({
     },
 
     handleEnterDebate(debate) {
-        this.props.viewDebate(debate._id);
-
         this.setState({ debateModalId: debate._id });
+
+        this.props.viewDebate(debate._id);
     },
 
     handleMyDebatesClick() {
         this.setState({showMyDebates: !this.state.showMyDebates});
-    },
-
-    handleNewMessage(debate, text, isModerator = false) {
-        const debates = this.props.debates;
-
-        const newMessageDebate = debates.find(d => d._id == debate._id);
-
-        const newMessageObj = {
-            text,
-        };
-
-        if(!isModerator) {
-           newMessageObj['user'] = this.props.user._id;
-        }
-        else {
-            newMessageObj['moderator'] = true;
-        }
-
-        newMessageDebate.messages.push(newMessageObj);
-        this.setState({debates});
-
-        // Update db state
-        apiFetch('/api/debates/' + debate._id, 'PUT', {
-            message: newMessageObj
-        })
-        .then(res => res.json())
-        .then(debate => {
-            newMessageDebate.updated = debate.updated;
-            this.setState({debates});
-        })
-        .catch(err => console.log(err));
     },
 
     handleEndDebate(debateObj) {
@@ -238,7 +211,7 @@ const DebatePage = React.createClass({
         </section>
 
 
-        { debateModalId && (<DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} handleNewMessage={this.handleNewMessage} debate={ debateModalDebate } />) }
+        { !!debateModalId && (<DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} handleNewMessage={this.props.handleNewMessage} debate={ debateModalDebate } />) }
         { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
             </div>)

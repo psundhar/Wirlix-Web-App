@@ -35,7 +35,7 @@ const DebateModal = React.createClass({
         const isSubscriber = subscribers.includes(user._id);
 
         return (
-            <div id="view-debate" className="modal fade" role="dialog" style={{backgroundColor: "black"}}>
+            <div id="view-debate" className="modal" role="dialog" style={{backgroundColor: "black", display: "inline-block"}}>
                 <div className="modal-dialog">
                     <div className="modal-content" style={{backgroundColor: "rgba(255,255,255, .8)"}}>
                         <div className="chat-header clearfix">
