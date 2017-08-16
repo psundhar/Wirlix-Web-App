@@ -110,7 +110,7 @@ const HomePage = React.createClass({
         }
     },
 
-    handleSubmit(agree) {
+    handleSubmit() {
         let that = this;
 
         if(this.state.statementText.length == 0) {
@@ -121,7 +121,7 @@ const HomePage = React.createClass({
         apiFetch('/api/statements', 'POST', {
             topic: this.state.topic._id,
             text: this.state.statementText,
-            agreement: agree ? 'agree' : 'disagree',
+          //  agreement: agree ? 'agree' : 'disagree',
         })
         .then((res) => {
             that.setState({ statementText: '' });
@@ -207,12 +207,8 @@ const HomePage = React.createClass({
                         <p className="homepagetooltip" data-tip="First Arguments are the user’s original stance on the controversy without discussing, debating or learning more about the controversy ">?</p>
                         <ReactTooltip place="top" type="dark" effect="float"/>
                         <div className="col-md-6 res-button agr">
-                            {opinion ? <button onClick={() => { this.handleSubmit(true);}}><span style={{fontFamily: "Raleway"}}>Submit in Agreement</span></button>:
-                                <button data-toggle="modal" data-target="#opinion-conf" onClick={() => { this.handleSubmit(true);}}><span style={{fontFamily: "Raleway"}}>Submit in Agreement</span></button> }
-                        </div>
-                        <div className="col-md-6 res-button dis">
-                            {opinion ? <button onClick={() => { this.handleSubmit(false);}}><span style={{fontFamily: "Raleway"}}>Submit in Disagreement</span></button>:
-                                <button data-toggle="modal" data-target="#opinion-conf" onClick={() => { this.handleSubmit(false);}}><span style={{fontFamily: "Raleway"}}>Submit in Disagreement</span></button> }
+                            {opinion ? <button onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway", alignItems:"center"}}>Submit</span></button>:
+                                <button data-toggle="modal" data-target="#opinion-conf" onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway"}}>Submit</span></button> }
                         </div>
                     </div>
                 </div>
@@ -231,7 +227,7 @@ const HomePage = React.createClass({
                         </ul>
                         <div className="tab-content">
                             <div className="col-md-4 vote-col factual active" id ="factual">
-                                <h2 className="col-md-12"><span data-tip="These arguments are more appealing to people's logic" style={{marginRight:"20px", marginLeft:"20px"}}>Most Factual</span><img src="images/best-debater-w.png"/ ></h2>
+                                <h2 className="col-md-12"><span data-tip="These arguments are more appealing to people's logic" style={{marginRight:"20px", marginLeft:"20px"}}>Most Factual</span><img src="images/best-debater-w.png" /></h2>
                                     <ReactTooltip place="top" type="dark" effect="float"/>
                                 
                                

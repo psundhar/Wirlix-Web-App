@@ -11,9 +11,9 @@ const statementsSchema = mongoose.Schema({
         ref: 'Topic',
         required: true,
     },
-    agreement: {
+   /* agreement: {
         type: String
-    },
+    },*/
     text: {
         type: String,
     },

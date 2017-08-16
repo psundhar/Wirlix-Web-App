@@ -25,14 +25,14 @@ export default class EditableFirstArgument extends Component {
     };
 
     render() {
-        const { isEditable, text, agree, handleEdit } = this.props;
+        const { isEditable, text, handleEdit } = this.props;
         const { inputText } = this.state;
 
         const isDirty = (typeof inputText != 'undefined' && typeof text != 'undefined' && inputText != text);
 
         return (
             <div>
-                <div style={{backgroundColor: "white", border: "4px solid " + (agree ? 'slateblue' : 'crimson')}} className="p2">
+                <div  className="p2">
                     { isEditable && (<div><textarea style={{
                             width: "100%",
                             outline: "none",
