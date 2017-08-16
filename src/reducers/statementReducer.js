@@ -1,8 +1,18 @@
 export default (state = [], action) => {
-    console.log(state);
     switch(action.type) {
         case 'UPDATE_STATEMENT': {
-            return state;
+            const statements = [...state];
+
+            const indexToUpdate = statements.findIndex(s => s._id == action.statement._id);
+
+            if(indexToUpdate > -1) {
+                statements[indexToUpdate] = action.statement;
+            }
+            else {
+                statements.push(action.statement);
+            }
+            
+            return statements;
         }
         case 'CREATE_STATEMENT': {
             const statements = [...state];
