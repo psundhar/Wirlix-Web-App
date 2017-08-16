@@ -10,7 +10,7 @@ import { getDebate } from '../utilities/data';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 
 import { connect } from 'react-redux';
-import { updateDebate } from '../actionCreators/debateActionCreators';
+import { updateDebate, updateDebateAction } from '../actionCreators/debateActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -25,19 +25,9 @@ const mapDispatchToProps = dispatch => {
         refreshDebate: (data) => {
             const debateId = data._id;
 
-            // getDebate(debateId, json => {
-            //     const debates = this.props.debates;
-            //
-            //     const indexToEdit = debates.findIndex(d => d._id == debateId);
-            //
-            //     if(indexToEdit > -1) {
-            //         debates[indexToEdit] = json;
-            //     }
-            //
-            //     const updates = {debates};
-            //
-            //     this.setState(updates);
-            // });
+            getDebate(debateId, json => {
+                dispatch(updateDebateAction(json));
+            });
         },
 
         viewDebate: (debateId) => {
