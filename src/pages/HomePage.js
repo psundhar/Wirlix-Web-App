@@ -9,6 +9,7 @@ import IO from 'socket.io-client';
 import { getStatement } from '../utilities/data';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
+import { updateStatementAction, createStatement } from '../actionCreators/statementActionCreators';
 
 const MIN_VOTES = 5;
 
@@ -44,6 +45,17 @@ const mapStateToProps = state => {
     return state;
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        refreshStatement: (statement) => {
+            dispatch(updateStatementAction(statement));
+        },
+        addStatement: (statement, user) => {
+            dispatch(createStatement(statement, user));
+        },
+    };
+};
+
 const HomePage = React.createClass({
 
     getInitialState() {
@@ -64,22 +76,8 @@ const HomePage = React.createClass({
 
     getUpdatedStatement(data) {
         getStatement(data._id, json => {
-
-            const statements = this.props.statements;
-
-            const indexToEdit = statements.findIndex(s => s._id == data._id);
-
-            console.log(indexToEdit, statements);
-
-            if(indexToEdit > -1) {
-                statements[indexToEdit] = json;
-            }
-            else {
-                statements.push(json);
-            }
-
-            this.setState(statements);
-        })
+            this.props.refreshStatement(json);
+        });
     },
 
     handleStatementTextChange(e) {
@@ -111,31 +109,17 @@ const HomePage = React.createClass({
     },
 
     handleSubmit(agree) {
-        let that = this;
-
         if(this.state.statementText.length == 0) {
-            console.log('your cannot submit empty opinion');
-            return ; // Don't submit empty statements
+            return; // Don't submit empty statements
         }
 
-        apiFetch('/api/statements', 'POST', {
+        this.props.addStatement({
             topic: this.props.topic._id,
             text: this.state.statementText,
             agreement: agree ? 'agree' : 'disagree',
-        })
-        .then((res) => {
-            that.setState({ statementText: '' });
-            return res.json();
-        })
-        .then(statement => {
-            const statements = that.state.statements;
-            statement.user = this.props.user;
-            statements.push(statement);
-            that.setState({ statements });
-        })
-        .catch(function(err) {
-            console.log(err);
-        })
+        }, this.props.user);
+
+        this.setState({ statementText: '' }); // Clear out statement text
     },
 
     handleChallenge(statementId, topicId) {
@@ -300,4 +284,4 @@ const HomePage = React.createClass({
     },
 });
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

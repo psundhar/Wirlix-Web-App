@@ -9,15 +9,19 @@ import RankingsPage from './pages/RankingsPage';
 import AboutPage from './pages/AboutPage';
 import TutorialPage from './pages/TutorialPage';
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import masterReducer from './reducers/masterReducer';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const initialState = window.initialState;
 
+const composeEnhancers = composeWithDevTools({});
+
 const App = ({}) => {
     return (<BrowserRouter>
-        <Provider store={ createStore(masterReducer, initialState) }>
+        <Provider store={ createStore(masterReducer, initialState, composeEnhancers(applyMiddleware(thunk))) }>
         <Switch>
             <Route path="/home" component={ HomePage } />
             <Route path="/debate" component={ DebatePage } />
