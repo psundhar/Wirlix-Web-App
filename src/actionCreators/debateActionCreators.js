@@ -33,13 +33,28 @@ export const createDebateMessage = (debateId, text, isModerator) => {
         }
 
         // Update db state
-        apiFetch('/api/debates/' + debate._id, 'PUT', {
-            message: newMessageObj
-        })
-        .then(res => res.json())
-        .then(json => {
-            dispatch(updateDebateAction(json));
-        })
-        .catch(err => console.log(err));
+        dispatch(updateDebate(debateId, { message: newMessageObj }));
     }
 };
+
+export const subscribeToDebate = (debateId) => {
+    return (dispatch, getState) => {
+        const { debates, user } = getState();
+
+        const selectedDebate = debates.find(d => d._id == debateId);
+
+        if(!selectedDebate) return;
+
+        const sdSubscribers = selectedDebate.subscribers;
+
+        let subscribed = "subscribe";
+
+        if(sdSubscribers.some(sid => {
+                return sid == user._id;
+            })) { // Remove
+            subscribed = "unsubscribe";
+        }
+
+        dispatch(updateDebate(debateId, { subscribed }));
+    }
+}

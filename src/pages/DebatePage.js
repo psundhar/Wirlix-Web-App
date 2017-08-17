@@ -10,7 +10,7 @@ import { getDebate } from '../utilities/data';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 
 import { connect } from 'react-redux';
-import { updateDebate, updateDebateAction, createDebateMessage } from '../actionCreators/debateActionCreators';
+import { updateDebate, updateDebateAction, createDebateMessage, subscribeToDebate } from '../actionCreators/debateActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -37,6 +37,10 @@ const mapDispatchToProps = dispatch => {
         handleNewMessage: (debate, text, isModerator = false) => {
             dispatch(createDebateMessage(debateId, text, isModerator));
         },
+
+        handleSubscribeToggle: function(debateId) {
+            dispatch(subscribeToDebate(debateId));
+        },
     };
 };
 
@@ -54,42 +58,6 @@ const DebatePage = React.createClass({
         const socket = IO();
 
         registerSocketEventHandler(socket, 'updates:debates', this.props.refreshDebate);
-    },
-
-    handleSubscribeToggle: function(debateId) {
-        let debates = [...this.props.debates];
-        const selectedDebate = debates.find(d => d._id == debateId);
-
-        const sdSubscribers = selectedDebate.subscribers;
-        let subscribed = "subscribe";
-
-        if(sdSubscribers.some(sid => {
-            return sid == this.props.user._id;
-        })) { // Remove
-            subscribed = "unsubscribe";
-            selectedDebate.subscribers = sdSubscribers.filter(sid => { return sid != this.props.user._id});
-        }
-        else { // Add
-            sdSubscribers.push(this.props.user._id);
-        }
-
-        this.setState({ debates });
-
-        fetch('/api/debates/' + debateId, {
-            method: 'PUT',
-            headers: new Headers({
-               'Content-Type': 'application/json',
-            }),
-            body: JSON.stringify({
-                subscribed,
-            }),
-            credentials: "include",
-        })
-        .then(function(res) {
-            if(!res.ok) {
-                console.log("Unable to update");
-            }
-        })
     },
 
     handleEnterDebate(debate) {
@@ -167,7 +135,7 @@ const DebatePage = React.createClass({
                     return d.views > 10;
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                     )
                 })}
             </div>
@@ -185,7 +153,7 @@ const DebatePage = React.createClass({
                     return -1;
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                     )
                 })}
             </div>
@@ -198,7 +166,7 @@ const DebatePage = React.createClass({
                 return d.subscribers.includes(user._id);
             }).map((d,i)=> {
                 return (
-                    <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                    <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                 )
             })}
         </div>
@@ -211,7 +179,7 @@ const DebatePage = React.createClass({
         </section>
 
 
-        { !!debateModalId && (<DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} handleNewMessage={this.props.handleNewMessage} debate={ debateModalDebate } />) }
+        { debateModalId && (<DebateModal handleSubscribeToggle={this.props.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} handleNewMessage={this.props.handleNewMessage} debate={ debateModalDebate } />) }
         { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
             </div>)
