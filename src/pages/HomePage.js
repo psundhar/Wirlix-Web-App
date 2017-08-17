@@ -8,6 +8,7 @@ import { registerSocketEventHandler } from '../utilities/realTime';
 import IO from 'socket.io-client';
 import { getStatement } from '../utilities/data';
 import ReactTooltip from 'react-tooltip';
+import { Carousel } from 'react-bootstrap';
 
 const MIN_VOTES = 5;
 
@@ -211,6 +212,22 @@ const HomePage = React.createClass({
                             {opinion ? <button onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway", alignItems:"center"}}>Submit</span></button>:
                                 <button data-toggle="modal" data-target="#opinion-conf" onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway"}}>Submit</span></button> }
                         </div>
+                    </div>
+                    <div id="statement_carousel">
+                        <Carousel>
+                            { statements.filter(s => s.voters && numRational(s.voters) < MIN_VOTES && numEmotional(s.voters) < MIN_VOTES)
+                                .sort((a, b) => {
+                                    return a.created >= b.created ? -1 : 1;
+                                })
+                                .map(s => {
+                                    return (
+                                        <Carousel.Item>
+                                        <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
+                                        </Carousel.Item>
+                                    )
+                                })}
+                        </Carousel>
+
                     </div>
                 </div>
 
