@@ -23,7 +23,7 @@ const ProfilePage = React.createClass({
             // loggedInUser: {},
             // topic: {},
             // challenges: [],
-            debateModalId: { visible: false, debate: {} },
+            modalDebate: {},
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
             statements: [],
@@ -44,10 +44,6 @@ const ProfilePage = React.createClass({
             }
 
             const updates = {debates};
-
-            if(this.state.debateModalId === debateId) { // Update debate modal as necessary
-                updates['debateModalId'] = { debate: json };
-            }
 
             this.setState(updates);
         });
@@ -77,7 +73,7 @@ const ProfilePage = React.createClass({
                 }
             });
 
-        this.setState({debates, debateModalId: { debate }});
+        this.setState({debates, modalDebate: debate});
     },
 
     handleNewMessage(debate, text, isModerator = false) {
@@ -269,7 +265,7 @@ const ProfilePage = React.createClass({
     },
 
     render() {
-        const { user, statements, statement, debates, loggedInUser, topic, challenges, debateModalId, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
+        const { user, statements, statement, debates, loggedInUser, topic, challenges, modalDebate, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
 
         const isMyProfile = loggedInUser._id == user._id;
 
@@ -292,8 +288,6 @@ const ProfilePage = React.createClass({
         const myDebates = debates.filter((d) => {
             return d.challenger._id == user._id || d.challengee._id == user._id;
         });
-
-        console.log(myDebates);
 
         return (
             <div>
@@ -389,7 +383,7 @@ const ProfilePage = React.createClass({
                     </section>
                 </div>
 
-                <DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={ this.handleEndDebate } user={this.state.loggedInUser} handleNewMessage={this.handleNewMessage} debate={ this.state.debateModalId }/>
+                <DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={ this.handleEndDebate } user={this.state.loggedInUser} handleNewMessage={this.handleNewMessage} debate={ this.state.modalDebate }/>
 
                 { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
