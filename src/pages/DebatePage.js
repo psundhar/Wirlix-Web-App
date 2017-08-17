@@ -34,10 +34,6 @@ const mapDispatchToProps = dispatch => {
             dispatch(updateDebate(debateId, {viewed: true}));
         },
 
-        handleNewMessage: (debate, text, isModerator = false) => {
-            dispatch(createDebateMessage(debateId, text, isModerator));
-        },
-
         handleSubscribeToggle: function(debateId) {
             dispatch(subscribeToDebate(debateId));
         },
@@ -179,7 +175,7 @@ const DebatePage = React.createClass({
         </section>
 
 
-        { debateModalId && (<DebateModal handleSubscribeToggle={this.props.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} handleNewMessage={this.props.handleNewMessage} debate={ debateModalDebate } />) }
+        { debateModalId && (<DebateModal handleSubscribeToggle={this.props.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} debate={ debateModalDebate } />) }
         { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
             </div>)
