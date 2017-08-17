@@ -175,7 +175,7 @@ const DebatePage = React.createClass({
         </section>
 
 
-        { debateModalId && (<DebateModal handleSubscribeToggle={this.props.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} debate={ debateModalDebate } />) }
+        <DebateModal handleSubscribeToggle={this.props.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} debate={ debateModalDebate } />
         { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
             </div>)
