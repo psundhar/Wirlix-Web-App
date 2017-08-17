@@ -7,6 +7,13 @@ export const updateDebateAction = (debate) => {
     };
 };
 
+export const deleteDebateAction = (debateId) => {
+    return {
+        type: 'DELETE_DEBATE',
+        debateId,
+    }
+}
+
 export const updateDebate = (debateId, updatedDebate) => {
     return dispatch => {
         apiFetch('/api/debates/' + debateId, 'PUT', updatedDebate)
@@ -56,5 +63,15 @@ export const subscribeToDebate = (debateId) => {
         }
 
         dispatch(updateDebate(debateId, { subscribed }));
+    }
+}
+
+export const deleteDebate = (debateId) => {
+    return (dispatch, getState) => {
+        apiFetch('/api/debates/' + debateId, 'DELETE').then(res => {
+            if(res.ok) {
+                dispatch(deleteDebateAction(debateId));
+            }
+        })
     }
 }

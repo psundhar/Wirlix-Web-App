@@ -11,6 +11,17 @@ export default (state = [], action) => {
 
             return debates;
         }
+        case 'DELETE_DEBATE': {
+            const debates = [...state];
+
+            const indexToDelete = debates.findIndex(d => d._id == action.debateId);
+
+            if(indexToDelete > -1) {
+                debates.splice(indexToDelete, 1);
+            }
+
+            return debates;
+        }
     }
     return state;
 };

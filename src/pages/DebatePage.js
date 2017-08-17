@@ -10,7 +10,7 @@ import { getDebate } from '../utilities/data';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 
 import { connect } from 'react-redux';
-import { updateDebate, updateDebateAction, createDebateMessage, subscribeToDebate } from '../actionCreators/debateActionCreators';
+import { updateDebate, updateDebateAction, deleteDebate, subscribeToDebate } from '../actionCreators/debateActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -36,6 +36,10 @@ const mapDispatchToProps = dispatch => {
 
         handleSubscribeToggle: function(debateId) {
             dispatch(subscribeToDebate(debateId));
+        },
+
+        endDebate: (debateId) => {
+            dispatch(deleteDebate(debateId));
         },
     };
 };
@@ -67,21 +71,13 @@ const DebatePage = React.createClass({
     },
 
     handleEndDebate(debateObj) {
-        const debates = this.props.debates;
-
-        const indexToDelete = debates.findIndex(d => d._id == debateObj._id);
-
-        if(indexToDelete > -1) {
-            debates.splice(indexToDelete, 1);
-        }
-
-        this.setState({debates, showEndDebateMessage: true});
+        this.setState({showEndDebateMessage: true});
 
         setTimeout(() => {
             this.setState({ showEndDebateMessageFadeOut: true});
         }, 3000);
 
-        apiFetch('/api/debates/' + debateObj._id, 'DELETE');
+        this.props.endDebate(debateObj._id);
     },
 
     render: function() {
