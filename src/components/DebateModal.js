@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 
 import { createDebateMessage } from '../actionCreators/debateActionCreators';
 
-import ReactModal from 'react-modal';
-
 const mapStateToProps = state => {
     return {};
 };
@@ -15,7 +13,7 @@ const mapDispatchToProps = dispatch => {
     return {
         handleNewMessage: (debate, text, isModerator = false) => {
             dispatch(createDebateMessage(debateId, text, isModerator));
-        }
+        },
     };
 };
 
@@ -26,7 +24,6 @@ const DebateModal = React.createClass({
             text: '',
             showEndDebateDialog: false,
             showEndDebateMessage: false,
-            showModal: true,
         };
     },
 
@@ -40,7 +37,8 @@ const DebateModal = React.createClass({
     },
 
     render() {
-        const { handleNewMessage, debate, user, handleEndDebate, handleSubscribeToggle, show } = this.props;
+        const { handleNewMessage, debate = {}, user, handleEndDebate, handleSubscribeToggle } = this.props;
+
         const { statement, challenger = {}, challengee = {}, messages = [], views, subscribers = [] } = debate;
 
         const challengerImage = challenger.image || '/images/pexels-photo-103123.jpeg';
@@ -53,8 +51,7 @@ const DebateModal = React.createClass({
         const isSubscriber = subscribers.includes(user._id);
 
         return (
-            <ReactModal isOpen={ debate }>
-            <div id="view-debate" className="modal" role="dialog" style={{backgroundColor: "black", display: "inline-block"}}>
+            <div id="view-debate" className="modal fade" role="dialog" style={{backgroundColor: "black"}}>
                 <div className="modal-dialog">
                     <div className="modal-content" style={{backgroundColor: "rgba(255,255,255, .8)"}}>
                         <div className="chat-header clearfix">
@@ -179,7 +176,6 @@ const DebateModal = React.createClass({
                     )}
                 </div>
             </div>
-            </ReactModal>
         );
     }
 });

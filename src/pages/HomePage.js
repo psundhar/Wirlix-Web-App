@@ -11,7 +11,7 @@ import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { updateStatementAction, createStatement, voteOnStatement } from '../actionCreators/statementActionCreators';
 import { createChallenge } from '../actionCreators/challengeActionCreators';
-2
+
 const MIN_VOTES = 5;
 
 const numVoters = (voters, filterFn) => {

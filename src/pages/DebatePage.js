@@ -98,6 +98,8 @@ const DebatePage = React.createClass({
 
         const debateModalDebate = debates.find(d => d._id == debateModalId );
 
+        console.log(debateModalDebate);
+
         return (
     <div>
     <section className="debate-section" style={{minHeight:"1400px"}}>
