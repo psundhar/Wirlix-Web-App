@@ -47,7 +47,7 @@ const mapDispatchToProps = dispatch => {
 const DebatePage = React.createClass({
     getInitialState() {
         return {
-            debateModalId: null,
+            modalDebate: {},
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
             showMyDebates: false,
@@ -61,7 +61,7 @@ const DebatePage = React.createClass({
     },
 
     handleEnterDebate(debate) {
-        this.setState({ debateModalId: debate._id });
+        this.setState({ modalDebate: debate });
 
         this.props.viewDebate(debate._id);
     },
@@ -81,7 +81,7 @@ const DebatePage = React.createClass({
     },
 
     render: function() {
-        const { showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates, debateModalId } = this.state;
+        const { showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates, modalDebate } = this.state;
         const { topic, user, debates } = this.props;
 
         const myDebates = debates.filter((d) => {
@@ -91,10 +91,6 @@ const DebatePage = React.createClass({
         const anythingUnread = myDebates.find(d => {
             return (d.challenger._id == user._id && !d.challengerRead) || (d.challengee._id == user._id && !d.challengeeRead);
         })
-
-        const debateModalDebate = debates.find(d => d._id == debateModalId );
-
-        console.log(debateModalDebate);
 
         return (
     <div>
@@ -173,7 +169,7 @@ const DebatePage = React.createClass({
         </section>
 
 
-        <DebateModal handleSubscribeToggle={this.props.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} debate={ debateModalDebate } />
+        <DebateModal handleSubscribeToggle={this.props.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} debate={ modalDebate } />
         { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
             </div>)
