@@ -452,7 +452,7 @@ h1, h2, h3, h4{
   border: none;
   padding: 10px;
   font-family: "Oswald", sans-serif;
-  text-transform: uppercase;
+  text-transform: uppeorcase;
   font-size: 1.5em;
   color: #ffffff;
   border: 3px solid #ffffff;
@@ -472,6 +472,11 @@ h1, h2, h3, h4{
   border: 3px solid #990000;
 }
 
+.res-buttoncent{
+  width: 335px;
+  margin: 0 auto;
+  float: none;
+}
 .response textarea{
   padding: 20px;
   font-size: 1em;
@@ -704,6 +709,24 @@ button:focus{
   bottom: 85%;
   left: 95%;
 }
+.opinionbox{
+  display: inline-block;
+}
+
+#statement_carousel {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.carousel-inner {
+  width: 330px;
+  left: 200px;
+}
+
+.slide {
+  width: 730px;
+}
+
 /* ================================== About ================================== */
 
 .svg-cont {
@@ -1850,6 +1873,9 @@ z-index: 5;
 
         .my-debate{
           overflow: auto;
+        }
+        .carousel-inner{
+          left: 177px;
         }
   }
 

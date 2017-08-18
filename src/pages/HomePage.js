@@ -52,7 +52,10 @@ const HomePage = React.createClass({
                 statementId: null,
                 topicId: null,
             },
-            showChallengeSent: false
+            showChallengeSent: false,
+            interval: false,
+            indicators: false,
+            controls: false
         };
     },
 
@@ -204,17 +207,19 @@ const HomePage = React.createClass({
             <div className="response">
                 <div className="container">
                     <h1 className="main-question col-md-12">{ topic.prompt }</h1>
-                    <div className="col-md-8 col-md-offset-2">
+                    <div className="opinionbox col-md-8 col-md-offset-2">
                         <textarea className="col-md-12 col-xs-12 col-sm-12" placeholder="What's your first opinion?" onChange={ this.handleStatementTextChange } value={ this.state.statementText }></textarea>
                         <p className="homepagetooltip" data-tip="First Arguments are the user’s original stance on the controversy without discussing, debating or learning more about the controversy ">?</p>
                         <ReactTooltip place="top" type="dark" effect="float"/>
-                        <div className="col-md-6 res-button agr">
-                            {opinion ? <button onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway", alignItems:"center"}}>Submit</span></button>:
+                        <div className="res-button res-buttoncent  agr">
+                            {opinion ? <button className="ghost" onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway", alignItems:"center"}}>Submit</span></button>:
                                 <button data-toggle="modal" data-target="#opinion-conf" onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway"}}>Submit</span></button> }
                         </div>
                     </div>
                     <div id="statement_carousel">
-                        <Carousel>
+                        <Carousel
+                            indicators = {this.state.indicators}
+                            interval = {this.state.interval}>
                             { statements.filter(s => s.voters && numRational(s.voters) < MIN_VOTES && numEmotional(s.voters) < MIN_VOTES)
                                 .sort((a, b) => {
                                     return a.created >= b.created ? -1 : 1;
@@ -222,7 +227,9 @@ const HomePage = React.createClass({
                                 .map(s => {
                                     return (
                                         <Carousel.Item>
+                                            <div style={{width: "335px"}}>
                                         <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
+                                            </div>
                                         </Carousel.Item>
                                     )
                                 })}
