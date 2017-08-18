@@ -14,7 +14,7 @@ import { factualRankings, emotionalRankings, findRank, countVoteTypes } from '..
 import MyDebates from '../components/MyDebates';
 
 import { connect } from 'react-redux';
-import { updateDebateAction, updateDebate } from '../actionCreators/debateActionCreators';
+import { updateDebateAction, updateDebate, deleteDebate } from '../actionCreators/debateActionCreators';
 
 const mapStateToProps = (state, ownProps) => {
     const users = state.users;
@@ -42,6 +42,10 @@ const mapDispatchToProps = (dispatch) => {
 
         viewDebate: (debateId) => {
             dispatch(updateDebate(debateId, {viewed: true}));
+        },
+
+        endDebate: (debateId) => {
+            dispatch(deleteDebate(debateId));
         },
     }
 }
@@ -71,6 +75,16 @@ const ProfilePage = React.createClass({
         this.setState({ modalDebate: debate });
 
         this.props.viewDebate(debate._id);
+    },
+
+    handleEndDebate(debateObj) {
+        this.setState({showEndDebateMessage: true});
+
+        setTimeout(() => {
+            this.setState({ showEndDebateMessageFadeOut: true});
+        }, 3000);
+
+        this.props.endDebate(debateObj._id);
     },
 
     handleChallengeResponse(accepted) {
