@@ -23,9 +23,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         refreshDebate: (data) => {
-            const debateId = data._id;
-
-            getDebate(debateId, json => {
+            getDebate(data._id, json => {
                 dispatch(updateDebateAction(json));
             });
         },

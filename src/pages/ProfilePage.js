@@ -14,6 +14,7 @@ import { factualRankings, emotionalRankings, findRank, countVoteTypes } from '..
 import MyDebates from '../components/MyDebates';
 
 import { connect } from 'react-redux';
+import { updateDebateAction, updateDebate } from '../actionCreators/debateActionCreators';
 
 const mapStateToProps = (state, ownProps) => {
     const users = state.users;
@@ -31,6 +32,20 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        refreshDebate: (data) => {
+            getDebate(data._id, json => {
+                dispatch(updateDebateAction(json));
+            });
+        },
+
+        viewDebate: (debateId) => {
+            dispatch(updateDebate(debateId, {viewed: true}));
+        },
+    }
+}
+
 const ProfilePage = React.createClass({
 
     getInitialState() {
@@ -42,24 +57,6 @@ const ProfilePage = React.createClass({
         };
     },
 
-    updateDebate(data) {
-        const debateId = data._id;
-
-        getDebate(debateId, json => {
-            const debates = this.state.debates;
-
-            const indexToEdit = debates.findIndex(d => d._id == debateId);
-
-            if(indexToEdit > -1) {
-                debates[indexToEdit] = json;
-            }
-
-            const updates = {debates};
-
-            this.setState(updates);
-        });
-    },
-
     componentDidMount() {
         if(initialState) { // Globally set into hbs templates
             this.setState(initialState);
@@ -67,25 +64,15 @@ const ProfilePage = React.createClass({
 
         const socket = IO(); // Will need to be altered in production
 
-        registerSocketEventHandler(socket, 'updates:debates', this.updateDebate);
+        registerSocketEventHandler(socket, 'updates:debates', this.props.refreshDebate);
     },
 
     handleEnterDebate(debate) {
-        const debates = this.state.debates;
+        this.setState({ modalDebate: debate });
 
-        const viewedDebate = debates.find(d => d._id == debate._id);
-
-        viewedDebate.views += 1;
-
-        apiFetch('/api/debates/' + debate._id, 'PUT', {viewed: true})
-            .then(function(res) {
-                if(!res.ok) {
-                    console.log(res);
-                }
-            });
-
-        this.setState({debates, modalDebate: debate});
+        this.props.viewDebate(debate._id);
     },
+
 
     handleNewMessage(debate, text, isModerator = false) {
         const debates = this.state.debates;
