@@ -112,8 +112,13 @@ const HomePage = React.createClass({
             }
 
             this.setState({ statements });
+            
         }
+
+       
     },
+
+
 
     handleSubmit() {
         let that = this;
@@ -171,6 +176,24 @@ const HomePage = React.createClass({
             }, 2500);
         });
     },
+      heartExplode() {
+       console.log("outside jq");
+        $(".hearts").on("click", function() {
+            console.log("inside jq");
+        var b = Math.floor((Math.random() * 100) + 1);
+        var d = ["flowOne", "flowTwo", "flowThree"];
+        var a = ["colOne", "colTwo", "colThree", "colFour", "colFive", "colSix"];
+        var c = (Math.random() * (1.6 - 1.2) + 1.2).toFixed(1);
+        $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-heart"></i></div>').appendTo(".hearts").css({
+        animation: "" + d[Math.floor((Math.random() * 3))] + " " + c + "s linear"
+        });
+        $(".part-" + b).show();
+        setTimeout(function() {
+        $(".part-" + b).remove()
+        }, c * 900)
+        });
+
+    },
 
     render() {
         const { topic, user, statements } = this.state;
@@ -178,30 +201,29 @@ const HomePage = React.createClass({
 
         return (
         <div>
-        <div className="main-section-home">
+        <div className="main-section-home" style={{backgroundColor: "#B2020C", zIndex: "-1"}}>
             { Object.keys(user).length > 0 && (<NavBar user={ user } />) }
-            <div className="overlay">
-
-            </div>
-            <div className="button-home col-md-4" style={{ position: "absolute" }}>
-                <a href="#"><span style={{fontSize: "1.4em", fontFamily: 'Source Code Pro'}}>What's Trending</span></a>
-            </div>
+            
+            
             {/*<div className="button-home-arrow" >
                 <div className="arrow animated bounce">
                     <a className="border-less" href="#"><img src="images/arrow-w.png" style={{width:"40px", height:"40px"}}/></a>
                 </div>
             </div>*/}
 
-            <div className="mute">
-                <img src="images/sound.png" />
-            </div>
-            <div className="control">
-                <img src="images/pause.png" />
-            </div>
-            <video playsInline autoPlay muted loop poster="" id="bgvid">
-                <source src="video/1 North Korea.mp4" type="video/mp4" />
-                 <source src="video/wirlix_promo_video_v1.webm" type="video/webm" />
-            </video>
+            
+            
+                <video playsInline autoPlay muted loop poster="" id="bgvid">
+                    <source src="video/1 North Korea.mp4" type="video/mp4" />
+                     <source src="video/wirlix_promo_video_v1.webm" type="video/webm" />
+                </video>
+                <div className="mute">
+                    <img src="images/sound.png" />
+                </div>
+                <div className="control">
+                    <img src="images/pause.png" />
+                </div>
+           
         </div>
         <section className="news-section" id="cont-section">
             <div className="response">
@@ -216,7 +238,13 @@ const HomePage = React.createClass({
                                 <button data-toggle="modal" data-target="#opinion-conf" onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway"}}>Submit</span></button> }
                         </div>
                     </div>
-                    <div id="statement_carousel">
+
+
+                
+
+
+                    <div id="statement_carousel" style={{marginTop: "80px", paddingTop:"30px", borderTop:"2px solid white"}}>
+                    <p style={{fontSize:"1.2em", textAlign: "center", marginBottom:"30px"}}>These opinions need your wisdom and support!!</p>
                         <Carousel
                             indicators = {this.state.indicators}
                             interval = {this.state.interval}>
@@ -228,7 +256,7 @@ const HomePage = React.createClass({
                                     return (
                                         <Carousel.Item>
                                             <div style={{width: "335px"}}>
-                                        <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
+                                        <StatementCard heartExplode= {this.heartExplode} handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
                                             </div>
                                         </Carousel.Item>
                                     )
@@ -236,21 +264,27 @@ const HomePage = React.createClass({
                         </Carousel>
 
                     </div>
+                    
+
                 </div>
 
             </div>
             <div className="comments">
                 <div className="container">
+                
                     <div className="border decide">
+
                         <ul  className="nav nav-pills">
-                            <li className="active col-xs-12">
+                            <li className="active">
                                 <a  href="#factual" data-toggle="tab">Factual</a>
                             </li>
-                            <li className="col-xs-12"><a href="#emotional" data-toggle="tab">Emotional</a></li>
-                            <li className="col-xs-12"><a href="#middle" data-toggle="tab">You Decide</a></li>
+                            <li ><a href="#emotional" data-toggle="tab">Emotional</a></li>
+                           
                         </ul>
+
                         <div className="tab-content">
-                            <div className="col-md-4 vote-col factual active" id ="factual">
+                            
+                            <div className="col-md-6 vote-col factual active" id ="factual" >
                                 <h2 className="col-md-12"><span data-tip="These arguments are more appealing to people's logic" style={{marginRight:"20px", marginLeft:"20px"}}>Most Factual</span><img src="images/best-debater-w.png" /></h2>
                                     <ReactTooltip place="top" type="dark" effect="float"/>
                                 
@@ -271,25 +305,9 @@ const HomePage = React.createClass({
                                 </div>
                             </div>
 
-                            <div className="col-md-4 vote-col middle" id ="middle">
-                                <h2 className="col-md-12"><span data-tip="These arguments require atleast five votes before being categorized">You Decide</span></h2>
-                                <ReactTooltip place="top" type="dark" effect="float"/>
-                                    
-                                <div className="comment-container col-md-12" id="you_decide">
+                            
 
-                                    { statements.filter(s => s.voters && numRational(s.voters) < MIN_VOTES && numEmotional(s.voters) < MIN_VOTES)
-                                        .sort((a, b) => {
-                                            return a.created >= b.created ? -1 : 1;
-                                        })
-                                        .map(s => {
-                                        return (
-                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
-                                        )
-                                    })}
-                                </div>
-                            </div>
-
-                            <div className="col-md-4 vote-col emotional" id = "emotional">
+                            <div className="col-md-6 vote-col emotional" id = "emotional">
                                 <h2 className="col-md-12"><span data-tip="These arguments are more appealing to people's emotions">Most Emotional</span><img style= {{height: "48px", width:"48px"}}src="images/heart-w.gif" /></h2>
                                 <ReactTooltip place="top" type="dark" effect="float"/>
                                     
@@ -305,8 +323,10 @@ const HomePage = React.createClass({
                                     })}
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
+                  
                 </div>
             </div>
             <div className="overlay">

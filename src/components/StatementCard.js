@@ -12,7 +12,7 @@ class StatementCard extends Component {
     };
 
     render() {
-        const {showChallenge, loggedInUser, user, topic, voters, text, handleVote, _id, handleChallenge,createdDate} = this.props;
+        const {showChallenge, loggedInUser, user, topic, voters, text, handleVote, _id, handleChallenge,createdDate, heartExplode} = this.props;
 
       //  const border = agreement == 'disagree' ? '3px solid #990000' : '3px solid #006600';
 
@@ -30,17 +30,22 @@ class StatementCard extends Component {
 
         return (
             <div className="comment">
+                <div >
                 <p className="col-md-12" >
-                    <a className="profile-pic" href={ profileLink } style={{background: "url(" + userImage + ") center center no-repeat" }}></a> <a href={ profileLink } className="username">{ user.username }</a> <br/>
-                    {text} <br/>
+                    {text} 
                     { showChallenge &&(<button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#challenge-conf" aria-hidden="true" onClick={ () => handleChallenge(_id, topic._id)}><b> CHALLENGE! &#8250;</b></button>)}
                 </p>
+                </div>
+                <a className="profile-pic" href={ profileLink } style={{background: "url(" + userImage + ") center center no-repeat" }}></a> <a href={ profileLink } className="username">{ user.username }</a> <br/>
+                    
 
                 <div className="col-md-6 button-container">
                     <button className={ "button-vote up " + ((loggedInUsersVote && loggedInUsersVote.isRational) ? "clicked" : "") } onClick={ () => handleVote(true, _id) }><img src="images/best-debater-w.png"/> &nbsp; <span className="vote-num">{ voters.filter(v => v.isRational).length }</span></button>
                 </div>
                 <div className="col-md-6 button-container">
-                    <button className={ "button-vote down " + ((loggedInUsersVote && !loggedInUsersVote.isRational) ? "clicked" : "") } onClick={ () => handleVote(false, _id) }><img src="images/heart-w.gif" />  &nbsp; <span className="vote-num">{ voters.filter(v => !v.isRational).length }</span></button>
+                    
+                    <button className={ "button-vote down hearts" + ((loggedInUsersVote && !loggedInUsersVote.isRational) ? "clicked" : "") } onClick={ () => {handleVote(false, _id); heartExplode()}}><img src="images/heart-w.gif" />  &nbsp; <span className="vote-num">{ voters.filter(v => !v.isRational).length }</span></button>
+                    
                 </div>
             </div>
         );

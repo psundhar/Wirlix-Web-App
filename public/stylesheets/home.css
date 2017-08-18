@@ -12,7 +12,7 @@ h1, h2, h3, h4{
 .main-section-home{
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; Form I-98
 }
 
 .main-section-home .content{
@@ -85,17 +85,17 @@ h1, h2, h3, h4{
 >>>>>>> feature/news_page
 /* ================================== Video ================================== */
 
-.main-section-home .mute{
+ .mute{
   position: absolute;
-  right: 40px;
-  bottom: 40px;
+  right: 95%;
+  top: 90%;
   z-index: 10;
 }
 
 .main-section-home .control{
   position: absolute;
-  left: 40px;
-  bottom: 40px;
+  left: 95%;
+  top: 90%;
   z-index: 10;
 }
 
@@ -111,11 +111,17 @@ h1, h2, h3, h4{
     position: absolute;
     top: 50%;
     left: 50%;
+    height: 500px;
+    border : 30px solid black;
+    border-radius: 20px;
+    margin-top: 10%;
+    /*
     min-width: 50%;
-    min-height: 100%;
+   min-height: 100%;
     width: 100%;
     height: auto;
-    z-index: -100;
+    */
+    z-index: 100;
     -ms-transform: translateX(-50%) translateY(-50%);
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
@@ -421,6 +427,7 @@ h1, h2, h3, h4{
   background: url(../images/bgimg2.jpg) center center no-repeat;
     background-size: cover;
     position: relative;
+    z-index: -100;
 }
 
 .main-question{
@@ -2014,11 +2021,15 @@ z-index: 5;
 
     .main-section-home video#bgvid{
       position: relative;
-      width: 90%;
-      margin-top: 150px;
-      min-width: 90%;
       height: 200px;
       min-height: 200px;
+      margin-top: 150px;
+
+      /*
+      width: 90%;
+      min-width: 90%;
+      */
+      
       z-index: 1;
     }
 
@@ -2212,3 +2223,140 @@ z-index: 5;
   @media only screen and (max-width : 320px) {
 
   }
+
+/*----------------floating hearts-------*/
+div.hearts {
+width: 200px;
+height: 600px;
+position: absolute;
+bottom: 0;
+left: 50%;
+margin-left: -50px;
+}
+div.heart {
+width: 30px;
+height: 30px;
+opacity: 1;
+position: absolute;
+bottom: 0;
+display: none;
+}
+div.heart i {
+position: absolute;
+left: 0;
+top: 0;
+opacity: .9;
+}
+.colOne {
+color: #fce473;
+}
+.colTwo {
+color: #f68b39;
+}
+.colThree {
+color: #ed6c63;
+}
+.colFour {
+color: #847bb9;
+}
+.colFive {
+color: #97cd76;
+}
+.colSix {
+color: #35b1d1;
+}
+@keyframes flowOne {
+0% {
+opacity: 0;
+bottom: 0;
+left: 14%}
+40% {
+opacity: .8;
+}
+50% {
+opacity: 1;
+left: 0;
+}
+60% {
+opacity: .2;
+}
+80% {
+bottom: 80%}
+100% {
+opacity: 0;
+bottom: 100%;
+left: 18%}
+}@keyframes flowTwo {
+0% {
+opacity: 0;
+bottom: 0;
+left: 0;
+}
+40% {
+opacity: .8;
+}
+50% {
+opacity: 1;
+left: 11%}
+60% {
+opacity: .2;
+}
+80% {
+bottom: 60%}
+100% {
+opacity: 0;
+bottom: 80%;
+left: 0;
+}
+}@keyframes flowThree {
+0% {
+opacity: 0;
+bottom: 0;
+left: 0;
+}
+40% {
+opacity: .8;
+}
+50% {
+opacity: 1;
+left: 30%}
+60% {
+opacity: .2;
+}
+80% {
+bottom: 70%}
+100% {
+opacity: 0;
+bottom: 90%;
+left: 0;
+}
+}
+
+
+/*----------speechBubbles----*/
+.speech {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  background-color: #fff;
+  border: 8px solid #666;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  -webkit-box-shadow: 2px 2px 4px #888;
+  -moz-box-shadow: 2px 2px 4px #888;
+  box-shadow: 2px 2px 4px #888;
+}
+
+.speech:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 30px;
+  top: 100px;
+  border: 25px solid;
+  border-color: #666 transparent transparent #666;
+}
