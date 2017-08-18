@@ -40,7 +40,7 @@ router.use(function(req, res, next) {
 //     })
 // });
 
-router.get('/|home|debate|rankings|about|profile/:id|/?', function(req, res) {
+router.get('/|home|debate|rankings|about|profile\/:id|/?', function(req, res) {
     Topic.queryLatest().exec()
         .then(function(topic) {
             const topicId = topic[0]._id;

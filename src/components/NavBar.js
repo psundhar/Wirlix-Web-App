@@ -93,9 +93,9 @@ const NavBar = React.createClass({
                                     { notify && (<div style={{position:'absolute',top:0,left:0,height:"13px",width:"13px",borderRadius:"100px",backgroundColor:"crimson"}}></div>) }
                                 </a>
                                     {isOpen ?  <ul className="dropdown-menu" id="dropdown" style={{display:"inline-block", background: "white", borderRadius:"15px"}}>
-                                        <li><a href={"/profile/" + user._id}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Profile   ></b></span></a></li>
-                                        <li><a href={"/profile/"+ user._id +"#profile-notification"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Notifications      ></b></span></a></li>
-                                        <li><a href={"/image/"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Upload Image        ></b></span></a></li>
+                                        <li><Link to={"/profile/" + user._id}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Profile   ></b></span></Link></li>
+                                        <li><Link to={"/profile/"+ user._id +"#profile-notification"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Notifications      ></b></span></Link></li>
+                                        <li><Link to={"/image/"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Upload Image        ></b></span></Link></li>
                                         <li><a href="/logout"><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Logout       ></b></span></a></li>
                                     </ul>: null}</li>
                                 <li><a className="help" href="/tutorial">? <br/><span>See Tutorial</span></a></li>
