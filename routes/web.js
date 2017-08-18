@@ -45,7 +45,16 @@ router.get('/|home|debate|rankings|about|profile/:id|/?', function(req, res) {
         .then(function(topic) {
             const topicId = topic[0]._id;
 
-            const arrayOfPromises = [Promise.resolve(topic), Statement.queryTopic(topicId), User.findById(req.user._id).exec(), Debate.queryByTopic(topicId).exec(), Statement.queryByTopicAndUser(topic._id, req.user._id).exec(), Debate.queryByTopicAndUser(topic._id, req.user._id).exec(), Challenge.queryByUserAndTopic(req.user._id, topic._id).exec()];
+            const arrayOfPromises = [
+                Promise.resolve(topic),
+                Statement.queryTopic(topicId),
+                User.findById(req.user._id).exec(),
+                Debate.queryByTopic(topicId).exec(),
+                Statement.queryByTopicAndUser(topic._id, req.user._id).exec(),
+                Debate.queryByTopicAndUser(topic._id, req.user._id).exec(),
+                Challenge.queryByUserAndTopic(req.user._id, topic._id).exec(),
+                User.find({}).exec(),
+            ];
 
             return Promise.all(arrayOfPromises);
         })
@@ -57,6 +66,7 @@ router.get('/|home|debate|rankings|about|profile/:id|/?', function(req, res) {
             const userStatement = resultsArr[4];
             const userDebates = resultsArr[5];
             const userChallenges = resultsArr[6];
+            const users = resultsArr[7];
 
             const data = {
                 topic: topic,
@@ -66,6 +76,7 @@ router.get('/|home|debate|rankings|about|profile/:id|/?', function(req, res) {
                 userStatement: userStatement,
                 userDebates: userDebates,
                 userChallenges: userChallenges,
+                users: users,
             };
 
             res.render('react_main', { data: JSON.stringify(data)});

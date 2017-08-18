@@ -13,20 +13,31 @@ import EditableFirstArgument from '../components/EditableFirstArgument';
 import { factualRankings, emotionalRankings, findRank, countVoteTypes } from '../utilities/rankings';
 import MyDebates from '../components/MyDebates';
 
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state, ownProps) => {
+    const users = state.users;
+
+    const profileUser = users.find(u => u._id == ownProps.match.params.id);
+
+    return {
+        loggedInUser: state.user || {},
+        profileUser: profileUser || {},
+        statement: state.statement || {},
+        challenges: state.challenges || [],
+        topic: state.topic || {},
+        debates: state.debates || [],
+        statements: state.statements || [],
+    };
+};
+
 const ProfilePage = React.createClass({
 
     getInitialState() {
         return {
-            // user: {},
-            // debates: [],
-            // statement: {},
-            // loggedInUser: {},
-            // topic: {},
-            // challenges: [],
             modalDebate: {},
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
-            statements: [],
             showMyDebates: false,
         };
     },
@@ -265,28 +276,33 @@ const ProfilePage = React.createClass({
     },
 
     render() {
-        const { user, statements, statement, debates, loggedInUser, topic, challenges, modalDebate, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
+        const { modalDebate, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
+        const { loggedInUser, profileUser, statements, statement, debates, topic, challenges } = this.props;
 
-        const isMyProfile = loggedInUser._id == user._id;
+        if(!profileUser) {
+            return <span></span>
+        }
 
-        const profileImage = user.image || '/images/pexels-photo-103123.jpeg';
+        const isMyProfile = loggedInUser._id == profileUser._id;
 
-        let profileName = [ user.firstName ];
+        const profileImage = profileUser.image || '/images/pexels-photo-103123.jpeg';
 
-        if(user.lastName) {
-            profileName.push(user.lastName);
+        let profileName = [ profileUser.firstName ];
+
+        if(profileUser.lastName) {
+            profileName.push(profileUser.lastName);
         }
 
         profileName = profileName.join(' ');
 
         const cachedStatements = countVoteTypes(statements);
 
-        const factualRank = findRank(factualRankings([...cachedStatements]), user._id);
+        const factualRank = findRank(factualRankings([...cachedStatements]), profileUser._id);
 
-        const emotionalRank = findRank(emotionalRankings([...cachedStatements]), user._id);
+        const emotionalRank = findRank(emotionalRankings([...cachedStatements]), profileUser._id);
 
         const myDebates = debates.filter((d) => {
-            return d.challenger._id == user._id || d.challengee._id == user._id;
+            return d.challenger._id == profileUser._id || d.challengee._id == profileUser._id;
         });
 
         return (
@@ -304,9 +320,9 @@ const ProfilePage = React.createClass({
                             <div className="profile-content col-md-8 col-md-offset-2">
                                 <div className="border-bottom border-white clearfix pb3">
                                     <h2 className="mb0">{ profileName }</h2>
-                                    <h3 className="small italic mb3">@{ user.username }</h3>
+                                    <h3 className="small italic mb3">@{ profileUser.username }</h3>
                                     <div className="mb2 col-md-12">
-                                        <EditableBio isEditable={ loggedInUser._id == user._id } handleEdit={this.handleBioEdit} bio={ user.bio } />
+                                        <EditableBio isEditable={ loggedInUser._id == profileUser._id } handleEdit={this.handleBioEdit} bio={ profileUser.bio } />
                                     </div>
                                     <div className="scores">
                                         <div className="col-md-6">
@@ -330,13 +346,13 @@ const ProfilePage = React.createClass({
                                 { isMyProfile && (
                                     <div className="col-md-12 border-bottom border-white pb3 mb2">
                                         <h3 className="large clickable mb3 mt0" onClick={ this.handleMyDebatesClick }>My Debates</h3>
-                                        <MyDebates handleReplyClick={this.handleEnterDebate} debates={ myDebates } user={ user }/>
+                                        <MyDebates handleReplyClick={this.handleEnterDebate} debates={ myDebates } user={ profileUser }/>
                                     </div>
                                 )}
 
                                 { !isMyProfile && (<div className="debates col-md-12 border-bottom border-white pb3">
                                     { debates.map((d, i) => {
-                                        return (<FlippableDebateCard handleSubscribeToggle={this.handleSubscribeToggle} key={i} user={loggedInUser} debate={ d } handleEnterDebate={ this.handleEnterDebate } />)
+                                        return (<FlippableDebateCard handleSubscribeToggle={this.handleSubscribeToggle} key={i} user={ loggedInUser } debate={ d } handleEnterDebate={ this.handleEnterDebate } />)
                                     })}
                                 </div>) }
                                 {isMyProfile && (
@@ -383,7 +399,7 @@ const ProfilePage = React.createClass({
                     </section>
                 </div>
 
-                <DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={ this.handleEndDebate } user={this.state.loggedInUser} handleNewMessage={this.handleNewMessage} debate={ this.state.modalDebate }/>
+                <DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={ this.handleEndDebate } user={loggedInUser} handleNewMessage={this.handleNewMessage} debate={ this.state.modalDebate }/>
 
                 { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
@@ -405,4 +421,4 @@ const ProfilePage = React.createClass({
     }
 });
 
-export default ProfilePage;
+export default connect(mapStateToProps)(ProfilePage);
