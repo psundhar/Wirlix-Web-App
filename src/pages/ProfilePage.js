@@ -73,38 +73,6 @@ const ProfilePage = React.createClass({
         this.props.viewDebate(debate._id);
     },
 
-
-    handleNewMessage(debate, text, isModerator = false) {
-        const debates = this.state.debates;
-
-        const newMessageDebate = debates.find(d => d._id == debate._id);
-
-        const newMessageObj = {
-            text,
-        };
-
-        if(!isModerator) {
-            newMessageObj['user'] = this.state.user._id;
-        }
-        else {
-            newMessageObj['moderator'] = true;
-        }
-
-        newMessageDebate.messages.push(newMessageObj);
-        this.setState({debates});
-
-        // Update db state
-        apiFetch('/api/debates/' + debate._id, 'PUT', {
-            message: newMessageObj
-        })
-            .then(res => res.json())
-            .then(debate => {
-                newMessageDebate.updated = debate.updated;
-                this.setState({debates});
-            })
-            .catch(err => console.log(err));
-    },
-
     handleChallengeResponse(accepted) {
         return (acceptedChallenge) => {
             const challenges = this.state.challenges;
