@@ -14,7 +14,8 @@ import { factualRankings, emotionalRankings, findRank, countVoteTypes } from '..
 import MyDebates from '../components/MyDebates';
 
 import { connect } from 'react-redux';
-import { updateDebateAction, updateDebate, deleteDebate } from '../actionCreators/debateActionCreators';
+import { updateDebateAction, updateDebate, deleteDebate, subscribeToDebate } from '../actionCreators/debateActionCreators';
+import { updateStatement } from '../actionCreators/statementActionCreators';
 
 const mapStateToProps = (state, ownProps) => {
     const users = state.users;
@@ -47,6 +48,14 @@ const mapDispatchToProps = (dispatch) => {
         endDebate: (debateId) => {
             dispatch(deleteDebate(debateId));
         },
+
+        handleSubscribeToggle: function(debateId) {
+            dispatch(subscribeToDebate(debateId));
+        },
+
+        handleStatementEdit(text) {
+            dispatch(updateStatement(statement._id, { text }));
+        },
     }
 }
 
@@ -75,16 +84,6 @@ const ProfilePage = React.createClass({
         this.setState({ modalDebate: debate });
 
         this.props.viewDebate(debate._id);
-    },
-
-    handleEndDebate(debateObj) {
-        this.setState({showEndDebateMessage: true});
-
-        setTimeout(() => {
-            this.setState({ showEndDebateMessageFadeOut: true});
-        }, 3000);
-
-        this.props.endDebate(debateObj._id);
     },
 
     handleChallengeResponse(accepted) {
@@ -136,89 +135,6 @@ const ProfilePage = React.createClass({
             .catch((err) => console.log(err));
         }
 
-    },
-
-    handleEndDebate(debateObj) {
-        const debates = this.state.debates;
-        const challenges = this.state.challenges;
-
-        const indexToDelete = debates.findIndex(d => d._id == debateObj._id);
-
-        if(indexToDelete > -1) {
-            debates.splice(indexToDelete, 1);
-        }
-
-        const dIndexToDelete = challenges.findIndex(c => {
-            return (c.challenger._id == debateObj.challenger._id) && (c.challengee._id == debateObj.challengee._id) && (c.statement._id == debateObj.statement._id)
-        });
-
-        if(dIndexToDelete > -1) {
-            challenges.splice(dIndexToDelete, 1);
-        }
-
-        this.setState({debates, challenges, showEndDebateMessage: true});
-
-        setTimeout(() => {
-            this.setState({ showEndDebateMessageFadeOut: true});
-        }, 3000);
-
-        apiFetch('/api/debates/' + debateObj._id, 'DELETE');
-    },
-
-    handleSubscribeToggle: function(debateId) {
-        let debates = [...this.state.debates];
-        const selectedDebate = debates.find(d => d._id == debateId);
-
-        const sdSubscribers = selectedDebate.subscribers;
-        let subscribed = "subscribe";
-
-        if(sdSubscribers.some(sid => {
-                return sid == this.state.user._id;
-            })) { // Remove
-            subscribed = "unsubscribe";
-            selectedDebate.subscribers = sdSubscribers.filter(sid => { return sid != this.state.user._id});
-        }
-        else { // Add
-            sdSubscribers.push(this.state.user._id);
-        }
-
-        this.setState({ debates });
-
-        fetch('/api/debates/' + debateId, {
-            method: 'PUT',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-            }),
-            body: JSON.stringify({
-                subscribed,
-            }),
-            credentials: "include",
-        })
-            .then(function(res) {
-                if(!res.ok) {
-                    console.log("Unable to update");
-                }
-            })
-    },
-
-    handleStatementEdit(text) {
-        const { user, loggedInUser, statement } = this.state;
-
-        if(user._id != loggedInUser._id) {
-            return;
-        }
-
-        apiFetch('/api/statements/' + statement._id, 'PUT', {
-            text,
-        })
-        .then(res => {
-            return res.json();
-        })
-        .then(json => {
-            statement.text = json.text;
-
-            this.setState({statement,});
-        });
     },
 
     handleBioEdit(text) {
@@ -308,7 +224,7 @@ const ProfilePage = React.createClass({
                                     <div className="gotd-banner">
                                         <p style={{fontSize:"1.5em"}}> Topic of the Day</p>
                                         <h3 className="mb2">{ topic.prompt }</h3>
-                                        <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text } agree={ statement.agreement == 'agree'} handleEdit={ this.handleStatementEdit }/>
+                                        <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text } agree={ statement.agreement == 'agree'} handleEdit={ this.props.handleStatementEdit }/>
                                     </div>
                                 </div>
 

@@ -14,6 +14,19 @@ export const createStatementAction = (statement) => {
     };
 };
 
+export const updateStatement = (statementId, updates) => {
+    return dispatch => {
+        apiFetch('/api/statements/' + statementId, 'PUT', {updates})
+            .then(res => res.json())
+            .then(json => {
+                dispatch(updateStatementAction(json));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+};
+
 export const createStatement = (statement, userObj) => {
     return (dispatch, getState) => {
         apiFetch('/api/statements', 'POST', statement)
@@ -29,15 +42,8 @@ export const createStatement = (statement, userObj) => {
 }
 
 export const voteOnStatement = (statementId, isRational) => {
-    return (dispatch, getState) => {
-        apiFetch('/api/statements/' + statementId, 'PUT', {isRational})
-        .then(res => res.json())
-        .then(json => {
-            dispatch(updateStatementAction(json));
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    return dispatch => {
+        dispatch(updateStatement(statementId, {isRational}));
     };
 };
 
