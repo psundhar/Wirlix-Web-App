@@ -40,11 +40,11 @@ class StatementCard extends Component {
                     
 
                 <div className="col-md-6 button-container">
-                    <button className={ "button-vote up " + ((loggedInUsersVote && loggedInUsersVote.isRational) ? "clicked" : "") } onClick={ () => handleVote(true, _id) }><img src="images/best-debater-w.png"/> &nbsp; <span className="vote-num">{ voters.filter(v => v.isRational).length }</span></button>
+                    <button className={ "button-vote up facts " + ((loggedInUsersVote && loggedInUsersVote.isRational) ? "clicked" : "") } onClick={ () => handleVote(true, _id) }><img src="images/best-debater-w.png"/> &nbsp; <span className="vote-num">{ voters.filter(v => v.isRational).length }</span></button>
                 </div>
                 <div className="col-md-6 button-container">
                     
-                    <button className={ "button-vote down hearts" + ((loggedInUsersVote && !loggedInUsersVote.isRational) ? "clicked" : "") } onClick={ () => {handleVote(false, _id); heartExplode()}}><img src="images/heart-w.gif" />  &nbsp; <span className="vote-num">{ voters.filter(v => !v.isRational).length }</span></button>
+                    <button className={ "button-vote down hearts " + ((loggedInUsersVote && !loggedInUsersVote.isRational) ? "clicked" : "") } onClick={ () => handleVote(false, _id) }><img src="images/heart-w.gif" />  &nbsp; <span className="vote-num">{ voters.filter(v => !v.isRational).length }</span></button>
                     
                 </div>
             </div>

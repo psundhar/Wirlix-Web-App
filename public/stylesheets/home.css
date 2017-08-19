@@ -427,7 +427,6 @@ h1, h2, h3, h4{
   background: url(../images/bgimg2.jpg) center center no-repeat;
     background-size: cover;
     position: relative;
-    z-index: -100;
 }
 
 .main-question{
@@ -2232,6 +2231,14 @@ position: absolute;
 bottom: 0;
 left: 50%;
 margin-left: -50px;
+}
+div.facts {
+  width: 200px;
+  height: 600px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -50px;
 }
 div.heart {
 width: 30px;

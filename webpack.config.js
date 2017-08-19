@@ -30,6 +30,10 @@ module.exports = {
                 loader: "file-loader"
             },
             {
+                test: /\.gif$/,
+                loader: "file-loader"
+            },
+            {
                 test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'url?limit=10000&mimetype=application/font-woff'
             },
