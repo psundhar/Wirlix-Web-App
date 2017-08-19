@@ -136,7 +136,6 @@ const HomePage = React.createClass({
         else {
             factExplode();
         }
-
         const s = statements.find(s => s._id == statementId);
 
         if(s) {
