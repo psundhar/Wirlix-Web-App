@@ -93,7 +93,7 @@ const NavBar = React.createClass({
                                 </a>
                                     {isOpen ?  <ul className="dropdown-menu" id="dropdown" style={{display:"inline-block", background: "white", borderRadius:"15px"}}>
                                         <li><a href={"/profile/" + user._id}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Profile   ></b></span></a></li>
-                                        <li><a href={"/profile/"+ user._id +"#profile-notification"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Notifications      ></b></span></a></li>
+                                        <li><a href={"/profile/"+ user._id +"#profile-notifications"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Notifications      ></b></span></a></li>
                                         <li><a href={"/image/"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Upload Image        ></b></span></a></li>
                                         <li><a href="/logout"><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Logout       ></b></span></a></li>
                                     </ul>: null}</li>

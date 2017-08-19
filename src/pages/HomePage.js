@@ -230,7 +230,7 @@ const HomePage = React.createClass({
 
         return (
         <div>
-        <div className="main-section-home" style={{backgroundColor: "#B2020C", zIndex: "-1"}}>
+        <div className="main-section-home" style={{backgroundColor: "#B2020C"}}>
             { Object.keys(user).length > 0 && (<NavBar user={ user } />) }
 
             

@@ -12,20 +12,20 @@ h1, h2, h3, h4{
 .main-section-home{
   min-height: 100vh;
   position: relative;
-  overflow: hidden; Form I-98
+  overflow: hidden;
 }
 
 .main-section-home .content{
   position: relative;
-  z-index: 2;
+  z-index: 20;
 }
 
-<<<<<<< HEAD
+
 .clickable {
   cursor: pointer;
 }
 
-=======
+
 
 /* ================================== ARROW/LIVE ================================== */
 
@@ -121,7 +121,7 @@ h1, h2, h3, h4{
     width: 100%;
     height: auto;
     */
-    z-index: 100;
+    z-index: 10;
     -ms-transform: translateX(-50%) translateY(-50%);
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
