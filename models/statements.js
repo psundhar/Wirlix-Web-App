@@ -37,20 +37,24 @@ const statementsSchema = mongoose.Schema({
     },
 });
 
+const standardRelations = [ 'user', 'topic' ];
+
 const model = mongoose.model('Statement', statementsSchema);
 
 module.exports = {
     queryTopic: function(topicId) {
         return model
             .find({deleted: false, topic: topicId})
-            .populate(['user', 'topic']);
+            .populate(standardRelations);
     },
 
     queryByTopicAndUser: function(topicId, userId) {
         return model
             .findOne({deleted: false, topic: topicId, user: userId})
-            .populate(['user', 'topic']);
+            .populate(standardRelations);
     },
+
+    standardRelations: standardRelations,
 
     default: model,
 }

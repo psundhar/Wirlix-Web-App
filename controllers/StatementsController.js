@@ -27,7 +27,7 @@ module.exports = {
 
     getObject: function(req, res, next) {
         Statement.default.findById(req.params.id)
-        .populate(['user', 'topic'])
+        .populate(Statement.standardRelations)
         .exec()
         .then(function(s) {
             if(s) {
@@ -45,6 +45,7 @@ module.exports = {
         Statement
             .default
             .findById(req.params.id)
+            .populate(Statement.standardRelations)
             .exec()
             .then(function(s) {
                 if(s) {
