@@ -8,11 +8,13 @@ export const updateUserAction = (user) => {
 };
 
 export const updateUser = (userId, updates) => {
-    apiFetch('/api/users/' + userId, 'PUT', )
+    return dispatch => {
+        apiFetch('/api/users/' + userId, 'PUT', updates)
         .then(res => {
             return res.json();
         })
         .then(json => {
-            updateUserAction()
+            dispatch(updateUserAction(json));
         })
+    }
 };
