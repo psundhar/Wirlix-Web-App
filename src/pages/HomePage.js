@@ -12,7 +12,9 @@ import { Carousel } from 'react-bootstrap';
 
 
 
+
 const MIN_VOTES = 1;
+
 
 const numVoters = (voters, filterFn) => {
     return voters.filter(filterFn).length;
@@ -42,39 +44,54 @@ const sortOutcome = (a, b, primaryQualifier, secondaryQualifier = null) => {
     }
 
 };
+var hocus = document.getElementsByClassName("right");
+
+
 const heartExplode = () => {
-    console.log("outside jq");
+    console.log(Carousel.prototype.getActiveIndex);
+    console.log();
+   
+    
     $(".hearts").on("click", function() {
+
         console.log("inside jq");
         var b = Math.floor((Math.random() * 100) + 1);
         var d = ["flowOne", "flowTwo", "flowThree"];
         var a = ["colOne", "colTwo", "colThree", "colFour", "colFive", "colSix"];
         var c = (Math.random() * (1.6 - 1.2) + 1.2).toFixed(1);
-        $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-heart"></i></div>').appendTo(".hearts").css({
+        $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-heart"></i></div>').appendTo(this).css({
             animation: "" + d[Math.floor((Math.random() * 3))] + " " + c + "s linear"
         });
         $(".part-" + b).show();
         setTimeout(function() {
             $(".part-" + b).remove()
-        }, c * 900)
+        }, c * 1100);
+        setTimeout(function() {
+            hocus[0].click();
+        }, 1500);
+        
     });
 };
 
 const factExplode = () => {
     console.log("outside jq");
-    $(".facts").on("click", function() {
+    $(".facts").click(function() {
         console.log("inside jq");
         var b = Math.floor((Math.random() * 100) + 1);
         var d = ["flowOne", "flowTwo", "flowThree"];
         var a = ["colOne", "colTwo", "colThree", "colFour", "colFive", "colSix"];
         var c = (Math.random() * (1.6 - 1.2) + 1.2).toFixed(1);
-        $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-smile-o"></i></div>').appendTo(".facts").css({
+        var d = 
+        $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-smile-o"></i></div>').appendTo(this).css({
             animation: "" + d[Math.floor((Math.random() * 3))] + " " + c + "s linear"
         });
         $(".part-" + b).show();
         setTimeout(function() {
             $(".part-" + b).remove()
-        }, c * 900)
+        }, c * 1100);
+         setTimeout(function() {
+            hocus[0].click();
+        }, 1500);
     });
 };
 
@@ -134,14 +151,16 @@ const HomePage = React.createClass({
     handleVote(isRational, statementId) {
         const statements = this.state.statements;
 
-        if(isRational==true || this.state.isRational==true){
-        heartExplode();}
+        if(isRational==true){
+            heartExplode();
+        }
         else {
             factExplode();
         }
         const s = statements.find(s => s._id == statementId);
-
+       
         if(s) {
+
             apiFetch('/api/statements/' + s._id, 'PUT', {isRational})
             .catch((err) => {
                 console.log(err);
