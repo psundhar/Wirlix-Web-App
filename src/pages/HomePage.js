@@ -43,7 +43,13 @@ const sortOutcome = (a, b, primaryQualifier, secondaryQualifier = null) => {
 };
 
 const mapStateToProps = state => {
-    return state;
+    const user = state.users.find(u => u._id == state.authUserId);
+
+    return {
+        user,
+        topic: state.topic,
+        statements: state.statements,
+    };
 };
 
 const mapDispatchToProps = dispatch => {
