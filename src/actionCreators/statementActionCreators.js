@@ -16,7 +16,7 @@ export const createStatementAction = (statement) => {
 
 export const updateStatement = (statementId, updates) => {
     return dispatch => {
-        apiFetch('/api/statements/' + statementId, 'PUT', {updates})
+        apiFetch('/api/statements/' + statementId, 'PUT', updates)
             .then(res => res.json())
             .then(json => {
                 dispatch(updateStatementAction(json));
