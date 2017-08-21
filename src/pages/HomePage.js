@@ -12,7 +12,7 @@ import { Carousel } from 'react-bootstrap';
 
 
 
-const MIN_VOTES = 5;
+const MIN_VOTES = 1;
 
 const numVoters = (voters, filterFn) => {
     return voters.filter(filterFn).length;
@@ -40,6 +40,7 @@ const sortOutcome = (a, b, primaryQualifier, secondaryQualifier = null) => {
     else if(secondaryQualifier) {
         return secondaryQualifier(a) >= secondaryQualifier(b) ? -1 : 1;
     }
+
 };
 const heartExplode = () => {
     console.log("outside jq");
@@ -76,6 +77,8 @@ const factExplode = () => {
         }, c * 900)
     });
 };
+
+
 
 const HomePage = React.createClass({
 
@@ -277,7 +280,7 @@ const HomePage = React.createClass({
                         <Carousel
                             indicators = {this.state.indicators}
                             interval = {this.state.interval}>
-                            { statements.filter(s => s.voters && numRational(s.voters) < MIN_VOTES && numEmotional(s.voters) < MIN_VOTES)
+                            { statements.filter(s => s.voters && numRational(s.voters) && numEmotional(s.voters) )
                                 .sort((a, b) => {
                                     return a.created >= b.created ? -1 : 1;
                                 })
@@ -348,9 +351,11 @@ const HomePage = React.createClass({
                                         })
                                         .map(s => {
                                         return (
-                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
+                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s } />
+
                                         )
                                     })}
+
                                 </div>
                             </div>
                             
