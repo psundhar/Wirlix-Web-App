@@ -23,8 +23,11 @@ const mapStateToProps = (state, ownProps) => {
 
     const profileUser = users.find(u => u._id == ownProps.match.params.id);
 
+    const loggedInUser = users.find(u => u._id == state.authUserId);
+
     return {
-        authUserId: state.user || {},
+        users: state.users || [],
+        loggedInUser: loggedInUser || {},
         profileUser: profileUser || {},
         statement: state.statement || {},
         challenges: state.challenges || [],
@@ -154,7 +157,7 @@ const ProfilePage = React.createClass({
 
     render() {
         const { modalDebate, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
-        const { loggedInUser, profileUser, statements, statement, debates, topic, challenges } = this.props;
+        const { loggedInUser, profileUser, statements, statement, debates, topic, challenges, users, handleStatementEdit } = this.props;
 
         if(!profileUser) {
             return <span></span>
@@ -199,7 +202,7 @@ const ProfilePage = React.createClass({
                                     <h2 className="mb0">{ profileName }</h2>
                                     <h3 className="small italic mb3">@{ profileUser.username }</h3>
                                     <div className="mb2 col-md-12">
-                                        <EditableBio isEditable={ loggedInUser._id == profileUser._id } handleEdit={this.handleBioEdit} bio={ profileUser.bio } />
+                                        <EditableBio isEditable={ isMyProfile } handleEdit={this.handleBioEdit} bio={ profileUser.bio } />
                                     </div>
                                     <div className="scores">
                                         <div className="col-md-6">
@@ -216,7 +219,7 @@ const ProfilePage = React.createClass({
                                     <div className="gotd-banner">
                                         <p style={{fontSize:"1.5em"}}> Topic of the Day</p>
                                         <h3 className="mb2">{ topic.prompt }</h3>
-                                        <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text } agree={ statement.agreement == 'agree'} handleEdit={ this.props.handleStatementEdit(statement) }/>
+                                        <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text } agree={ statement.agreement == 'agree'} handleEdit={ handleStatementEdit(statement) }/>
                                     </div>
                                 </div>
 
@@ -298,4 +301,4 @@ const ProfilePage = React.createClass({
     }
 });
 
-export default connect(mapStateToProps)(ProfilePage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
