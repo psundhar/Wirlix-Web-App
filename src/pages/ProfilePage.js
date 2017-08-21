@@ -25,11 +25,15 @@ const mapStateToProps = (state, ownProps) => {
 
     const loggedInUser = users.find(u => u._id == state.authUserId);
 
+    const statement = state.statements.find(s => {
+        return s.user._id == state.authUserId
+    });
+
     return {
         users: state.users || [],
         loggedInUser: loggedInUser || {},
         profileUser: profileUser || {},
-        statement: state.statement || {},
+        statement: statement || {},
         challenges: state.challenges || [],
         topic: state.topic || {},
         debates: state.debates || [],

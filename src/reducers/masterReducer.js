@@ -8,8 +8,8 @@ import debates from './debatesReducer';
 
 export default combineReducers({
     statements,
-    user,
     users: (state = []) => state,
+    authUserId: (state = []) => state,
     topic,
     userChallenges,
     debates,
