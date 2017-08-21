@@ -34,7 +34,7 @@ const mapStateToProps = (state, ownProps) => {
         loggedInUser: loggedInUser || {},
         profileUser: profileUser || {},
         statement: statement || {},
-        challenges: state.challenges || [],
+        userChallenges: state.userChallenges || [],
         topic: state.topic || {},
         debates: state.debates || [],
         statements: state.statements || [],
@@ -106,9 +106,9 @@ const ProfilePage = React.createClass({
 
     handleChallengeResponse(accepted) {
         return (acceptedChallenge) => {
-            const challenges = this.state.challenges;
+            const userChallenges = this.state.userChallenges;
 
-            const challenge = challenges.find(c => c._id == acceptedChallenge._id);
+            const challenge = userChallenges.find(c => c._id == acceptedChallenge._id);
 
             let status = "accepted";
 
@@ -124,7 +124,7 @@ const ProfilePage = React.createClass({
                 notifyChallenger: status == 'accepted',
             })
             .then(res => {
-                this.setState({challenges});
+                this.setState({userChallenges});
                 return res.json();
             })
             .then(challenge => {
@@ -161,7 +161,7 @@ const ProfilePage = React.createClass({
 
     render() {
         const { modalDebate, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
-        const { handleBioEdit, loggedInUser, profileUser, statements, statement, debates, topic, challenges, users, handleStatementEdit } = this.props;
+        const { handleBioEdit, loggedInUser, profileUser, statements, statement, debates, topic, userChallenges, users, handleStatementEdit } = this.props;
 
         if(!profileUser) {
             return <span></span>
@@ -250,7 +250,7 @@ const ProfilePage = React.createClass({
                                           data-target="#challenge-conf"/></p>
                                 </div> ) }
 
-                               <div id ="profile-notification"> { isMyProfile && (<ChallengeNotificationsList handleEnterDebate={this.handleEnterDebate} debates={debates} handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} challenges={ challenges } />) }
+                               <div id ="profile-notification"> { isMyProfile && (<ChallengeNotificationsList handleEnterDebate={this.handleEnterDebate} debates={debates} handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} />) }
                                </div>
                             </div>
                             <div className="profile-content notifications col-md-8 col-md-offset-2">

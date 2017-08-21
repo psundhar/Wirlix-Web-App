@@ -52,9 +52,9 @@ router.get('/|home|debate|rankings|about|profile\/:id|/?', function(req, res) {
                 Promise.resolve(topic),
                 Statement.queryTopic(topicId),
                 Debate.queryByTopic(topicId).exec(),
-                Statement.queryByTopicAndUser(topic._id, authUserId).exec(),
-                Debate.queryByTopicAndUser(topic._id, authUserId).exec(),
-                Challenge.queryByUserAndTopic(authUserId, topic._id).exec(),
+                Statement.queryByTopicAndUser(topicId, authUserId).exec(),
+                Debate.queryByTopicAndUser(topicId, authUserId).exec(),
+                Challenge.queryByUserAndTopic(authUserId, topicId).exec(),
                 User.find({}).exec(),
             ];
 
