@@ -5,14 +5,17 @@ import { connect } from 'react-redux';
 
 import { createDebateMessage } from '../actionCreators/debateActionCreators';
 
-const mapStateToProps = state => {
-    return {};
+const mapStateToProps = ( state, ownProps ) => {
+    return {
+        user: state.users.find(u => u._id == state.authUserId),
+        thisDebate: state.debates.find(d => d._id == ownProps.debate._id),
+    };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         handleNewMessage: (debate, text, isModerator = false) => {
-            dispatch(createDebateMessage(debateId, text, isModerator));
+            dispatch(createDebateMessage(debate._id, text, isModerator));
         },
     };
 };
@@ -32,14 +35,14 @@ const DebateModal = React.createClass({
     },
 
     handleQuestionClick(num) {
-        const { handleNewMessage, debate, questions } = this.props;
-        handleNewMessage(debate, questions[num.toString()], true);
+        const { handleNewMessage, thisDebate, questions } = this.props;
+        handleNewMessage(thisDebate, questions[num.toString()], true);
     },
 
     render() {
-        const { handleNewMessage, debate = {}, user, handleEndDebate, handleSubscribeToggle } = this.props;
+        const { handleNewMessage, thisDebate = {}, user, handleEndDebate, handleSubscribeToggle } = this.props;
 
-        const { statement, challenger = {}, challengee = {}, messages = [], views, subscribers = [] } = debate;
+        const { statement, challenger = {}, challengee = {}, messages = [], views, subscribers = [] } = thisDebate;
 
         const challengerImage = challenger.image || '/images/pexels-photo-103123.jpeg';
         const challengeeImage = challengee.image || '/images/pexels-photo-103123.jpeg';
@@ -132,13 +135,13 @@ const DebateModal = React.createClass({
                                     <button className="end-debate" onClick={() => this.setState({ showEndDebateDialog: true })}>End Debate</button>
                                 </div>
                                 <div className="col-md-8 col-sm-8 col-xs-8 reply-button">
-                                    <button className="reply-submit" onClick={ () => { if(this.state.text.length > 0) handleNewMessage(debate, this.state.text); this.setState({text: ''}); } }>Reply</button>
+                                    <button className="reply-submit" onClick={ () => { if(this.state.text.length > 0) handleNewMessage(thisDebate, this.state.text); this.setState({text: ''}); } }>Reply</button>
                                 </div>
                             </div>
                         )}
                         <div className="vote-box col-md-12">
                             <div className="col-md-6 col-md-offset-3">
-                                <p onClick={ () => handleSubscribeToggle(debate._id) }><i className={ "fa fa-check " + ( isSubscriber ? 'checked' : '' ) } /> Subscribe</p>
+                                <p onClick={ () => handleSubscribeToggle(thisDebate._id) }><i className={ "fa fa-check " + ( isSubscriber ? 'checked' : '' ) } /> Subscribe</p>
                             </div>
                         </div>
                         <div className="close-bottom">
@@ -152,7 +155,7 @@ const DebateModal = React.createClass({
                             <div className="confirm col-md-6 col-sm-6 col-xs-6">
                                 <button href="#" data-toggle="modal" data-target="#view-debate" onClick={ (e) => {
                                     this.setState({showEndDebateDialog: false});
-                                    handleEndDebate(debate);
+                                    handleEndDebate(thisDebate);
                                 }}>Yes</button>
                             </div>
                         </div>) }

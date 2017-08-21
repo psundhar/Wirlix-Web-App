@@ -7,6 +7,8 @@ export default (state = [], action) => {
 
             if(indexToUpdate > -1) {
                 debates[indexToUpdate] = action.debate;
+
+                console.log(debates[indexToUpdate]);
             }
 
             return debates;
