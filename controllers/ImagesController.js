@@ -14,12 +14,15 @@ const ImagesController = {
 
             let cropOptions;
 
-            if(req.query.left || req.query.top) {
-                const targetImageWidth = 400;
+          
+            if(req.query.left || req.query.top || req.query.width || req.query.height) {
+                // const targetImageWidth = 400;
                 const startX = 0 + parseInt(req.query.left);
                 const startY = 0 + parseInt(req.query.top);
-
-                cropOptions = {x: startX, y: startY, width: targetImageWidth, height: targetImageWidth, crop: "crop"};
+                const targetImageWidth = 0 + parseInt(req.query.width);
+                const targetImageHeight = 0 + parseInt(req.query.height);
+                cropOptions = {x: startX, y: startY, width: targetImageWidth, height: targetImageHeight, crop: "crop"};
+                console.log("CROP OPTIONS ---------------------------------------------------" + cropOptions.x);
             }
 
 

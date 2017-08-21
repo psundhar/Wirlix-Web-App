@@ -17,6 +17,8 @@ const ImagePage = React.createClass({
             edits: {
                 top: 0,
                 left: 0,
+                height: 0,
+                width: 0
             }
         };
     },
@@ -24,6 +26,8 @@ const ImagePage = React.createClass({
     handleReposition() {
         const that = this;
         var img = $('img#profile-img');
+
+    
 
         var y1 = $('.img-container').height();
         var x1 = $('.img-container').width();
@@ -34,9 +38,20 @@ const ImagePage = React.createClass({
             img.attr('data-top', t);
             img.attr('data-left', l);
         });
+        console.log(" test....before..."+img[0].height);
 
-        var y2 = img.prop('naturalHeight');
-        var x2 = img.prop('naturalWidth');
+        if(img[0].height > img[0].width){
+            var x2 = x1;
+            img[0].width = x2;
+            y2 = img[0].height;
+
+        };
+        if(img[0].width > img[0].height){
+            var y2 = y1;
+            img[0].height = y2;
+            console.log(y2);
+            x2 = img[0].width;
+        };
 
         img.draggable({
             disabled: false,
@@ -44,7 +59,7 @@ const ImagePage = React.createClass({
             axis: 'y, x',
             cursor : 'move',
             drag: function(event, ui) {
-
+                console.log(ui);
                 if(ui.position.top >= 0) {
                     ui.position.top = 0;
                 }
@@ -59,10 +74,13 @@ const ImagePage = React.createClass({
                 }
             },
             stop(e, ui) {
-                that.setState({edits: {top: ui.position.top, left: ui.position.left}});
+                console.log(x2);
+                that.setState({edits: {top: ui.position.top, left: ui.position.left, width: x2, height: y2}});
             },
         });
+
     },
+
 
     componentDidMount() {
         if(initialState) {
@@ -85,18 +103,25 @@ const ImagePage = React.createClass({
         this.setState({isUploading: true});
 
         const { imageFile, user, isNewUser } = this.state;
+         console.log("handle upload. str. out...");
         if(imageFile.preview) {
             // Initiate upload
             const data = new FormData();
             data.append('image', imageFile);
 
             const queries = [];
-
             if(this.state.edits.left) {
                 queries.push({key: 'left', value: -this.state.edits.left})
             }
             if(this.state.edits.top) {
                 queries.push({key: 'top', value: -this.state.edits.top});
+            }
+
+             if(this.state.edits.height) {
+                queries.push({key: 'height', value: this.state.edits.height});
+            }
+             if(this.state.edits.width) {
+                queries.push({key: 'width', value: this.state.edits.width});
             }
 
             const queryStrings = queries.map(q => {
