@@ -4,4 +4,4 @@ import App from './App';
 
 const root = document.getElementById('react-root');
 
-export default ReactDOM.render(<App page={ root.dataset.page }/>, root);
+export default ReactDOM.render(<App/>, root);

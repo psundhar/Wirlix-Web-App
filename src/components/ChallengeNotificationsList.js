@@ -1,9 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const profileLinkStyles = {
     display: "inline",
     textDecoration: "underline",
     fontSize: "1em",
+};
+
+const mapStateToProps = state => {
+    return {
+        challenges: state.userChallenges,
+        debates: state.debates,
+    }
 };
 
 const ChallengeNotificationsList = ({challenges, debates, user, handleAcceptChallenge, handleDeclineChallenge, handleEnterDebate }) => {
@@ -34,4 +42,4 @@ const ChallengeNotificationsList = ({challenges, debates, user, handleAcceptChal
     )
 };
 
-export default ChallengeNotificationsList;
+export default connect(mapStateToProps)(ChallengeNotificationsList);

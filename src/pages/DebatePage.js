@@ -9,159 +9,78 @@ import { registerSocketEventHandler } from '../utilities/realTime';
 import { getDebate } from '../utilities/data';
 import EndDebateOverlay from '../components/EndDebateOverlay';
 
+import { connect } from 'react-redux';
+import { updateDebate, updateDebateAction, deleteDebate, subscribeToDebate } from '../actionCreators/debateActionCreators';
+
+const mapStateToProps = state => {
+    return {
+        debates: state.debates,
+        topic: state.topic,
+        user: state.users.find(u => u._id == state.authUserId),
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        refreshDebate: (data) => {
+            getDebate(data._id, json => {
+                dispatch(updateDebateAction(json));
+            });
+        },
+
+        viewDebate: (debateId) => {
+            dispatch(updateDebate(debateId, {viewed: true}));
+        },
+
+        handleSubscribeToggle: function(debateId) {
+            dispatch(subscribeToDebate(debateId));
+        },
+
+        endDebate: (debateId) => {
+            dispatch(deleteDebate(debateId));
+        },
+    };
+};
+
 const DebatePage = React.createClass({
     getInitialState() {
         return {
-            debates: [],
-            topic: {},
-            user: {},
-            debateModal: {debate: {}},
+            modalDebate: {},
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
             showMyDebates: false,
         }
     },
 
-    updateDebate(data) {
-        const debateId = data._id;
-
-        getDebate(debateId, json => {
-            const debates = this.state.debates;
-
-            const indexToEdit = debates.findIndex(d => d._id == debateId);
-
-            if(indexToEdit > -1) {
-                debates[indexToEdit] = json;
-            }
-
-            const updates = {debates};
-
-            if(this.state.debateModal.debate._id === debateId) { // Update debate modal as necessary
-                updates['debateModal'] = { debate: json };
-            }
-
-            this.setState(updates);
-        });
-    },
-
     componentDidMount() {
-        if(initialState) { // Globally set into hbs templates
-            this.setState(initialState);
-        }
-
         const socket = IO();
 
-        registerSocketEventHandler(socket, 'updates:debates', this.updateDebate);
-    },
-
-    handleSubscribeToggle: function(debateId) {
-        let debates = [...this.state.debates];
-        const selectedDebate = debates.find(d => d._id == debateId);
-
-        const sdSubscribers = selectedDebate.subscribers;
-        let subscribed = "subscribe";
-
-        if(sdSubscribers.some(sid => {
-            return sid == this.state.user._id;
-        })) { // Remove
-            subscribed = "unsubscribe";
-            selectedDebate.subscribers = sdSubscribers.filter(sid => { return sid != this.state.user._id});
-        }
-        else { // Add
-            sdSubscribers.push(this.state.user._id);
-        }
-
-        this.setState({ debates });
-
-        fetch('/api/debates/' + debateId, {
-            method: 'PUT',
-            headers: new Headers({
-               'Content-Type': 'application/json',
-            }),
-            body: JSON.stringify({
-                subscribed,
-            }),
-            credentials: "include",
-        })
-        .then(function(res) {
-            if(!res.ok) {
-                console.log("Unable to update");
-            }
-        })
+        registerSocketEventHandler(socket, 'updates:debates', this.props.refreshDebate);
     },
 
     handleEnterDebate(debate) {
-        const { debates, user } = this.state;
+        this.setState({ modalDebate: debate });
 
-        const viewedDebate = debates.find(d => d._id == debate._id);
-
-        viewedDebate.views += 1;
-
-        apiFetch('/api/debates/' + debate._id, 'PUT', {viewed: true})
-            .then(function(res) {
-                if(!res.ok) {
-                    console.log(res);
-                }
-            });
-
-        this.setState({debates, debateModal: { debate }});
+        this.props.viewDebate(debate._id);
     },
 
     handleMyDebatesClick() {
         this.setState({showMyDebates: !this.state.showMyDebates});
     },
 
-    handleNewMessage(debate, text, isModerator = false) {
-        const debates = this.state.debates;
-
-        const newMessageDebate = debates.find(d => d._id == debate._id);
-
-        const newMessageObj = {
-            text,
-        };
-
-        if(!isModerator) {
-           newMessageObj['user'] = this.state.user._id;
-        }
-        else {
-            newMessageObj['moderator'] = true;
-        }
-
-        newMessageDebate.messages.push(newMessageObj);
-        this.setState({debates});
-
-        // Update db state
-        apiFetch('/api/debates/' + debate._id, 'PUT', {
-            message: newMessageObj
-        })
-        .then(res => res.json())
-        .then(debate => {
-            newMessageDebate.updated = debate.updated;
-            this.setState({debates});
-        })
-        .catch(err => console.log(err));
-    },
-
     handleEndDebate(debateObj) {
-        const debates = this.state.debates;
-
-        const indexToDelete = debates.findIndex(d => d._id == debateObj._id);
-
-        if(indexToDelete > -1) {
-            debates.splice(indexToDelete, 1);
-        }
-
-        this.setState({debates, showEndDebateMessage: true});
+        this.setState({showEndDebateMessage: true});
 
         setTimeout(() => {
             this.setState({ showEndDebateMessageFadeOut: true});
         }, 3000);
 
-        apiFetch('/api/debates/' + debateObj._id, 'DELETE');
+        this.props.endDebate(debateObj._id);
     },
 
     render: function() {
-        const { topic, user, debates, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
+        const { showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates, modalDebate } = this.state;
+        const { topic, user, debates } = this.props;
 
         const myDebates = debates.filter((d) => {
             return d.challenger._id == user._id || d.challengee._id == user._id;
@@ -204,7 +123,7 @@ const DebatePage = React.createClass({
                     return d.views > 10;
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                     )
                 })}
             </div>
@@ -222,7 +141,7 @@ const DebatePage = React.createClass({
                     return -1;
                 }).map((d, i) => {
                     return (
-                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                     )
                 })}
             </div>
@@ -235,7 +154,7 @@ const DebatePage = React.createClass({
                 return d.subscribers.includes(user._id);
             }).map((d,i)=> {
                 return (
-                    <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                    <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
                 )
             })}
         </div>
@@ -248,7 +167,7 @@ const DebatePage = React.createClass({
         </section>
 
 
-        <DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} handleNewMessage={this.handleNewMessage} debate={this.state.debateModal.debate} />
+        <DebateModal handleSubscribeToggle={this.props.handleSubscribeToggle} questions={topic.questions} handleEndDebate={this.handleEndDebate} user={user} debate={ modalDebate } />
         { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
             </div>)
@@ -256,4 +175,4 @@ const DebatePage = React.createClass({
     },
 });
 
-export default DebatePage;
+export default connect(mapStateToProps, mapDispatchToProps)(DebatePage);

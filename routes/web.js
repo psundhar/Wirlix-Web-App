@@ -14,49 +14,73 @@ router.use(function(req, res, next) {
     return next();
 });
 
-router.get('/debate', function(req, res) {
-    Topic.queryLatest().exec()
-    .then(function(topicResults) {
-        const topic = topicResults[0];
+// router.get('/debate', function(req, res) {
+//     Topic.queryLatest().exec()
+//     .then(function(topicResults) {
+//         const topic = topicResults[0];
+//
+//         return Promise.all([topic, Debate.queryByTopic(topic._id).exec(), User.findById(req.user._id).exec()]);
+//     })
+//     .then(function(promiseResultsArray) {
+//         const topic = promiseResultsArray[0];
+//         const debates = promiseResultsArray[1];
+//         const user = promiseResultsArray[2];
+//
+//         const data = {
+//             topic: topic,
+//             debates: debates,
+//             user: user,
+//         };
+//
+//         res.render('react_main', { page: 'debate', data: JSON.stringify(data) });
+//     })
+//     .catch(function(err) {
+//         console.log(err);
+//         res.status(500);
+//     })
+// });
 
-        return Promise.all([topic, Debate.queryByTopic(topic._id).exec(), User.findById(req.user._id).exec()]);
-    })
-    .then(function(promiseResultsArray) {
-        const topic = promiseResultsArray[0];
-        const debates = promiseResultsArray[1];
-        const user = promiseResultsArray[2];
+router.get('/|home|debate|rankings|about|profile\/:id|/?', function(req, res) {
 
-        const data = {
-            topic: topic,
-            debates: debates,
-            user: user,
-        };
+    const authUserId = req.user._id;
 
-        res.render('react_main', { page: 'debate', data: JSON.stringify(data) });
-    })
-    .catch(function(err) {
-        console.log(err);
-        res.status(500);
-    })
-});
-
-router.get('/home', function(req, res) {
     Topic.queryLatest().exec()
         .then(function(topic) {
-            return Promise.all([Promise.resolve(topic), Statement.queryTopic(topic[0]._id), User.findById(req.user._id).exec()]);
+            const topicId = topic[0]._id;
+
+            const arrayOfPromises = [
+                Promise.resolve(topic),
+                Statement.queryTopic(topicId),
+                Debate.queryByTopic(topicId).exec(),
+                Statement.queryByTopicAndUser(topicId, authUserId).exec(),
+                Debate.queryByTopicAndUser(topicId, authUserId).exec(),
+                Challenge.queryByUserAndTopic(authUserId, topicId).exec(),
+                User.find({}).exec(),
+            ];
+
+            return Promise.all(arrayOfPromises);
         })
         .then(function(resultsArr) {
             const topic = resultsArr[0][0];
             const statements = resultsArr[1];
-            const user = resultsArr[2];
+            const debates = resultsArr[2];
+            const userStatement = resultsArr[3];
+            const userDebates = resultsArr[4];
+            const userChallenges = resultsArr[5];
+            const users = resultsArr[6];
 
             const data = {
                 topic: topic,
                 statements: statements,
-                user: user,
+                authUserId: authUserId,
+                debates: debates,
+                userStatement: userStatement,
+                userDebates: userDebates,
+                userChallenges: userChallenges,
+                users: users,
             };
 
-            res.render('react_main', { page: 'home', data: JSON.stringify(data)});
+            res.render('react_main', { data: JSON.stringify(data)});
         })
         .catch(function(err) {
             console.log(err);
@@ -64,56 +88,56 @@ router.get('/home', function(req, res) {
         });
 });
 
-router.get('/profile/:id', function(req, res, next) {
-    User.findById(req.params.id)
-        .exec()
-        .then(function(user) {
-            return Promise.all([user, Topic.queryLatest().exec()]);
-        })
-        .then(function(resultsArray) {
-            const user = resultsArray[0];
-            const topic = resultsArray[1][0];
-
-            resultsArray.push(Statement.queryByTopicAndUser(topic._id, user._id).exec());
-            resultsArray.push(Debate.queryByTopicAndUser(topic._id, user._id).exec());
-
-            let challenges = [];
-
-            if(req.params.id == user._id) { // Requesting own profile
-                challenges = Challenge.queryByUserAndTopic(user._id, topic._id).exec();
-            }
-
-            resultsArray.push(challenges);
-            resultsArray.push(Statement.queryTopic(topic._id).exec());
-
-            return Promise.all(resultsArray);
-        })
-        .then(function(resultsArray) {
-            const user = resultsArray[0];
-            const topic = resultsArray[1][0];
-            const statement = resultsArray[2];
-            const debates = resultsArray[3];
-            const challenges = resultsArray[4];
-            const allStatements = resultsArray[5];
-
-            const data = {
-                user: user,
-                topic: topic || {},
-                statement: statement || {},
-                debates: debates,
-                loggedInUser: req.user,
-                challenges: challenges,
-                statements: allStatements,
-            };
-
-            res.render('react_main', { page: 'profile', data: JSON.stringify(data)});
-        })
-        .catch(function(err) {
-            console.log(err);
-            res.status(404);
-            next();
-        });
-});
+// router.get('/profile/:id', function(req, res, next) {
+//     User.findById(req.params.id)
+//         .exec()
+//         .then(function(user) {
+//             return Promise.all([user, Topic.queryLatest().exec()]);
+//         })
+//         .then(function(resultsArray) {
+//             const user = resultsArray[0];
+//             const topic = resultsArray[1][0];
+//
+//             resultsArray.push(Statement.queryByTopicAndUser(topic._id, user._id).exec());
+//             resultsArray.push(Debate.queryByTopicAndUser(topic._id, user._id).exec());
+//
+//             let challenges = [];
+//
+//             if(req.params.id == user._id) { // Requesting own profile
+//                 challenges = Challenge.queryByUserAndTopic(user._id, topic._id).exec();
+//             }
+//
+//             resultsArray.push(challenges);
+//             resultsArray.push(Statement.queryTopic(topic._id).exec());
+//
+//             return Promise.all(resultsArray);
+//         })
+//         .then(function(resultsArray) {
+//             const user = resultsArray[0];
+//             const topic = resultsArray[1][0];
+//             const statement = resultsArray[2];
+//             const debates = resultsArray[3];
+//             const challenges = resultsArray[4];
+//             const allStatements = resultsArray[5];
+//
+//             const data = {
+//                 user: user,
+//                 topic: topic || {},
+//                 statement: statement || {},
+//                 debates: debates,
+//                 loggedInUser: req.user,
+//                 challenges: challenges,
+//                 statements: allStatements,
+//             };
+//
+//             res.render('react_main', { page: 'profile', data: JSON.stringify(data)});
+//         })
+//         .catch(function(err) {
+//             console.log(err);
+//             res.status(404);
+//             next();
+//         });
+// });
 
 router.get('/image', function(req, res, next) {
     const data = {
@@ -124,28 +148,28 @@ router.get('/image', function(req, res, next) {
     res.render('react_main', { page: 'image', data: JSON.stringify(data)});
 });
 
-router.get('/rankings', function(req, res, next) {
-    Topic.queryLatest().exec()
-    .then(function(topic) {
-        return Promise.all([Statement.queryTopic(topic[0]._id), User.findById(req.user._id).exec()]);
-    })
-    .then(function(promiseResultsArray) {
-        const data = {
-            statements: promiseResultsArray[0],
-            user: promiseResultsArray[1],
-        };
+// router.get('/rankings', function(req, res, next) {
+//     Topic.queryLatest().exec()
+//     .then(function(topic) {
+//         return Promise.all([Statement.queryTopic(topic[0]._id), User.findById(req.user._id).exec()]);
+//     })
+//     .then(function(promiseResultsArray) {
+//         const data = {
+//             statements: promiseResultsArray[0],
+//             user: promiseResultsArray[1],
+//         };
+//
+//         res.render('react_main', { page: 'rankings', data: JSON.stringify(data)});
+//     });
+// });
 
-        res.render('react_main', { page: 'rankings', data: JSON.stringify(data)});
-    });
-});
-
-router.get('/about', function(req, res, next) {
-    const data = {
-        user: req.user,
-    };
-
-    res.render('react_main', { page: 'about', data: JSON.stringify(data)});
-});
+// router.get('/about', function(req, res, next) {
+//     const data = {
+//         user: req.user,
+//     };
+//
+//     res.render('react_main', { page: 'about', data: JSON.stringify(data)});
+// });
 
 router.get('/tutorial', function(req, res, next) {
     const data = {
