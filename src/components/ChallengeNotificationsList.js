@@ -9,7 +9,8 @@ const profileLinkStyles = {
 
 const mapStateToProps = state => {
     return {
-        challenges: state.userChallenges || [],
+        challenges: state.userChallenges,
+        debates: state.debates,
     }
 };
 

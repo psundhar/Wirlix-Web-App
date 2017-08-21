@@ -250,7 +250,7 @@ const ProfilePage = React.createClass({
                                           data-target="#challenge-conf"/></p>
                                 </div> ) }
 
-                               <div id ="profile-notification"> { isMyProfile && (<ChallengeNotificationsList handleEnterDebate={this.handleEnterDebate} debates={debates} handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} />) }
+                               <div id ="profile-notification"> { isMyProfile && (<ChallengeNotificationsList handleEnterDebate={this.handleEnterDebate} handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} />) }
                                </div>
                             </div>
                             <div className="profile-content notifications col-md-8 col-md-offset-2">
