@@ -16,7 +16,7 @@ const mapStateToProps = state => {
     return {
         debates: state.debates,
         topic: state.topic,
-        user: state.user,
+        user: state.users.find(u => u._id == state.authUserId),
     }
 };
 
