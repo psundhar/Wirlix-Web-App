@@ -41,6 +41,9 @@ router.use(function(req, res, next) {
 // });
 
 router.get('/|home|debate|rankings|about|profile\/:id|/?', function(req, res) {
+
+    const authUserId = req.user._id;
+
     Topic.queryLatest().exec()
         .then(function(topic) {
             const topicId = topic[0]._id;
@@ -48,11 +51,10 @@ router.get('/|home|debate|rankings|about|profile\/:id|/?', function(req, res) {
             const arrayOfPromises = [
                 Promise.resolve(topic),
                 Statement.queryTopic(topicId),
-                User.findById(req.user._id).exec(),
                 Debate.queryByTopic(topicId).exec(),
-                Statement.queryByTopicAndUser(topic._id, req.user._id).exec(),
-                Debate.queryByTopicAndUser(topic._id, req.user._id).exec(),
-                Challenge.queryByUserAndTopic(req.user._id, topic._id).exec(),
+                Statement.queryByTopicAndUser(topic._id, authUserId).exec(),
+                Debate.queryByTopicAndUser(topic._id, authUserId).exec(),
+                Challenge.queryByUserAndTopic(authUserId, topic._id).exec(),
                 User.find({}).exec(),
             ];
 
@@ -61,17 +63,16 @@ router.get('/|home|debate|rankings|about|profile\/:id|/?', function(req, res) {
         .then(function(resultsArr) {
             const topic = resultsArr[0][0];
             const statements = resultsArr[1];
-            const user = resultsArr[2];
-            const debates = resultsArr[3];
-            const userStatement = resultsArr[4];
-            const userDebates = resultsArr[5];
-            const userChallenges = resultsArr[6];
-            const users = resultsArr[7];
+            const debates = resultsArr[2];
+            const userStatement = resultsArr[3];
+            const userDebates = resultsArr[4];
+            const userChallenges = resultsArr[5];
+            const users = resultsArr[6];
 
             const data = {
                 topic: topic,
                 statements: statements,
-                user: user,
+                authUserId: authUserId,
                 debates: debates,
                 userStatement: userStatement,
                 userDebates: userDebates,

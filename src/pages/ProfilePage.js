@@ -16,6 +16,7 @@ import MyDebates from '../components/MyDebates';
 import { connect } from 'react-redux';
 import { updateDebateAction, updateDebate, deleteDebate, subscribeToDebate } from '../actionCreators/debateActionCreators';
 import { updateStatement } from '../actionCreators/statementActionCreators';
+import { updateUser } from '../actionCreators/userActionCreators';
 
 const mapStateToProps = (state, ownProps) => {
     const users = state.users;
@@ -23,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
     const profileUser = users.find(u => u._id == ownProps.match.params.id);
 
     return {
-        loggedInUser: state.user || {},
+        authUserId: state.user || {},
         profileUser: profileUser || {},
         statement: state.statement || {},
         challenges: state.challenges || [],
@@ -53,8 +54,18 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(subscribeToDebate(debateId));
         },
 
-        handleStatementEdit(text) {
-            dispatch(updateStatement(statement._id, { text }));
+        handleStatementEdit(statement) {
+            return (text) => {
+                dispatch(updateStatement(statement._id, { text }));
+            }
+        },
+
+        handleBioEdit(loggedInUser) {
+            return (text) => {
+                dispatch(updateUser(loggedInUser._id, {
+                    bio: text,
+                }));
+            }
         },
     }
 }
@@ -137,25 +148,6 @@ const ProfilePage = React.createClass({
 
     },
 
-    handleBioEdit(text) {
-        const { user, loggedInUser } = this.state;
-
-        if(user._id != loggedInUser._id) {
-            return;
-        }
-
-        apiFetch('/api/users/' + loggedInUser._id, 'PUT', {
-            bio: text,
-        })
-        .then(res => {
-            return res.json();
-        })
-        .then(json => {
-            user.bio = text;
-            this.setState({user,});
-        })
-    },
-
     handleMyDebatesClick() {
         this.setState({showMyDebates: !this.state.showMyDebates});
     },
@@ -224,7 +216,7 @@ const ProfilePage = React.createClass({
                                     <div className="gotd-banner">
                                         <p style={{fontSize:"1.5em"}}> Topic of the Day</p>
                                         <h3 className="mb2">{ topic.prompt }</h3>
-                                        <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text } agree={ statement.agreement == 'agree'} handleEdit={ this.props.handleStatementEdit }/>
+                                        <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text } agree={ statement.agreement == 'agree'} handleEdit={ this.props.handleStatementEdit(statement) }/>
                                     </div>
                                 </div>
 

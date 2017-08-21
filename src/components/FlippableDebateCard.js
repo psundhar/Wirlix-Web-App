@@ -1,5 +1,6 @@
 import React from 'react';
 import TimeElapsedString from './TimeElapsedString';
+import { Link } from 'react-router-dom';
 
 const FlippableDebateCard = React.createClass({
     getInitialState() {
