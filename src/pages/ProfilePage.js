@@ -104,57 +104,6 @@ const ProfilePage = React.createClass({
         this.props.viewDebate(debate._id);
     },
 
-    handleChallengeResponse(accepted) {
-        return (acceptedChallenge) => {
-            const userChallenges = this.state.userChallenges;
-
-            const challenge = userChallenges.find(c => c._id == acceptedChallenge._id);
-
-            let status = "accepted";
-
-            if(!accepted) {
-                status = "declined";
-            }
-
-            challenge.status = status;
-            // Make request to update db state
-            apiFetch('/api/challenges/' +  acceptedChallenge._id, 'PUT', {
-                status,
-                notifyChallengee: false,
-                notifyChallenger: status == 'accepted',
-            })
-            .then(res => {
-                this.setState({userChallenges});
-                return res.json();
-            })
-            .then(challenge => {
-                if(status == "declined") {
-                    return Promise.resolve({ json: () => null });
-                }
-                else {
-                    return apiFetch('/api/debates/', 'POST', {
-                        topic: challenge.topic,
-                        challenger: challenge.challenger,
-                        challengee: challenge.challengee,
-                        statement: challenge.statement,
-                    });
-                }
-            })
-            .then((res) => res.json())
-            .then((debate) => {
-                if(!debate) {
-                    return;
-                }
-
-                const debates = this.state.debates;
-                debates.push(debate);
-                this.setState({ debates });
-            })
-            .catch((err) => console.log(err));
-        }
-
-    },
-
     handleMyDebatesClick() {
         this.setState({showMyDebates: !this.state.showMyDebates});
     },
@@ -162,10 +111,6 @@ const ProfilePage = React.createClass({
     render() {
         const { modalDebate, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
         const { handleBioEdit, loggedInUser, profileUser, statements, statement, debates, topic, userChallenges, users, handleStatementEdit } = this.props;
-
-        if(!profileUser) {
-            return <span></span>
-        }
 
         const isMyProfile = loggedInUser._id == profileUser._id;
 
@@ -250,7 +195,7 @@ const ProfilePage = React.createClass({
                                           data-target="#challenge-conf"/></p>
                                 </div> ) }
 
-                               <div id ="profile-notification"> { isMyProfile && (<ChallengeNotificationsList handleEnterDebate={this.handleEnterDebate} handleAcceptChallenge={this.handleChallengeResponse(true)} handleDeclineChallenge={ this.handleChallengeResponse(false) } user={loggedInUser} />) }
+                               <div id ="profile-notification"> { isMyProfile && (<ChallengeNotificationsList handleEnterDebate={this.handleEnterDebate} user={loggedInUser} />) }
                                </div>
                             </div>
                             <div className="profile-content notifications col-md-8 col-md-offset-2">
