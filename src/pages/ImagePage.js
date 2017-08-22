@@ -37,20 +37,24 @@ const ImagePage = React.createClass({
                 l = img.position().left;
             img.attr('data-top', t);
             img.attr('data-left', l);
+            console.log("t" +t);
         });
         console.log(" test....before..."+img[0].height);
 
         if(img[0].height > img[0].width){
             var x2 = x1;
             img[0].width = x2;
-            y2 = img[0].height;
+            var y2 = img[0].height;
+            img[0].height = y2;
 
         };
         if(img[0].width > img[0].height){
             var y2 = y1;
             img[0].height = y2;
+            var x2 = img[0].width;
+            img[0].width = x2;
             console.log(y2);
-            x2 = img[0].width;
+            
         };
 
         img.draggable({
@@ -59,7 +63,7 @@ const ImagePage = React.createClass({
             axis: 'y, x',
             cursor : 'move',
             drag: function(event, ui) {
-                console.log(ui);
+                console.log(ui.helper[0]);
                 if(ui.position.top >= 0) {
                     ui.position.top = 0;
                 }
@@ -74,7 +78,8 @@ const ImagePage = React.createClass({
                 }
             },
             stop(e, ui) {
-                console.log(x2);
+                console.log("hello    "+ x2 + y2);
+
                 that.setState({edits: {top: ui.position.top, left: ui.position.left, width: x2, height: y2}});
             },
         });

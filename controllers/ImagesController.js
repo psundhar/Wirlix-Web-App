@@ -16,30 +16,32 @@ const ImagesController = {
 
           
             if(req.query.left || req.query.top || req.query.width || req.query.height) {
-                // const targetImageWidth = 400;
+                 const targetImageWidth = 400;
                 const startX = 0 + parseInt(req.query.left);
                 const startY = 0 + parseInt(req.query.top);
-                const targetImageWidth = 0 + parseInt(req.query.width);
+               // const targetImageWidth = 0 + parseInt(req.query.width);
                 const targetImageHeight = 0 + parseInt(req.query.height);
                 cropOptions = {x: startX, y: startY, width: targetImageWidth, height: targetImageHeight, crop: "crop"};
-                console.log("CROP OPTIONS ---------------------------------------------------" + cropOptions.x);
+                console.log("CROP OPTIONS ---------------------------------------------------" + cropOptions.height);
             }
 
 
-            if(cropOptions) {
-                options['eager'] = [cropOptions];
-            }
+            // if(cropOptions) {
+            //     options['eager'] = [cropOptions];
+            // }
 
             cloudinary.v2.uploader.upload(req.files.image[0].path, options, function(error, result) {
                 if(!error) {
+                    console.log("no error rewq" +req.files.image[0].path);
+                    console.log("no error option" +options);
                     User.findById(req.user._id).exec() // Update user record to refer to image
                     .then(function(user) {
-                        if(cropOptions) {
-                            user.image = result.eager[0].secure_url;
-                        }
-                        else {
+                        // if(cropOptions) {
+                        //     user.image = result.eager[0].secure_url;
+                        // }
+                        // else {
                             user.image = result.secure_url;
-                        }
+                        // }
 
                         user.save(function(err, savedUser) {
                             if(err) {
