@@ -35,6 +35,8 @@ if(challenger){
         challengerImage = debate.challenger.image || '/images/pexels-photo-103123.jpeg';
        //console.log(challengerImage);
  }
+    const latestDebate=parseInt(debate.messages.length);
+    console.log("Array length" + latestDebate);
 
     return (
 
@@ -48,7 +50,7 @@ if(challenger){
                     { displayImage && (<a className="pic" href={challengerLink}  style={{background: "url(" + challengerImage + ") center center no-repeat"}}></a>) }
                     <a className="un" href={challengerLink}>{challenger.username}</a>
             </div>
-            <p className="comment-preview">{ statement.text }</p>
+            <p className="comment-preview">{debate.messages[latestDebate-1].text }</p>
             <p><button type="button" className="reply-button col-md-4 col-md-offset-8 col-xs-12" data-toggle="modal" data-target="#view-debate" onClick={ () => handleReplyClick(debate) }>Reply</button></p>
 
                 <p className="time-posted"><span className="small mr1" style={{color: "crimson"}}>{ showNotification && ( <i className="glyphicon glyphicon-envelope" />) }</span> </p><span className="small ml1"><TimeElapsedString elapsed={debate.updated} /></span>
