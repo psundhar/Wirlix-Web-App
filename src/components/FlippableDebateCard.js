@@ -28,9 +28,20 @@ const FlippableDebateCard = React.createClass({
 
         const isChallenger = user._id == challenger._id;
         const isChallengee = user._id == challengee._id;
+        const latestDebate=parseInt(debate.messages.length);
+        console.log("Array length" + latestDebate);
 
         // const classes = "debate " + ( !frontVisible ? 'Card-Back-Flip' : '' );
-
+        /*const latestDebate =  debate.messages.filter((d,i) => {
+            if (Date.parse(d.messages[i].created)>= (Date.now() - 600000) ) {
+                return d.messages[i].text //10 minutes ago
+            }
+        });/!*.sort((a,b) => {
+            if (a.updated < b.updated) {
+                return 1;
+            }
+            return -1;
+        });*!/*/
         return (
             <div className="debate">
                 { frontVisible && (<div className={ "front " + (frontVisible ? 'Card-Front-Flip': '')}>
@@ -76,7 +87,7 @@ const FlippableDebateCard = React.createClass({
                             </div>
                             <span className="small"><TimeElapsedString elapsed={debate.updated} /></span>
                         </div>
-                        <p className="pl2 pr2 small" style={{textAlign: "left"}}>{ statement.text }</p>
+                        <p className="pl2 pr2 small" style={{textAlign: "left"}}>{debate.messages[2].text}</p>
                         <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate" onClick={ e => { e.stopPropagation(); handleEnterDebate(debate); }}>Full Debate &#8250;</button></p>
                     </div>
                 )}

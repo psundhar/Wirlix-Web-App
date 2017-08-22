@@ -18,21 +18,22 @@ export default ({ debate, handleReplyClick, user }) => {
 if(challenger){
     challengerLink="/profile/" + debate.challenger._id;
 }
-    if(user._id == debate.challenger._id && !debate.challengerRead) {
+    /*if(user._id == debate.challenger._id && !debate.challengerRead) {
         showNotification = true;
-    }
+    }*/
 
-    const showImage = statement.user == user._id;
+    const showImage = statement.user == debate.challengee._id;
     const displayImage=debate.challenger._id;
+   // console.log(displayImage);
 
     if(showImage ) {
-        profileImage = user.image || 'img/pexels-photo-103123.jpeg';
-
+        profileImage = debate.challengee.image || '/images/pexels-photo-103123.jpeg';
+      //  console.log(profileImage);
 
     }
     if(displayImage){
         challengerImage = debate.challenger.image || '/images/pexels-photo-103123.jpeg';
-        console.log(challengerImage);
+       //console.log(challengerImage);
  }
 
     return (
@@ -49,7 +50,8 @@ if(challenger){
             </div>
             <p className="comment-preview">{ statement.text }</p>
             <p><button type="button" className="reply-button col-md-4 col-md-offset-8 col-xs-12" data-toggle="modal" data-target="#view-debate" onClick={ () => handleReplyClick(debate) }>Reply</button></p>
-            <p className="time-posted">{ showNotification && (<span className="small mr1" style={{color: "crimson"}}><i className="glyphicon glyphicon-envelope" /></span>) }<TimeElapsedString elapsed={ debate.updated } /></p>
+
+                <p className="time-posted"><span className="small mr1" style={{color: "crimson"}}>{ showNotification && ( <i className="glyphicon glyphicon-envelope" />) }</span> </p><span className="small ml1"><TimeElapsedString elapsed={debate.updated} /></span>
         </div>
         </div>
     );
