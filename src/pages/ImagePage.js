@@ -199,7 +199,9 @@ const ImagePage = React.createClass({
                         <div className="continue">
                             {user.image? <button onClick={ this.handleUploadClick } disabled={ isUploading }>Save & Continue{ isUploading && (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />)}</button> :
                                 <button  data-toggle="modal"  data-target="#image-conf" aria-hidden="true"  onClick={ () => this.handleUploadClick } disabled={ isUploading }>Save & Continue{ isUploading && (<img style={{maxHeight:"1em"}} src="/images/white-gear.gif" className="ml2 mr0 mt0 mb0" />)}</button>}
+                                <p><br/>Please upload image with 400 x 400px for best results.</p>
                         </div>
+                        
                     </div>
                     <div className="col-md-4 continue">
 
