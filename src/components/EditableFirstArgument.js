@@ -32,7 +32,8 @@ export default class EditableFirstArgument extends Component {
 
         return (
             <div>
-                <div  className="p2">
+
+                { text && (<div style={{backgroundColor: "white", border: "4px solid " /* + (agree ? 'slateblue' : 'crimson')*/}} className="p2">
                     { isEditable && (<div><textarea style={{
                             width: "100%",
                             outline: "none",
@@ -44,7 +45,7 @@ export default class EditableFirstArgument extends Component {
                         <button onClick={ () => { handleEdit(inputText); }} className="caps p1" style={{border:"1px solid black", color: "black", display:"inline-block", padding: ".5rem", width:"auto"}}>Edit</button>
                     </div>) }
                     { !isEditable && text && (<h4 style={{color: 'black', fontStyle: 'italic', textTransform: 'none'}}>{ text }</h4>) }
-                </div>
+                </div>) }
                 {
                     !text && (<h4 className="mt4">No opinion available</h4>)
                 }

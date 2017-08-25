@@ -1,6 +1,21 @@
 import React from 'react';
 import TimeElapsedString from './TimeElapsedString';
 import ReactTooltip from 'react-tooltip';
+import { connect } from 'react-redux';
+
+import { createDebateMessage } from '../actionCreators/debateActionCreators';
+
+const mapStateToProps = state => {
+    return {};
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        handleNewMessage: (debate, text, isModerator = false) => {
+            dispatch(createDebateMessage(debateId, text, isModerator));
+        },
+    };
+};
 
 const DebateModal = React.createClass({
 
@@ -22,7 +37,8 @@ const DebateModal = React.createClass({
     },
 
     render() {
-        const { handleNewMessage, debate, user, handleEndDebate, handleSubscribeToggle } = this.props;
+        const { handleNewMessage, debate = {}, user, handleEndDebate, handleSubscribeToggle } = this.props;
+
         const { statement, challenger = {}, challengee = {}, messages = [], views, subscribers = [] } = debate;
 
         const challengerImage = challenger.image || '/images/pexels-photo-103123.jpeg';
@@ -164,4 +180,4 @@ const DebateModal = React.createClass({
     }
 });
 
-export default DebateModal;
+export default connect(mapStateToProps, mapDispatchToProps)(DebateModal);

@@ -9,9 +9,9 @@ import IO from 'socket.io-client';
 import { getStatement } from '../utilities/data';
 import ReactTooltip from 'react-tooltip';
 import { Carousel } from 'react-bootstrap';
-
-
-
+import { connect } from 'react-redux';
+import { updateStatementAction, createStatement, voteOnStatement } from '../actionCreators/statementActionCreators';
+import { createChallenge } from '../actionCreators/challengeActionCreators';
 
 const MIN_VOTES = 1;
 
@@ -97,14 +97,39 @@ const factExplode = () => {
 
 
 
+const mapStateToProps = state => {
+    const user = state.users.find(u => u._id == state.authUserId);
+
+    return {
+        user,
+        topic: state.topic,
+        statements: state.statements,
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        refreshStatement: (statement) => {
+            dispatch(updateStatementAction(statement));
+        },
+        addStatement: (statement, user) => {
+            dispatch(createStatement(statement, user));
+        },
+        handleVote: (isRational, statementId) => {
+            dispatch(voteOnStatement(statementId, isRational));
+        },
+        handleConfirm(statementId, topicId, user) {
+            // Make api call to create a challenge and then update state
+            dispatch(createChallenge(statementId, topicId, user));
+        },
+    };
+};
+
 const HomePage = React.createClass({
 
     getInitialState() {
         return {
-            topic: {},
             statementText: '',
-            statements: [],
-            user: {},
             challenge: {
                 statementId: null,
                 topicId: null,
@@ -117,36 +142,20 @@ const HomePage = React.createClass({
     },
 
     componentDidMount() {
-        if(initialState) { // Globally set into hbs templates
-            this.setState(initialState);
-        }
-
         // Connect to server via websocket for live updates
         registerSocketEventHandler(IO(), 'updates:opinions', this.getUpdatedStatement);
     },
 
     getUpdatedStatement(data) {
         getStatement(data._id, json => {
-            const statements = this.state.statements;
-
-            const indexToEdit = statements.findIndex(s => s._id == data._id);
-
-            console.log(indexToEdit, statements);
-
-            if(indexToEdit > -1) {
-                statements[indexToEdit] = json;
-            }
-            else {
-                statements.push(json);
-            }
-
-            this.setState(statements);
-        })
+            this.props.refreshStatement(json);
+        });
     },
 
     handleStatementTextChange(e) {
         this.setState({ statementText: e.target.value });
     },
+
 
     handleVote(isRational, statementId) {
         const statements = this.state.statements;
@@ -186,18 +195,15 @@ const HomePage = React.createClass({
 
 
     handleSubmit() {
-        let that = this;
-
         if(this.state.statementText.length == 0) {
-            console.log('your cannot submit empty opinion');
-            return ; // Don't submit empty statements
+            return; // Don't submit empty statements
         }
 
-        apiFetch('/api/statements', 'POST', {
-            topic: this.state.topic._id,
+        this.props.addStatement({
+            topic: this.props.topic._id,
             text: this.state.statementText,
           //  agreement: agree ? 'agree' : 'disagree',
-        })
+  /*      })
         .then((res) => {
             that.setState({ statementText: '' });
             return res.json();
@@ -211,6 +217,12 @@ const HomePage = React.createClass({
         .catch(function(err) {
             console.log(err);
         })
+
+            agreement: agree ? 'agree' : 'disagree',*/
+        }, this.props.user);
+
+        this.setState({ statementText: '' }); // Clear out statement text
+
     },
 
     handleChallenge(statementId, topicId) {
@@ -226,26 +238,24 @@ const HomePage = React.createClass({
     },
 
     handleConfirm(statementId, topicId, user) {
-        // Make api call to create a challenge and then update state
-        apiFetch('/api/challenges', 'POST', {
-            statement: statementId,
-            challenger: user._id,
-            topic: topicId,
-        })
-        .then(res => res.json())
-        .then(json => {
-            this.setState({showChallengeSent: true});
+        console.log("HERE");
+        this.props.handleConfirm(statementId, topicId, user);
 
-            setTimeout(() => {
-                this.setState({showChallengeSent: false});
-            }, 2500);
-        });
+        this.setState({showChallengeSent: true});
+
+        setTimeout(() => {
+            this.setState({showChallengeSent: false});
+        }, 2500);
     },
 
 
     render() {
 
-        const { topic, user, statements } = this.state;
+
+       // const { topic, user, statements } = this.state;
+
+        const { topic, user, statements } = this.props;
+
         const opinion=this.state.statementText.length!=0;
 
 
@@ -254,16 +264,17 @@ const HomePage = React.createClass({
         <div>
         <div className="main-section-home" style={{backgroundColor: "#B2020C"}}>
             { Object.keys(user).length > 0 && (<NavBar user={ user } />) }
-
-            
             {/*<div className="button-home-arrow" >
                 <div className="arrow animated bounce">
                     <a className="border-less" href="#"><img src="images/arrow-w.png" style={{width:"40px", height:"40px"}}/></a>
                 </div>
             </div>*/}
 
-            
-            
+
+            <div className="button-home col-md-4" style={{ position: "absolute" }}>
+                <a href="#"><span style={{fontSize: "1.4em", fontFamily: 'Source Code Pro'}}>What's Trending</span></a>
+            </div>
+
                 <video playsInline autoPlay muted loop poster="" id="bgvid">
                     <source src="video/1 North Korea.mp4" type="video/mp4" />
                      <source src="video/wirlix_promo_video_v1.webm" type="video/webm" />
@@ -289,11 +300,6 @@ const HomePage = React.createClass({
                                 <button data-toggle="modal" data-target="#opinion-conf" onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway"}}>Submit</span></button> }
                         </div>
                     </div>
-
-
-                
-
-
                     <div id="statement_carousel" style={{marginTop: "80px", paddingTop:"30px", borderTop:"2px solid white"}}>
                     <p style={{fontSize:"1.2em", textAlign: "center", marginBottom:"30px"}}>These opinions need your wisdom and support!!</p>
                         <Carousel
@@ -319,7 +325,6 @@ const HomePage = React.createClass({
 
 
                 </div>
-
             </div>
             <div className="comments">
                 <div className="container">
@@ -339,10 +344,7 @@ const HomePage = React.createClass({
                             <div className="col-md-6 vote-col factual active" id ="factual" >
                                 <h2 className="col-md-12"><span data-tip="These arguments are more appealing to people's logic" style={{marginRight:"20px", marginLeft:"20px"}}>Most Factual</span><img src="images/best-debater-w.png" /></h2>
                                     <ReactTooltip place="top" type="dark" effect="float"/>
-                                
-                               
-                                
-                                
+
                                 <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numRational(s.voters) >= MIN_VOTES && numRational(s.voters) >= numEmotional(s.voters))
                                         .sort((a, b) => {
@@ -350,7 +352,7 @@ const HomePage = React.createClass({
                                         })
                                         .map((s, i) => {
                                         return (
-                                            <StatementCard key={i} handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created}{ ...s }/>
+                                            <StatementCard key={i} handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.props.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created}{ ...s }/>
                                         )
                                     })}
 
@@ -399,8 +401,8 @@ const HomePage = React.createClass({
                 </div>
             </div>
         </div>
-        </div>)
+    </div>)
     },
 });
 
-export default HomePage;
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
