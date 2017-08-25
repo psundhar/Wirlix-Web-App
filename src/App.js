@@ -29,6 +29,7 @@ const App = ({}) => {
             <Route path="/about" component={ AboutPage } />
             <Route path="/image" component={ ImagePage } />
             <Route path="/profile/:id" component={ ProfilePage } />
+            <Route path="/tutorial" component={ TutorialPage } />
         </Switch>
         </Provider>
     </BrowserRouter>)
