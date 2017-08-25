@@ -26,7 +26,9 @@ export const updateDebate = (debateId, updatedDebate) => {
 
 export const createDebateMessage = (debateId, text, isModerator) => {
     return (dispatch, getState) => {
-        const { user, debates } = getState();
+        const { users, authUserId } = getState();
+
+        const user = users.find(u => u._id === authUserId);
 
         const newMessageObj = {
             text,

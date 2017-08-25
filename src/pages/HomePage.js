@@ -340,9 +340,9 @@ const HomePage = React.createClass({
                         </ul>
 
                         <div className="tab-content">
-                            
-                            <div className="col-md-6 vote-col factual active" id ="factual" >
-                                <h2 className="col-md-12"><span data-tip="These arguments are more appealing to people's logic" style={{marginRight:"20px", marginLeft:"20px"}}>Most Factual</span><img src="images/best-debater-w.png" /></h2>
+
+                            <div className="col-md-4 vote-col factual active" id ="factual">
+                                <h2 className="col-md-12"><span data-tip="These arguments are more appealing to people's logic" style={{marginRight:"20px", marginLeft:"20px"}}>Most Factual</span><img src="images/best-debater-w.png"/></h2>
                                     <ReactTooltip place="top" type="dark" effect="float"/>
 
                                 <div className="comment-container col-md-12">
@@ -401,7 +401,9 @@ const HomePage = React.createClass({
                 </div>
             </div>
         </div>
-    </div>)
+    </div>
+    )
+
     },
 });
 
