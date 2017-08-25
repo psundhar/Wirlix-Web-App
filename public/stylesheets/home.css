@@ -1648,11 +1648,10 @@ z-index: 5;
 }
 
 .pic-crop{
-  width: 300px;
-  height: 300px;
-  overflow: hidden;
+  width: 400px;
+  height: 400px;
   display: block;
-  background-size: cover;
+  background-size: cover !important;
   border: 3px solid #ffffff;
   border-radius: 50%;
   margin: 0 auto;
