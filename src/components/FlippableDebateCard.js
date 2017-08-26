@@ -43,7 +43,7 @@ const FlippableDebateCard = React.createClass({
             return -1;
         });*!/*/
         return (
-            <div className="debate">
+            <div className="debate speechDebateCard">
                 { frontVisible && (<div className={ "front " + (frontVisible ? 'Card-Front-Flip': '')}>
                     <div className="content"  onClick={ this.flip }>
                         <div className="flex justify-between">
@@ -56,7 +56,8 @@ const FlippableDebateCard = React.createClass({
                                     <p className="small">{ challenger.username }</p>
                                 </div>
                                 <div className="vs">
-                                    <p>vs.</p>
+                                    {/*<p>vs.</p>*/}
+                                    <img style={{height:"35px", width:"35px", margin:"2px", paddingTop:"5px"}} src="/images/challenge.png" />
                                 </div>
                                 <div className="flex flex-column" style={{width: "40%"}}>
                                     <div className="mx-auto" style={{background: "url(" + challengeeImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
@@ -69,10 +70,10 @@ const FlippableDebateCard = React.createClass({
                     </div>
                     <div className="clearfix mb3">
                         <div className="col-md-6">
-                            <p className="view-amt"><img src="/images/eye-w.png" style={{margin: "0px"}} /> { views }</p>
+                            <p className="view-amt" style={{color:"#292C2D"}}><img src="/images/eye-b.png" style={{margin: "0px"}} /> { views }</p>
                         </div>
                         <div className="col-md-6">
-                            <p className="view-amt"><img src="/images/check-mark.png" style={{margin: "0px"}} /> { subscribers.length }</p>
+                            <p className="view-amt" style={{color:"#292C2D"}}><img src="/images/check-mark-b.png" style={{margin: "0px"}} /> { subscribers.length }</p>
                         </div>
                     </div>
                 </div>) }

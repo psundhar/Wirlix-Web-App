@@ -93,11 +93,14 @@ const DebatePage = React.createClass({
         return (
     <div>
     <section className="debate-section" style={{minHeight:"1400px"}}>
+        <div className="grad1">
         <NavBar user={ user }/>
         <div className="response">
             <div className="container">
-            <h1 className="main-question col-md-12" id="debate-prompt">{ topic.prompt }</h1>
+           {/* <h1 className="main-question col-md-12" id="debate-prompt">{ topic.prompt }</h1>*/}
+                <div className="dummyTopic">{ topic.prompt }</div>
         <div className="col-md-4 col-md-offset-4 my-debates-button">
+            <div className="animated bounce">Click here for your challenges</div>
             <button className="col-md-12 my-debates-button-link" onClick={ this.handleMyDebatesClick }>My Debates</button>
             { anythingUnread && (<div style={{width: "15px", height: "15px", borderRadius: "15px", boxShadow: "0px 1px 2px black", left:"5px", top: "5px", position: "relative", backgroundColor: "crimson"}}></div>) }
         </div>
@@ -105,6 +108,7 @@ const DebatePage = React.createClass({
         </div>
 
         { showMyDebates && (<div className="container"><div className="col-md-6 col-md-offset-3"><MyDebates handleReplyClick={this.handleEnterDebate} debates={ myDebates } user={ user }/></div></div>) }
+        </div>
         <div className="comments">
             <div className="container">
             <div className="border decide">
@@ -117,7 +121,7 @@ const DebatePage = React.createClass({
             </ul>
             <div className="tab-content">
             <div className="col-md-4 vote-col factual active" id ="factual">
-            <h2 className="col-md-12" style={{marginBottom:"90px", fontFamily: 'Oswald'}}><img src="images/eye-w.png" /><br/>Most Viewed</h2>
+            <h2 className="col-md-12"  style={{marginBottom:"90px", fontFamily: 'Source Code Pro', color:"#292C2D"}}><img src="images/eye-b.png" /><br/>Most Viewed</h2>
             <div className="debates col-md-12" id="best-debates-list">
                 { debates.filter((d) => {
                     return d.views > 10;
@@ -130,7 +134,7 @@ const DebatePage = React.createClass({
         </div>
 
         <div className="col-md-4 vote-col middle" id ="middle">
-            <h2 className="col-md-12" style={{marginBottom:"90px", fontFamily: 'Oswald'}}><br/>Live Right Now</h2>
+            <h2 className="col-md-12"  style={{marginBottom:"90px", fontFamily: 'Source Code Pro', color:"#292C2D"}}><br/>Live Right Now</h2>
             <div className="debates col-md-12 live-debates">
                 { debates.filter((d) => {
                     return Date.parse(d.updated) >= (Date.now() - 600000) //10 minutes ago
@@ -148,7 +152,7 @@ const DebatePage = React.createClass({
         </div>
 
         <div className="col-md-4 vote-col emotional" id = "emotional">
-            <h2 className="col-md-12" style={{marginBottom:"90px", fontFamily: 'Oswald'}}><img src="images/check-mark.png" /><br/>Subscribed Debates</h2>
+            <h2 className="col-md-12"  style={{marginBottom:"90px", fontFamily: 'Source Code Pro', color:"#292C2D"}}><img src="images/check-mark-b.png" /><br/>Subscribed Debates</h2>
         <div className="debates col-md-12" id="subscribed-debates-list">
             { debates.filter((d) => {
                 return d.subscribers.includes(user._id);
@@ -163,7 +167,7 @@ const DebatePage = React.createClass({
         </div>
         </div>
         </div>
-        <div className="overlay"></div>
+        {/*<div className="overlay"></div>*/}
         </section>
 
 

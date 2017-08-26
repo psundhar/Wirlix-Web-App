@@ -46,11 +46,11 @@ const AboutPage = React.createClass({
 
         return (
             <div>
-                <div className="main-section-home about">
+                <div className="main-section-home about" style={{background:"url(../images/we.jpg) center center no-repeat", backgroundSize: "cover", position: "relative" }}>
                 <NavBar user={ user }  />
                 <div className="overlay">
                 </div>
-                <div className="mute">
+                {/*<div className="mute">
                     <img src="/images/sound.png"></img>
                 </div>
                 <div className="control">
@@ -59,7 +59,7 @@ const AboutPage = React.createClass({
                 <video playsInline autoPlay muted loop poster="" id="bgvid" className="about-vid">
                     <source src="/video/wirlix_promo_video_v1.mp4" type="video/mp4"></source>
                     <source src="/video/wirlix_promo_video_v1.webm" type="video/webm"></source>
-                </video>
+                </video>*/}
                 </div>
                 <div className="svg-cont">
                     <svg width="350px" height="350px" viewBox="0 0 403 384" version="1.1" xmlns="http://www.w3.org/2000/svg">

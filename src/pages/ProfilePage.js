@@ -205,9 +205,9 @@ const ProfilePage = React.createClass({
                                 <div className="border-bottom border-white clearfix pb3">
                                     <h2 className="mb0">{ profileName }</h2>
                                     <h3 className="small italic mb3">@{ profileUser.username }</h3>
-                                    <div className="mb2 col-md-12">
+                                   {/* <div className="mb2 col-md-12">
                                         <EditableBio isEditable={ isMyProfile } handleEdit={handleBioEdit(profileUser)} bio={ profileUser.bio } />
-                                    </div>
+                                    </div>*/}
                                     <div className="scores">
                                         <div className="col-md-6">
                                             <h4>Factual Appeal Rank</h4>
@@ -221,9 +221,14 @@ const ProfilePage = React.createClass({
                                 </div>
                                 <div className="qotd col-md-12 mb4 border-bottom border-white pb3">
                                     <div className="gotd-banner">
-                                        <p style={{fontSize:"1.5em"}}> Topic of the Day</p>
+                                        <p style={{fontSize:"1.5em", backgroundColor:"#292C2D"}}> Topic of the Day</p>
+{/*
                                         <h3 className="mb2">{ topic.prompt }</h3>
+*/}
+                                        <div className="dummyTopic">{ topic.prompt }</div>
+{/*
                                         <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text } agree={ statement.agreement == 'agree'} handleEdit={ handleStatementEdit(statement) }/>
+*/}
                                     </div>
                                 </div>
 

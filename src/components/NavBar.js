@@ -81,8 +81,8 @@ const NavBar = React.createClass({
                             <Link className="navbar-brand" to="/home"><img src="/images/Wirlix_InvertedLogo.png" /></Link>
                         </div>
                         <div className="collapse navbar-collapse center-m" id="bs-example-navbar-collapse-1">
-                          
-                            <ul className="nav navbar-nav center" style={{backgroundColor: "rgba(0, 0, 0, 0.30)", marginLeft: "110px",borderRadius:'15px'  }}>
+
+                            <ul className="nav navbar-nav center" style={{fontFamily:"1.3em" , marginLeft: "110px",borderRadius:'15px' }}>
                                 <li><Link to="/home"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Live</span></Link></li>
                                 <li><Link to="/debate"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Debate</span></Link></li>
                                 <li><Link to="/rankings"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Ranking</span></Link></li>
