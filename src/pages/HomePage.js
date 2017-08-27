@@ -295,7 +295,7 @@ const HomePage = React.createClass({
             <div className="response">
                 <div className="container" style={{paddingRight:"0px", paddingLeft:"0px", marginRight:"0px", marginLeft:"0px", width:"100%"}}>
                    {/* <h1 className="main-question col-md-12">{ topic.prompt }</h1>*/}
-                    <div className="opinionQuestion" style={{marginTop:"180px"}}><p>What is your opinion?</p></div>
+                    <div className="opinionQuestion" style={{marginTop:"220px"}}><p>What is your opinion?</p></div>
 
                     <div className="opinionbox col-md-8 col-md-offset-2" style={{marginTop:"10px"}}>
                         <textarea className="col-md-12 col-xs-12 col-sm-12" style={{color:"black", backgroundColor:"white"}} placeholder="What's your first opinion?" onChange={ this.handleStatementTextChange } value={ this.state.statementText }></textarea>
