@@ -320,7 +320,7 @@ const HomePage = React.createClass({
                                     return (
                                         <Carousel.Item>
                                             <div style={{width: "335px"}}>
-                                        <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
+                                        <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.props.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
                                             </div>
                                         </Carousel.Item>
                                     )
@@ -376,7 +376,7 @@ const HomePage = React.createClass({
                                         })
                                         .map(s => {
                                         return (
-                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s } />
+                                            <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.props.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s } />
 
                                         )
                                     })}
