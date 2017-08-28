@@ -158,12 +158,12 @@ const ImagePage = React.createClass({
                     this.setState({ isUploading: false });
                 });
         }
-        isNewUser ?  window.location = "/tutorial" : window.location =('/home');
+        isNewUser ?  window.location = "/home" : window.location =('/home');
     },
 
     handleContinueClick() {
         const { isNewUser } = this.state;
-        isNewUser ?  window.location = "/tutorial" : window.location =('/home');
+        isNewUser ?  window.location = "/home" : window.location =('/home');
     },
 
     handleCancel() {

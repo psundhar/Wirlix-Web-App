@@ -86,7 +86,9 @@ const NavBar = React.createClass({
                                 <li><Link to="/home"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Live</span></Link></li>
                                 <li><Link to="/debate"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Debate</span></Link></li>
                                 <li><Link to="/rankings"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Ranking</span></Link></li>
+{/*
                                 <li><Link to="/about"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>About</span></Link></li>
+*/}
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a className="profile-nav" onClick={this.toggleMenu} style={{background: "url(" + profileImage + ") center center no-repeat" }} >
@@ -94,11 +96,13 @@ const NavBar = React.createClass({
                                 </a>
                                     <ul className="dropdown-menu" id="dropdown" style={{display: isOpen ? "inline-block" : "none", background: "white", borderRadius:"15px"}}>
                                         <li><Link to={"/profile/" + user._id}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Profile   ></b></span></Link></li>
-                                        <li><Link to={"/profile/"+ user._id +"#profile-notifications"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Notifications></b></span></Link></li>
+                                        <li><Link to={"/profile/"+ user._id + "#profile-notifications"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Notifications></b></span></Link></li>
                                         <li><Link to={"/image/"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Upload Image        ></b></span></Link></li>
                                         <li><a href="/logout"><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Logout       ></b></span></a></li>
                                     </ul></li>
+{/*
                                 <li><a className="help" href="/tutorial">? <br/><span>See Tutorial</span></a></li>
+*/}
                             </ul>
                         </div>
                     </div>

@@ -42,8 +42,9 @@ module.exports = function(passport) {
 
     router.get('/logout', function(req, res) {
         req.logout();
+        res.render('index', { title: 'Wirlix', error: req.flash('error'), signupError: req.flash('signup')});
 
-        res.render('logout', { name: req.body.fullName})
+        //res.render('logout', { name: req.body.fullName})
     });
 
     router.get('/enterdebate', function(req, res) {

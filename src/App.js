@@ -26,10 +26,12 @@ const App = ({}) => {
             <Route path="/home" component={ HomePage } />
             <Route path="/debate" component={ DebatePage } />
             <Route path="/rankings" component={ RankingsPage } />
-            <Route path="/about" component={ AboutPage } />
+            {/*<Route path="/about" component={ AboutPage } />*/}
             <Route path="/image" component={ ImagePage } />
             <Route path="/profile/:id" component={ ProfilePage } />
+{/*
             <Route path="/tutorial" component={ TutorialPage } />
+*/}
         </Switch>
         </Provider>
     </BrowserRouter>)
