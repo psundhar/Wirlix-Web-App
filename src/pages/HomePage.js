@@ -116,7 +116,15 @@ const mapDispatchToProps = dispatch => {
             dispatch(createStatement(statement, user));
         },
         handleVote: (isRational, statementId) => {
+            if(isRational==true){
+                heartExplode();
+            }
+            else {
+                factExplode();
+            }
             dispatch(voteOnStatement(statementId, isRational));
+
+
         },
         handleConfirm(statementId, topicId, user) {
             // Make api call to create a challenge and then update state
