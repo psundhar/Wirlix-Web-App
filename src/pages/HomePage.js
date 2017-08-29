@@ -320,7 +320,7 @@ const HomePage = React.createClass({
                         <Carousel
                             indicators = {this.state.indicators}
                             interval = {this.state.interval}>
-                            { statements.filter(s => s.voters && numRational(s.voters) && numEmotional(s.voters) )
+                            { statements.filter(s => s.voters < MIN_VOTES/*&& numRational(s.voters) && numEmotional(s.voters) */)
                                 .sort((a, b) => {
                                     return a.created >= b.created ? -1 : 1;
                                 })
