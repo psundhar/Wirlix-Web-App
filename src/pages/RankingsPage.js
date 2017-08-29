@@ -1,14 +1,24 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import { countVoteTypes, hasVotesFilter, factualRankings, emotionalRankings, findRank } from '../utilities/rankings';
+import { connect } from 'react-redux';
 
+const mapStateToProps = state => {
+    const user = state.users.find(u => u._id == state.authUserId);
+
+    return {
+        user,
+      //  topic: state.topic,
+        statements: state.statements,
+    };
+};
 
 const RankingsPage = React.createClass({
 
     getInitialState() {
         return {
-            user: {},
-            statements: [],
+           // user: {},
+           // statements: [],
             view: 'factual',
             view1:'emotional',
         }
@@ -37,7 +47,8 @@ const RankingsPage = React.createClass({
     },*/
 
     render() {
-        const { user, statements, view ,view1} = this.state;
+        const {  view } = this.state;
+        const { user, statements } = this.props;
 
         const cachedVoteStatements = countVoteTypes(statements.filter(hasVotesFilter));
 
@@ -115,4 +126,6 @@ const RankingsPage = React.createClass({
     }
 });
 
-export default RankingsPage;
+export default connect(mapStateToProps)(RankingsPage);
+
+//export default RankingsPage;

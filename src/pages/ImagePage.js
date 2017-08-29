@@ -2,17 +2,24 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import ImageDialog from '../components/ImageDialog';
 import Draggable from 'react-draggable';
+import { connect } from 'react-redux';
 
+const mapStateToProps = state => {
+    const user = state.users.find(u => u._id == state.authUserId);
 
-
+    return {
+        user,
+        isNewUser:state.isNewUser,
+    };
+};
 
 const ImagePage = React.createClass({
 
     getInitialState() {
         return {
             imageFile: {},
-            user: {},
-            isNewUser:{},
+          //  user: {},
+           // isNewUser:{},
             isUploading: false,
             edits: {
                 top: 0,
@@ -95,7 +102,7 @@ const ImagePage = React.createClass({
 
     onImageDrop(f) {
         console.log("test....." );
-        const { imageFile, user, isNewUser } = this.state;
+        const { user } = this.props;
         user.image=f[0];
         console.log(user);
         this.setState({
@@ -106,9 +113,9 @@ const ImagePage = React.createClass({
 
     handleUploadClick() {
         this.setState({isUploading: true});
-
-        const { imageFile, user, isNewUser } = this.state;
-         console.log("handle upload. str. out...");
+        const {user, isNewUser}=this.props;
+        const { imageFile } = this.state;
+         //console.log("handle upload. str. out...");
         if(imageFile.preview) {
             // Initiate upload
             const data = new FormData();
@@ -158,12 +165,12 @@ const ImagePage = React.createClass({
                     this.setState({ isUploading: false });
                 });
         }
-        isNewUser ?  window.location = "/home" : window.location =('/home');
+        isNewUser ?  window.location = "/profile" : window.location =('/home');
     },
 
     handleContinueClick() {
-        const { isNewUser } = this.state;
-        isNewUser ?  window.location = "/home" : window.location =('/home');
+        const { isNewUser } = this.props;
+        isNewUser ?  window.location = "/profile" : window.location =('/home');
     },
 
     handleCancel() {
@@ -172,7 +179,8 @@ const ImagePage = React.createClass({
 
 
     render() {
-        const { user, imageFile, isUploading } = this.state;
+        const {isUploading,imageFile}=this.state;
+        const { user } = this.props;
 
         const previewImage = imageFile.preview || user.image || "/images/profile-pic-placeholder.png";
 
@@ -212,5 +220,7 @@ const ImagePage = React.createClass({
         </div>)
     },
 });
+export default connect(mapStateToProps)(ImagePage);
 
-export default ImagePage;
+
+//export default ImagePage;

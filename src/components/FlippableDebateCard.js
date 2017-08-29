@@ -67,15 +67,16 @@ const FlippableDebateCard = React.createClass({
                             <span className="small" style={{color: "crimson"}}>{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
                             <span className="small ml1"><TimeElapsedString elapsed={debate.updated} /></span>
                         </div>
-                    </div>
-                    <div className="clearfix mb3">
-                        <div className="col-md-6">
-                            <p className="view-amt" style={{color:"#292C2D"}}><img src="/images/eye-b.png" style={{margin: "0px"}} /> { views }</p>
+                        <div className="clearfix mb3">
+                            <div className="col-md-6">
+                                <p className="view-amt" style={{color:"#292C2D"}}><img src="/images/eye-b.png" style={{margin: "0px"}} /> { views }</p>
+                            </div>
+                            <div className="col-md-6">
+                                <p className="view-amt" style={{color:"#292C2D"}}><img src="/images/check-mark-b.png" style={{margin: "0px"}} /> { subscribers.length }</p>
+                            </div>
                         </div>
-                        <div className="col-md-6">
-                            <p className="view-amt" style={{color:"#292C2D"}}><img src="/images/check-mark-b.png" style={{margin: "0px"}} /> { subscribers.length }</p>
-                        </div>
                     </div>
+
                 </div>) }
                 { !frontVisible && (
                     <div className={ "back Card-Back-Flip"} onClick={ this.flip } >

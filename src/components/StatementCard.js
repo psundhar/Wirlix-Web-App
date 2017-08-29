@@ -38,7 +38,7 @@ class StatementCard extends Component {
 */}
                 </p>
                 </div>
-                <a className="profile-pic" href={ profileLink } style={{background: "url(" + userImage + ") center center no-repeat" }}></a> <a href={ profileLink } className="username">{ user.username }</a> <br/>
+                <a className="profile-pic" href={ profileLink } style={{background: "url(" + userImage + ") center center no-repeat" }}></a> <a href={ profileLink } className="username">{ user.firstName }</a> <br/>
                     
 
                 <div className="col-md-4 button-container">
