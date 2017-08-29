@@ -205,9 +205,9 @@ const ProfilePage = React.createClass({
                                 <div className="border-bottom border-white clearfix pb3">
                                     <h2 className="mb0">{ profileName }</h2>
                                     <h3 className="small italic mb3">@{ profileUser.username }</h3>
-                                   {/* <div className="mb2 col-md-12">
+                                    <div className="mb2 col-md-12">
                                         <EditableBio isEditable={ isMyProfile } handleEdit={handleBioEdit(profileUser)} bio={ profileUser.bio } />
-                                    </div>*/}
+                                    </div>
                                     <div className="scores">
                                         <div className="col-md-6">
                                             <h4>Factual Appeal Rank</h4>
