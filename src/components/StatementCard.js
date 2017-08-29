@@ -29,7 +29,7 @@ class StatementCard extends Component {
         }
 
         return (
-            <div className="comment speechStatementCard" style={{width:"450px"}}>
+            <div className="comment speechStatementCard" style={{width:"550px"}}>
                 <div >
                 <p className="col-md-12 speech" style={{borderRadius:"30px"}} >
                     {text} 

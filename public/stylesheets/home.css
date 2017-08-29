@@ -112,10 +112,11 @@ h1, h2, h3, h4{
   top: 50%;
   left: 50%;
   height: 500px;
-  border : 10px solid #BAD8D0;
+  border : 10px solid white;
   border-radius: 15px;
   margin-top: 15%;
   /*
+    
   min-width: 50%;
  min-height: 100%;
   width: 100%;
@@ -279,6 +280,7 @@ h1, h2, h3, h4{
   border-bottom: 1px solid white;
 
 }
+
 
 .navbar.navbar-default .nav .help{
   color: #ffffff;
@@ -459,7 +461,7 @@ h1, h2, h3, h4{
 .dummyTopic{
   color: #ffffff;
   text-align: center;
-  margin-top: 10px;
+/*  margin-top: 10px;*/
   font-family: 'Source Code Pro', monospace;
   margin-bottom: 80px;
   border-radius: 15px;
@@ -471,12 +473,12 @@ h1, h2, h3, h4{
 
 .opinionQuestion{
   text-align: center;
-  margin-top: 30px;
+  margin-top: 85px;
   font-family: 'Source Code Pro', monospace;
   padding: 20px;
   font-weight: 200;
 }
-
+/*
 .response{
   background: transparent;
   overflow: auto;
@@ -484,7 +486,9 @@ h1, h2, h3, h4{
   position: relative;
   z-index: 5;
 }
+*/
 
+/*
 .response .res-button button{
   width: 100%;
   margin-top: 20px;
@@ -494,20 +498,54 @@ h1, h2, h3, h4{
   font-family: "Oswald", sans-serif;
   text-transform: uppeorcase;
   font-size: 1.5em;
-  color: #7AC1BD;
-  border: 3px solid #7AC1BD;
-  border-radius: 10px;
+  color: #C41717;
+  border: 3px solid #C41717 ;
+    border-radius: 10px;
   background-color: transparent;
   transition: all .2s;
 }
-
+*/
+.opinionbox .res-button button{
+  width: 100%;
+  margin-top: 20px;
+  font-weight: 200;
+  border: none;
+  padding: 10px;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppeorcase;
+  font-size: 1.5em;
+  color: #C41717;
+  border: 3px solid #C41717 ;
+    border-radius: 10px;
+  background-color: transparent;
+  transition: all .2s;
+}
+/*
 .response .res-button.agr button:hover{
-  background-color: #7AC1BD;
+  background-color: #C41717;
   color: white;
-  border: 3px solid #7AC1BD;
+  border: 3px solid #C41717;
 }
 
 .response .res-button.dis button:hover{
+  background-color: #990000;
+  color: #ffffff;
+  border: 3px solid #990000;
+}
+*/
+.res-buttoncent{
+  width: 335px;
+  margin: 0 auto;
+  float: none;
+}
+
+.opinionbox .res-button.agr button:hover{
+  background-color: #C41717;
+  color: white;
+  border: 3px solid #C41717;
+}
+
+.opinionbox .res-button.dis button:hover{
   background-color: #990000;
   color: #ffffff;
   border: 3px solid #990000;
@@ -518,20 +556,38 @@ h1, h2, h3, h4{
   margin: 0 auto;
   float: none;
 }
+/*
 .response textarea{
   padding: 20px;
   font-size: 1em;
   height: 200px;
   font-weight: 200;
-  border: 7px solid #BAD8D0;
+  border: 7px solid #C41717;
   border-radius: 10px;
   resize: none;
   font-family: "Source Code Pro";
   letter-spacing: 0;
 
 }
+*/
+.opinionbox textarea{
+  padding: 20px;
+  font-size: 1em;
+  height: 200px;
+  font-weight: 200;
+  border: 7px solid #C41717;
+  border-radius: 10px;
+  resize: none;
+  font-family: "Source Code Pro";
+  letter-spacing: 0;
 
+}
+ /*   
 .response textarea:focus{
+  outline: none;
+}
+*/
+.opinionbox textarea:focus{
   outline: none;
 }
 
@@ -607,12 +663,12 @@ button:focus{
 
 
 .comment .profile-pic{
-  width: 25px;
-  height: 25px;
+  width: 60px;
+  height: 60px;
   margin-bottom: -5px;
   display: inline-block;
   background-size: cover !important;
-  border-radius: 50%;
+/*  border-radius: 50%;*/
 
 }
 
@@ -650,21 +706,21 @@ button:focus{
 }
 
 .comment.like .button-vote.up{
-  border: 2px solid #53C4DD;
+  border: 2px solid #C41717;
   background-color: #ffffff;
   color: #262626;
 }
 
 .button-vote.up.clicked{
-  background-color: #53C4DD;
+  background-color: #C41717;
   color: #ffffff;
-  border: 3px solid #53C4DD;
+  border: 3px solid #C41717;
 }
 
 .button-vote.down.clicked{
-  background-color: #53C4DD;
+  background-color: #C41717;
   color: #ffffff;
-  border: 3px solid #53C4DD;
+  border: 3px solid #C41717;
 }
 
 .button-vote{
@@ -678,7 +734,7 @@ button:focus{
   font-family: 'Raleway', sans-serif;
   transition: all .2s;
   background-color: transparent;
-  border: 2px solid #53C4DD;
+  border: 2px solid #C41717;
 }
 
 .button-vote img{
@@ -702,13 +758,13 @@ button:focus{
 }
 
 .button-vote.up{
-  border: 2px solid #53C4DD;
-  color: #53C4DD;
+  border: 2px solid #C41717;
+  color: #C41717;
 }
 
 .button-vote.down{
-  border: 2px solid #53C4DD;
-  color: #53C4DD;
+  border: 2px solid #C41717;
+  color: #C41717;
 }
 
 .view-amt img{
@@ -769,22 +825,22 @@ button:focus{
 
 .carousel-inner {
   width: 500px;
-  left: 33%;
+  left: 27%;
 
 }
 
 .slide {
 
-  /*    background-color:#1F3A93;
+      background-color:#C41717;
 
-       background: url(../images/we.jpg) center center no-repeat;
+  /*     background: url(../images/we.jpg) center center no-repeat;
         background-size: cover;
       position: relative;
       */
-  background: -webkit-linear-gradient(#2BB6D2, #55CEB1); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#2BB6D2, #55CEB1); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#2BB6D2, #55CEB1); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#2BB6D2, #55CEB1); /* Standard syntax (must be last) */
+    /*        background: -webkit-linear-gradient(#2BB6D2, #55CEB1); /* For Safari 5.1 to 6.0 */
+    /*       background: -o-linear-gradient(#2BB6D2, #55CEB1); /* For Opera 11.1 to 12.0 */
+    /*       background: -moz-linear-gradient(#2BB6D2, #55CEB1); /* For Firefox 3.6 to 15 */
+    /*       background: linear-gradient(#2BB6D2, #55CEB1); /* Standard syntax (must be last) */
   /*    background: -webkit-linear-gradient(#7AC1BD, #99C79E); /* For Safari 5.1 to 6.0 */
   /*    background: -o-linear-gradient(#7AC1BD, #99C79E); /* For Opera 11.1 to 12.0 */
   /*    background: -moz-linear-gradient(#7AC1BD, #99C79E); /* For Firefox 3.6 to 15 */
@@ -1009,6 +1065,9 @@ button:focus{
 }
 
 
+.hideNav {
+  display: none;
+}
 
 
 .debates .debate .back{
@@ -1540,6 +1599,11 @@ button:focus{
 .end-message .coexist .T{
   color: #955BA5;
 }
+.naver {
+  color: white;
+  font-size: 1.2em;
+  font-family: 'Source Code Pro'
+}
 
 /* ================================== Rankings ================================== */
 .rankings-section {
@@ -1936,7 +2000,6 @@ button:focus{
     padding-top: 14px;
   }
 
-
   .navbar.navbar-default .nav li a{
     margin-left: 6px;
     margin-right: 6px;
@@ -1976,6 +2039,19 @@ button:focus{
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
 
+ .naver {
+    color: black;
+  }
+.dripdown-menu{
+  display: none;
+}
+.hideNav {
+  display: block;
+}
+
+  .nav.navbar-nav li{
+  width: 100%;
+}
 
   .change label{
     margin-bottom: 50px;
@@ -2216,6 +2292,9 @@ button:focus{
   .nav input:-moz-placeholder { /* Firefox 18- */
     color: #333333;
   }
+  .naver {
+    color: black;
+  }
 
   .main-section-home.about{
     overflow: hidden;
@@ -2435,11 +2514,22 @@ div.heart i {
   position: relative;
   text-align: center;
   background-color: #fff;
-  border: 1px solid #53C4DD;
+  border: 1px solid white;
   padding:40px;
   -webkit-box-shadow: 4px 4px 8px #888;
   -moz-box-shadow: 4px 4px 8px #888;
   box-shadow: 4px 4px 8px #888;
+}
+
+.vote-col .speechStatementCard{
+ position: relative;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid transparent;
+   
+  -webkit-box-shadow: 4px 4px 8px transparent;
+  -moz-box-shadow: 4px 4px 8px transparent;
+  box-shadow: 4px 4px 8px transparent;
 }
 
 .speechDebateCard {
@@ -2458,15 +2548,16 @@ div.heart i {
   position: relative;
   text-align: center;
   line-height: 100px;
-  background-color: #fff;
-  border: 5px solid #53C4DD;
+  background-color: white;
+  border: 5px solid #C41717;
   border-radius: 10px;
   -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
+  -moz-border-radius: 30px;  
   -webkit-box-shadow: 2px 2px 4px #888;
   -moz-box-shadow: 2px 2px 4px #888;
   box-shadow: 2px 2px 4px #888;
 }
+
 
 .speech:before {
   content: ' ';
@@ -2475,8 +2566,8 @@ div.heart i {
   height: 0;
   left: 52%;
   top: 100%;
-  border: 15px solid #53C4DD;
-  border-color: #53C4DD transparent transparent #53C4DD;
+  border: 15px solid #C41717;
+  border-color: #C41717 transparent transparent #C41717;
 }
 
 p.speech:after {
@@ -2486,30 +2577,39 @@ p.speech:after {
   height: 0;
   left: 53.5%;
   top: 100%;
-  border: 8px solid;
+  border: 8px solid ;
   border-color: #fff transparent transparent #fff;
 }
 
 .grad1 {
-
-  background: lightblue; /* For browsers that do not support gradients */
-  /*    background: -webkit-linear-gradient(#7AC1BD, #99C79E); /* For Safari 5.1 to 6.0 */
-  /*    background: -o-linear-gradient(#7AC1BD, #99C79E); /* For Opera 11.1 to 12.0 */
-  /*    background: -moz-linear-gradient(#7AC1BD, #99C79E); /* For Firefox 3.6 to 15 */
-  /*    background: linear-gradient(#7AC1BD, #99C79E); /* Standard syntax (must be last) */
-
-  background: -webkit-linear-gradient(#2BB6D2, #55CEB1); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#2BB6D2, #55CEB1); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#2BB6D2, #55CEB1); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#2BB6D2, #55CEB1); /* Standard syntax (must be last) */
+    
+ /*   background: lightblue; /* For browsers that do not support gradients */
+/*    background: -webkit-linear-gradient(#7AC1BD, #99C79E); /* For Safari 5.1 to 6.0 */
+/*    background: -o-linear-gradient(#7AC1BD, #99C79E); /* For Opera 11.1 to 12.0 */
+/*    background: -moz-linear-gradient(#7AC1BD, #99C79E); /* For Firefox 3.6 to 15 */
+/*    background: linear-gradient(#7AC1BD, #99C79E); /* Standard syntax (must be last) */
+    
+ /*   background: -webkit-linear-gradient(#2BB6D2, #55CEB1); /* For Safari 5.1 to 6.0 */
+ /*   background: -o-linear-gradient(#2BB6D2, #55CEB1); /* For Opera 11.1 to 12.0 */
+/*    background: -moz-linear-gradient(#2BB6D2, #55CEB1); /* For Firefox 3.6 to 15 */
+/*   background: linear-gradient(#2BB6D2, #55CEB1); /* Standard syntax (must be last) */
+    
+/*     background: #C41717; /* For browsers that do not support gradients */
+/*     background: -webkit-linear-gradient(#4B0000, #FE2000); /* For Safari 5.1 to 6.0 */
+/*     background: -o-linear-gradient(#4B0000, #FE2000); /* For Opera 11.1 to 12.0 */
+/*     background: -moz-linear-gradient(#4B0000, #FE2000); /* For Firefox 3.6 to 15 */
+/*    background: linear-gradient(#4B0000, #FE2000); /* Standard syntax (must be last) */
+    
+    background:#C41717;
+    
+   
 }
-
 /*--for pulsating effect---*/
 
 .pulse {
   background: white;
   cursor: pointer;
-  box-shadow: 0 0 0 #53C4DD;
+  box-shadow: 0 0 0 #C41717;
   animation: pulse 2s infinite;
 }
 .pulse:hover {
@@ -2518,30 +2618,31 @@ p.speech:after {
 
 @-webkit-keyframes pulse {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(83,196,221, 0.8);
+    -webkit-box-shadow: 0 0 0 0 rgba(196,23,23,0.8);
   }
   70% {
-    -webkit-box-shadow: 0 0 0 10px rgba(83,196,221, 0);
+      -webkit-box-shadow: 0 0 0 10px rgba(196,23,23, 0);
   }
   100% {
-    -webkit-box-shadow: 0 0 0 0 rgba(83,196,221, 0);
+      -webkit-box-shadow: 0 0 0 0 rgba(196,23,23, 0);
   }
 }
 @keyframes pulse {
   0% {
-    -moz-box-shadow: 0 0 0 0 rgba(83,196,221, 0.8);
-    box-shadow: 0 0 0 0 rgba(83,196,221, 0.8);
+    -moz-box-shadow: 0 0 0 0 rgba(196,23,23, 0.8);
+    box-shadow: 0 0 0 0 rgba(196,23,23, 0.8);
   }
   70% {
-    -moz-box-shadow: 0 0 0 10px rgba(83,196,221, 0);
-    box-shadow: 0 0 0 10px rgba(83,196,221, 0);
+      -moz-box-shadow: 0 0 0 10px rgba(196,23,23, 0);
+      box-shadow: 0 0 0 10px rgba(196,23,23, 0);
   }
   100% {
-    -moz-box-shadow: 0 0 0 0 rgba(83,196,221, 0);
-    box-shadow: 0 0 0 0 rgba(83,196,221, 0);
+      -moz-box-shadow: 0 0 0 0 rgba(196,23,23, 0);
+      box-shadow: 0 0 0 0 rgba(196,23,23, 0);
   }
 }
 
+/*
 textarea:focus {
   animation:none;
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
@@ -2549,6 +2650,7 @@ textarea:focus {
   margin: 5px 1px 3px 0px;
   border: 1px solid rgba(81, 203, 238, 1);
 }
+*/
 
 /*---placeholder color---*/
 ::-webkit-input-placeholder { /* Chrome */
@@ -2573,14 +2675,14 @@ textarea:focus {
   color: black;
   font-family: "Raleway";
   font-size: 2em;
-  margin-left: 40%;
+  margin-left: 38%;
   margin-top:0px;
   margin-bottom: 0px;
   margin-right: 10px;
   white-space: nowrap;
   overflow: hidden;
   width: 13em;
-  animation: type 4s steps(60, end);
+  animation: type 3s steps(60, end);
 }
 
 .opinionQuestion p:nth-child(2){
@@ -2617,7 +2719,7 @@ textarea:focus {
 }
 
 .voteButtonChallenge {
-  border:2px solid #53C4DD;
+  border:2px solid #C41717;
   border-radius: 50%;
   margin: 30px;
 }
