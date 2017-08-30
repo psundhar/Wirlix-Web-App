@@ -7,7 +7,7 @@ module.exports = {
             user: req.user._id,
             created: Date.now(),
             text: req.body.text,
-            agreement: req.body.agreement,
+          //  agreement: req.body.agreement,
             voters: [],
         });
 

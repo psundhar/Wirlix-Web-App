@@ -226,9 +226,9 @@ const ProfilePage = React.createClass({
                                         <h3 className="mb2">{ topic.prompt }</h3>
 */}
                                         <div className="dummyTopic">{ topic.prompt }</div>
-{/*
-                                        <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text } agree={ statement.agreement == 'agree'} handleEdit={ handleStatementEdit(statement) }/>
-*/}
+
+                                        <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text }  handleEdit={ handleStatementEdit(statement) }/>
+
                                     </div>
                                 </div>
 
