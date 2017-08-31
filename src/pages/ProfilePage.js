@@ -12,7 +12,7 @@ import EditableBio from '../components/EditableBio';
 import EditableFirstArgument from '../components/EditableFirstArgument';
 import { factualRankings, emotionalRankings, findRank, countVoteTypes } from '../utilities/rankings';
 import MyDebates from '../components/MyDebates';
-
+import TempPopup from '../components/TempPopup';
 import { connect } from 'react-redux';
 import { updateDebateAction, updateDebate, deleteDebate, subscribeToDebate } from '../actionCreators/debateActionCreators';
 import { updateStatement } from '../actionCreators/statementActionCreators';
@@ -38,6 +38,7 @@ const mapStateToProps = (state, ownProps) => {
         topic: state.topic || {},
         debates: state.debates || [],
         statements: state.statements || [],
+
     };
 };
 
@@ -67,13 +68,16 @@ const mapDispatchToProps = (dispatch) => {
             }
         },
 
-        handleBioEdit(loggedInUser) {
+        handleBioEdit(loggedInUser){
             return (text) => {
                 dispatch(updateUser(loggedInUser._id, {
                     bio: text,
                 }));
+
             }
+
         },
+
     }
 }
 
@@ -85,6 +89,7 @@ const ProfilePage = React.createClass({
             showEndDebateMessage: false,
             showEndDebateMessageFadeOut: false,
             showMyDebates: false,
+            showBioEdited:false,
         };
     },
 
@@ -159,9 +164,21 @@ const ProfilePage = React.createClass({
         this.setState({showMyDebates: !this.state.showMyDebates});
     },
 
+    handleBioEdit(loggedInUser){
+        console.log("HERE");
+        this.props.handleBioEdit(loggedInUser);
+
+        this.setState({showBioEdited: true});
+
+        setTimeout(() => {
+            this.setState({showBioEdited: false});
+        }, 2500);
+
+    },
+
     render() {
         const { modalDebate, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
-        const { handleBioEdit, loggedInUser, profileUser, statements, statement, debates, topic, userChallenges, users, handleStatementEdit } = this.props;
+        const {  handleBioEdit,loggedInUser, profileUser, statements, statement, debates, topic, userChallenges, users, handleStatementEdit } = this.props;
 
         if(!profileUser) {
             return <span></span>
@@ -207,6 +224,16 @@ const ProfilePage = React.createClass({
                                     <h3 className="small italic mb3">@{ profileUser.username }</h3>
                                     <div className="mb2 col-md-12">
                                         <EditableBio isEditable={ isMyProfile } handleEdit={handleBioEdit(profileUser)} bio={ profileUser.bio } />
+
+
+
+{/*
+                                        <TempPopup show={ this.state.showBioEdited } color="white" backgroundColor="crimson"><div className="center bold">Bio Edited</div></TempPopup>
+*/}
+
+
+
+
                                     </div>
                                     <div className="scores">
                                         <div className="col-md-6">
