@@ -11,6 +11,7 @@ h1, h2, h3, h4{
 
 .main-section-home{
   min-height: 75vh;
+  height: 800px;
   /*  position: relative;
     overflow: hidden;*/
 }
@@ -25,7 +26,10 @@ h1, h2, h3, h4{
   cursor: pointer;
 }
 
-
+.hideo {
+  font-size: 20px;
+  border-bottom: none;
+}
 
 /* ================================== ARROW/LIVE ================================== */
 
@@ -674,10 +678,10 @@ button:focus{
 }
 
 .comment p .username{
-  color: #262626;
+  color: black;
   margin-top: -5px;
   display: inline-block;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .comment p i{
@@ -828,6 +832,28 @@ button:focus{
   width: 500px;
   left: 27%;
 
+}
+.main-section-home video#bgvid {
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  margin-top: 300px;
+  height: 500px;
+  border : 10px solid #BAD8D0;
+  border-radius: 15px;
+  margin-top: 15%;
+  /*
+  min-width: 50%;
+ min-height: 100%;
+  width: 100%;
+  height: auto;
+  */
+  z-index: 10;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
 }
 
 .slide {
@@ -1975,6 +2001,7 @@ button:focus{
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
+
   .homepagetooltip{
     position: absolute;
     bottom: 85%;
@@ -1984,7 +2011,14 @@ button:focus{
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
-
+.main-section-home video#bgvid {
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  margin-top: 300px;
+  height: 350px;
+  
+}
   .homepagetooltip{
     position: absolute;
     bottom: 88%;
@@ -2671,19 +2705,17 @@ textarea:focus {
 }
 
 /*----Typing animation---*/
-
 .opinionQuestion p{
   color: black;
   font-family: "Raleway";
   font-size: 2em;
-  margin-left: 38%;
+  margin: 0 auto;
   margin-top:0px;
   margin-bottom: 0px;
-  margin-right: 10px;
   white-space: nowrap;
   overflow: hidden;
   width: 13em;
-  animation: type 3s steps(60, end);
+  animation: type 4s steps(60, end);
 }
 
 .opinionQuestion p:nth-child(2){

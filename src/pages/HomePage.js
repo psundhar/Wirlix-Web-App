@@ -153,6 +153,7 @@ const HomePage = React.createClass({
 
     componentDidMount() {
         // Connect to server via websocket for live updates
+
         registerSocketEventHandler(IO(), 'updates:opinions', this.getUpdatedStatement);
     },
 
@@ -259,15 +260,22 @@ const HomePage = React.createClass({
     },
 
     handleShow(){
-       $(".comment-container").show('slide', {
+       $("#factual").show('slide', {
              direction: 'up'
+             }, 4000);
+        
+         $("#emotional").show('slide', {
+             direction: 'down'
              }, 4000);
         this.setState({hiddens: false});
 
     },
 
     handleHide(){
-       $(".comment-container").hide('slide', {
+       $("#emotional").hide('slide', {
+             direction: 'down'
+             }, 4000);
+       $("#factual").hide('slide', {
              direction: 'up'
              }, 4000);
         this.setState({hiddens: true});
@@ -335,6 +343,7 @@ const HomePage = React.createClass({
                     <div id="statement_carousel" style={{marginTop: "60px", paddingTop:"60px", borderTop:"2px solid darkgray"}}>
                     {/*<p style={{fontSize:"1.2em", textAlign: "center", marginBottom:"30px"}}>These opinions need your wisdom and support!!</p>*/}
                         <div style={{backgroundColor:"#292C2D"}}><p style={{ textAlign: "center", fontSize:"2em", padding:"30px", color:"white", fontFamily:"Source Code Pro", fontWeight:"200"}}>YOU DECIDE</p></div>
+                        <p style={{ textAlign: "center", fontSize:"12px", paddingBottom:"15px", color:"black", fontFamily:"Source Code Pro"}}>Vote for these opinions</p>
                         <Carousel
                             indicators = {this.state.indicators}
                             interval = {this.state.interval}>
