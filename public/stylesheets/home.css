@@ -624,6 +624,7 @@ button:focus{
 
 .comment-container{
   overflow: auto;
+  display:none;
 }
 
 .comment{

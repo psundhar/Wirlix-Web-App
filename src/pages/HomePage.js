@@ -4,6 +4,7 @@ import apiFetch from '../utilities/apiFetch';
 import NavBar from '../components/NavBar';
 import ChallengeDialog from '../components/ChallengeDialog';
 import TempPopup from '../components/TempPopup';
+import HideShow from '../components/HideShow';
 import { registerSocketEventHandler } from '../utilities/realTime';
 import IO from 'socket.io-client';
 import { getStatement } from '../utilities/data';
@@ -145,7 +146,8 @@ const HomePage = React.createClass({
             showChallengeSent: false,
             interval: false,
             indicators: false,
-            controls: false
+            controls: false,
+            hiddens: true
         };
     },
 
@@ -256,6 +258,21 @@ const HomePage = React.createClass({
         }, 2500);
     },
 
+    handleShow(){
+       $(".comment-container").show('slide', {
+             direction: 'up'
+             }, 4000);
+        this.setState({hiddens: false});
+
+    },
+
+    handleHide(){
+       $(".comment-container").hide('slide', {
+             direction: 'up'
+             }, 4000);
+        this.setState({hiddens: true});
+    },
+
 
     render() {
 
@@ -299,6 +316,7 @@ const HomePage = React.createClass({
                 </div>*/}
            
         </div>
+            
         <section className="news-section" id="cont-section"  style={{backgroundColor:"#FFFFFF"}}>
         { /*    <div className="response"> */}
                 <div className="container" style={{paddingRight:"0px", paddingLeft:"0px", marginRight:"0px", marginLeft:"0px", width:"100%"}}>
@@ -344,9 +362,15 @@ const HomePage = React.createClass({
                 </div>
                                    
           { /*        </div> */}
+            {
+                !this.state.hiddens
+                ? <HideShow color="white" backgroundColor="black"><button className="hideo" onClick={ () => this.handleHide() }>HIDE</button>  </HideShow>
+                :  <HideShow  color="white" backgroundColor="black"> <button className="hideo" onClick={ () => this.handleShow() }>SHOW</button>  </HideShow>
+            }         
+         
             </div>
-                                   
-                                   
+                         
+                               
                                    
             <div className="comments">
                                    
