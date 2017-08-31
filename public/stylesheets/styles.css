@@ -97,6 +97,17 @@ body {
     transition: background-color 1s;
 }
 
+/*
+#homepage { 
+
+    background: url('../images/Elixcit-Draft-2.gif') center center no-repeat;
+    background-size: cover;
+    height:100%;
+    position: relative;
+ 
+}
+*/
+
 .text-home {
     font-size: 16px;
     letter-spacing: 0px;
@@ -161,7 +172,7 @@ button, .input, select, textarea {
     letter-spacing: 0px;
     text-transform: none;
     line-height: 1em;
-    text-transform: uppercase;
+/*    text-transform: uppercase;  */
     letter-spacing: 7px;
     font-weight: 200;
     font-style: lighter;
@@ -526,9 +537,22 @@ input:focus {
 .signup {
     padding: 15px 0;
     margin-top: 50px;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid #f3f3f3;
     background: #f3f3f3;
 }
+
+.description p{
+    padding: 15px 0;
+    margin-top: 50px;
+    border-bottom: 1px solid black;
+    background: black;
+    font-size: 1.3em;
+  font-family: "Arial";
+  /*  font-family: "Source Code Pro";*/
+    color:white;
+    
+}
+
 .signup-top  {
   line-height: inherit;
     background: none;
@@ -2811,7 +2835,7 @@ body {
 }
 
 .arrow-container .arrow{
-    position: relative;
+/*    position: relative;*/
 }
 
 .signup.mobile{
