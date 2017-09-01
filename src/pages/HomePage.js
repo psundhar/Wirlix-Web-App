@@ -4,6 +4,7 @@ import apiFetch from '../utilities/apiFetch';
 import NavBar from '../components/NavBar';
 import ChallengeDialog from '../components/ChallengeDialog';
 import TempPopup from '../components/TempPopup';
+import HideShow from '../components/HideShow';
 import { registerSocketEventHandler } from '../utilities/realTime';
 import IO from 'socket.io-client';
 import { getStatement } from '../utilities/data';
@@ -145,12 +146,14 @@ const HomePage = React.createClass({
             showChallengeSent: false,
             interval: false,
             indicators: false,
-            controls: false
+            controls: false,
+            hiddens: true
         };
     },
 
     componentDidMount() {
         // Connect to server via websocket for live updates
+
         registerSocketEventHandler(IO(), 'updates:opinions', this.getUpdatedStatement);
     },
 
@@ -256,6 +259,43 @@ const HomePage = React.createClass({
         }, 2500);
     },
 
+    handleShow(){
+
+       $("#factual").show('slide', {
+             direction: 'up'
+             }, 4000);
+        
+         $("#emotional").show('slide', {
+             direction: 'down'
+             }, 4000);
+         setTimeout(function(){ 
+            console.log("jellloo");
+            $(".comment-container").show('slide', {
+             direction: 'up'
+             }, 500);
+
+        }, 8000);
+        this.setState({hiddens: false});
+
+    },
+
+    handleHide(){
+       $("#emotional").hide('slide', {
+             direction: 'down'
+             }, 4000);
+       $("#factual").hide('slide', {
+             direction: 'up'
+             }, 4000);
+       setTimeout(function(){ 
+            console.log("jellloo");
+            $(".comment-container").hide('slide', {
+             direction: 'down'
+             }, 4000);
+
+        }, 8000);
+        this.setState({hiddens: true});
+    },
+
 
     render() {
 
@@ -299,6 +339,7 @@ const HomePage = React.createClass({
                 </div>*/}
            
         </div>
+            
         <section className="news-section" id="cont-section"  style={{backgroundColor:"#FFFFFF"}}>
         { /*    <div className="response"> */}
                 <div className="container" style={{paddingRight:"0px", paddingLeft:"0px", marginRight:"0px", marginLeft:"0px", width:"100%"}}>
@@ -316,7 +357,8 @@ const HomePage = React.createClass({
                     </div> 
                     <div id="statement_carousel" style={{marginTop: "60px", paddingTop:"60px", borderTop:"2px solid darkgray"}}>
                     {/*<p style={{fontSize:"1.2em", textAlign: "center", marginBottom:"30px"}}>These opinions need your wisdom and support!!</p>*/}
-                        <div style={{backgroundColor:"#292C2D"}}><p style={{ textAlign: "center", fontSize:"2em", padding:"30px", color:"white", fontFamily:"Source Code Pro", fontWeight:"200"}}>#spark.your.mind</p></div>
+                        <div style={{backgroundColor:"#292C2D"}}><p style={{ textAlign: "center", fontSize:"2em", padding:"30px", color:"white", fontFamily:"Source Code Pro", fontWeight:"200"}}>YOU DECIDE</p></div>
+                        <p style={{ textAlign: "center", fontSize:"12px", paddingBottom:"15px", color:"black", fontFamily:"Source Code Pro"}}>Vote for these opinions</p>
                         <Carousel
                             indicators = {this.state.indicators}
                             interval = {this.state.interval}>
@@ -344,9 +386,15 @@ const HomePage = React.createClass({
                 </div>
                                    
           { /*        </div> */}
+            {
+                !this.state.hiddens
+                ? <HideShow color="white" backgroundColor="black"><button className="hideo" onClick={ () => this.handleHide() }>HIDE</button>  </HideShow>
+                :  <HideShow  color="white" backgroundColor="black"> <button className="hideo" onClick={ () => this.handleShow() }>SHOW</button>  </HideShow>
+            }         
+         
             </div>
-                                   
-                                   
+                         
+                               
                                    
             <div className="comments">
                                    
