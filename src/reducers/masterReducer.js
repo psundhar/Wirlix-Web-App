@@ -6,6 +6,8 @@ import topic from './topicReducer';
 import userChallenges from './userChallengesReducer';
 import debates from './debatesReducer';
 
+import imageUpload from './ImageUploadReducer';
+
 export default combineReducers({
     statements,
     users,
@@ -13,4 +15,5 @@ export default combineReducers({
     topic,
     userChallenges,
     debates,
+    imageUpload,
 });

@@ -13,7 +13,7 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {
-                    presets: [['es2015', {modules: false}], 'react',]
+                    presets: [['es2015', {modules: false}], 'react', 'stage-2']
                 }
 
             },
@@ -49,12 +49,12 @@ module.exports = {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'url?limit=10000&mimetype=image/svg+xml'
 
-            }
+      }
 
 
-        ]
-    },
-    resolveLoader: {
-        moduleExtensions: ["-loader"]
-    }
+    ]
+  },
+  resolveLoader: {
+    moduleExtensions: ["-loader"]
+  }
 }

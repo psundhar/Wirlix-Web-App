@@ -96,17 +96,6 @@ const factExplode = () => {
 };
 
 
-
-const mapStateToProps = state => {
-    const user = state.users.find(u => u._id == state.authUserId);
-
-    return {
-        user,
-        topic: state.topic,
-        statements: state.statements,
-    };
-};
-
 const mapDispatchToProps = dispatch => {
     return {
         refreshStatement: (statement) => {
@@ -430,4 +419,13 @@ const HomePage = React.createClass({
     },
 });
 
+const mapStateToProps = state => {
+  const user = state.users.find(u => u._id == state.authUserId);
+
+  return {
+    user,
+    topic: state.topic,
+    statements: state.statements,
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
