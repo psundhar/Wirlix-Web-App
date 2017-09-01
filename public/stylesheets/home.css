@@ -1968,12 +1968,6 @@ button:focus{
   margin-top: 10px;
 }
 
-.bio{
-  display:none;
-}
-.bio p{
-  display:block;
-}
 
 /* ================================== Media Queries ================================== */
 

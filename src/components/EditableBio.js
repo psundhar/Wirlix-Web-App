@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Alert from 'react-s-alert';
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
 
 class EditableBio extends Component {
     constructor(props) {
@@ -6,19 +9,20 @@ class EditableBio extends Component {
 
         this.handleTextChange = this.handleTextChange.bind(this);
 
-        this.state = {inputText: '', showBioEdited:false,};
+        this.state = {inputText: ''};
     };
 
     handleTextChange(e) {
         this.setState({inputText: e.target.value});
+
     };
 
     componentWillReceiveProps(nextProps) {
 
         this.setState({
             inputText: nextProps.bio || '',
-            showBioEdited:false,
         });
+        Alert.success('Bio Saved');
     };
 
    
@@ -27,8 +31,7 @@ class EditableBio extends Component {
 
         const { isEditable = false, bio, handleEdit } = this.props;
         const { inputText,text,user} = this.state;
-
-        const isDirty =!!inputText != !!text;
+        const isDirty =!!inputText;
             //(typeof inputText != 'undefined' && typeof bio != 'undefined' && inputText != bio);
 
         return (
@@ -48,16 +51,9 @@ class EditableBio extends Component {
                     )
                 }
                 { isEditable && isDirty && (<div className="flex justify-end mt1">
-                    <button onClick={ () => handleEdit(inputText) } className="caps editButton p1" href="#" data-toggle="modal" data-target="#edit-conf"  style={{border:"1px solid black", display:"inline-block", width:"auto"}}>Edit</button>
+                    <button onClick={ () =>handleEdit(inputText)  } className="caps  p1" style={{border:"1px solid black", display:"inline-block", width:"auto"}}>Edit</button>
+                    <Alert effect='jelly' position='top-right' timeout= {5000} offset={150} />
                 </div>) }
-
-            <div id="edit-conf" className="modal fade" role="dialog">
-            <div className="modal-dialog">
-            <div className="modal-content">
-            <p>Bio Edited !!</p>
-            </div>
-            </div>
-            </div>
             </div>
         )
     };

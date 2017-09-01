@@ -2,7 +2,7 @@ import React from 'react';
 import TimeElapsedString from './TimeElapsedString';
 
 export default ({ debate, handleReplyClick, user }) => {
-    const {statement = {}, challengee ,challenger,_id} = debate;
+    const {statement = {}, challengee ,challenger} = debate;
     let profileLink, profileImage,challengerImage,challengerLink;
 
     let showNotification = false;
@@ -56,7 +56,7 @@ if(challenger){
                     <a className="un" href={challengerLink}>{challenger.username}</a>
                 </div>
             </div>
-            <p className="comment-preview">{debate.messages[latestDebate-1].text }</p>
+            <p className="comment-preview">{/*debate.messages[latestDebate-1].text*/statement.text }</p>
             <p><button type="button" className="reply-button col-md-4 col-md-offset-8 col-xs-12" data-toggle="modal" data-target="#view-debate" onClick={ () => handleReplyClick(debate) }>Reply</button></p>
 
                 <p className="time-posted"><span className="small mr1" style={{color: "crimson"}}>{ showNotification && ( <i className="glyphicon glyphicon-envelope" />) }</span> </p><span className="small ml1"><TimeElapsedString elapsed={debate.updated} /></span>
