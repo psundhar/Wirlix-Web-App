@@ -91,7 +91,7 @@ const NavBar = React.createClass({
 */}
                             </ul>
                             <ul className="nav navbar-nav navbar-right" style={{paddingRight:"20px"}}>
-                                <li><a className="profile-nav" onClick={this.toggleMenu} style={{background: "url(" + profileImage + ") center center no-repeat", }} >
+                                <li><a className="profile-nav" onClick={this.toggleMenu} style={{background: "url(" + profileImage + ") center center no-repeat", width:"60px", height:"60px" }} >
                                     { notify && (<div style={{position:'absolute',top:0,left:0,height:"20px",width:"20px",borderRadius:"100px",backgroundColor:"crimson"}}></div>) }
                                 </a>
                                     <ul className="dropdown-menu" id="dropdown" style={{display: isOpen ? "inline-block" : "none", background: "white", borderRadius:"15px"}}>

@@ -47,20 +47,20 @@ const FlippableDebateCard = React.createClass({
                 { frontVisible && (<div className={ "front " + (frontVisible ? 'Card-Front-Flip': '')}>
                     <div className="content"  onClick={ this.flip }>
                         <div className="flex justify-between">
-                            <div>
+                         {  /* <div>
                                 <input type="checkbox" style={{position:'absolute', top:'3%'}} onClick={e => e.stopPropagation()} onChange={ e => { e.stopPropagation(); handleSubscribeToggle(_id); } } checked={ subscribed }/>
-                            </div>
+                            </div>*/  }
                             <div className="flex justify-around flex-auto">
                                 <div className="flex flex-column" style={{width: "40%"}}>
-                                    <div className="mx-auto" style={{background: "url(" + challengerImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
+                                    <div className="mx-auto" style={{background: "url(" + challengerImage + ") center center no-repeat", backgroundSize: "cover",  border: "2px white solid", width: "70px", height: "70px"}}></div>
                                     <p className="small">{ challenger.username }</p>
                                 </div>
                                 <div className="vs">
                                     {/*<p>vs.</p>*/}
-                                    <img style={{height:"35px", width:"35px", margin:"2px", paddingTop:"5px"}} src="/images/challenge.png" />
+                                    <img style={{height:"70px", width:"70px", margin:"5px", paddingTop:"10px"}} src="/images/challenge.png" />
                                 </div>
                                 <div className="flex flex-column" style={{width: "40%"}}>
-                                    <div className="mx-auto" style={{background: "url(" + challengeeImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
+                                    <div className="mx-auto" style={{background: "url(" + challengeeImage + ") center center no-repeat", backgroundSize: "cover", border: "2px white solid", width: "70px", height: "70px"}}></div>
                                     <p className="small">{ challengee.username }</p>
                                 </div>
                             </div>
@@ -68,11 +68,15 @@ const FlippableDebateCard = React.createClass({
                             <span className="small ml1"><TimeElapsedString elapsed={debate.updated} /></span>
                         </div>
                         <div className="clearfix mb3">
-                            <div className="col-md-6">
+                            <div className="col-md-3">
+                            </div>
+                            <div className="col-md-3">
                                 <p className="view-amt" style={{color:"#292C2D"}}><img src="/images/eye-b.png" style={{margin: "0px"}} /> { views }</p>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-3">
                                 <p className="view-amt" style={{color:"#292C2D"}}><img src="/images/check-mark-b.png" style={{margin: "0px"}} /> { subscribers.length }</p>
+                            </div>
+                            <div className="col-md-3">
                             </div>
                         </div>
                     </div>

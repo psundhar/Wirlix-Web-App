@@ -1088,9 +1088,20 @@ button:focus{
 .full-debate{
   padding: 5px;
   text-align: center;
-  width: 100%;
+ /* width: 100%;*/
   color: #262626;
   background-color: rgba(255, 255, 255, 0.40);
+  display: inline-block;
+  text-decoration: none;
+  border: 2px solid #262626;
+}
+
+.full-debate:hover{
+  padding: 5px;
+  text-align: center;
+ /* width: 100%;*/
+  color: white;
+  background-color:#262626 ;
   display: inline-block;
   text-decoration: none;
   border: 2px solid #262626;
@@ -1101,12 +1112,12 @@ button:focus{
   text-decoration: none;
 }
 
-.full-debate:hover{
+/*.full-debate:hover{
   color: #262626;
   text-decoration: none;
   border: 2px solid #262626;
   background-color: #ffffff;
-}
+}*/
 
 .my-debates{
   padding: 0;
@@ -1128,10 +1139,19 @@ button:focus{
 .my-debate .reply-button{
   padding: 5px;
   text-align: center;
-  color: #ffffff;
   background-color: #ffffff;
   display: inline-block;
   color: #262626;
+  text-decoration: none;
+  border: 2px solid #262626;
+}
+
+.my-debate .reply-button:hover{
+  padding: 5px;
+  text-align: center;
+  background-color: #262626;
+  display: inline-block;
+  color: white;
   text-decoration: none;
   border: 2px solid #262626;
 }
@@ -1785,28 +1805,40 @@ button:focus{
 /* ================================== Profile ================================== */
 
 .main-content.profile{
-  background: blue; /* For browsers that do not support gradients */
+/*    background: blue; /* For browsers that do not support gradients */
   /*    background: -webkit-linear-gradient(#7AC1BD, #99C79E); /* For Safari 5.1 to 6.0 */
   /*    background: -o-linear-gradient(#7AC1BD, #99C79E); /* For Opera 11.1 to 12.0 */
   /*    background: -moz-linear-gradient(#7AC1BD, #99C79E); /* For Firefox 3.6 to 15 */
   /*    background: linear-gradient(#7AC1BD, #99C79E); /* Standard syntax (must be last) */
 
-  background: -webkit-linear-gradient(#2BB6D2, #55CEB1); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#2BB6D2, #55CEB1); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#2BB6D2, #55CEB1); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#2BB6D2, #55CEB1); /* Standard syntax (must be last) */
+/*   background: -webkit-linear-gradient(#2BB6D2, #55CEB1); /* For Safari 5.1 to 6.0 */
+/*   background: -o-linear-gradient(#2BB6D2, #55CEB1); /* For Opera 11.1 to 12.0 */
+/*   background: -moz-linear-gradient(#2BB6D2, #55CEB1); /* For Firefox 3.6 to 15 */
+/*   background: linear-gradient(#2BB6D2, #55CEB1); /* Standard syntax (must be last) */
   /* background:url(../images/bgimg2.jpg) center center no-repeat ;*/
-  background-size: cover;
+/*   background-size: cover;*/
+    
+  background: #C41717;  
+    
+}
+
+.gradient{
+    background:#C41717; /* For browsers that do not support gradients */
+     background: -webkit-linear-gradient(#C41717, #ffffff); /* For Safari 5.1 to 6.0 */
+      background: -o-linear-gradient(#C41717, #ffffff); /* For Opera 11.1 to 12.0 */
+      background: -moz-linear-gradient(#C41717, #ffffff); /* For Firefox 3.6 to 15 */
+      background: linear-gradient(#C41717, #ffffff); /* Standard syntax (must be last) */
 }
 
 .pic-crop{
   width: 300px;
-  height: 300px;
+  height: 400px;
   overflow: hidden;
   display: block;
   background-size: cover;
-  border: 3px solid #ffffff;
-  border-radius: 50%;
+ /* border: 3px solid #C41717;*/
+ /* border: 3px solid #ffffff; */
+/*  border-radius: 50%;*/
   margin: 0 auto;
 }
 
@@ -1895,11 +1927,12 @@ button:focus{
   border-top-left-radius: 3px;
   text-align: center;
   padding: 10px;
-  color: #ffffff;
+ /* color: #ffffff;*/
+    color:black;
   cursor: pointer;
   margin-bottom: 0;
   width: 100%;
-  background-color: #990000;
+ /* background-color: #990000;*/
 }
 
 .qotd button{
