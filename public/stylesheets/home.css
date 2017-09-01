@@ -785,6 +785,12 @@ button:focus{
 .vote-col.factual{
   border-right: 1px solid darkgray;
 }
+#factual {
+  display: none;
+}
+#emotional {
+  display: none;
+}
 
 .vote-col.emotional{
   border-left: 1px solid darkgray;

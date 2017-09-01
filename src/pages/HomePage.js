@@ -260,6 +260,7 @@ const HomePage = React.createClass({
     },
 
     handleShow(){
+
        $("#factual").show('slide', {
              direction: 'up'
              }, 4000);
@@ -267,6 +268,13 @@ const HomePage = React.createClass({
          $("#emotional").show('slide', {
              direction: 'down'
              }, 4000);
+         setTimeout(function(){ 
+            console.log("jellloo");
+            $(".comment-container").show('slide', {
+             direction: 'up'
+             }, 500);
+
+        }, 8000);
         this.setState({hiddens: false});
 
     },
@@ -278,6 +286,13 @@ const HomePage = React.createClass({
        $("#factual").hide('slide', {
              direction: 'up'
              }, 4000);
+       setTimeout(function(){ 
+            console.log("jellloo");
+            $(".comment-container").hide('slide', {
+             direction: 'down'
+             }, 4000);
+
+        }, 8000);
         this.setState({hiddens: true});
     },
 
