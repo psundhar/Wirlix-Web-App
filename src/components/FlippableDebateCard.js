@@ -52,16 +52,18 @@ const FlippableDebateCard = React.createClass({
                             </div>*/  }
                             <div className="flex justify-around flex-auto">
                                 <div className="flex flex-column" style={{width: "40%"}}>
-                                    <div className="mx-auto" style={{background: "url(" + challengerImage + ") center center no-repeat", backgroundSize: "cover",  border: "2px white solid", width: "70px", height: "70px"}}></div>
-                                    <p className="small">{ challenger.username }</p>
+
+                                    <div className="mx-auto" style={{background: "url(" + challengerImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
+                                    <p className="small">{ challenger.firstName }</p>
                                 </div>
                                 <div className="vs">
                                     {/*<p>vs.</p>*/}
                                     <img style={{height:"70px", width:"70px", margin:"5px", paddingTop:"10px"}} src="/images/challenge.png" />
                                 </div>
                                 <div className="flex flex-column" style={{width: "40%"}}>
-                                    <div className="mx-auto" style={{background: "url(" + challengeeImage + ") center center no-repeat", backgroundSize: "cover", border: "2px white solid", width: "70px", height: "70px"}}></div>
-                                    <p className="small">{ challengee.username }</p>
+
+                                    <div className="mx-auto" style={{background: "url(" + challengeeImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
+                                    <p className="small">{ challengee.firstName }</p>
                                 </div>
                             </div>
                             <span className="small" style={{color: "crimson"}}>{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>

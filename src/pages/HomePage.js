@@ -47,54 +47,54 @@ const sortOutcome = (a, b, primaryQualifier, secondaryQualifier = null) => {
 };
 var hocus = document.getElementsByClassName("right");
 
-
-const heartExplode = () => {
-    console.log(Carousel.prototype.getActiveIndex);
-    console.log();
-   
-    
-    $(".hearts").on("click", function() {
-
-        console.log("inside jq");
-        var b = Math.floor((Math.random() * 100) + 1);
-        var d = ["flowOne", "flowTwo", "flowThree"];
-        var a = ["colOne", "colTwo", "colThree", "colFour", "colFive", "colSix"];
-        var c = (Math.random() * (1.6 - 1.2) + 1.2).toFixed(1);
-        $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-heart"></i></div>').appendTo(this).css({
-            animation: "" + d[Math.floor((Math.random() * 3))] + " " + c + "s linear"
-        });
-        $(".part-" + b).show();
-        setTimeout(function() {
-            $(".part-" + b).remove()
-        }, c * 1100);
-        setTimeout(function() {
-            hocus[0].click();
-        }, 1500);
-        
-    });
-};
-
-const factExplode = () => {
-    console.log("outside jq");
-    $(".facts").click(function() {
-        console.log("inside jq");
-        var b = Math.floor((Math.random() * 100) + 1);
-        var d = ["flowOne", "flowTwo", "flowThree"];
-        var a = ["colOne", "colTwo", "colThree", "colFour", "colFive", "colSix"];
-        var c = (Math.random() * (1.6 - 1.2) + 1.2).toFixed(1);
-        var d = 
-        $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-smile-o"></i></div>').appendTo(this).css({
-            animation: "" + d[Math.floor((Math.random() * 3))] + " " + c + "s linear"
-        });
-        $(".part-" + b).show();
-        setTimeout(function() {
-            $(".part-" + b).remove()
-        }, c * 1100);
-         setTimeout(function() {
-            hocus[0].click();
-        }, 1500);
-    });
-};
+//
+// const heartExplode = () => {
+//     console.log(Carousel.prototype.getActiveIndex);
+//     console.log();
+//
+//
+//     $(".hearts").on("click", function() {
+//
+//         console.log("inside jq");
+//         var b = Math.floor((Math.random() * 100) + 1);
+//         var d = ["flowOne", "flowTwo", "flowThree"];
+//         var a = ["colOne", "colTwo", "colThree", "colFour", "colFive", "colSix"];
+//         var c = (Math.random() * (1.6 - 1.2) + 1.2).toFixed(1);
+//         $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-heart"></i></div>').appendTo(this).css({
+//             animation: "" + d[Math.floor((Math.random() * 3))] + " " + c + "s linear"
+//         });
+//         $(".part-" + b).show();
+//         setTimeout(function() {
+//             $(".part-" + b).remove()
+//         }, c * 1100);
+//         setTimeout(function() {
+//             hocus[0].click();
+//         }, 1500);
+//
+//     });
+// };
+//
+// const factExplode = () => {
+//     console.log("outside jq");
+//     $(".facts").click(function() {
+//         console.log("inside jq");
+//         var b = Math.floor((Math.random() * 100) + 1);
+//         var d = ["flowOne", "flowTwo", "flowThree"];
+//         var a = ["colOne", "colTwo", "colThree", "colFour", "colFive", "colSix"];
+//         var c = (Math.random() * (1.6 - 1.2) + 1.2).toFixed(1);
+//         var d =
+//         $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-smile-o"></i></div>').appendTo(this).css({
+//             animation: "" + d[Math.floor((Math.random() * 3))] + " " + c + "s linear"
+//         });
+//         $(".part-" + b).show();
+//         setTimeout(function() {
+//             $(".part-" + b).remove()
+//         }, c * 1100);
+//          setTimeout(function() {
+//             hocus[0].click();
+//         }, 1500);
+//     });
+// };
 
 
 
@@ -117,13 +117,20 @@ const mapDispatchToProps = dispatch => {
             dispatch(createStatement(statement, user));
         },
         handleVote: (isRational, statementId) => {
-            if(isRational==true){
-                heartExplode();
-            }
-            else {
-                factExplode();
-            }
+            // if(isRational==true){
+            //     heartExplode();
+            // }
+            // else {
+            //     factExplode();
+            // }
+            /*setTimeout(function() {
+                hocus[0].click();
+            }, 1500);*/
+            setTimeout(function() {
+                hocus[0].click();
+            }, 1500);
             dispatch(voteOnStatement(statementId, isRational));
+
 
 
         },
@@ -357,30 +364,25 @@ const HomePage = React.createClass({
                     </div> 
                     <div id="statement_carousel" style={{marginTop: "60px", paddingTop:"60px", borderTop:"2px solid darkgray"}}>
                     {/*<p style={{fontSize:"1.2em", textAlign: "center", marginBottom:"30px"}}>These opinions need your wisdom and support!!</p>*/}
-                        <div style={{backgroundColor:"#292C2D"}}><p style={{ textAlign: "center", fontSize:"2em", padding:"30px", color:"white", fontFamily:"Source Code Pro", fontWeight:"200"}}>YOU DECIDE</p></div>
-                        <p style={{ textAlign: "center", fontSize:"12px", paddingBottom:"15px", color:"black", fontFamily:"Source Code Pro"}}>Vote for these opinions</p>
-                                               
-                            
-                                <Carousel
-                                    indicators = {this.state.indicators}
-                                    interval = {this.state.interval}>
-                                    { statements.filter(s => s.voters <=0  && numRational(s.voters)<=MIN_VOTES  && numEmotional(s.voters) <=MIN_VOTES || (s.voters) && numRational(s.voters) > MIN_VOTES && numEmotional(s.voters) > MIN_VOTES)
-                                        .sort((a, b) => {
-                                            return a.created >= b.created ? -1 : 1;
-                                        })
-                                        .map(s => {
-                                            return (
-                                                
-                                                <Carousel.Item>
-                                                  
-                                                <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.props.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
-                                                   
-                                                </Carousel.Item>
-                                                
-                                            )
-                                        })}
-                                </Carousel>
 
+                        <div style={{backgroundColor:"#292C2D"}}><p style={{ textAlign: "center", fontSize:"2em", padding:"30px", color:"white", fontFamily:"Source Code Pro", fontWeight:"200"}}>#spark.your.mind</p></div>
+                        <Carousel
+                            indicators = {this.state.indicators}
+                            interval = {this.state.interval}>
+                            { statements.filter(s => s.voters === 0  || s.voters)
+                                .sort((a, b) => {
+                                    return a.created >= b.created ? -1 : 1;
+                                })
+                                .map(s => {
+                                    return (
+                                        <Carousel.Item>
+                                            <div style={{width: "335px"}}>
+                                        <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.props.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
+                                            </div>
+                                        </Carousel.Item>
+                                    )
+                                })}
+                        </Carousel>
                     </div>
     
                 <div className="tipIcons">
@@ -398,9 +400,7 @@ const HomePage = React.createClass({
                 }         
                 </div>
             </div>
-                         
-                               
-                                   
+
             <div className="comments">
                                    
                 <div className="container" style={{paddingLeft:"0px", paddingRight:"0px", marginLeft:"0px", marginRight:"0px", width:"100%" }}>
