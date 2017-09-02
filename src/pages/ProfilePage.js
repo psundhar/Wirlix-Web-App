@@ -217,7 +217,7 @@ const ProfilePage = React.createClass({
                                       
                                 <div className="qotd col-md-12 mb4 border-white pb3" style={{paddingBottom:"70px"}}>
                                             <div className="gotd-banner">
-                                                <p style={{fontSize:"1.5em", backgroundColor:"black"}}> Topic of the Day</p>
+                                                <p style={{fontSize:"1.5em", backgroundColor:"black", color:"white"}}> Topic of the Day</p>
         {/*
                                                 <h3 className="mb2">{ topic.prompt }</h3>
         */}

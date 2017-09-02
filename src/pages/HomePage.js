@@ -348,8 +348,8 @@ const HomePage = React.createClass({
 
                     <div className="opinionbox col-md-8 col-md-offset-2" style={{marginTop:"10px"}}>
                         <textarea className="col-md-12 col-xs-12 col-sm-12" style={{color:"black", backgroundColor:"white"}} placeholder="What's your first opinion?" onChange={ this.handleStatementTextChange } value={ this.state.statementText }></textarea>
-                        <p className="homepagetooltip" data-tip="First Arguments are the user’s original stance on the controversy without discussing, debating or learning more about the controversy ">?</p>
-                        <ReactTooltip place="top" type="dark" effect="float"/>
+                                               {/*<p className="homepagetooltip" data-tip="First Arguments are the user’s original stance on the controversy without discussing, debating or learning more about the controversy ">?</p>
+                        <ReactTooltip place="top" type="dark" effect="float"/>*/}
                         <div className="res-button res-buttoncent  agr">
                             {opinion ? <button className="ghost" onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway", alignItems:"center"}}>Submit</span></button>:
                                 <button data-toggle="modal" data-target="#opinion-conf" onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway"}}>Submit</span></button> }
@@ -359,39 +359,44 @@ const HomePage = React.createClass({
                     {/*<p style={{fontSize:"1.2em", textAlign: "center", marginBottom:"30px"}}>These opinions need your wisdom and support!!</p>*/}
                         <div style={{backgroundColor:"#292C2D"}}><p style={{ textAlign: "center", fontSize:"2em", padding:"30px", color:"white", fontFamily:"Source Code Pro", fontWeight:"200"}}>YOU DECIDE</p></div>
                         <p style={{ textAlign: "center", fontSize:"12px", paddingBottom:"15px", color:"black", fontFamily:"Source Code Pro"}}>Vote for these opinions</p>
-                        <Carousel
-                            indicators = {this.state.indicators}
-                            interval = {this.state.interval}>
-                            { statements.filter(s => s.voters <=0  && numRational(s.voters)<=MIN_VOTES  && numEmotional(s.voters) <=MIN_VOTES || (s.voters) && numRational(s.voters) > MIN_VOTES && numEmotional(s.voters) > MIN_VOTES)
-                                .sort((a, b) => {
-                                    return a.created >= b.created ? -1 : 1;
-                                })
-                                .map(s => {
-                                    return (
-                                        <Carousel.Item>
-                                            <div style={{width: "335px"}}>
-                                        <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.props.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
-                                            </div>
-                                        </Carousel.Item>
-                                    )
-                                })}
-                        </Carousel>
+                                               
+                            
+                                <Carousel
+                                    indicators = {this.state.indicators}
+                                    interval = {this.state.interval}>
+                                    { statements.filter(s => s.voters <=0  && numRational(s.voters)<=MIN_VOTES  && numEmotional(s.voters) <=MIN_VOTES || (s.voters) && numRational(s.voters) > MIN_VOTES && numEmotional(s.voters) > MIN_VOTES)
+                                        .sort((a, b) => {
+                                            return a.created >= b.created ? -1 : 1;
+                                        })
+                                        .map(s => {
+                                            return (
+                                                
+                                                <Carousel.Item>
+                                                  
+                                                <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.props.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
+                                                   
+                                                </Carousel.Item>
+                                                
+                                            )
+                                        })}
+                                </Carousel>
 
                     </div>
     
-                <div style={{height:"120px", width:"100%", backgroundColor:"#DBD9D9", paddingLeft:"50px", paddingRight:"50px", marginBottom:"50px"}}>
-                  <div className="col-md-4"><img src="images/best-debater.png" style={{height:"40px", width:"40px"}} /><br /><p style={{color:"black"}}>Vote as Factually Appealing</p></div> 
-                  <div className="col-md-4"><img style={{height:"40px", width:"40px"}} src="images/challenge.png" /><br /><p style={{color:"black"}}>Challenge the opinion</p></div>
-                  <div className="col-md-4"><img  src="images/heart-b.png" style={{height:"40px", width:"40px"}} /><br /><p style={{color:"black"}}>Vote as Emotionally Appealing</p></div>
+                <div className="tipIcons">
+                      <div className="col-md-4"><img src="images/best-debater.png" style={{height:"40px", width:"40px"}} /><br /><p style={{color:"black"}}>Vote as Factually Appealing</p></div> 
+                      <div className="col-md-4"><img style={{height:"40px", width:"40px"}} src="images/challenge.png" /><br /><p style={{color:"black"}}>Challenge the opinion</p></div>
+                      <div className="col-md-4"><img  src="images/heart-b.png" style={{height:"40px", width:"40px"}} /><br /><p style={{color:"black"}}>Vote as Emotionally Appealing</p></div>
                 </div>
                                    
           { /*        </div> */}
-            {
-                !this.state.hiddens
-                ? <HideShow color="white" backgroundColor="black"><button className="hideo" onClick={ () => this.handleHide() }>HIDE</button>  </HideShow>
-                :  <HideShow  color="white" backgroundColor="black"> <button className="hideo" onClick={ () => this.handleShow() }>SHOW</button>  </HideShow>
-            }         
-         
+                <div className="hideShowButton" style={{marginTop:"30px", position:"relative", display:"inline-block"}}>
+                {
+                    !this.state.hiddens
+                    ? <HideShow color="white" backgroundColor="black" ><button className="hideo"  onClick={ () => this.handleHide() }>Hide</button>  </HideShow>
+                    :  <HideShow  color="white" backgroundColor="black" > <button className="hideo"  onClick={ () => this.handleShow() }>Show all</button>  </HideShow>
+                }         
+                </div>
             </div>
                          
                                
@@ -402,13 +407,13 @@ const HomePage = React.createClass({
                 
                     <div className="border decide">
 
-                        <ul  className="nav nav-pills">
+                       { /*<ul  className="nav nav-pills">
                             <li className="active">
                                 <a  href="#factual" data-toggle="tab">Factual</a>
                             </li>
                             <li ><a href="#emotional" data-toggle="tab">Emotional</a></li>
                            
-                        </ul>
+                        </ul>*/}
 
                         <div className="tab-content">
 
@@ -416,7 +421,7 @@ const HomePage = React.createClass({
                                 <h2 className="col-md-12" style={{backgroundColor:"#292C2D", padding:"0px",marginTop:"0px", marginBottom:"0px"}}><span data-tip="These arguments are more appealing to people's logic" style={{marginRight:"20px", marginLeft:"20px", color:"white"}}>Most Factual</span><img src="images/best-debater-w.png"/></h2>
                                     <ReactTooltip place="top" type="dark" effect="float"/>
 
-                                <div className="comment-container col-md-12" style={{paddingLeft:"100px", paddingRight:"100px"}}>
+                                <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numRational(s.voters) >= MIN_VOTES && numRational(s.voters) >= numEmotional(s.voters))
                                         .sort((a, b) => {
                                             return sortOutcome(a, b, s => numRational(s.voters), s => s.voters.length );
@@ -436,7 +441,7 @@ const HomePage = React.createClass({
                                 <h2 className="col-md-12" style={{backgroundColor:"#292C2D", padding:"0px", marginTop:"0px", marginBottom:"0px"}}><span data-tip="These arguments are more appealing to people's emotions">Most Emotional</span><img style= {{height: "48px", width:"48px"}}src="images/heart-w.gif" /></h2>
                                 <ReactTooltip place="top" type="dark" effect="float"/>
                                     
-                                <div className="comment-container col-md-12" style={{paddingLeft:"100px", paddingRight:"100px"}}>
+                                <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numEmotional(s.voters) >= MIN_VOTES && numEmotional(s.voters) >= numRational(s.voters))
                                         .sort((a, b) => {
                                             return sortOutcome(a, b, s => numEmotional(s.voters), s => s.voters.length);

@@ -112,14 +112,36 @@ const DebatePage = React.createClass({
         <div className="comments">
             <div className="container">
             <div className="border decide">
-            <ul  className="nav nav-pills">
+            {/*<ul  className="nav nav-pills">
                 <li className="active col-xs-12">
                 <a  href="#factual" data-toggle="tab" >Best Debates</a>
                 </li>
                 <li className="col-xs-12"><a href="#middle" data-toggle="tab">Live Right Now</a></li>
                 <li className="col-xs-12"><a href="#emotional" data-toggle="tab">Subscribed</a></li>
-            </ul>
+            </ul>*/}
+            
+            <div  className="nav nav-pills">
+                <h2 className="col-md-12"  style={{marginBottom:"20px", borderBottom:"2px solid darkgray", fontFamily: 'Source Code Pro', color:"#292C2D"}}><br/>All Debates</h2>
+                <div className="debates col-md-12 live-debates">
+                    { debates.sort((a,b) => {
+                        if(a.updated < b.updated) {
+                            return 1;
+                        }
+                        return -1;
+                    }).map((d, i) => {
+                        return (
+                            <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                        )
+                    })}
+                </div>
+            </div>
+            
+            
+            
             <div className="tab-content">
+            
+            
+            
             
                { /*<div className="col-md-4 vote-col factual active" id ="factual">
                 <h2 className="col-md-12"  style={{marginBottom:"90px", fontFamily: 'Source Code Pro', color:"#292C2D"}}><img src="images/eye-b.png" /><br/>Most Viewed</h2>
