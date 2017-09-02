@@ -109,6 +109,8 @@ const ProfilePage = React.createClass({
         this.props.viewDebate(debate._id);
     },
 
+
+
     handleChallengeResponse(accepted) {
         return (acceptedChallenge) => {
             const userChallenges = this.state.userChallenges;
@@ -167,14 +169,9 @@ const ProfilePage = React.createClass({
     handleBioEdit(loggedInUser){
         console.log("HERE");
         this.props.handleBioEdit(loggedInUser);
-
-        this.setState({showBioEdited: true});
-
-        setTimeout(() => {
-            this.setState({showBioEdited: false});
-        }, 2500);
-
     },
+
+
 
     render() {
         const { modalDebate, showEndDebateMessage, showEndDebateMessageFadeOut, showMyDebates } = this.state;
@@ -195,7 +192,7 @@ const ProfilePage = React.createClass({
         }
 
         profileName = profileName.join(' ');
-
+        const statement1 = this.state.statement;
         const cachedStatements = countVoteTypes(statements);
 
         const factualRank = findRank(factualRankings([...cachedStatements]), profileUser._id);
@@ -205,6 +202,7 @@ const ProfilePage = React.createClass({
         const myDebates = debates.filter((d) => {
             return d.challenger._id == profileUser._id || d.challengee._id == profileUser._id;
         });
+
 
         return (
             <div>
@@ -226,14 +224,9 @@ const ProfilePage = React.createClass({
                                         <EditableBio isEditable={ isMyProfile } handleEdit={handleBioEdit(profileUser)} bio={ profileUser.bio } />
 
 
-
 {/*
                                         <TempPopup show={ this.state.showBioEdited } color="white" backgroundColor="crimson"><div className="center bold">Bio Edited</div></TempPopup>
 */}
-
-
-
-
                                     </div>
                                     <div className="scores">
                                         <div className="col-md-6">
@@ -253,8 +246,31 @@ const ProfilePage = React.createClass({
                                         <h3 className="mb2">{ topic.prompt }</h3>
 */}
                                         <div className="dummyTopic">{ topic.prompt }</div>
+                                        { isMyProfile && ( <div>
+                                        { statements.filter(s=>s.user._id==loggedInUser._id).map((s,i)=>{
+                                            console.log(s);
+                                            if(i==0 ) {
+                                                return (
 
-                                        <EditableFirstArgument isEditable={ isMyProfile } text={ statement.text }  handleEdit={ handleStatementEdit(statement) }/>
+                                                    <EditableFirstArgument isEditable={isMyProfile} text={s.text}
+                                                                           handleEdit={handleStatementEdit(statement)}/>
+                                                )
+                                            }
+                                        }) }
+                                        </div>)}
+                                        { !isMyProfile && ( <div>
+                                            { statements.filter(s=>s.user._id==profileUser._id).map((s,i)=>{
+                                                console.log(s);
+                                                if(i==0 ||i>0) {
+                                                    return (
+                                                        <EditableFirstArgument isEditable={isMyProfile} text={s.text}
+                                                                               handleEdit={handleStatementEdit(statement)}/>
+
+
+                                                    )
+                                                }
+                                            }) }
+                                        </div>)}
 
                                     </div>
                                 </div>
@@ -267,7 +283,8 @@ const ProfilePage = React.createClass({
                                 )}
 
                                 { !isMyProfile && (<div className="debates col-md-12 border-bottom border-white pb3">
-                                    { debates.map((d, i) => {
+                                    { debates.filter(d => d.challenger._id == profileUser._id||d.challengee._id == profileUser._id)
+                                        .map((d, i) => {
                                         return (<FlippableDebateCard handleSubscribeToggle={this.handleSubscribeToggle} key={i} user={ loggedInUser } debate={ d } handleEnterDebate={ this.handleEnterDebate } />)
                                     })}
                                 </div>) }

@@ -22,7 +22,7 @@ class EditableBio extends Component {
         this.setState({
             inputText: nextProps.bio || '',
         });
-        Alert.success('Bio Saved');
+        Alert.success('Changes Saved!!!');
     };
 
    

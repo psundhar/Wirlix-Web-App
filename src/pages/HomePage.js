@@ -46,54 +46,54 @@ const sortOutcome = (a, b, primaryQualifier, secondaryQualifier = null) => {
 };
 var hocus = document.getElementsByClassName("right");
 
-
-const heartExplode = () => {
-    console.log(Carousel.prototype.getActiveIndex);
-    console.log();
-   
-    
-    $(".hearts").on("click", function() {
-
-        console.log("inside jq");
-        var b = Math.floor((Math.random() * 100) + 1);
-        var d = ["flowOne", "flowTwo", "flowThree"];
-        var a = ["colOne", "colTwo", "colThree", "colFour", "colFive", "colSix"];
-        var c = (Math.random() * (1.6 - 1.2) + 1.2).toFixed(1);
-        $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-heart"></i></div>').appendTo(this).css({
-            animation: "" + d[Math.floor((Math.random() * 3))] + " " + c + "s linear"
-        });
-        $(".part-" + b).show();
-        setTimeout(function() {
-            $(".part-" + b).remove()
-        }, c * 1100);
-        setTimeout(function() {
-            hocus[0].click();
-        }, 1500);
-        
-    });
-};
-
-const factExplode = () => {
-    console.log("outside jq");
-    $(".facts").click(function() {
-        console.log("inside jq");
-        var b = Math.floor((Math.random() * 100) + 1);
-        var d = ["flowOne", "flowTwo", "flowThree"];
-        var a = ["colOne", "colTwo", "colThree", "colFour", "colFive", "colSix"];
-        var c = (Math.random() * (1.6 - 1.2) + 1.2).toFixed(1);
-        var d = 
-        $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-smile-o"></i></div>').appendTo(this).css({
-            animation: "" + d[Math.floor((Math.random() * 3))] + " " + c + "s linear"
-        });
-        $(".part-" + b).show();
-        setTimeout(function() {
-            $(".part-" + b).remove()
-        }, c * 1100);
-         setTimeout(function() {
-            hocus[0].click();
-        }, 1500);
-    });
-};
+//
+// const heartExplode = () => {
+//     console.log(Carousel.prototype.getActiveIndex);
+//     console.log();
+//
+//
+//     $(".hearts").on("click", function() {
+//
+//         console.log("inside jq");
+//         var b = Math.floor((Math.random() * 100) + 1);
+//         var d = ["flowOne", "flowTwo", "flowThree"];
+//         var a = ["colOne", "colTwo", "colThree", "colFour", "colFive", "colSix"];
+//         var c = (Math.random() * (1.6 - 1.2) + 1.2).toFixed(1);
+//         $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-heart"></i></div>').appendTo(this).css({
+//             animation: "" + d[Math.floor((Math.random() * 3))] + " " + c + "s linear"
+//         });
+//         $(".part-" + b).show();
+//         setTimeout(function() {
+//             $(".part-" + b).remove()
+//         }, c * 1100);
+//         setTimeout(function() {
+//             hocus[0].click();
+//         }, 1500);
+//
+//     });
+// };
+//
+// const factExplode = () => {
+//     console.log("outside jq");
+//     $(".facts").click(function() {
+//         console.log("inside jq");
+//         var b = Math.floor((Math.random() * 100) + 1);
+//         var d = ["flowOne", "flowTwo", "flowThree"];
+//         var a = ["colOne", "colTwo", "colThree", "colFour", "colFive", "colSix"];
+//         var c = (Math.random() * (1.6 - 1.2) + 1.2).toFixed(1);
+//         var d =
+//         $('<div class="heart part-' + b + " " + a[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (50 - 22) + 22) + 'px;"><i class="fa fa-smile-o"></i></div>').appendTo(this).css({
+//             animation: "" + d[Math.floor((Math.random() * 3))] + " " + c + "s linear"
+//         });
+//         $(".part-" + b).show();
+//         setTimeout(function() {
+//             $(".part-" + b).remove()
+//         }, c * 1100);
+//          setTimeout(function() {
+//             hocus[0].click();
+//         }, 1500);
+//     });
+// };
 
 
 
@@ -116,13 +116,20 @@ const mapDispatchToProps = dispatch => {
             dispatch(createStatement(statement, user));
         },
         handleVote: (isRational, statementId) => {
-            if(isRational==true){
-                heartExplode();
-            }
-            else {
-                factExplode();
-            }
+            // if(isRational==true){
+            //     heartExplode();
+            // }
+            // else {
+            //     factExplode();
+            // }
+            /*setTimeout(function() {
+                hocus[0].click();
+            }, 1500);*/
+            setTimeout(function() {
+                hocus[0].click();
+            }, 1500);
             dispatch(voteOnStatement(statementId, isRational));
+
 
 
         },
@@ -320,7 +327,7 @@ const HomePage = React.createClass({
                         <Carousel
                             indicators = {this.state.indicators}
                             interval = {this.state.interval}>
-                            { statements.filter(s => s.voters <=0  && numRational(s.voters)<=MIN_VOTES  && numEmotional(s.voters) <=MIN_VOTES || (s.voters) && numRational(s.voters) > MIN_VOTES && numEmotional(s.voters) > MIN_VOTES)
+                            { statements.filter(s => s.voters === 0  || s.voters)
                                 .sort((a, b) => {
                                     return a.created >= b.created ? -1 : 1;
                                 })
