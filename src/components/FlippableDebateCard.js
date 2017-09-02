@@ -69,7 +69,7 @@ const FlippableDebateCard = React.createClass({
                             <span className="small" style={{color: "crimson"}}>{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
                             <span className="small ml1"><TimeElapsedString elapsed={debate.updated} /></span>
                         </div>
-                        <div className="clearfix mb3">
+                            {/*<div className="clearfix mb3">
                             <div className="col-md-3">
                             </div>
                             <div className="col-md-3">
@@ -80,7 +80,7 @@ const FlippableDebateCard = React.createClass({
                             </div>
                             <div className="col-md-3">
                             </div>
-                        </div>
+                        </div>*/}
                     </div>
 
                 </div>) }

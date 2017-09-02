@@ -859,7 +859,7 @@ button:focus{
   left: 50%;
   margin-top: 300px;
   height: 500px;
-  border : 10px solid #BAD8D0;
+  border : 10px solid white;
   border-radius: 15px;
   margin-top: 15%;
   /*
@@ -2633,7 +2633,7 @@ textarea:focus {
   }
 
   .debates .debate{
-    height: 200px;
+    height: 150px;
   }
 
   .comment .button-vote, .debate .button-vote{
@@ -2790,7 +2790,7 @@ textarea:focus {
   }
 
   .debates .debate{
-    height: 200px;
+    height: 150px;
   }
 
   .comment .button-vote, .debate .button-vote{
@@ -3111,7 +3111,7 @@ textarea:focus {
   }
 
   .debates .debate{
-    height: 200px;
+    height: 150px;
   }
 
   .comment{

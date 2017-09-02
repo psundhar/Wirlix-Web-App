@@ -95,6 +95,7 @@ body {
     position: relative;
     background-color: #333333;
     transition: background-color 1s;
+    background-image: url('../images/Elixcit-Draft-5.gif');
 }
 
 /*
@@ -242,10 +243,12 @@ button, .input, select, textarea {
     height: 100%;
 }
 
+/*
 #icon-align:hover .weAreOne {
     color: #fff;
     background: #202020;
 }
+*/
 
 .motto2 {
     text-align: center;
@@ -266,6 +269,7 @@ button, .input, select, textarea {
     padding-bottom: 2rem;
 
 }
+/*
 #icon-align {
     text-align: center;
     padding: 35px 0;
@@ -278,6 +282,7 @@ button, .input, select, textarea {
     background: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0) 90%, rgba(0, 0, 0, 0.05) 97%, rgba(0, 0, 0, 0.1) 100%), #fff;
     position: relative;
 }
+*/
 
 /*div#icon-align:hover {
     background: rgba(0, 0, 0, 0.9);
@@ -297,7 +302,8 @@ div#icon-align:hover i, div#icon-align:hover .icons h3, div#icon-align:hover spa
 div#icon-align:hover i {
     border: 2px solid transparent;
 }*/
-
+------------------------------------------- ICON 
+/*
 .icons div div {
     padding: 0;
     background-color: transparent;
@@ -344,7 +350,7 @@ div#icon-align:hover i {
     display: block;
 }
 
-/* */
+ 
 
 .icon-overlay{
   display: none;
@@ -446,6 +452,7 @@ div#icon-align:hover i {
 .icon-message .coexist .T{
   color: #955BA5;
 }
+*/
 
 .fa i:hover{
   background-color: black;
@@ -541,17 +548,54 @@ input:focus {
     background: #f3f3f3;
 }
 
-.description p{
-    padding: 15px 0;
-    margin-top: 50px;
-    border-bottom: 1px solid black;
-    background: black;
-    font-size: 1.3em;
-  font-family: "Arial";
-  /*  font-family: "Source Code Pro";*/
-    color:white;
+.description{
     
+    padding:30px;
+    background-color: black;
 }
+.description p{
+    padding: 15px;
+    margin: 0px;
+   /* border-bottom: 1px solid black;*/
+   /* background: black;*/
+    font-size: 14px;
+    font-family: "Source Code Pro";
+    color:white;
+   line-height: 1.75em;
+   letter-spacing: .4px;
+   font-weight: 400;
+   font-style: normal;
+    text-align: center;
+
+}
+
+/*
+.description-title {
+    font-size: 54px;
+   line-height: 1.1em;
+   text-transform: uppercase;
+   letter-spacing: 4px;
+   font-weight: 400;
+   font-style: normal;
+    text-align: center;
+    color:white;
+}
+*/
+
+.description-title {
+    font-size: 45px;
+    line-height: 1em;
+    text-transform: uppercase;
+    font-style: normal;
+    text-align: center;
+    color: white;
+    font-family: source code pro;
+    font-weight: 300;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+
 
 .signup-top  {
   line-height: inherit;
@@ -2890,9 +2934,11 @@ body {
     position: relative;
     background-image:url('../images/wirlix_collage.jpg');
   }
+/*
   #icon-align .weAreOne {
     display: none;
   }
+*/
   .signup{
     background-color: transparent;
     color: #ffffff;
@@ -2969,9 +3015,11 @@ body {
         padding: 10px;
     }
 
+/*
     #icon-align #div-1, #icon-align #div-2 {
         margin-bottom: 50px;
     }
+*/
 
     .vidtop-content {
         font-size: 40px;

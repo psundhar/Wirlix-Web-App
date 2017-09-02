@@ -107,8 +107,9 @@ const NavBar = React.createClass({
                                         <li><Link to={"/image/"}><span style={{color:"#424242 ", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Upload Image</b></span></Link></li>
                                         <li><a href="/logout"><span style={{color:"#424242 ", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Logout</b></span></a></li>
                                     </ul></li>
-                                {/*<li><a className="help" href="/tutorial">? <br/><span>See Tutorial</span></a></li>*/}
-                                <li> </li>
+       
+                            {/* <li><a className="help" href="/tutorial">? <br/><span>See Tutorial</span></a></li>*/}
+
                             </ul>
                         </div>
                     </div>
