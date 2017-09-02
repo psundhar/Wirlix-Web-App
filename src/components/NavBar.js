@@ -91,10 +91,13 @@ const NavBar = React.createClass({
 */}
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
-                                <li><a className="profile-nav" onClick={this.toggleMenu} style={{background: "url(" + profileImage + ") center center no-repeat" }} >
+                                <li><a className="profile-nav"
+                                       onClick={this.toggleMenu}
+                                       style={{background: "url(" + profileImage + ") center center no-repeat", cursor: 'pointer' }}
+                                >
                                     { notify && (<div style={{position:'absolute',top:0,left:0,height:"13px",width:"13px",borderRadius:"100px",backgroundColor:"crimson"}}></div>) }
                                 </a>
-                                    <ul className="dropdown-menu" id="dropdown" style={{display: isOpen ? "inline-block" : "none", background: "white", borderRadius:"15px"}}>
+                                    <ul className="dropdown-menu" id="dropdown" style={{display: isOpen ? "inline-block" : "none", background: "white", borderRadius:"15px" }}>
                                         <li><Link to={"/profile/" + user._id}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Profile   ></b></span></Link></li>
                                         <li><Link to={"/profile/"+ user._id + "#profile-notifications"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Notifications></b></span></Link></li>
                                         <li><Link to={"/image/"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Upload Image        ></b></span></Link></li>

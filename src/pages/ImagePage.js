@@ -81,10 +81,6 @@ const ImagePage = React.createClass({
 
   },
 
-  componentWillMount() {
-      this.props.getUserProfile('59a76e0f7a11c160588dff32')
-  },
-
   componentDidMount() {
     if(initialState) {
       this.setState(initialState);
@@ -92,13 +88,8 @@ const ImagePage = React.createClass({
   },
 
   onImageDrop(f) {
-    console.log("test....." );
-    const { user } = this.props;
-    user.image=f[0];
-    console.log(user);
     this.setState({
       imageFile: f[0],
-
     });
   },
 
@@ -111,14 +102,16 @@ const ImagePage = React.createClass({
       const data = new FormData();
       data.append('image', imageFile);
 
-      this.props.uploadProfileImage(this.props.user.userId, data)
+      this.props.uploadProfileImage(user._id, data)
+
     }
-    isNewUser ? this.props.history.push('/profile') : this.props.history.push('/home');
+
+    setTimeout(() => { isNewUser ? window.location = '/profile' : window.location = '/home' }, 5000);
   },
 
   handleContinueClick() {
     const { isNewUser } = this.props;
-    isNewUser ? this.props.history.push('/profile') : this.props.history.push('/home');
+    isNewUser ? window.location = '/profile' : window.location = '/home';
   },
 
   handleCancel() {
@@ -129,7 +122,6 @@ const ImagePage = React.createClass({
     const {isUploading,imageFile}=this.state;
     const { user } = this.props;
 
-    console.log ('img props: ', this.props)
     const previewImage = imageFile.preview || user.image || "/images/profile-pic-placeholder.png";
 
     return (
