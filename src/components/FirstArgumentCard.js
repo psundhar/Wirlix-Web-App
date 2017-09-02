@@ -36,7 +36,7 @@ if(challenger){
        //console.log(challengerImage);
  }
     const latestDebate=parseInt(debate.messages.length);
-    console.log("Array length" + latestDebate);
+   // console.log("Array length" + latestDebate);
 
     return (
 

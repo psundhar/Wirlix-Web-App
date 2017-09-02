@@ -256,7 +256,7 @@ const HomePage = React.createClass({
     },
 
     handleConfirm(statementId, topicId, user) {
-        console.log("HERE");
+        //console.log("HERE");
         this.props.handleConfirm(statementId, topicId, user);
 
         this.setState({showChallengeSent: true});
@@ -276,7 +276,7 @@ const HomePage = React.createClass({
              direction: 'down'
              }, 4000);
          setTimeout(function(){ 
-            console.log("jellloo");
+           // console.log("jellloo");
             $(".comment-container").show('slide', {
              direction: 'up'
              }, 500);
@@ -294,7 +294,7 @@ const HomePage = React.createClass({
              direction: 'up'
              }, 4000);
        setTimeout(function(){ 
-            console.log("jellloo");
+           // console.log("jellloo");
             $(".comment-container").hide('slide', {
              direction: 'down'
              }, 4000);

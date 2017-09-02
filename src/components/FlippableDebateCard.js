@@ -29,7 +29,7 @@ const FlippableDebateCard = React.createClass({
         const isChallenger = user._id == challenger._id;
         const isChallengee = user._id == challengee._id;
         const latestDebate=parseInt(debate.messages.length);
-        console.log("Array length" + latestDebate);
+       // console.log("Array length" + latestDebate);
 
         // const classes = "debate " + ( !frontVisible ? 'Card-Back-Flip' : '' );
         /*const latestDebate =  debate.messages.filter((d,i) => {

@@ -15,17 +15,15 @@ class EditableBio extends Component {
     handleTextChange(e) {
         this.setState({inputText: e.target.value});
 
+
     };
 
     componentWillReceiveProps(nextProps) {
-
         this.setState({
             inputText: nextProps.bio || '',
         });
         Alert.success('Changes Saved!!!');
     };
-
-   
 
     render() {
 
@@ -51,7 +49,7 @@ class EditableBio extends Component {
                     )
                 }
                 { isEditable && isDirty && (<div className="flex justify-end mt1">
-                    <button onClick={ () =>handleEdit(inputText)  } className="caps  p1" style={{border:"1px solid black", display:"inline-block", width:"auto"}}>Edit</button>
+                    <button onClick={ () => handleEdit(inputText)} className="caps  p1" style={{border:"1px solid black", display:"inline-block", width:"auto"}}>Edit</button>
                     <Alert effect='jelly' position='top-right' timeout= {5000} offset={150} />
                 </div>) }
             </div>

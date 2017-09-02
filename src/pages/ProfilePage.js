@@ -167,7 +167,7 @@ const ProfilePage = React.createClass({
     },
 
     handleBioEdit(loggedInUser){
-        console.log("HERE");
+       // console.log("HERE");
         this.props.handleBioEdit(loggedInUser);
     },
 
@@ -231,7 +231,6 @@ const ProfilePage = React.createClass({
                                         <div className="profileOpinion col-md-8 col-md-offset-2" style={{borderRadius:"20px"}}>
                                         { isMyProfile && ( <div>
                                             { statements.filter(s=>s.user._id==loggedInUser._id).map((s,i)=>{
-                                                console.log(s);
                                                 if(i==0 ) {
                                                     return (
 
@@ -243,7 +242,6 @@ const ProfilePage = React.createClass({
                                         </div>)}
                                         { !isMyProfile && ( <div>
                                             { statements.filter(s=>s.user._id==profileUser._id).map((s,i)=>{
-                                                console.log(s);
                                                 if(i==0 ||i>0) {
                                                     return (
                                                         <EditableFirstArgument isEditable={isMyProfile} text={s.text}
@@ -293,9 +291,9 @@ const ProfilePage = React.createClass({
                             </div>
                     </section>
                 </div>
-            </div>)}
 
-              /*  <DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={ this.handleEndDebate } user={loggedInUser} handleNewMessage={this.handleNewMessage} debate={ this.state.modalDebate }/>
+
+                <DebateModal handleSubscribeToggle={this.handleSubscribeToggle} questions={topic.questions} handleEndDebate={ this.handleEndDebate } user={loggedInUser} handleNewMessage={this.handleNewMessage} debate={ this.state.modalDebate }/>
 
                 { showEndDebateMessage && (<EndDebateOverlay fadeOut={ showEndDebateMessageFadeOut }/>) }
 
@@ -312,8 +310,9 @@ const ProfilePage = React.createClass({
                         </div>
                     </div>
                 </div>
-            </div>*/
+            </div>
 
+    )}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
