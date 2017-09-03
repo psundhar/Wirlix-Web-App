@@ -86,9 +86,6 @@ body {
     font-style: lighter;
     -webkit-font-smoothing: antialiased;
     font-size: 125px;
-
-
-
 }
 
 .black-opaque {
@@ -96,6 +93,24 @@ body {
     height: 100%;
     background-color: black;
     opacity: 0.5;
+}
+
+/* GRID */
+
+.gridwrapper {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
+
+.gridbox {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
 }
 
 .vid-info { position: absolute; top: 0; right: 0; width: 33%; background: rgba(0,0,0,0.3); color: #fff; /*padding: 1rem;*/ font-family: Avenir, Helvetica, sans-serif; }
@@ -132,6 +147,7 @@ center {
     text-align: center;
     background-color: white;
     height: 100%;
+    background-image: url(../images/booom.gif);
 }
 
 .text-home {
@@ -839,6 +855,10 @@ a {
     line-height: 1.8;
     text-align: center;
 
+}
+
+.descriptioins p {
+    margin: 0;
 }
 
 .step3 {

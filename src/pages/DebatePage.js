@@ -99,7 +99,7 @@ const DebatePage = React.createClass({
             <div className="container">
            {/* <h1 className="main-question col-md-12" id="debate-prompt">{ topic.prompt }</h1>*/}
                 <div className="dummyTopic">{ topic.prompt }</div>
-        <div className="col-md-4 col-md-offset-4 my-debates-button">
+        <div className="col-md-4 col-md-offset-4 my-debates-button" style={{marginBottom:"70px"}}>
             <div className="animated bounce">Click here for your challenges</div>
             <button className="col-md-12 my-debates-button-link" onClick={ this.handleMyDebatesClick }>My Debates</button>
             { anythingUnread && (<div style={{width: "15px", height: "15px", borderRadius: "15px", boxShadow: "0px 1px 2px black", left:"5px", top: "5px", position: "relative", backgroundColor: "crimson"}}></div>) }
@@ -112,28 +112,51 @@ const DebatePage = React.createClass({
         <div className="comments">
             <div className="container">
             <div className="border decide">
-            <ul  className="nav nav-pills">
+            {/*<ul  className="nav nav-pills">
                 <li className="active col-xs-12">
                 <a  href="#factual" data-toggle="tab" >Best Debates</a>
                 </li>
                 <li className="col-xs-12"><a href="#middle" data-toggle="tab">Live Right Now</a></li>
                 <li className="col-xs-12"><a href="#emotional" data-toggle="tab">Subscribed</a></li>
-            </ul>
-            <div className="tab-content">
-            <div className="col-md-4 vote-col factual active" id ="factual">
-            <h2 className="col-md-12"  style={{marginBottom:"90px", fontFamily: 'Source Code Pro', color:"#292C2D"}}><img src="images/eye-b.png" /><br/>Most Viewed</h2>
-            <div className="debates col-md-12" id="best-debates-list">
-                { debates.filter((d) => {
-                    return d.views > 10;
-                }).map((d, i) => {
-                    return (
-                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
-                    )
-                })}
+            </ul>*/}
+            
+            <div  className="nav nav-pills">
+                <h2 className="col-md-12"  style={{marginBottom:"20px", borderBottom:"2px solid darkgray", fontFamily: 'Source Code Pro', color:"#292C2D"}}><br/>All Debates</h2>
+                <div className="debates col-md-12 live-debates">
+                    { debates.sort((a,b) => {
+                        if(a.updated < b.updated) {
+                            return 1;
+                        }
+                        return -1;
+                    }).map((d, i) => {
+                        return (
+                            <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                        )
+                    })}
+                </div>
             </div>
-        </div>
+            
+            
+            
+            <div className="tab-content">
+            
+            
+            
+            
+               { /*<div className="col-md-4 vote-col factual active" id ="factual">
+                <h2 className="col-md-12"  style={{marginBottom:"90px", fontFamily: 'Source Code Pro', color:"#292C2D"}}><img src="images/eye-b.png" /><br/>Most Viewed</h2>
+                    <div className="debates col-md-12" id="best-debates-list">
+                        { debates.filter((d) => {
+                            return d.views > 10;
+                        }).map((d, i) => {
+                            return (
+                                <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                            )
+                        })}
+                    </div>
+                </div>*/ }
 
-        <div className="col-md-4 vote-col middle" id ="middle">
+       { /*<div className="col-md-4 vote-col middle" id ="middle">
             <h2 className="col-md-12"  style={{marginBottom:"90px", fontFamily: 'Source Code Pro', color:"#292C2D"}}><br/>Live Right Now</h2>
             <div className="debates col-md-12 live-debates">
                 { debates.filter((d) => {
@@ -149,20 +172,43 @@ const DebatePage = React.createClass({
                     )
                 })}
             </div>
+    
+            
+        </div>*/ }
+
+    
+        <div className="col-md-12 vote-col middle" id ="middle">
+            <h2 className="col-md-12"  style={{marginBottom:"40px", marginTop:"90px", borderBottom:"2px solid darkgray", fontFamily: 'Source Code Pro', color:"#292C2D"}}><br/>All Debates</h2>
+            <div className="debates col-md-12 live-debates">
+                { debates.sort((a,b) => {
+                    if(a.updated < b.updated) {
+                        return 1;
+                    }
+                    return -1;
+                }).map((d, i) => {
+                    return (
+                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                    )
+                })}
+            </div>
+    
+            
         </div>
 
-        <div className="col-md-4 vote-col emotional" id = "emotional">
+            
+       { /*<div className="col-md-4 vote-col emotional" id = "emotional">
             <h2 className="col-md-12"  style={{marginBottom:"90px", fontFamily: 'Source Code Pro', color:"#292C2D"}}><img src="images/check-mark-b.png" /><br/>Subscribed Debates</h2>
-        <div className="debates col-md-12" id="subscribed-debates-list">
-            { debates.filter((d) => {
-                return d.subscribers.includes(user._id);
-            }).map((d,i)=> {
-                return (
-                    <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
-                )
-            })}
-        </div>
-        </div>
+            <div className="debates col-md-12" id="subscribed-debates-list">
+                { debates.filter((d) => {
+                    return d.subscribers.includes(user._id);
+                }).map((d,i)=> {
+                    return (
+                        <FlippableDebateCard key={i} user={user} handleSubscribeToggle={this.props.handleSubscribeToggle} debate={d} handleEnterDebate={this.handleEnterDebate} />
+                    )
+                })}
+            </div>
+        </div>*/}
+
         </div>
         </div>
         </div>

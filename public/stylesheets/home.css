@@ -10,7 +10,8 @@ h1, h2, h3, h4{
 }
 
 .main-section-home{
-  min-height: 75vh;
+  /*min-height: 75vh;*/
+  height: 800px;
   /*  position: relative;
     overflow: hidden;*/
 }
@@ -25,7 +26,12 @@ h1, h2, h3, h4{
   cursor: pointer;
 }
 
-
+.hideo {
+    
+  font-size: 20px;
+  border-bottom: none;
+    position:relative;
+}
 
 /* ================================== ARROW/LIVE ================================== */
 
@@ -624,6 +630,7 @@ button:focus{
 
 .comment-container{
   overflow: auto;
+  display:none;
 }
 
 .comment{
@@ -673,10 +680,10 @@ button:focus{
 }
 
 .comment p .username{
-  color: #262626;
+  color: black;
   margin-top: -5px;
   display: inline-block;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .comment p i{
@@ -780,6 +787,12 @@ button:focus{
 .vote-col.factual{
   border-right: 1px solid darkgray;
 }
+#factual {
+  display: none;
+}
+#emotional {
+  display: none;
+}
 
 .vote-col.emotional{
   border-left: 1px solid darkgray;
@@ -821,12 +834,46 @@ button:focus{
 #statement_carousel {
   display: inline-block;
   margin: 0 auto;
+  width: 100%;
 }
 
 .carousel-inner {
-  width: 500px;
-  left: 27%;
+    
+    position:relative;
+    width: 500px;
 
+  left: 30%;
+   
+  /*  align-content: center;*/
+
+}
+
+.carousel-inner item{
+
+    margin: auto;
+}
+
+.main-section-home video#bgvid {
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  margin-top: 300px;
+  height: 500px;
+  border : 10px solid white;
+  border-radius: 15px;
+  margin-top: 15%;
+  /*
+  min-width: 50%;
+ min-height: 100%;
+  width: 100%;
+  height: auto;
+  */
+  z-index: 10;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
 }
 
 .slide {
@@ -845,7 +892,7 @@ button:focus{
   /*    background: -o-linear-gradient(#7AC1BD, #99C79E); /* For Opera 11.1 to 12.0 */
   /*    background: -moz-linear-gradient(#7AC1BD, #99C79E); /* For Firefox 3.6 to 15 */
   /*     background: linear-gradient(#7AC1BD, #99C79E); /* Standard syntax (must be last) */
-  width: 1200px;
+  width: 100%;
 }
 
 /* ================================== About ================================== */
@@ -994,11 +1041,11 @@ button:focus{
 
 .debates .debate .content{
   overflow: auto;
-  background-color: rgba(255,255,255,.5);
+ /* background-color: rgba(255,255,255,.5);
   padding: 5px;
   border: 3px solid #ffffff;
-  /*  margin-bottom: 10px;*/
-  border-radius: 3px;
+  border-radius: 3px;*/
+    /*  margin-bottom: 10px;*/
   cursor: pointer;
 }
 
@@ -1088,9 +1135,20 @@ button:focus{
 .full-debate{
   padding: 5px;
   text-align: center;
-  width: 100%;
+ /* width: 100%;*/
   color: #262626;
   background-color: rgba(255, 255, 255, 0.40);
+  display: inline-block;
+  text-decoration: none;
+  border: 2px solid #262626;
+}
+
+.full-debate:hover{
+  padding: 5px;
+  text-align: center;
+ /* width: 100%;*/
+  color: white;
+  background-color:#262626 ;
   display: inline-block;
   text-decoration: none;
   border: 2px solid #262626;
@@ -1101,12 +1159,12 @@ button:focus{
   text-decoration: none;
 }
 
-.full-debate:hover{
+/*.full-debate:hover{
   color: #262626;
   text-decoration: none;
   border: 2px solid #262626;
   background-color: #ffffff;
-}
+}*/
 
 .my-debates{
   padding: 0;
@@ -1128,10 +1186,19 @@ button:focus{
 .my-debate .reply-button{
   padding: 5px;
   text-align: center;
-  color: #ffffff;
   background-color: #ffffff;
   display: inline-block;
   color: #262626;
+  text-decoration: none;
+  border: 2px solid #262626;
+}
+
+.my-debate .reply-button:hover{
+  padding: 5px;
+  text-align: center;
+  background-color: #262626;
+  display: inline-block;
+  color: white;
   text-decoration: none;
   border: 2px solid #262626;
 }
@@ -1785,28 +1852,40 @@ button:focus{
 /* ================================== Profile ================================== */
 
 .main-content.profile{
-  background: blue; /* For browsers that do not support gradients */
+/*    background: blue; /* For browsers that do not support gradients */
   /*    background: -webkit-linear-gradient(#7AC1BD, #99C79E); /* For Safari 5.1 to 6.0 */
   /*    background: -o-linear-gradient(#7AC1BD, #99C79E); /* For Opera 11.1 to 12.0 */
   /*    background: -moz-linear-gradient(#7AC1BD, #99C79E); /* For Firefox 3.6 to 15 */
   /*    background: linear-gradient(#7AC1BD, #99C79E); /* Standard syntax (must be last) */
 
-  background: -webkit-linear-gradient(#2BB6D2, #55CEB1); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#2BB6D2, #55CEB1); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#2BB6D2, #55CEB1); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#2BB6D2, #55CEB1); /* Standard syntax (must be last) */
+/*   background: -webkit-linear-gradient(#2BB6D2, #55CEB1); /* For Safari 5.1 to 6.0 */
+/*   background: -o-linear-gradient(#2BB6D2, #55CEB1); /* For Opera 11.1 to 12.0 */
+/*   background: -moz-linear-gradient(#2BB6D2, #55CEB1); /* For Firefox 3.6 to 15 */
+/*   background: linear-gradient(#2BB6D2, #55CEB1); /* Standard syntax (must be last) */
   /* background:url(../images/bgimg2.jpg) center center no-repeat ;*/
-  background-size: cover;
+/*   background-size: cover;*/
+    
+  background: #C41717;  
+    
+}
+
+.gradient{
+    background:#C41717; /* For browsers that do not support gradients */
+     background: -webkit-linear-gradient(#C41717, #ffffff); /* For Safari 5.1 to 6.0 */
+      background: -o-linear-gradient(#C41717, #ffffff); /* For Opera 11.1 to 12.0 */
+      background: -moz-linear-gradient(#C41717, #ffffff); /* For Firefox 3.6 to 15 */
+      background: linear-gradient(#C41717, #ffffff); /* Standard syntax (must be last) */
 }
 
 .pic-crop{
-  width: 300px;
-  height: 300px;
+ /* width: 300px;*/
+  height: 400px;
   overflow: hidden;
   display: block;
   background-size: cover;
-  border: 3px solid #ffffff;
-  border-radius: 50%;
+ /* border: 3px solid #C41717;*/
+ /* border: 3px solid #ffffff; */
+/*  border-radius: 50%;*/
   margin: 0 auto;
 }
 
@@ -1895,11 +1974,12 @@ button:focus{
   border-top-left-radius: 3px;
   text-align: center;
   padding: 10px;
-  color: #ffffff;
+ /* color: #ffffff;*/
+  color:black;
   cursor: pointer;
   margin-bottom: 0;
   width: 100%;
-  background-color: #990000;
+ /* background-color: #990000;*/
 }
 
 .qotd button{
@@ -1968,22 +2048,554 @@ button:focus{
   margin-top: 10px;
 }
 
+.tipIcons{
+    
+    width:100%;
+   /* height:120px;*/
+   /* background-color:#DBD9D9;*/
+    padding-left:50px;
+    padding-right:50px;
+    margin-bottom:50px;
+    position:relative;
+    display:inline-block;
+    
+}
+
+/*----------------floating hearts-------*/
+div.hearts {
+  width: 200px;
+  height: 600px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -50px;
+}
+div.facts {
+  width: 200px;
+  height: 600px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -50px;
+}
+div.heart {
+  width: 30px;
+  height: 30px;
+  opacity: 1;
+  position: absolute;
+  bottom: 0;
+  display: none;
+}
+div.heart i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .9;
+}
+.colOne {
+  color: #fce473;
+}
+.colTwo {
+  color: #f68b39;
+}
+.colThree {
+  color: #ed6c63;
+}
+.colFour {
+  color: #847bb9;
+}
+.colFive {
+  color: #97cd76;
+}
+.colSix {
+  color: #35b1d1;
+}
+@keyframes flowOne {
+  0% {
+    opacity: 0;
+    bottom: 0;
+    left: 14%}
+  40% {
+    opacity: .8;
+  }
+  50% {
+    opacity: 1;
+    left: 0;
+  }
+  60% {
+    opacity: .2;
+  }
+  80% {
+    bottom: 80%}
+  100% {
+    opacity: 0;
+    bottom: 100%;
+    left: 18%}
+}@keyframes flowTwo {
+   0% {
+     opacity: 0;
+     bottom: 0;
+     left: 0;
+   }
+   40% {
+     opacity: .8;
+   }
+   50% {
+     opacity: 1;
+     left: 11%}
+   60% {
+     opacity: .2;
+   }
+   80% {
+     bottom: 60%}
+   100% {
+     opacity: 0;
+     bottom: 80%;
+     left: 0;
+   }
+ }@keyframes flowThree {
+    0% {
+      opacity: 0;
+      bottom: 0;
+      left: 0;
+    }
+    40% {
+      opacity: .8;
+    }
+    50% {
+      opacity: 1;
+      left: 30%}
+    60% {
+      opacity: .2;
+    }
+    80% {
+      bottom: 70%}
+    100% {
+      opacity: 0;
+      bottom: 90%;
+      left: 0;
+    }
+  }
+
+
+/*----------speechBubbles----*/
+
+.speechStatementCard {
+  width: 550px;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  color:black;
+  border: 1px solid white;
+  padding:40px;
+  -webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;
+    
+   
+}
+
+.vote-col .speechStatementCard{
+ position: relative;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin-left:50px; 
+  -webkit-box-shadow: 4px 4px 8px transparent;
+  -moz-box-shadow: 4px 4px 8px transparent;
+  box-shadow: 4px 4px 8px transparent;
+}
+
+.speechDebateCard {
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  color:black;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding:10px;
+  -webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;
+}
+
+.speech {
+  position: relative;
+  text-align: center;
+  line-height: 100px;
+  background-color: white;
+  border: 5px solid #C41717;
+  border-radius: 10px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;  
+  -webkit-box-shadow: 2px 2px 4px #888;
+  -moz-box-shadow: 2px 2px 4px #888;
+  box-shadow: 2px 2px 4px #888;
+}
+
+
+.speech:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 52%;
+  top: 100%;
+  border: 15px solid #C41717;
+  border-color: #C41717 transparent transparent #C41717;
+}
+
+p.speech:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 53.5%;
+  top: 100%;
+  border: 8px solid ;
+  border-color: #fff transparent transparent #fff;
+}
+
+.grad1 {
+    
+ /*   background: lightblue; /* For browsers that do not support gradients */
+/*    background: -webkit-linear-gradient(#7AC1BD, #99C79E); /* For Safari 5.1 to 6.0 */
+/*    background: -o-linear-gradient(#7AC1BD, #99C79E); /* For Opera 11.1 to 12.0 */
+/*    background: -moz-linear-gradient(#7AC1BD, #99C79E); /* For Firefox 3.6 to 15 */
+/*    background: linear-gradient(#7AC1BD, #99C79E); /* Standard syntax (must be last) */
+    
+ /*   background: -webkit-linear-gradient(#2BB6D2, #55CEB1); /* For Safari 5.1 to 6.0 */
+ /*   background: -o-linear-gradient(#2BB6D2, #55CEB1); /* For Opera 11.1 to 12.0 */
+/*    background: -moz-linear-gradient(#2BB6D2, #55CEB1); /* For Firefox 3.6 to 15 */
+/*   background: linear-gradient(#2BB6D2, #55CEB1); /* Standard syntax (must be last) */
+    
+/*     background: #C41717; /* For browsers that do not support gradients */
+/*     background: -webkit-linear-gradient(#4B0000, #FE2000); /* For Safari 5.1 to 6.0 */
+/*     background: -o-linear-gradient(#4B0000, #FE2000); /* For Opera 11.1 to 12.0 */
+/*     background: -moz-linear-gradient(#4B0000, #FE2000); /* For Firefox 3.6 to 15 */
+/*    background: linear-gradient(#4B0000, #FE2000); /* Standard syntax (must be last) */
+    
+    background:#C41717;
+    
+   
+}
+/*--for pulsating effect---*/
+
+.pulse {
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 0 0 #C41717;
+  animation: pulse 2s infinite;
+}
+.pulse:hover {
+  animation: none;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(196,23,23,0.8);
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(196,23,23, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(196,23,23, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(196,23,23, 0.8);
+    box-shadow: 0 0 0 0 rgba(196,23,23, 0.8);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px rgba(196,23,23, 0);
+      box-shadow: 0 0 0 10px rgba(196,23,23, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(196,23,23, 0);
+      box-shadow: 0 0 0 0 rgba(196,23,23, 0);
+  }
+}
+
+/*
+textarea:focus {
+  animation:none;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 3px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+*/
+
+/*---placeholder color---*/
+::-webkit-input-placeholder { /* Chrome */
+  color: darkgray;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: darkgray;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: darkgray;
+  opacity: 1;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+  color: darkgray;
+  color: darkgray;
+  opacity: 1;
+}
+
+/*----Typing animation---*/
+.opinionQuestion p{
+  color: black;
+  font-family: "Raleway";
+  font-size: 2em;
+  margin: 0 auto;
+  margin-top:0px;
+  margin-bottom: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 13em;
+  animation: type 4s steps(60, end);
+}
+
+.opinionQuestion p:nth-child(2){
+  animation: type2 8s steps(60, end);
+}
+
+
+.opinionQuestion p span{
+  animation: blink 1s infinite;
+}
+
+@keyframes type{
+  from { width: 0; }
+}
+
+@keyframes type2{
+  0%{width: 0;}
+  50%{width: 0;}
+  100%{ width: 100; }
+}
+
+@keyframes blink{
+  to{opacity: .0;}
+}
+
+/*-----vote buttons---*/
+.voteButton {
+
+  background: none;
+  border: none;
+  border-bottom: solid 2px white;
+  margin: 30px;
+}
+
+.voteButtonChallenge {
+  border:2px solid #C41717;
+  border-radius: 50%;
+ /* margin: 30px;*/
+}
+
+.voteButton img{
+    height:40px;
+    width:40px;
+}
+
+.voteButtonChallenge img{
+    height:40px;
+    width:40px;
+}
+
+.mobileScreenVoteButtons{
+    display:none;
+}
+
+.fullScreenVoteButtons{
+    display:block;
+}
+
+/*----shine----*/
+.myButton:hover {
+
+}
+/* generated element for shine effect.
+ * normal state is semi-transparent
+ * white but with zero width. Set no
+ * transition here for no mouse-leave
+ * animations. Otherwise the effect
+ * will play in reverse when your mouse
+ * leaves the element
+ */
+.myButton:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.4);
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+
+}
+/* on hover we animate the width to
+ * 100% and opacity to 0 so the element
+ * grows and fades out
+ */
+.myButton:hover:after {
+  width: 120%;
+  background-color: rgba(255,255,255,0);
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+/*----bounce out--*/
+@-webkit-keyframes bounceOut {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  25% {
+    -webkit-transform: scale(.95);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(.3);
+  }
+}
+
+@keyframes bounceOut {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(.3);
+  }
+}
+
+.bounceOut {
+  -webkit-animation-name: bounceOut;
+  animation-name: bounceOut;
+}
+
+/*---pulse--*/
+@keyframes pulseOut {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.vote-col{
+    
+}
+
 
 /* ================================== Media Queries ================================== */
 
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
+
   .homepagetooltip{
     position: absolute;
     bottom: 85%;
     left: 93%;
   }
+    
+    .speechStatementCard {
+  
+  width:550px;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  color:black;
+  border: 1px solid white;
+  padding:40px;
+    margin-left:0px; 
+  -webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;
+ }
+    
+ .carousel-inner {
+    
+    position:relative;
+    width: 320px;
+    left: 29.5%;
+     
+    }
+    
+
+.tipIcons{
+    
+    width:100%;
+   /* height:120px;*/
+    /*background-color:#DBD9D9;*/
+    padding-left:50px;
+    padding-right:50px;
+    margin-bottom:50px;
+    position:relative;
+    display:inline-block;
+    
+    }
 }
 
-/* Medium Devices, Desktops */
-@media only screen and (max-width : 992px) {
 
+@media only screen and (max-width : 1025px) {
+  .main-section-home video#bgvid {
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  margin-top: 300px;
+  height: 350px;
+  
+}
+  
+   .vote-col .speechStatementCard {
+  
+  width:100%;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  color:black;
+  border: 1px solid white;
+  padding:40px;
+     margin-left:0px; 
+  /*-webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;*/
+ }
+   
+
+ .tipIcons{
+    
+    width:100%;
+ /*   height:120px;
+    background-color:#DBD9D9;*/
+    padding-left:50px;
+    padding-right:50px;
+    margin-bottom:50px;
+    position:relative;
+    display:inline-block;
+    
+}  
+    
   .homepagetooltip{
     position: absolute;
     bottom: 88%;
@@ -2021,7 +2633,7 @@ button:focus{
   }
 
   .debates .debate{
-    height: 200px;
+    height: 150px;
   }
 
   .comment .button-vote, .debate .button-vote{
@@ -2031,14 +2643,334 @@ button:focus{
   .my-debate{
     overflow: auto;
   }
-  .carousel-inner{
+  /*.carousel-inner{
     left: 177px;
+  }*/
+    
+     .comment{
+  color: #ffffff;
+  font-size: 1.25em;
+  font-weight: 200;
+  overflow: auto;
+  margin-bottom: 20px;
+  margin-top:20px;
+
   }
+    
+ .opinionQuestion{
+  text-align: center;
+  margin-top: 50px;
+  font-family: 'Source Code Pro', monospace;
+  padding: 0px;
+  font-weight: 200;
+ }
+   
+    
+    
+.speechStatementCard {
+  
+  width:100%;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  color:black;
+  border: 1px solid white;
+  padding:40px;
+   
+  -webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;
+ }
+    
+ .carousel-inner {
+    
+    position:relative;
+    width: 320px;
+    /*left: 22%;*/
+    left: 0%; 
+    }
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+.main-section-home video#bgvid {
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  margin-top: 300px;
+  height: 350px;
+  
+}
+  
+   .vote-col .speechStatementCard {
+  
+  width:100%;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  color:black;
+  border: 1px solid white;
+  padding:40px;
+     margin-left:0px; 
+  /*-webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;*/
+ }
+    .speechStatementCard {
+  
+  width:100%;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  color:black;
+  border: 1px solid white;
+  padding:40px;
+   
+  -webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;
+ }
+    
+ .carousel-inner {
+    
+    position:relative;
+    width: 320px;
+    /*left: 22%;*/
+    left: 0%; 
+    }
+
+ .tipIcons{
+    
+    width:100%;
+ /*   height:120px;
+    background-color:#DBD9D9;*/
+    padding-left:50px;
+    padding-right:50px;
+    margin-bottom:50px;
+    position:relative;
+    display:inline-block;
+    
+}  
+    
+  .homepagetooltip{
+    position: absolute;
+    bottom: 88%;
+    left: 93%;
+  }
+
+  .button-home{
+    bottom: 20px;
+  }
+
+  .nav input{
+    width: 100px;
+    margin-top: 0;
+    padding-top: 14px;
+  }
+
+  .navbar.navbar-default .nav li a{
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+
+  .main-title-about h1{
+    font-size: 2em;
+  }
+  .svg-cont {
+
+  }
+
+  .svg-cont svg{
+    width: 300px;
+  }
+
+  .reply-box{
+    overflow: auto;
+  }
+
+  .debates .debate{
+    height: 150px;
+  }
+
+  .comment .button-vote, .debate .button-vote{
+    margin-bottom: 10px;
+  }
+
+  .my-debate{
+    overflow: auto;
+  }
+  /*.carousel-inner{
+    left: 177px;
+  }*/
+    
+     .comment{
+  color: #ffffff;
+  font-size: 1.25em;
+  font-weight: 200;
+  overflow: auto;
+  margin-bottom: 20px;
+  margin-top:20px;
+
+  }
+    
+ .opinionQuestion{
+  text-align: center;
+  margin-top: 50px;
+  font-family: 'Source Code Pro', monospace;
+  padding: 0px;
+  font-weight: 200;
+ }
+   
+     .voteButton {
+
+      background: none;
+      border: none;
+      border-bottom: none;
+      margin: 0px;
+      width:70px;
+    }
+
+    .voteButtonChallenge {
+      border:2px solid #C41717;
+      border-radius: 50%;
+      margin-left: 10px;
+      margin-right:10px;
+      padding:0px;
+    }
+
+    .voteButton img{
+        height:25px;
+        width:25px;
+    }
+
+    .voteButtonChallenge img{
+        height:25px;
+        width:25px;
+        margin:7px;
+    }
+    
+    .fullScreenVoteButtons{
+        display:none;
+    }
+    
+    .mobileScreenVoteButtons{
+        display:block;
+    }
 }
 
 /* Small Devices, Tablets */
-@media only screen and (max-width : 768px) {
+/*@media only screen and (max-width : 768px) {*/
+@media only screen and (max-width : 775px){
+    
+   .vote-col .speechStatementCard {
+  
+  width:100%;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  color:black;
+  border: 1px solid white;
+  padding:40px;
+     margin-left:0px; 
+  /*-webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;*/
+ }
+    .speechStatementCard {
+  
+  width:100%;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  color:black;
+  border: 1px solid white;
+  padding:40px;
+   
+  -webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;
+ }
+ .carousel-inner {
+    
+    position:relative;
+    width: 320px;
+    left: 0%;
+    }
+    
+ .comment{
+  color: #ffffff;
+  font-size: 1.25em;
+  font-weight: 200;
+  overflow: auto;
+  margin-bottom: 20px;
+  margin-top:20px;
 
+  }
+    
+ .opinionQuestion{
+  text-align: center;
+  margin-top: 50px;
+  font-family: 'Source Code Pro', monospace;
+  padding: 0px;
+  font-weight: 200;
+ }
+   
+     .voteButton {
+
+      background: none;
+      border: none;
+      border-bottom: none;
+      margin: 0px;
+      width:70px;
+    }
+
+    .voteButtonChallenge {
+      border:2px solid #C41717;
+      border-radius: 50%;
+      margin-left: 10px;
+      margin-right:10px;
+      padding:0px;
+    }
+
+    .voteButton img{
+        height:25px;
+        width:25px;
+    }
+
+    .voteButtonChallenge img{
+        height:25px;
+        width:25px;
+        margin:7px;
+    }
+    
+    .fullScreenVoteButtons{
+        display:none;
+    }
+    
+    .mobileScreenVoteButtons{
+        display:block;
+    }
+    
+    .qotd{
+        background: white;
+        padding-bottom: 70px;
+        border-bottom: 6px solid #C41717;
+    }
+
+    .tipIcons{
+    
+   width:100%;
+   /* background-color:#DBD9D9;*/
+    padding-left:50px;
+    padding-right:50px;
+    margin-bottom:50px;
+    position:relative;
+    display:inline-block;
+    
+}
+    
+    
  .naver {
     color: black;
   }
@@ -2157,14 +3089,18 @@ button:focus{
 
   }
 
-  .nav.nav-pills{
-    display: block;
-    margin-top: 50px;
-  }
-
-  .vote-col.emotional{
+.vote-col.emotional{
     border: none;
   }
+    
+  .nav.nav-pills{
+    display: block;
+    margin-top: 10px;
+  }
+
+    .vote-col{
+        display:none;
+    }  
 
   .comment .button-vote, .debate .button-vote{
     margin-bottom: 10px;
@@ -2175,7 +3111,7 @@ button:focus{
   }
 
   .debates .debate{
-    height: 200px;
+    height: 150px;
   }
 
   .comment{
@@ -2349,6 +3285,9 @@ button:focus{
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
+    
+   
+    
   .svg-cont {
     margin: 0 auto;
     position: absolute;
@@ -2357,6 +3296,18 @@ button:focus{
     bottom: 200px;
     right: 0px;
   }
+    
+.tipIcons{
+    
+   width:100%;
+  /*  background-color:#DBD9D9;*/
+    padding-left:50px;
+    padding-right:50px;
+    margin-bottom:50px;
+    position:relative;
+    display:inline-block;
+    
+}
 
   .svg-cont svg{
     width: 100px !important;
@@ -2383,432 +3334,114 @@ button:focus{
     overflow: hidden;
     height: 100vh;
   }
+    
+ .slide{
+        width:320px;
+       /* height: 500px;*/
+        margin:0 auto;
+    }
+    
+ .vote-col .speechStatementCard {
+  
+  width:100%;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  color:black;
+  border: 1px solid white;
+  padding:40px;
+     margin-left:0px; 
+/*  -webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;*/
+ }
+    .speechStatementCard {
+  
+  width:100%;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  color:black;
+  border: 1px solid white;
+  padding:40px;
+   
+  -webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;
+ }
+    
+ .carousel-inner {
+    
+    position:relative;
+    width: 320px;
+    left: 0%;
+    }
+    
+ .comment{
+  color: #ffffff;
+  font-size: 1.25em;
+  font-weight: 200;
+  overflow: auto;
+  margin-bottom: 20px;
+  margin-top:20px;
+
+  }
+    
+ .opinionQuestion{
+  text-align: center;
+  margin-top: 50px;
+  font-family: 'Source Code Pro', monospace;
+  padding: 0px;
+  font-weight: 200;
+ }
+   
+     .voteButton {
+
+      background: none;
+      border: none;
+      border-bottom: none;
+      margin: 0px;
+      width:70px;
+    }
+
+    .voteButtonChallenge {
+      border:2px solid #C41717;
+      border-radius: 50%;
+      margin-left: 10px;
+      margin-right:10px;
+      padding:0px;
+    }
+
+    .voteButton img{
+        height:25px;
+        width:25px;
+    }
+
+    .voteButtonChallenge img{
+        height:25px;
+        width:25px;
+        margin:7px;
+    }
+    
+    .fullScreenVoteButtons{
+        display:none;
+    }
+    
+    .mobileScreenVoteButtons{
+        display:block;
+    }
+    
+    .qotd{
+        background: white;
+        padding-bottom: 70px;
+        border-bottom: 6px solid #C41717;
+    }
 
 }
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width : 320px) {
 
-}
-
-/*----------------floating hearts-------*/
-div.hearts {
-  width: 200px;
-  height: 600px;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  margin-left: -50px;
-}
-div.facts {
-  width: 200px;
-  height: 600px;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  margin-left: -50px;
-}
-div.heart {
-  width: 30px;
-  height: 30px;
-  opacity: 1;
-  position: absolute;
-  bottom: 0;
-  display: none;
-}
-div.heart i {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: .9;
-}
-.colOne {
-  color: #fce473;
-}
-.colTwo {
-  color: #f68b39;
-}
-.colThree {
-  color: #ed6c63;
-}
-.colFour {
-  color: #847bb9;
-}
-.colFive {
-  color: #97cd76;
-}
-.colSix {
-  color: #35b1d1;
-}
-@keyframes flowOne {
-  0% {
-    opacity: 0;
-    bottom: 0;
-    left: 14%}
-  40% {
-    opacity: .8;
-  }
-  50% {
-    opacity: 1;
-    left: 0;
-  }
-  60% {
-    opacity: .2;
-  }
-  80% {
-    bottom: 80%}
-  100% {
-    opacity: 0;
-    bottom: 100%;
-    left: 18%}
-}@keyframes flowTwo {
-   0% {
-     opacity: 0;
-     bottom: 0;
-     left: 0;
-   }
-   40% {
-     opacity: .8;
-   }
-   50% {
-     opacity: 1;
-     left: 11%}
-   60% {
-     opacity: .2;
-   }
-   80% {
-     bottom: 60%}
-   100% {
-     opacity: 0;
-     bottom: 80%;
-     left: 0;
-   }
- }@keyframes flowThree {
-    0% {
-      opacity: 0;
-      bottom: 0;
-      left: 0;
-    }
-    40% {
-      opacity: .8;
-    }
-    50% {
-      opacity: 1;
-      left: 30%}
-    60% {
-      opacity: .2;
-    }
-    80% {
-      bottom: 70%}
-    100% {
-      opacity: 0;
-      bottom: 90%;
-      left: 0;
-    }
-  }
-
-
-/*----------speechBubbles----*/
-
-.speechStatementCard {
-  position: relative;
-  text-align: center;
-  background-color: #fff;
-  border: 1px solid white;
-  padding:40px;
-  -webkit-box-shadow: 4px 4px 8px #888;
-  -moz-box-shadow: 4px 4px 8px #888;
-  box-shadow: 4px 4px 8px #888;
-}
-
-.vote-col .speechStatementCard{
- position: relative;
-  text-align: center;
-  background-color: transparent;
-  border: 1px solid transparent;
-   
-  -webkit-box-shadow: 4px 4px 8px transparent;
-  -moz-box-shadow: 4px 4px 8px transparent;
-  box-shadow: 4px 4px 8px transparent;
-}
-
-.speechDebateCard {
-  position: relative;
-  text-align: center;
-  background-color: #fff;
-  border: 1px solid black;
-  border-radius: 10px;
-  padding:10px;
-  -webkit-box-shadow: 4px 4px 8px #888;
-  -moz-box-shadow: 4px 4px 8px #888;
-  box-shadow: 4px 4px 8px #888;
-}
-
-.speech {
-  position: relative;
-  text-align: center;
-  line-height: 100px;
-  background-color: white;
-  border: 5px solid #C41717;
-  border-radius: 10px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;  
-  -webkit-box-shadow: 2px 2px 4px #888;
-  -moz-box-shadow: 2px 2px 4px #888;
-  box-shadow: 2px 2px 4px #888;
-}
-
-
-.speech:before {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 52%;
-  top: 100%;
-  border: 15px solid #C41717;
-  border-color: #C41717 transparent transparent #C41717;
-}
-
-p.speech:after {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 53.5%;
-  top: 100%;
-  border: 8px solid ;
-  border-color: #fff transparent transparent #fff;
-}
-
-.grad1 {
-    
- /*   background: lightblue; /* For browsers that do not support gradients */
-/*    background: -webkit-linear-gradient(#7AC1BD, #99C79E); /* For Safari 5.1 to 6.0 */
-/*    background: -o-linear-gradient(#7AC1BD, #99C79E); /* For Opera 11.1 to 12.0 */
-/*    background: -moz-linear-gradient(#7AC1BD, #99C79E); /* For Firefox 3.6 to 15 */
-/*    background: linear-gradient(#7AC1BD, #99C79E); /* Standard syntax (must be last) */
-    
- /*   background: -webkit-linear-gradient(#2BB6D2, #55CEB1); /* For Safari 5.1 to 6.0 */
- /*   background: -o-linear-gradient(#2BB6D2, #55CEB1); /* For Opera 11.1 to 12.0 */
-/*    background: -moz-linear-gradient(#2BB6D2, #55CEB1); /* For Firefox 3.6 to 15 */
-/*   background: linear-gradient(#2BB6D2, #55CEB1); /* Standard syntax (must be last) */
-    
-/*     background: #C41717; /* For browsers that do not support gradients */
-/*     background: -webkit-linear-gradient(#4B0000, #FE2000); /* For Safari 5.1 to 6.0 */
-/*     background: -o-linear-gradient(#4B0000, #FE2000); /* For Opera 11.1 to 12.0 */
-/*     background: -moz-linear-gradient(#4B0000, #FE2000); /* For Firefox 3.6 to 15 */
-/*    background: linear-gradient(#4B0000, #FE2000); /* Standard syntax (must be last) */
-    
-    background:#C41717;
-    
-   
-}
-/*--for pulsating effect---*/
-
-.pulse {
-  background: white;
-  cursor: pointer;
-  box-shadow: 0 0 0 #C41717;
-  animation: pulse 2s infinite;
-}
-.pulse:hover {
-  animation: none;
-}
-
-@-webkit-keyframes pulse {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(196,23,23,0.8);
-  }
-  70% {
-      -webkit-box-shadow: 0 0 0 10px rgba(196,23,23, 0);
-  }
-  100% {
-      -webkit-box-shadow: 0 0 0 0 rgba(196,23,23, 0);
-  }
-}
-@keyframes pulse {
-  0% {
-    -moz-box-shadow: 0 0 0 0 rgba(196,23,23, 0.8);
-    box-shadow: 0 0 0 0 rgba(196,23,23, 0.8);
-  }
-  70% {
-      -moz-box-shadow: 0 0 0 10px rgba(196,23,23, 0);
-      box-shadow: 0 0 0 10px rgba(196,23,23, 0);
-  }
-  100% {
-      -moz-box-shadow: 0 0 0 0 rgba(196,23,23, 0);
-      box-shadow: 0 0 0 0 rgba(196,23,23, 0);
-  }
-}
-
-/*
-textarea:focus {
-  animation:none;
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-  padding: 3px 3px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid rgba(81, 203, 238, 1);
-}
-*/
-
-/*---placeholder color---*/
-::-webkit-input-placeholder { /* Chrome */
-  color: darkgray;
-}
-:-ms-input-placeholder { /* IE 10+ */
-  color: darkgray;
-}
-::-moz-placeholder { /* Firefox 19+ */
-  color: darkgray;
-  opacity: 1;
-}
-:-moz-placeholder { /* Firefox 4 - 18 */
-  color: darkgray;
-  color: darkgray;
-  opacity: 1;
-}
-
-/*----Typing animation---*/
-
-.opinionQuestion p{
-  color: black;
-  font-family: "Raleway";
-  font-size: 2em;
-  margin-left: 38%;
-  margin-top:0px;
-  margin-bottom: 0px;
-  margin-right: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 13em;
-  animation: type 3s steps(60, end);
-}
-
-.opinionQuestion p:nth-child(2){
-  animation: type2 8s steps(60, end);
-}
-
-
-.opinionQuestion p span{
-  animation: blink 1s infinite;
-}
-
-@keyframes type{
-  from { width: 0; }
-}
-
-@keyframes type2{
-  0%{width: 0;}
-  50%{width: 0;}
-  100%{ width: 100; }
-}
-
-@keyframes blink{
-  to{opacity: .0;}
-}
-
-/*-----vote buttons---*/
-.voteButton {
-
-  background: none;
-  border: none;
-  border-bottom: solid 2px white;
-
-  margin: 30px;
-}
-
-.voteButtonChallenge {
-  border:2px solid #C41717;
-  border-radius: 50%;
-  margin: 30px;
-}
-
-/*----shine----*/
-.myButton:hover {
-
-}
-/* generated element for shine effect.
- * normal state is semi-transparent
- * white but with zero width. Set no
- * transition here for no mouse-leave
- * animations. Otherwise the effect
- * will play in reverse when your mouse
- * leaves the element
- */
-.myButton:after {
-  content: "";
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 0%;
-  height: 100%;
-  background-color: rgba(255,255,255,0.4);
-  -webkit-transition: none;
-  -moz-transition: none;
-  -ms-transition: none;
-  -o-transition: none;
-  transition: none;
-
-}
-/* on hover we animate the width to
- * 100% and opacity to 0 so the element
- * grows and fades out
- */
-.myButton:hover:after {
-  width: 120%;
-  background-color: rgba(255,255,255,0);
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-}
-/*----bounce out--*/
-@-webkit-keyframes bounceOut {
-  0% {
-    -webkit-transform: scale(1);
-  }
-  25% {
-    -webkit-transform: scale(.95);
-  }
-  50% {
-    opacity: 1;
-    -webkit-transform: scale(1.1);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: scale(.3);
-  }
-}
-
-@keyframes bounceOut {
-  0% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(.95);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(.3);
-  }
-}
-
-.bounceOut {
-  -webkit-animation-name: bounceOut;
-  animation-name: bounceOut;
-}
-
-/*---pulse--*/
-@keyframes pulseOut {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
 }
 
 

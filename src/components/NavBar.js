@@ -80,32 +80,36 @@ const NavBar = React.createClass({
                             </button>
                             <Link className="navbar-brand" to="/home"><img src="/images/Wirlix_InvertedLogo.png" /></Link>
                         </div>
+                       
                         <div className="collapse navbar-collapse center-m" id="bs-example-navbar-collapse-1">
 
-                            <ul className="nav navbar-nav center" style={{fontFamily:"1.3em" , marginLeft: "110px",borderRadius:'15px' }}>
-                                <li><Link to="/home"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Live</span></Link></li>
-                                <li><Link to="/debate"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Debate</span></Link></li>
-                                <li><Link to="/rankings"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>Ranking</span></Link></li>
-{/*
-                                <li><Link to="/about"><span style={{color:"white",fontSize: "1.2em", fontFamily: 'Source Code Pro'}}>About</span></Link></li>
-*/}
+
+
+                           <ul className="nav navbar-nav center" style={{fontFamily:"1.3em" , marginLeft: "110px",borderRadius:'15px' }}>
+                                <li><Link to="/home"><span className="naver" >Live</span></Link></li>
+                                <li><Link to="/debate"><span className="naver" >Debate</span></Link></li>
+                              { /* <li><Link to="/rankings"><span className="naver">Ranking</span></Link></li>*/}
+                                <div className="hideNav">
+                                    <li><Link to={"/profile/" + user._id}><span className="naver">Profile</span></Link></li>
+                                    <li><Link to={"/profile/"+ user._id + "#profile-notifications"}><span className="naver">Notifications></span></Link></li>
+                                    <li><Link to={"/image/"}><span className="naver">Upload Image</span></Link></li>
+                                    <li><a href="/logout"><span className="naver" >Logout</span></a></li>
+                                </div>
                             </ul>
-                            <ul className="nav navbar-nav navbar-right">
-                                <li><a className="profile-nav"
-                                       onClick={this.toggleMenu}
-                                       style={{background: "url(" + profileImage + ") center center no-repeat", cursor: 'pointer' }}
-                                >
+                            <ul className="nav navbar-nav navbar-right dripdown-menu">
+                                <li><a className="profile-nav" onClick={this.toggleMenu} style={{background: "url(" + profileImage + ") center center no-repeat" }} >
                                     { notify && (<div style={{position:'absolute',top:0,left:0,height:"13px",width:"13px",borderRadius:"100px",backgroundColor:"crimson"}}></div>) }
+
                                 </a>
-                                    <ul className="dropdown-menu" id="dropdown" style={{display: isOpen ? "inline-block" : "none", background: "white", borderRadius:"15px" }}>
-                                        <li><Link to={"/profile/" + user._id}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Profile   ></b></span></Link></li>
-                                        <li><Link to={"/profile/"+ user._id + "#profile-notifications"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Notifications></b></span></Link></li>
-                                        <li><Link to={"/image/"}><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Upload Image        ></b></span></Link></li>
-                                        <li><a href="/logout"><span style={{color:"#424242", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Logout       ></b></span></a></li>
+                                    <ul className="dropdown-menu" id="dropdown" style={{display: isOpen ? "inline-block" : "none", background: "white", borderRadius:"15px"}}>
+                                        <li><Link to={"/profile/" + user._id}><span style={{color:"#424242 ", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Profile</b></span></Link></li>
+                                        <li><Link to={"/profile/"+ user._id + "#profile-notifications" }><span style={{color:"#424242 ", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Notifications></b></span></Link></li>
+                                        <li><Link to={"/image/"}><span style={{color:"#424242 ", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Upload Image</b></span></Link></li>
+                                        <li><a href="/logout"><span style={{color:"#424242 ", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Logout</b></span></a></li>
                                     </ul></li>
-{/*
-                                <li><a className="help" href="/tutorial">? <br/><span>See Tutorial</span></a></li>
-*/}
+       
+                            {/* <li><a className="help" href="/tutorial">? <br/><span>See Tutorial</span></a></li>*/}
+
                             </ul>
                         </div>
                     </div>

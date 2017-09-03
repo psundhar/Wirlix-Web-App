@@ -2,7 +2,7 @@ import React from 'react';
 import TimeElapsedString from './TimeElapsedString';
 
 export default ({ debate, handleReplyClick, user }) => {
-    const {statement = {}, challengee ,challenger,_id} = debate;
+    const {statement = {}, challengee ,challenger} = debate;
     let profileLink, profileImage,challengerImage,challengerLink;
 
     let showNotification = false;
@@ -36,16 +36,16 @@ if(challenger){
        //console.log(challengerImage);
  }
     const latestDebate=parseInt(debate.messages.length);
-    console.log("Array length" + latestDebate);
+   // console.log("Array length" + latestDebate);
 
     return (
 
-        <div className="my-debate no-response clearfix">
+        <div className="my-debate no-response clearfix speechDebateCard" style={{border:"1px solid black"}}>
             <div className="username">
                 <div className="debater1 col-md-4">
                 <div className="flex">
                     { showImage && (<a className="pic" href={ profileLink } style={{background: "url(" + profileImage + ") center center no-repeat"}}></a>) }
-                    <a className="un" href={profileLink}>{ challengee.username }</a>
+                    <a className="un" href={profileLink} style={{color:"black", padding:"10px"}}>{ challengee.firstName }</a>
                 </div>
                 </div>
                     <div className="col-md-4"> </div>
@@ -53,13 +53,15 @@ if(challenger){
                 <div className="debater2 col-md-4" >
                 <div className="flex">
                     { displayImage && (<a className="pic" href={challengerLink}  style={{background: "url(" + challengerImage + ") center center no-repeat"}}></a>) }
-                    <a className="un" href={challengerLink}>{challenger.username}</a>
+                    <a className="un" href={challengerLink} style={{color:"black", padding:"10px"}}>{challenger.firstName}</a>
                 </div>
             </div>
-            <p className="comment-preview">{debate.messages[latestDebate-1].text }</p>
+
+            <p className="comment-preview">{/*debate.messages[latestDebate-1].text*/statement.text }</p>
             <p><button type="button" className="reply-button col-md-4 col-md-offset-8 col-xs-12" data-toggle="modal" data-target="#view-debate" onClick={ () => handleReplyClick(debate) }>Reply</button></p>
 
-                <p className="time-posted"><span className="small mr1" style={{color: "crimson"}}>{ showNotification && ( <i className="glyphicon glyphicon-envelope" />) }</span> </p><span className="small ml1"><TimeElapsedString elapsed={debate.updated} /></span>
+
+                <p className="time-posted"><span className="small mr1" style={{color: "crimson"}}>{ showNotification && ( <i className="glyphicon glyphicon-envelope" />) }</span> </p><span className="small ml1" style={{color:"black"}}><TimeElapsedString elapsed={debate.updated} /></span>
         </div>
         </div>
     );
