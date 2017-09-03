@@ -38,7 +38,6 @@ const mapStateToProps = (state, ownProps) => {
         topic: state.topic || {},
         debates: state.debates || [],
         statements: state.statements || [],
-
     };
 };
 
@@ -167,7 +166,6 @@ const ProfilePage = React.createClass({
     },
 
     handleBioEdit(loggedInUser){
-       // console.log("HERE");
         this.props.handleBioEdit(loggedInUser);
     },
 

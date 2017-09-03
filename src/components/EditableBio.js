@@ -9,14 +9,24 @@ class EditableBio extends Component {
 
         this.handleTextChange = this.handleTextChange.bind(this);
 
-        this.state = {inputText: ''};
+        this.state = {
+            inputText: '',
+            isEditing: false
+        };
     };
 
     handleTextChange(e) {
         this.setState({inputText: e.target.value});
 
-
     };
+
+    handleSaveChangesClick() {
+      this.setState({ isEditing: false })
+    }
+
+    handleModifyClick() {
+        this.setState({ isEditing: true })
+    }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
@@ -28,7 +38,7 @@ class EditableBio extends Component {
     render() {
 
         const { isEditable = false, bio, handleEdit } = this.props;
-        const { inputText,text,user} = this.state;
+        const { inputText, isEditing } = this.state;
         const isDirty =!!inputText;
             //(typeof inputText != 'undefined' && typeof bio != 'undefined' && inputText != bio);
 
@@ -38,20 +48,34 @@ class EditableBio extends Component {
                 <div className="mb1">
                     <span className="caps bold mb3">Bio</span>
                 </div>
-                { isEditable ? (<textarea className="rounded p2" style={{
+                { isEditable ? (<textarea className="rounded p2"
+                style={{
                     width: "100%",
                     outline: "none",
                     color: "black",
                     backgroundColor: "white"
-                }} value={ inputText }  onChange={ this.handleTextChange }></textarea>) :
+                }}
+                disabled={!isEditing}
+                value={ inputText }
+                onChange={ this.handleTextChange }></textarea>) :
                     (
                         <p>{ bio   || 'None added yet' }</p>
                     )
                 }
-                { isEditable && isDirty && (<div className="flex justify-end mt1">
-                    <button onClick={ () => handleEdit(inputText)} className="caps  p1" style={{border:"1px solid black", display:"inline-block", width:"auto"}}>Edit</button>
-                    <Alert effect='jelly' position='top-right' timeout= {5000} offset={150} />
+                { isEditable && isDirty && !isEditing && (<div className="flex justify-end mt1">
+                    <button onClick={ () => this.handleModifyClick()} className="caps  p1" style={{border:"1px solid black", display:"inline-block", width:"auto"}}>Modify</button>
                 </div>) }
+
+              { isEditing && (<div className="flex justify-end mt1">
+                  <button onClick={() => {
+                      this.handleSaveChangesClick()
+                      handleEdit(inputText)
+                  }}
+                  className="caps  p1"
+                  style={{border:"1px solid black", display:"inline-block", width:"auto"}}>
+                      Save Changes
+                  </button>
+              </div>) }
             </div>
         )
     };
