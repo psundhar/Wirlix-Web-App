@@ -39,7 +39,6 @@ class EditableBio extends Component {
 
         const { isEditable = false, bio, handleEdit } = this.props;
         const { inputText, isEditing } = this.state;
-        const isDirty =!!inputText;
             //(typeof inputText != 'undefined' && typeof bio != 'undefined' && inputText != bio);
 
         return (
@@ -62,7 +61,7 @@ class EditableBio extends Component {
                         <p>{ bio   || 'None added yet' }</p>
                     )
                 }
-                { isEditable && isDirty && !isEditing && (<div className="flex justify-end mt1">
+                { isEditable && !isEditing && (<div className="flex justify-end mt1">
                     <button onClick={ () => this.handleModifyClick()} className="caps  p1" style={{border:"1px solid black", display:"inline-block", width:"auto"}}>Modify</button>
                 </div>) }
 
