@@ -42,7 +42,7 @@ class StatementCard extends Component {
 
                        <div className="col-md-12">
                             <div className="col-md-4">
-                                <a className="profile-pic" href={ profileLink } style={{background: "url(" + userImage + ") center center no-repeat" }}></a> <a href={ profileLink } className="username" style={{color:"black"}}>{ user.firstName }</a>
+                                <a className="profile-pic" href={ profileLink } style={{background: "url(" + userImage + ") center center no-repeat" }}></a> <a href={ profileLink } className="username" style={{color:"black"}}>{ user.username }</a>
                             </div>
                             <div className="fullScreenVoteButtons col-md-8">
                                 <div className="col-md-4 button-container">

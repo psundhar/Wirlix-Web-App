@@ -55,7 +55,7 @@ const FlippableDebateCard = React.createClass({
                                     <div className="flex flex-column" style={{width: "40%"}}>
 
                                         <div className="mx-auto" style={{background: "url(" + challengerImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "120px", height: "120px"}}></div>
-                                        <p className="small">{ challenger.firstName }</p>
+                                        <p className="small">{ challenger.username }</p>
                                     </div>
                                     <div className="vs">
                                         {/*<p>vs.</p>*/}
@@ -64,7 +64,10 @@ const FlippableDebateCard = React.createClass({
                                     <div className="flex flex-column" style={{width: "40%"}}>
 
                                         <div className="mx-auto" style={{background: "url(" + challengeeImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "120px", height: "120px"}}></div>
-                                        <p className="small">{ challengee.firstName }</p>
+                                        <p className="small">{ challengee.username }</p>
+                                    </div>
+                                          <div className="small">
+                                 <p className="view-amt small ml1" style={{color:"#292C2D" , top:'3%'}}><img src="/images/eye-b.png" style={{margin: "0px"}} /> { views }</p>
                                     </div>
                                 </div>
                                     <span className="small" style={{color: "crimson"}}>{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
@@ -92,7 +95,7 @@ const FlippableDebateCard = React.createClass({
                                     <div className="flex flex-column" style={{width: "40%"}}>
 
                                         <div className="mx-auto" style={{background: "url(" + challengerImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "40px", height: "40px"}}></div>
-                                        <p className="small">{ challenger.firstName }</p>
+                                        <p className="small">{ challenger.username }</p>
                                     </div>
                                     <div className="vs">
                                         {/*<p>vs.</p>*/}
@@ -101,7 +104,7 @@ const FlippableDebateCard = React.createClass({
                                     <div className="flex flex-column" style={{width: "40%"}}>
 
                                         <div className="mx-auto" style={{background: "url(" + challengeeImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "40px", height: "40px"}}></div>
-                                        <p className="small">{ challengee.firstName }</p>
+                                        <p className="small">{ challengee.username }</p>
                                     </div>
                                 </div>
                                     <span className="small" style={{color: "crimson"}}>{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>

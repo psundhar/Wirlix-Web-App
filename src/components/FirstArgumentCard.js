@@ -45,7 +45,7 @@ if(challenger){
                 <div className="debater1 col-md-4">
                 <div className="flex">
                     { showImage && (<a className="pic" href={ profileLink } style={{background: "url(" + profileImage + ") center center no-repeat"}}></a>) }
-                    <a className="un" href={profileLink} style={{color:"black", padding:"10px"}}>{ challengee.firstName }</a>
+                    <a className="un" href={profileLink} style={{color:"black", padding:"10px"}}>{ challengee.username }</a>
                 </div>
                 </div>
                     <div className="col-md-4"> </div>
@@ -53,7 +53,7 @@ if(challenger){
                 <div className="debater2 col-md-4" >
                 <div className="flex">
                     { displayImage && (<a className="pic" href={challengerLink}  style={{background: "url(" + challengerImage + ") center center no-repeat"}}></a>) }
-                    <a className="un" href={challengerLink} style={{color:"black", padding:"10px"}}>{challenger.firstName}</a>
+                    <a className="un" href={challengerLink} style={{color:"black", padding:"10px"}}>{challenger.username}</a>
                 </div>
             </div>
 

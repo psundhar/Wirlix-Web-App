@@ -70,11 +70,12 @@ const DebateModal = React.createClass({
                                     <p>{ challenger.username }</p>
                                 </div>
                             </div>
-            {/*<div className="vote-bar">
-                                <div className="vote-amt">
+            <div className="vote-bar" >
+                                <div className="vote-amt col-md-4 offset-col-md-4">
                                     <p><img src="/images/eye-b.png"/> { views }</p>
                                 </div>
-                                <div className="vote-amt">
+            </div>
+                {/* <div className="vote-amt">
                                     <p><img src="/images/check-mark-b.png"/> { subscribers.length }</p>
                                 </div>
                             </div>*/}
