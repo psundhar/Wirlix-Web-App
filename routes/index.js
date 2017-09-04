@@ -100,7 +100,7 @@ module.exports = function(passport) {
             to: req.body.email,
             subject: 'Welcome to Wirlix',
             text: 'Welcome to Wirlix',
-            html: `
+            html: `<img src='cid:unique@nodemailer.com' />
         <div>
           <div style="
             text-align: center;
@@ -157,7 +157,7 @@ module.exports = function(passport) {
             <br />
             </div>
 
-
+        <img src='cid:uniquebcg@nodemailer.com' />
          <div style = "
            color: black;
            font-size: 15px;
@@ -231,9 +231,14 @@ module.exports = function(passport) {
             `,
             attachments: [{
                 filename: 'image.png',
-                path: 'https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/30423_pets-products_january-site-flip_3-cathealth_short-tile_592x304._CB286975940_.jpg',
+                path: 'public/images/Wirlix_InvertedLogo.png',
                 cid: 'unique@nodemailer.com' //same cid value as in the html img src
-            }
+            },
+                {
+                    filename: 'image.png',
+                    path: 'https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/30423_pets-products_january-site-flip_3-cathealth_short-tile_592x304._CB286975940_.jpg',
+                    cid: 'uniquebcg@nodemailer.com' //same cid value as in the html img src
+                }
             ],
          /*  alternatives: [
                 {
