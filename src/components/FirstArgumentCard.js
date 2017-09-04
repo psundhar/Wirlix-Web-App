@@ -40,7 +40,7 @@ if(challenger){
 
     return (
 
-        <div className="my-debate no-response clearfix speechDebateCard" style={{border:"1px solid black"}}>
+        <div className="my-debate no-response clearfix speechMyDebatesCard" style={{border:"1px solid black"}}>
             <div className="username">
                 <div className="debater1 col-md-4">
                 <div className="flex">

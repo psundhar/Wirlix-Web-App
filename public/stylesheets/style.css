@@ -364,7 +364,7 @@ input {
 /*button start*/
 
 a:link {
-    color: white;
+    color: darkred;
     background-color: transparent;
     text-decoration: none;
     font-size: 18px;

@@ -180,6 +180,7 @@ const DebatePage = React.createClass({
         <div className="col-md-12 vote-col middle" id ="middle">
             <h2 className="col-md-12"  style={{marginBottom:"40px", marginTop:"90px", borderBottom:"2px solid darkgray", fontFamily: 'Source Code Pro', color:"#292C2D"}}><br/>All Debates</h2>
             <div className="debates col-md-12 live-debates">
+                                  { /*  <p style={{color:"black"}}>click on the cards to view conversations</p>*/}
                 { debates.sort((a,b) => {
                     if(a.updated < b.updated) {
                         return 1;

@@ -25,7 +25,7 @@ const ChallengeNotificationsList = ({challenges, debates, user, handleAcceptChal
 
                 return (
                     <div className="notification rounded" key={i} style={{backgroundColor:"white",color:"#292C2D", border:"2px solid black", borderRadius:"10px"}}>
-                        <div className="p1">
+                        <div className="p1" style={{color:"black"}}>
                             { isChallenger ? 'You' : (<a style={profileLinkStyles} href={ "/profile/" + c.challenger._id }>{c.challenger.username}</a>) } challenged { !isChallenger ? 'you' : (<a style={profileLinkStyles} href={ "/profile/" + c.challengee._id }>{c.challengee.username}</a>) } to debate
                         </div>
                         <div>

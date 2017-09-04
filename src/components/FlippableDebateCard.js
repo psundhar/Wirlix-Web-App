@@ -43,32 +43,92 @@ const FlippableDebateCard = React.createClass({
             return -1;
         });*!/*/
         return (
-            <div className="debate speechDebateCard">
-                { frontVisible && (<div className={ "front " + (frontVisible ? 'Card-Front-Flip': '')}>
-                    <div className="content"  onClick={ this.flip }>
+            <div className="debate speechDebateCard" style={{padding:"20px", height:"100%"}}>
+            {/* { frontVisible && (<div className={ "front " + (frontVisible ? 'Card-Front-Flip': '')}>
+                    <div className="content"  onClick={ this.flip }>*/}
+                    <div className="fullScreenDebateCard">
                         <div className="flex justify-between">
                          {  /* <div>
                                 <input type="checkbox" style={{position:'absolute', top:'3%'}} onClick={e => e.stopPropagation()} onChange={ e => { e.stopPropagation(); handleSubscribeToggle(_id); } } checked={ subscribed }/>
                             </div>*/  }
-                            <div className="flex justify-around flex-auto">
-                                <div className="flex flex-column" style={{width: "40%"}}>
+                                <div className="flex justify-around flex-auto" style={{borderBottom:"2px solid darkgray"}}>
+                                    <div className="flex flex-column" style={{width: "40%"}}>
 
-                                    <div className="mx-auto" style={{background: "url(" + challengerImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
-                                    <p className="small">{ challenger.firstName }</p>
-                                </div>
-                                <div className="vs">
-                                    {/*<p>vs.</p>*/}
-                                    <img style={{height:"70px", width:"70px", margin:"5px", paddingTop:"10px"}} src="/images/challenge.png" />
-                                </div>
-                                <div className="flex flex-column" style={{width: "40%"}}>
+                                        <div className="mx-auto" style={{background: "url(" + challengerImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "120px", height: "120px"}}></div>
+                                        <p className="small">{ challenger.firstName }</p>
+                                    </div>
+                                    <div className="vs">
+                                        {/*<p>vs.</p>*/}
+                                        <img style={{height:"90px", width:"80px", margin:"5px", paddingTop:"25px"}} src="/images/challenge.png" />
+                                    </div>
+                                    <div className="flex flex-column" style={{width: "40%"}}>
 
-                                    <div className="mx-auto" style={{background: "url(" + challengeeImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "50px", height: "50px"}}></div>
-                                    <p className="small">{ challengee.firstName }</p>
+                                        <div className="mx-auto" style={{background: "url(" + challengeeImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "120px", height: "120px"}}></div>
+                                        <p className="small">{ challengee.firstName }</p>
+                                    </div>
                                 </div>
+                                    <span className="small" style={{color: "crimson"}}>{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
+                                    <span className="small ml1"><TimeElapsedString elapsed={debate.updated} /></span>
                             </div>
-                            <span className="small" style={{color: "crimson"}}>{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
-                            <span className="small ml1"><TimeElapsedString elapsed={debate.updated} /></span>
+                            <div style={{marginTop:"10px"}}>
+                                <p className="pl2 pr2 small" style={{textAlign: "center"}}> Latest Update:</p>
+                                <p className="pl2 pr2 small" style={{textAlign: "center"}}>{debate.messages[latestDebate-1].text}</p>
+                            </div>
+                            
+                            <div>
+                                <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate" onClick={ e => { e.stopPropagation(); handleEnterDebate(debate); }}>Enter Chatroom &#8250;</button></p>
+                            </div>
+                    </div>     
+                           
+                    <div className="mobileScreenDebateCard">
+                        { frontVisible && (<div className={ "front " + (frontVisible ? 'Card-Front-Flip': '')}>
+                        <div className="content"  onClick={ this.flip }>
+                            
+                            <div className="flex justify-between">
+                         {  /* <div>
+                                <input type="checkbox" style={{position:'absolute', top:'3%'}} onClick={e => e.stopPropagation()} onChange={ e => { e.stopPropagation(); handleSubscribeToggle(_id); } } checked={ subscribed }/>
+                            </div>*/  }
+                                <div className="flex justify-around flex-auto">
+                                    <div className="flex flex-column" style={{width: "40%"}}>
+
+                                        <div className="mx-auto" style={{background: "url(" + challengerImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "40px", height: "40px"}}></div>
+                                        <p className="small">{ challenger.firstName }</p>
+                                    </div>
+                                    <div className="vs">
+                                        {/*<p>vs.</p>*/}
+                                        <img style={{height:"40px", width:"40px", margin:"5px", paddingTop:"10px"}} src="/images/challenge.png" />
+                                    </div>
+                                    <div className="flex flex-column" style={{width: "40%"}}>
+
+                                        <div className="mx-auto" style={{background: "url(" + challengeeImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "40px", height: "40px"}}></div>
+                                        <p className="small">{ challengee.firstName }</p>
+                                    </div>
+                                </div>
+                                    <span className="small" style={{color: "crimson"}}>{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
+                                    <span className="small ml1"><TimeElapsedString elapsed={debate.updated} /></span>
+                            </div>
+                            
                         </div>
+                        </div>) }
+                
+                            { !frontVisible && (
+                                <div className={ "back Card-Back-Flip"} onClick={ this.flip } >
+                                    <div className="flex justify-between">
+                                        <div className="username mb2">
+                                            <div className="flex items-center">
+                                                <Link className="image mr3" onClick={e => e.stopPropagation()} to={ "/profile/" + challengee._id } style={{background: "url(" + challengeeImage + ") center center no-repeat"}}></Link>
+                                                <p>{ challengee.username }</p>
+                                            </div>
+                                        </div>
+                                        <span className="small"><TimeElapsedString elapsed={debate.updated} /></span>
+                                    </div>
+                                    <p className="pl2 pr2 small" style={{textAlign: "left"}}>{debate.messages[latestDebate-1].text}</p>
+                                    <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate" onClick={ e => { e.stopPropagation(); handleEnterDebate(debate); }}>Full Debate &#8250;</button></p>
+                                </div>
+                            )}                           
+                    </div>
+                            
+                            
                             {/*<div className="clearfix mb3">
                             <div className="col-md-3">
                             </div>
@@ -81,10 +141,10 @@ const FlippableDebateCard = React.createClass({
                             <div className="col-md-3">
                             </div>
                         </div>*/}
-                    </div>
+                {/*        </div>
 
-                </div>) }
-                { !frontVisible && (
+                </div>) }*/}
+                    {/*   { !frontVisible && (
                     <div className={ "back Card-Back-Flip"} onClick={ this.flip } >
                         <div className="flex justify-between">
                             <div className="username mb2">
@@ -98,7 +158,7 @@ const FlippableDebateCard = React.createClass({
                         <p className="pl2 pr2 small" style={{textAlign: "left"}}>{debate.messages[latestDebate-1].text}</p>
                         <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate" onClick={ e => { e.stopPropagation(); handleEnterDebate(debate); }}>Full Debate &#8250;</button></p>
                     </div>
-                )}
+                )}*/}
 
             </div>
         );

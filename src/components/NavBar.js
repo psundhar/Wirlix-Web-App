@@ -85,9 +85,9 @@ const NavBar = React.createClass({
 
 
 
-                           <ul className="nav navbar-nav center" style={{fontFamily:"1.3em" , marginLeft: "110px",borderRadius:'15px' }}>
-                                <li><Link to="/home"><span className="naver" >Live</span></Link></li>
-                                <li><Link to="/debate"><span className="naver" >Debate</span></Link></li>
+                           <ul className="nav navbar-nav center" style={{fontFamily:"1.3em"}}>
+                                <li><Link to="/home"><span className="naver" >perspective</span></Link></li>
+                                <li><Link to="/debate"><span className="naver" >engage</span></Link></li>
                               { /* <li><Link to="/rankings"><span className="naver">Ranking</span></Link></li>*/}
                                 <div className="hideNav">
                                     <li><Link to={"/profile/" + user._id}><span className="naver">Profile</span></Link></li>

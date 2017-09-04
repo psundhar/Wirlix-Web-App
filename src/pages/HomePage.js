@@ -257,42 +257,40 @@ const HomePage = React.createClass({
 
     handleShow(){
 
-       $("#factual").show('slide', {
-             direction: 'up'
-             }, 4000);
-        
-         $("#emotional").show('slide', {
-             direction: 'down'
-             }, 4000);
-         setTimeout(function(){ 
-           // console.log("jellloo");
-            $(".comment-container").show('slide', {
-             direction: 'up'
-             }, 500);
+      $("#factual").show('slide', {
+            direction: 'up'
+            }, 700);
+       
+        $("#emotional").show('slide', {
+            direction: 'down'
+            }, 700);
+        setTimeout(function(){
+          // console.log("jellloo");
+           $(".comment-container").show('slide', {
+            direction: 'up'
+            }, 2000);
 
-        }, 8000);
-        this.setState({hiddens: false});
+       }, 3400);
+       this.setState({hiddens: false});
 
-    },
+   },
 
-    handleHide(){
-       $("#emotional").hide('slide', {
-             direction: 'down'
-             }, 4000);
-       $("#factual").hide('slide', {
-             direction: 'up'
-             }, 4000);
-       setTimeout(function(){ 
-           // console.log("jellloo");
-            $(".comment-container").hide('slide', {
-             direction: 'down'
-             }, 4000);
-
-        }, 8000);
-        this.setState({hiddens: true});
-    },
-
-
+   handleHide(){
+       $(".comment-container").hide('slide', {
+            direction: 'up'
+            }, 2000);
+     
+      setTimeout(function(){
+          // console.log("jellloo");
+          $("#emotional").hide('slide', {
+            direction: 'down'
+            }, 1500);
+      $("#factual").hide('slide', {
+            direction: 'up'
+            }, 1500);
+       }, 3000);
+       this.setState({hiddens: true});
+   },
     render() {
 
 
@@ -354,7 +352,10 @@ const HomePage = React.createClass({
                     <div id="statement_carousel" style={{marginTop: "60px", paddingTop:"60px", borderTop:"2px solid darkgray"}}>
                     {/*<p style={{fontSize:"1.2em", textAlign: "center", marginBottom:"30px"}}>These opinions need your wisdom and support!!</p>*/}
 
-                        <div style={{backgroundColor:"#292C2D"}}><p style={{ textAlign: "center", fontSize:"2em", padding:"30px", color:"white", fontFamily:"Source Code Pro", fontWeight:"200"}}>#spark.your.mind</p></div>
+                        <div style={{backgroundColor:"#292C2D"}}><p style={{ textAlign: "center", fontSize:"2em", padding:"30px", color:"white", fontFamily:"Source Code Pro", fontWeight:"200"}}>YOU DECIDE</p>
+                                             </div>
+                                                 <p style={{color:"black", textAlign:"center"}}>Vote for these opinions</p>
+                                               
                         <Carousel
                             indicators = {this.state.indicators}
                             interval = {this.state.interval}>
@@ -365,7 +366,7 @@ const HomePage = React.createClass({
                                 .map(s => {
                                     return (
                                         <Carousel.Item>
-                                            <div style={{width: "335px"}}>
+                                            <div style={{width: "100%"}}>
                                         <StatementCard handleChallenge={ this.handleChallenge } loggedInUser={user} handleVote={this.props.handleVote} showChallenge={ user._id != s.user._id } createdDate={s.created} { ...s }/>
                                             </div>
                                         </Carousel.Item>
@@ -385,7 +386,7 @@ const HomePage = React.createClass({
                 {
                     !this.state.hiddens
                     ? <HideShow color="white" backgroundColor="black" ><button className="hideo"  onClick={ () => this.handleHide() }>Hide</button>  </HideShow>
-                    :  <HideShow  color="white" backgroundColor="black" > <button className="hideo"  onClick={ () => this.handleShow() }>Show all</button>  </HideShow>
+                    :  <HideShow  color="white" backgroundColor="black" > <button className="hideo"  onClick={ () => this.handleShow() }>Show all opinions</button>  </HideShow>
                 }         
                 </div>
             </div>
