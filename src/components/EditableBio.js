@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import Alert from 'react-s-alert';
-import 'react-s-alert/dist/s-alert-default.css';
-import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
 
 class EditableBio extends Component {
     constructor(props) {
@@ -32,7 +29,7 @@ class EditableBio extends Component {
         this.setState({
             inputText: nextProps.bio || '',
         });
-        Alert.success('Changes Saved!!!');
+
     };
 
     render() {
