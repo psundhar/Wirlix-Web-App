@@ -270,7 +270,7 @@ const HomePage = React.createClass({
             direction: 'up'
             }, 2000);
 
-       }, 3400);
+       }, 1800);
        this.setState({hiddens: false});
 
    },
@@ -288,7 +288,7 @@ const HomePage = React.createClass({
       $("#factual").hide('slide', {
             direction: 'up'
             }, 1500);
-       }, 3000);
+       }, 2500);
        this.setState({hiddens: true});
    },
     render() {

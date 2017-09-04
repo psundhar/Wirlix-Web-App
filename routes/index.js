@@ -60,7 +60,7 @@ module.exports = function(passport) {
     //})
 
 
-    router.post('/testtwilio', function(req, res) {
+  /*  router.post('/testtwilio', function(req, res) {
         client.sendMessage({
             to: req.body.phoneNumber,
             from:'+16176525428',
@@ -71,7 +71,7 @@ module.exports = function(passport) {
 
     router.get('/testtwilio', function(req, res) {
         res.render('testtwilio.hbs')
-    });
+    });*/
 
 
     router.post('/user', function(req, res, next) {
@@ -80,7 +80,7 @@ module.exports = function(passport) {
         //     from:'+16176525428',
         //     body: "Thanks for joining" + " " + req.body.fullName + "! Make sure to check out our site we have a ton of amazing shit coming up for you. At Wirlix, we are one world in unity and we believe in the power of people and the power in you. It's a movement and a revolution and we can't wait to change the world with you. We care about your experience and your happiness so please reach out anytime and stay tuned for an amazing journey. Welcome to Wirlix."
         // });
-        /*let transporter = nodemailer.createTransport({
+        let transporter = nodemailer.createTransport({
             service: 'gmail',
             secure: false,
             port: 25,
@@ -100,7 +100,7 @@ module.exports = function(passport) {
             to: req.body.email,
             subject: 'Welcome to Wirlix',
             text: 'Welcome to Wirlix',
-            html:*/ `
+            html: `
         <div>
           <div style="
             text-align: center;
@@ -136,7 +136,7 @@ module.exports = function(passport) {
             padding-bottom: 2rem;
             padding-top: 10px;">
             What's up ${req.body.fullName}, <br /><br />
-            We hope you got our text. We promise not to spam you with pointless emails and we also promise a ton of amazing shit coming soon. <br /><br />
+            We hope you got our text. We promise not to spam you with pointless emails and we also promise a ton of amazing stuffs coming soon. <br /><br />
         Here is your password in case you forget.
             <br /><br />
 
@@ -228,19 +228,19 @@ module.exports = function(passport) {
 
           </div>
         </div>
-            `
-           /* attachments: [{
+            `,
+            attachments: [{
                 filename: 'image.png',
                 path: 'https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/30423_pets-products_january-site-flip_3-cathealth_short-tile_592x304._CB286975940_.jpg',
                 cid: 'unique@nodemailer.com' //same cid value as in the html img src
             }
             ],
-           alternatives: [
+         /*  alternatives: [
                 {
                     contentType: 'text/html',
                     content: '/views/email.hbs'
                 }
-            ]
+            ]*/
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
@@ -248,7 +248,7 @@ module.exports = function(passport) {
                 return console.log(error);
             }
             console.log('Message % s sent: %s', info.messageId, info.response);
-        });*/
+        });
 
         var fullName = req.body.fullName;
         var password = req.body.password;
