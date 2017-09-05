@@ -29,6 +29,8 @@ const FlippableDebateCard = React.createClass({
         const isChallenger = user._id == challenger._id;
         const isChallengee = user._id == challengee._id;
         const latestDebate=parseInt(debate.messages.length);
+
+
        // console.log("Array length" + latestDebate);
 
         // const classes = "debate " + ( !frontVisible ? 'Card-Back-Flip' : '' );
@@ -77,7 +79,8 @@ const FlippableDebateCard = React.createClass({
                             </div>
                             <div style={{marginTop:"10px"}}>
                                 <p className="pl2 pr2 small" style={{textAlign: "center"}}> Latest Update:</p>
-                                <p className="pl2 pr2 small" style={{textAlign: "center"}}>{debate.messages[latestDebate-1].text}</p>
+                { latestDebate <=1 ? <p className="pl2 pr2 small" style={{textAlign: "center"}}>{statement.text}</p>:
+                                <p className="pl2 pr2 small" style={{textAlign: "center"}}>{debate.messages[latestDebate-1].text}</p>}
                             </div>
                             
                             <div>
@@ -85,14 +88,14 @@ const FlippableDebateCard = React.createClass({
                             </div>
                     </div>     
                            
-                    <div className="mobileScreenDebateCard">
+             <div className="mobileScreenDebateCard">
                         { frontVisible && (<div className={ "front " + (frontVisible ? 'Card-Front-Flip': '')}>
                         <div className="content"  onClick={ this.flip }>
                             
                             <div className="flex justify-between">
-                         {  /* <div>
+                         <div>
                                 <input type="checkbox" style={{position:'absolute', top:'3%'}} onClick={e => e.stopPropagation()} onChange={ e => { e.stopPropagation(); handleSubscribeToggle(_id); } } checked={ subscribed }/>
-                            </div>*/  }
+                            </div>
                                 <div className="flex justify-around flex-auto">
                                     <div className="flex flex-column" style={{width: "40%"}}>
 
@@ -100,7 +103,7 @@ const FlippableDebateCard = React.createClass({
                                         <p className="small">{ challenger.username }</p>
                                     </div>
                                     <div className="vs">
-                                        {/*<p>vs.</p>*/}
+
                                         <img style={{height:"40px", width:"40px", margin:"5px", paddingTop:"10px"}} src="/images/challenge.png" />
                                     </div>
                                     <div className="flex flex-column" style={{width: "40%"}}>
@@ -127,7 +130,8 @@ const FlippableDebateCard = React.createClass({
                                         </div>
                                         <span className="small"><TimeElapsedString elapsed={debate.updated} /></span>
                                     </div>
-                                    <p className="pl2 pr2 small" style={{textAlign: "left"}}>{debate.messages[latestDebate-1].text}</p>
+                    { latestDebate <=1 ? <p className="pl2 pr2 small" style={{textAlign: "center"}}>{statement.text}</p>:
+                    <p className="pl2 pr2 small" style={{textAlign: "center"}}>{debate.messages[latestDebate-1].text}</p>}
                                     <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate" onClick={ e => { e.stopPropagation(); handleEnterDebate(debate); }}>Full Debate &#8250;</button></p>
                                 </div>
                             )}                           

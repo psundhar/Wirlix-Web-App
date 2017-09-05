@@ -57,7 +57,8 @@ if(challenger){
                 </div>
             </div>
 
-            <p className="comment-preview">{/*debate.messages[latestDebate-1].text*/statement.text }</p>
+                { latestDebate <=1 ?<p className="comment-preview">{statement.text }</p>:
+                    <p className="comment-preview">{debate.messages[latestDebate-1].text }</p>}
             <p><button type="button" className="reply-button col-md-4 col-md-offset-8 col-xs-12" data-toggle="modal" data-target="#view-debate" onClick={ () => handleReplyClick(debate) }>Reply</button></p>
 
 
