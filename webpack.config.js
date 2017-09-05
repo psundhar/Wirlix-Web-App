@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+
 module.exports = {
     entry: './src/index.js',
     output: {
@@ -54,11 +54,7 @@ module.exports = {
 
     ]
   },
-  plugins: [
-   new webpack.ProvidePlugin({
-    'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-  })
-],
+
   resolveLoader: {
     moduleExtensions: ["-loader"]
   }
