@@ -125,11 +125,8 @@ module.exports = function(passport) {
            padding-top: 30px;">
             What's up ${req.body.fullName}, <br /><br />
 
-            Wirlix Experiences promotes coexistence through real life adventures with people of different beliefs and backgrounds. Our idea is to get you out of your comfort zone and open your mind to unique people and experiences. Our first adventure is attending coachella with a group of other ravers. Everyone will have opposing beliefs on a certain controversy. The experience will be on video and you are allowed to use the footage for personal use as well! You guys will get to discuss your differences and tell your stories while experiencing one of the world’s greatest music festivals!
-
-            Sign up today! It’s an experience of a lifetime on us.
-
-            Email priyanka@wirlix.com for more details!
+My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks so much for being a part of Wirlix and helping spread our vision. A little about why I started Wirlix  Sometimes life can seem like we’re just checking boxes rather than living for ourselves. We’ve all felt trapped and by ourselves. In a world where all of us are guilty of trying to fit in and be the same type of person. I wanted to create a place for the part of everyone that doesn’t. The rule-breakers or as Steve Jobs so famously said, “the ones who see things differently.” Essentially, Wirlix is the platform for the the part of you that makes you who you are: your story and your reality. Feel free to debate or chat with me any day, We have a lot of awesome features and new products coming out soon so stay tuned! I'll always have an opinion on Wirlix otherwise you can reach me at this email with any questions, concerns or honestly just anything. I’d love to hear from you.
+           
              <br /><br />
             Here is your password in case you ever forget.
             <br /><br />
@@ -237,7 +234,7 @@ module.exports = function(passport) {
             },
                 {
                     filename: 'image.png',
-                    path: 'https://lh3.googleusercontent.com/DtzaKzqJr555NuNGjvo38Gj1INxs36j5lLcBJ7Zz5KCg_M_2N0LrM4cjMQBYz7bUyKYbpdVqoKgGn-cKtLZC9XFghhPT92HG5F8WFJSOL9HuKKWdXH8BzMydRLZ31WxHYVMuyV9ljDJLzzGkAAO2Gsu4MlfxE_IkhfhPJmJxNNCMhukSyc6yQp0nhXiGiAsrhWxYOnNaC-yvwuZft04AJaCsIqzZLXmUB8PDb3eubovE8Llb3BPE34gaBrZfc-EUb9vVdwTR0HgzW_95xrSM_wyqh2mmOOo-hgW9WxXB-loRfbw6qncSC6ep-4Xkp1k7OkBrA13iXoaMFCopap4Yw2_wFBm57H5pB_8-pOIzP3si2K7Y4rHBp0E30JMOZC2_T_Xx4bUzDHgTWs43nTVY7sY7WFArh1H1-buLfWmSk7D_YxKn1fglbZ3bjZSh_7kwrCCISsLMc4nVW1mz5_61_X9l58ByEkePZMyPUFwdIqarHyXH_QpFUjv7u9gzh2a4YMYRLuGSppKwYvS5klk9UIjt6LK4XTi3WrQUnuqcl8_xo0oSa88sxnS6Vu_qcEjUiamMkK5Axg=s1000-no',
+                    path: 'public/images/wx_logo2.png',
                     cid: 'uniquebcg@nodemailer.com' //same cid value as in the html img src
                 }
             ],
