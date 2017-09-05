@@ -160,6 +160,7 @@ const HomePage = React.createClass({
     },
 
     handleStatementTextChange(e) {
+        console.log(e.target.value);
         this.setState({ statementText: e.target.value });
     },
 

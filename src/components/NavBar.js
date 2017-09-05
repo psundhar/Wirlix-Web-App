@@ -78,7 +78,7 @@ const NavBar = React.createClass({
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                             </button>
-                            <Link className="navbar-brand" to="/home"><img src="/images/Wirlix_InvertedLogo.png" /></Link>
+                            <Link className="navbar-brand" to="/home"><img src="/images/wx_logo2.png" /></Link>
                         </div>
                        
                         <div className="collapse navbar-collapse center-m" id="bs-example-navbar-collapse-1">
@@ -86,8 +86,8 @@ const NavBar = React.createClass({
 
 
                            <ul className="nav navbar-nav center" style={{fontFamily:"1.3em"}}>
-                                <li><Link to="/home"><span className="naver" >perspective</span></Link></li>
-                                <li><Link to="/debate"><span className="naver" >engage</span></Link></li>
+                                <li><Link to="/home"><span className="naver" >home</span></Link></li>
+                                <li><Link to="/debate"><span className="naver" >wirlix</span></Link></li>
                               { /* <li><Link to="/rankings"><span className="naver">Ranking</span></Link></li>*/}
                                 <div className="hideNav">
                                     <li><Link to={"/profile/" + user._id}><span className="naver">Profile</span></Link></li>

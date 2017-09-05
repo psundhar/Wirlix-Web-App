@@ -84,7 +84,7 @@ const FlippableDebateCard = React.createClass({
                             </div>
                             
                             <div>
-                                <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate" onClick={ e => { e.stopPropagation(); handleEnterDebate(debate); }}>Enter Chatroom &#8250;</button></p>
+                                <p><button type="button" className="full-debate" href="#" data-toggle="modal" data-target="#view-debate" onClick={ e => { e.stopPropagation(); handleEnterDebate(debate); }}>View Full Conversation &#8250;</button></p>
                             </div>
                     </div>     
                            

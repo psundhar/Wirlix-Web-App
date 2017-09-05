@@ -59,7 +59,7 @@ class EditableBio extends Component {
                     )
                 }
                 { isEditable && !isEditing && (<div className="flex justify-end mt1">
-                    <button onClick={ () => this.handleModifyClick()} className="caps  p1" style={{border:"1px solid black", display:"inline-block", width:"auto"}}>Modify</button>
+                    <button onClick={ () => this.handleModifyClick()} className="caps  p1" style={{border:"1px solid black", display:"inline-block", width:"auto"}}>Click Here to Edit</button>
                 </div>) }
 
               { isEditing && (<div className="flex justify-end mt1">

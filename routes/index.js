@@ -100,44 +100,38 @@ module.exports = function(passport) {
             to: req.body.email,
             subject: 'Welcome to Wirlix',
             text: 'Welcome to Wirlix',
-            html: `<img src='cid:unique@nodemailer.com' />
+            html: `
         <div>
-          <div style="
-            text-align: center;
-            color: black;
-            font-size: 50px;
-            -ms-word-wrap: normal;
-            word-wrap: normal;
-            font-family: Raleway,Arial,sans-serif;
-            /*line-height: 1.35em;*/
-            letter-spacing: 0px;
-            line-height: 1em;
-            text-transform: uppercase;
-            font-weight: 200;
-            font-style: normal;
-            -webkit-font-smoothing: antialiased;
-            padding-bottom: 2rem;
-            padding-top: 75px;">
-            Welcome to Wirlix</div>
+
+            <div>
+              <img src='cid:unique@nodemailer.com' style="width:100%;" />
+            </div>
+
         </div>
         <div>
           <div style = "
             color: black;
-            font-size: 15px;
-            -ms-word-wrap: normal;
-            word-wrap: normal;
-            font-family: Raleway,Arial,sans-serif;
-            /*line-height: 1.2em;*/
-            letter-spacing: 0px;
-            line-height: 1em;
-            font-weight: 200;
-            font-style: normal;
-            -webkit-font-smoothing: antialiased;
-            padding-bottom: 2rem;
-            padding-top: 10px;">
+           font-size: 15px;
+           -ms-word-wrap: normal;
+           word-wrap: normal;
+           font-family: Raleway,Arial,sans-serif;
+           /*line-height: 1.2em;*/
+           line-height: 1.5em;
+           letter-spacing: 2px;
+           font-weight: 400;
+           font-style: normal;
+           -webkit-font-smoothing: antialiased;
+           padding-bottom: 2rem;
+           padding-top: 30px;">
             What's up ${req.body.fullName}, <br /><br />
-            We hope you got our text. We promise not to spam you with pointless emails and we also promise a ton of amazing stuffs coming soon. <br /><br />
-        Here is your password in case you forget.
+
+            Wirlix Experiences promotes coexistence through real life adventures with people of different beliefs and backgrounds. Our idea is to get you out of your comfort zone and open your mind to unique people and experiences. Our first adventure is attending coachella with a group of other ravers. Everyone will have opposing beliefs on a certain controversy. The experience will be on video and you are allowed to use the footage for personal use as well! You guys will get to discuss your differences and tell your stories while experiencing one of the world’s greatest music festivals!
+
+            Sign up today! It’s an experience of a lifetime on us.
+
+            Email priyanka@wirlix.com for more details!
+             <br /><br />
+            Here is your password in case you ever forget.
             <br /><br />
 
             Password: ${req.body.password}
@@ -157,7 +151,8 @@ module.exports = function(passport) {
             <br />
             </div>
 
-        <img src='cid:uniquebcg@nodemailer.com' />
+        
+
          <div style = "
            color: black;
            font-size: 15px;
@@ -165,12 +160,13 @@ module.exports = function(passport) {
            word-wrap: normal;
            font-family: Raleway,Arial,sans-serif;
            /*line-height: 1.2em;*/
-           line-height: 1em;
+           line-height: 1.5em;
            letter-spacing: 2px;
-           font-weight: 200;
+           font-weight: 400;
            font-style: normal;
            -webkit-font-smoothing: antialiased;
            padding-bottom: 2rem;
+          
            padding-top: 5px;">
 
         Thanks for joining! Feel free to email us about anything. Just reach out we'd love to hear from you.
@@ -189,7 +185,7 @@ module.exports = function(passport) {
         </div>
         <div>
           <div style = "
-                        color: black;
+            color: black;
             font-size: 25px;
             -ms-word-wrap: normal;
             word-wrap: normal;
@@ -227,16 +223,21 @@ module.exports = function(passport) {
             Founder of Wirlix
 
           </div>
+
+        <div>
+        <img src='cid:uniquebcg@nodemailer.com' style="height:60px; width:60px"/>
+        </div> 
+
         </div>
             `,
             attachments: [{
                 filename: 'image.png',
-                path: 'public/images/Wirlix_InvertedLogo.png',
-                cid: 'unique@nodemailer.com' //same cid value as in the html img src
+                    path: 'https://lh3.googleusercontent.com/0IVQgymYA08xSLcam4r32m1VIgaUdfLAlYoUzq9Hb1qDeka8cHxfvVcWyMTZfEikr8u6c125jb41FTmLE7Pt1zxLdbAqx8H2HJh4j2_a52vDZfBBj38S3RVXaFRcvbKkSkfXMGvTJYW5EadnSLl43xsxtmHrjJYzqkRhuF4qw8CdKXyjlcYpL230oNFxl-vTOMxiHeWIjYaW8WmsC4jPJ5h1Doqdn92EwoF2hjYwZ951csQHhhDChGcke31sILjH_oC7iUpG1rl-eSyuVnHF0H-QK9QItQsO7dD-CHcXwHFQaR0k_wHf6ehKaWpDlREVl17jN_fl0n4_QEz4UDaOE7z1nsl2BE7Aid_CMdZWsOCs3Y-20e0e5qztF74YsC-DoNJHvhU8rGQM95ebPNht3iuXzaqmkO-78JARtpH8SqwHYLDPPlOpbEqOryviIVts-maobL6aThpInMIJJgjGvpO_JZ5aQWTYMtCASH3Ciey3hhGKhFFI9Bb1kYpl0NJsi57EucHA9lXBd9eRWl9ee63yuFvrzzgCV8KMhsUpHWekjywOI11IpVMj2lifLljln0rG_DL3xw=s2594-w2594-h998-no', //same cid value as in the html img src
+                cid: 'unique@nodemailer.com'
             },
                 {
                     filename: 'image.png',
-                    path: 'https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/30423_pets-products_january-site-flip_3-cathealth_short-tile_592x304._CB286975940_.jpg',
+                    path: 'https://lh3.googleusercontent.com/DtzaKzqJr555NuNGjvo38Gj1INxs36j5lLcBJ7Zz5KCg_M_2N0LrM4cjMQBYz7bUyKYbpdVqoKgGn-cKtLZC9XFghhPT92HG5F8WFJSOL9HuKKWdXH8BzMydRLZ31WxHYVMuyV9ljDJLzzGkAAO2Gsu4MlfxE_IkhfhPJmJxNNCMhukSyc6yQp0nhXiGiAsrhWxYOnNaC-yvwuZft04AJaCsIqzZLXmUB8PDb3eubovE8Llb3BPE34gaBrZfc-EUb9vVdwTR0HgzW_95xrSM_wyqh2mmOOo-hgW9WxXB-loRfbw6qncSC6ep-4Xkp1k7OkBrA13iXoaMFCopap4Yw2_wFBm57H5pB_8-pOIzP3si2K7Y4rHBp0E30JMOZC2_T_Xx4bUzDHgTWs43nTVY7sY7WFArh1H1-buLfWmSk7D_YxKn1fglbZ3bjZSh_7kwrCCISsLMc4nVW1mz5_61_X9l58ByEkePZMyPUFwdIqarHyXH_QpFUjv7u9gzh2a4YMYRLuGSppKwYvS5klk9UIjt6LK4XTi3WrQUnuqcl8_xo0oSa88sxnS6Vu_qcEjUiamMkK5Axg=s1000-no',
                     cid: 'uniquebcg@nodemailer.com' //same cid value as in the html img src
                 }
             ],

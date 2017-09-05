@@ -42,6 +42,7 @@ export default class EditableFirstArgument extends Component {
 
         return (
             <div>
+                <p>Opinion</p>
                 { text && (<div style={{backgroundColor: "white", border: "4px solid "}} className="p2">
                     { isEditable && (<div><textarea
                       style={{
@@ -55,7 +56,7 @@ export default class EditableFirstArgument extends Component {
                       onChange={ this.handleTextChange }>
                     </textarea></div>)}
                     { isEditable && isDirty && !isEditing && (<div className="flex justify-end mt1">
-                        <button onClick={ () => { this.handleModifyClick() }} className="caps p1" style={{border:"1px solid black", color: "black", display:"inline-block", padding: ".5rem", width:"auto"}}>Modify</button>
+                        <button onClick={ () => { this.handleModifyClick() }} className="caps p1" style={{border:"1px solid black", color: "black", display:"inline-block", padding: ".5rem", width:"auto"}}>Click Here to Edit</button>
                     </div>) }
                     { isEditing && (<div className="flex justify-end mt1">
                         <button
