@@ -47,7 +47,11 @@ const FlippableDebateCard = React.createClass({
             {/* { frontVisible && (<div className={ "front " + (frontVisible ? 'Card-Front-Flip': '')}>
                     <div className="content"  onClick={ this.flip }>*/}
                     <div className="fullScreenDebateCard">
+
                         <div className="flex justify-between">
+                            <div className="small">
+                                <p className="view-amt small ml1" style={{color:"#292C2D" , top:'3%'}}><img src="/images/eye-b.png" style={{margin: "0px"}} /> { views }</p>
+                            </div>
                          {  /* <div>
                                 <input type="checkbox" style={{position:'absolute', top:'3%'}} onClick={e => e.stopPropagation()} onChange={ e => { e.stopPropagation(); handleSubscribeToggle(_id); } } checked={ subscribed }/>
                             </div>*/  }
@@ -66,9 +70,7 @@ const FlippableDebateCard = React.createClass({
                                         <div className="mx-auto" style={{background: "url(" + challengeeImage + ") center center no-repeat", backgroundSize: "cover", borderRadius:"100px", border: "2px white solid", width: "120px", height: "120px"}}></div>
                                         <p className="small">{ challengee.username }</p>
                                     </div>
-                                          <div className="small">
-                                 <p className="view-amt small ml1" style={{color:"#292C2D" , top:'3%'}}><img src="/images/eye-b.png" style={{margin: "0px"}} /> { views }</p>
-                                    </div>
+
                                 </div>
                                     <span className="small" style={{color: "crimson"}}>{ ((isChallenger && !debate.challengerRead) || (isChallengee) && (!debate.challengeeRead)) && (<i className="glyphicon glyphicon-envelope" />) }</span>
                                     <span className="small ml1"><TimeElapsedString elapsed={debate.updated} /></span>
