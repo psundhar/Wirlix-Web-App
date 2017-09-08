@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/users.js');
 var client= require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+var jwt = require('jsonwebtoken');
+var secret = 'harrypotter';
 const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt');
 
@@ -12,6 +14,10 @@ module.exports = function(passport) {
     router.get('/', function(req, res) {
         res.render('index', { title: 'Wirlix', error: req.flash('error'), signupError: req.flash('signup')});
     });
+    router.get('/resetpassword', function(req, res) {
+        res.render('resetpassword', { title: 'Wirlix', error: req.flash('error'), signupError: req.flash('signup')});
+    });
+
 
     // router.get('/profile', function(req, res) {
     //     //res.send('Successfully authenticated');
@@ -301,6 +307,227 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
                 res.end();
             });
     });
+
+
+
+ // **************************************************
+
+
+    router.post('/resetpassword', function(req, res, next) {
+
+
+        var email = req.body.email;
+        console.log(email);
+
+        User.findOne({ email: req.body.email }).select('username email firstName resettoken').exec(function(err, user) {
+            console.log(user.username);
+            if (err) throw err; // Throw error if cannot connect
+            if (!user) {
+                res.json({ success: false, message: 'E-mail was not found' }); // Return error if username is not found in database
+            } else {
+
+                user.resettoken = jwt.sign({ username: user.username, email: user.email }, secret, { expiresIn: '24h' });
+                console.log(user.resettoken);
+
+//                 var resetToken = user.resettoken;
+              /*      var query={username:user.username};*/
+              /*           console.lo*/
+              /*user.update(query,{$set:{resettoken: user.resettoken}}).exec();*/
+
+                // Create a token for activating account through e-mail
+                // Save token to user in database
+                user.save(function(err,savedUser) {
+                    if (err) {
+                        res.json({ success: false, message: err }); // Return error if cannot connect
+                    } else {
+                        console.log(savedUser)  ;
+                        // Create e-mail object to send to user
+                        let transporter = nodemailer.createTransport({
+                            service: 'gmail',
+                            secure: false,
+                            port: 25,
+                            auth: {
+                                user: 'wirlixtest@gmail.com',
+                                pass: 'test@W!rl!x'
+                            },
+                            tls : {
+                                rejectUnauthorized: false
+                            }
+                        });
+                        let mailOptions = {
+                            from: 'wirlixtest@gmail.com',
+                            to: req.body.email,
+                            subject: 'Welcome to Wirlix',
+                            text: 'Welcome to Wirlix',
+                            html: `
+        
+        <div>
+          <div style = "
+            color: black;
+           font-size: 15px;
+           -ms-word-wrap: normal;
+           word-wrap: normal;
+           font-family: Raleway,Arial,sans-serif;
+           /*line-height: 1.2em;*/
+           line-height: 1.5em;
+           letter-spacing: 2px;
+           font-weight: 400;
+           font-style: normal;
+           -webkit-font-smoothing: antialiased;
+           padding-bottom: 2rem;
+           padding-top: 30px;">
+         <br /><br />
+
+Hi User<br/>
+
+             <br /><br />
+            Here is the link to reset your password.
+            
+            You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:3000/resetpassword/${user.resettoken}">Click here to reset your password</a>
+            						
+            <br /><br />
+        
+        </div>
+                                                                                                                                           
+        
+            `,
+
+                        };
+
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if(error) {
+                                return console.log(error);
+                            }
+                            console.log('Message % s sent: %s', info.messageId, info.response);
+                        });
+                        res.json({ success: true, message: 'Please check your e-mail for password reset link' }); // Return success message
+                    }
+                });
+            }
+        });
+
+
+
+
+    });
+    // Route to verify user's e-mail activation link
+    router.get('/resetpassword/:token', function(req, res) {
+        console.log("over here");
+        User.findOne({ resettoken: req.params.token }).select().exec(function(err, user) {
+            if (err) throw err; // Throw err if cannot connect
+            var token = req.params.token; // Save user's token from parameters to variable
+            console.log(token);
+            // Function to verify token
+            jwt.verify(token, secret, function(err, decoded) {
+                if (err) {
+                    console.log("1.we reached here");
+                    res.json({ success: false, message: 'Password link has expired' }); // Token has expired or is invalid
+                } else {
+                    if (!user) {
+                        console.log("2.we reached here");
+                        res.json({ success: false, message: 'Password link has expired' }); // Token is valid but not no user has that token anymore
+                    } else {
+                        //res.json({ success: true, user: user });
+                        res.render('savepassword',{ title: 'Wirlix', error: req.flash('error'), signupError: req.flash('signup')});
+                        console.log("3.we reached here");
+                        console.log(user);// Return user object to controller
+
+                    }
+                }
+            });
+        });
+
+
+    });
+
+
+    router.post('/savepassword', function(req, res) {
+        console.log("1. put function");
+        console.log(req.params.token);
+        console.log(req.body.token);
+        User.findOne({ username:"chris" }).select('username email name password resettoken').exec(function(err, user) {
+            console.log("2. put function ");
+            console.log(user.username);
+            console.log(user.email);
+            console.log(req.params.token);
+            if (err) throw err; // Throw error if cannot connect
+            if (req.body.password == null || req.body.password == '') {
+                res.json({ success: false, message: 'Password not provided' });
+            } else {
+                user.password = req.body.password; // Save user's new password to the user object
+                user.resettoken = false; // Clear user's resettoken
+                // Save user's new data
+                user.save(function(err,savedUser) {
+                    console.log("i m in inside saved user");
+                    console.log(savedUser);
+                    if (err) {
+                        res.json({ success: false, message: err });
+                    } else {
+                        console.log(savedUser);
+                        // Create e-mail object to send to user
+                        let transporter = nodemailer.createTransport({
+                            service: 'gmail',
+                            secure: false,
+                            port: 25,
+                            auth: {
+                                user: 'wirlixtest@gmail.com',
+                                pass: 'test@W!rl!x'
+                            },
+                            tls : {
+                                rejectUnauthorized: false
+                            }
+                        });
+                        let mailOptions = {
+                            from: 'wirlixtest@gmail.com',
+                            to: req.body.email,
+                            subject: 'Welcome to Wirlix',
+                            text: 'Welcome to Wirlix',
+                            html: `
+        
+        <div>
+          <div style = "
+            color: black;
+           font-size: 15px;
+           -ms-word-wrap: normal;
+           word-wrap: normal;
+           font-family: Raleway,Arial,sans-serif;
+           /*line-height: 1.2em;*/
+           line-height: 1.5em;
+           letter-spacing: 2px;
+           font-weight: 400;
+           font-style: normal;
+           -webkit-font-smoothing: antialiased;
+           padding-bottom: 2rem;
+           padding-top: 30px;">
+         <br /><br />
+
+Hi User<br/>
+             <br /><br />
+            
+your password is reset            						
+            <br /><br />
+        
+        </div>
+                                                                                                                                           
+        
+            `,
+
+                        };
+
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if(error) {
+                                return console.log(error);
+                            }
+                            console.log('Message % s sent: %s', info.messageId, info.response);
+                        });
+                        res.json({ success: true, message: 'Password has been reset!' }); // Return success message
+                    }
+                });
+            }
+        });
+    });
+
+ //
     // TOKBOX Video Chat Technology
 
 
