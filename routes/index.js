@@ -428,7 +428,7 @@ Hi User<br/>
                         res.json({ success: false, message: 'Password link has expired' }); // Token is valid but not no user has that token anymore
                     } else {
                         //res.json({ success: true, user: user });
-                        res.render('savepassword',{ title: 'Wirlix', error: req.flash('error'), signupError: req.flash('signup')});
+                        res.render('savepassword',{rtoken: token, title: 'Wirlix', error: req.flash('error'), signupError: req.flash('signup')});
                         console.log("3.we reached here");
                         console.log(user);// Return user object to controller
 
@@ -441,11 +441,11 @@ Hi User<br/>
     });
 
 
-    router.post('/savepassword', function(req, res) {
+    router.post('/savepassword', function(req, res, rtoken) {
         console.log("1. put function");
-        console.log(req.params.token);
-        console.log(req.body.token);
-        User.findOne({ username:"chris" }).select('username email name password resettoken').exec(function(err, user) {
+        console.log(rtoken);
+        console.log(token);
+        User.findOne({ username:req.body.username }).select('username email name password resettoken').exec(function(err, user) {
             console.log("2. put function ");
             console.log(user.username);
             console.log(user.email);
