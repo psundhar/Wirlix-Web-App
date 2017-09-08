@@ -361,36 +361,36 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
                             text: 'Welcome to Wirlix',
                             html: `
         
-        <div>
-          <div style = "
-            color: black;
-           font-size: 15px;
-           -ms-word-wrap: normal;
-           word-wrap: normal;
-           font-family: Raleway,Arial,sans-serif;
-           /*line-height: 1.2em;*/
-           line-height: 1.5em;
-           letter-spacing: 2px;
-           font-weight: 400;
-           font-style: normal;
-           -webkit-font-smoothing: antialiased;
-           padding-bottom: 2rem;
-           padding-top: 30px;">
-         <br /><br />
+                                <div>
+                                <div style = "
+                                    color: black;
+                                    font-size: 15px;
+                                    -ms-word-wrap: normal;
+                                    word-wrap: normal;
+                                    font-family: Raleway,Arial,sans-serif;
+                                    /*line-height: 1.2em;*/
+                                    line-height: 1.5em;
+                                    letter-spacing: 2px;
+                                    font-weight: 400;
+                                    font-style: normal;
+                                    -webkit-font-smoothing: antialiased;
+                                    padding-bottom: 2rem;
+                                    padding-top: 30px;">
+                                    <br /><br />
 
-Hi User<br/>
+                                Hi User<br/>
 
-             <br /><br />
-            Here is the link to reset your password.
+                                <br /><br />
+                                Here is the link to reset your password.
             
-            You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:3000/resetpassword/${user.resettoken}">Click here to reset your password</a>
+                                You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:3000/resetpassword/${user.resettoken}">Click here to reset your password</a>
             						
-            <br /><br />
+                                 <br /><br />
         
-        </div>
+                                </div>
                                                                                                                                            
         
-            `,
+                                `,
 
                         };
 
@@ -400,7 +400,7 @@ Hi User<br/>
                             }
                             console.log('Message % s sent: %s', info.messageId, info.response);
                         });
-                        res.json({ success: true, message: 'Please check your e-mail for password reset link' }); // Return success message
+                        res.render('loaded',{title: 'A reset password link has been sent to your e-mail', render: ''});
                     }
                 });
             }
@@ -428,7 +428,7 @@ Hi User<br/>
                         res.json({ success: false, message: 'Password link has expired' }); // Token is valid but not no user has that token anymore
                     } else {
                         //res.json({ success: true, user: user });
-                        res.render('savepassword',{rtoken: token, title: 'Wirlix', error: req.flash('error'), signupError: req.flash('signup')});
+                        res.render('savepassword',{rtoken: token, title: 'Wirlix', render: ''});
                         console.log("3.we reached here");
                         console.log(user);// Return user object to controller
 
@@ -442,14 +442,10 @@ Hi User<br/>
 
 
     router.post('/savepassword', function(req, res, rtoken) {
-        console.log("1. put function");
-        console.log(rtoken);
+        
         //console.log(token);
         User.findOne({ resettoken:req.body.resettoken }).select('username email name password resettoken').exec(function(err, user) {
-            console.log("2. put function ");
-            console.log(user.username);
-            console.log(user.email);
-            console.log(req.params.token);
+           
             if (err) throw err; // Throw error if cannot connect
 
             if (req.body.password == null || req.body.password == '') {
@@ -467,7 +463,6 @@ Hi User<br/>
                     if (err) {
                         res.json({ success: false, message: err });
                     } else {
-                        console.log(savedUser);
                         // Create e-mail object to send to user
                         let transporter = nodemailer.createTransport({
                             service: 'gmail',
@@ -488,33 +483,33 @@ Hi User<br/>
                             text: 'Welcome to Wirlix',
                             html: `
         
-        <div>
-          <div style = "
-            color: black;
-           font-size: 15px;
-           -ms-word-wrap: normal;
-           word-wrap: normal;
-           font-family: Raleway,Arial,sans-serif;
-           /*line-height: 1.2em;*/
-           line-height: 1.5em;
-           letter-spacing: 2px;
-           font-weight: 400;
-           font-style: normal;
-           -webkit-font-smoothing: antialiased;
-           padding-bottom: 2rem;
-           padding-top: 30px;">
-         <br /><br />
+                    <div>
+                    <div style = "
+                        color: black;
+                        font-size: 15px;
+                        -ms-word-wrap: normal;
+                        word-wrap: normal;
+                        font-family: Raleway,Arial,sans-serif;
+                        /*line-height: 1.2em;*/
+                        line-height: 1.5em;
+                        letter-spacing: 2px;
+                        font-weight: 400;
+                        font-style: normal;
+                        -webkit-font-smoothing: antialiased;
+                        padding-bottom: 2rem;
+                        padding-top: 30px;">
+                        <br /><br />
 
-Hi User<br/>
-             <br /><br />
+                        Hi User<br/>
+                        <br /><br />
             
-your password is reset            						
-            <br /><br />
+                        your password is reset            						
+                        <br /><br />
         
-        </div>
+                        </div>
                                                                                                                                            
         
-            `,
+                        `,
 
                         };
 
@@ -524,7 +519,7 @@ your password is reset
                             }
                             console.log('Message % s sent: %s', info.messageId, info.response);
                         });
-                        res.json({ success: true, message: 'Password has been reset!' }); // Return success message
+                        res.render('loading', {title: 'Resetting Password...'});
                     }
                 });
             });
