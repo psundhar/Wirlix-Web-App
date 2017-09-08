@@ -444,7 +444,7 @@ Hi User<br/>
     router.post('/savepassword', function(req, res, rtoken) {
         console.log("1. put function");
         console.log(rtoken);
-        console.log(token);
+        //console.log(token);
         User.findOne({ username:req.body.username }).select('username email name password resettoken').exec(function(err, user) {
             console.log("2. put function ");
             console.log(user.username);
