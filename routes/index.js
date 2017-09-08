@@ -445,16 +445,20 @@ Hi User<br/>
         console.log("1. put function");
         console.log(rtoken);
         //console.log(token);
-        User.findOne({ username:req.body.username }).select('username email name password resettoken').exec(function(err, user) {
+        User.findOne({ resettoken:req.body.resettoken }).select('username email name password resettoken').exec(function(err, user) {
             console.log("2. put function ");
             console.log(user.username);
             console.log(user.email);
             console.log(req.params.token);
             if (err) throw err; // Throw error if cannot connect
+
             if (req.body.password == null || req.body.password == '') {
                 res.json({ success: false, message: 'Password not provided' });
             } else {
-                user.password = req.body.password; // Save user's new password to the user object
+                var password = req.body.password; // Save user's new password to the user object
+
+                bcrypt.hash(password, 10).then(function(hashedPass) {
+                user.password = hashedPass;
                 user.resettoken = false; // Clear user's resettoken
                 // Save user's new data
                 user.save(function(err,savedUser) {
@@ -523,6 +527,7 @@ your password is reset
                         res.json({ success: true, message: 'Password has been reset!' }); // Return success message
                     }
                 });
+            });
             }
         });
     });
