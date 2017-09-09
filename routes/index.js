@@ -450,38 +450,41 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
 
             if (req.body.password == null || req.body.password == '') {
                 res.json({ success: false, message: 'Password not provided' });
-            } else {
-                var password = req.body.password; // Save user's new password to the user object
+            } else{
+                if(req.body.password2 == req.body.password) {
 
-                bcrypt.hash(password, 10).then(function(hashedPass) {
-                user.password = hashedPass;
-                user.resettoken = false; // Clear user's resettoken
-                // Save user's new data
-                user.save(function(err,savedUser) {
-                    console.log("i m in inside saved user");
-                    console.log(savedUser);
-                    if (err) {
-                        res.json({ success: false, message: err });
-                    } else {
-                        // Create e-mail object to send to user
-                        let transporter = nodemailer.createTransport({
-                            service: 'gmail',
-                            secure: false,
-                            port: 25,
-                            auth: {
-                                user: 'wirlixtest@gmail.com',
-                                pass: 'test@W!rl!x'
-                            },
-                            tls : {
-                                rejectUnauthorized: false
-                            }
-                        });
-                        let mailOptions = {
-                            from: 'wirlixtest@gmail.com',
-                            to: req.body.email,
-                            subject: 'Welcome to Wirlix',
-                            text: 'Welcome to Wirlix',
-                            html: `
+
+                    var password = req.body.password; // Save user's new password to the user object
+
+                    bcrypt.hash(password, 10).then(function (hashedPass) {
+                        user.password = hashedPass;
+                        user.resettoken = false; // Clear user's resettoken
+                        // Save user's new data
+                        user.save(function (err, savedUser) {
+                            console.log("i m in inside saved user");
+                            console.log(savedUser);
+                            if (err) {
+                                res.json({success: false, message: err});
+                            } else {
+                                // Create e-mail object to send to user
+                                let transporter = nodemailer.createTransport({
+                                    service: 'gmail',
+                                    secure: false,
+                                    port: 25,
+                                    auth: {
+                                        user: 'wirlixtest@gmail.com',
+                                        pass: 'test@W!rl!x'
+                                    },
+                                    tls: {
+                                        rejectUnauthorized: false
+                                    }
+                                });
+                                let mailOptions = {
+                                    from: 'wirlixtest@gmail.com',
+                                    to: req.body.email,
+                                    subject: 'Welcome to Wirlix',
+                                    text: 'Welcome to Wirlix',
+                                    html: `
         
                     <div>
                     <div style = "
@@ -511,18 +514,22 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
         
                         `,
 
-                        };
+                                };
 
-                        transporter.sendMail(mailOptions, (error, info) => {
-                            if(error) {
-                                return console.log(error);
+                                transporter.sendMail(mailOptions, (error, info) => {
+                                    if (error) {
+                                        return console.log(error);
+                                    }
+                                    console.log('Message % s sent: %s', info.messageId, info.response);
+                                });
+                                res.render('loading', {title: 'Resetting Password...'});
                             }
-                            console.log('Message % s sent: %s', info.messageId, info.response);
                         });
-                        res.render('loading', {title: 'Resetting Password...'});
-                    }
-                });
-            });
+                    });
+                }
+                else{
+                      console.log("hahah")     ;
+                }
             }
         });
     });
