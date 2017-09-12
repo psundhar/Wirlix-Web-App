@@ -87,7 +87,7 @@ module.exports = function(passport) {
         //     body: "Thanks for joining" + " " + req.body.fullName + "! Make sure to check out our site we have a ton of amazing shit coming up for you. At Wirlix, we are one world in unity and we believe in the power of people and the power in you. It's a movement and a revolution and we can't wait to change the world with you. We care about your experience and your happiness so please reach out anytime and stay tuned for an amazing journey. Welcome to Wirlix."
         // });
         let transporter = nodemailer.createTransport({
-            service: 'gmail',
+            host: 'smtp.gmail.com',
             secure: false,
             port: 25,
             auth: {
@@ -346,7 +346,7 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
                         //console.log(savedUser)  ;
                         // Create e-mail object to send to user
                         let transporter = nodemailer.createTransport({
-                            service: 'gmail',
+                            host: 'smtp.gmail.com',
                             secure: false,
                             port: 25,
                             auth: {
