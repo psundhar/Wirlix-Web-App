@@ -5,7 +5,7 @@
    height: 575px;
    width: 100%;
     overflow:auto;
-    
+
 }
 
 
@@ -20,7 +20,7 @@
     padding-left:1.5%;
 /*    padding-right:3%;*/
     overflow:auto;
-   
+
 }
 
 .description-box2 {
@@ -69,8 +69,8 @@
    background-color: white;
  /*  width: 33%;*/
    height: 100%;
-   
-   
+
+
 }
 
 .wirlix-contest img{
@@ -78,9 +78,25 @@
     width:90%;
    /* padding:10%;*/
     float:left;
-   
+
+}
+.pw_box {
+
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 80px;
+    border-style: solid;
+    width: 480px;
+    border-color: white;
+    height: 500px;
+}
+.margo{
+    margin-top: 150px;
 }
 
+.errorHide{
+  display: none;
+}
 .contest-title {
     font-size: 45px;
     line-height: 1em;
@@ -107,7 +123,7 @@
     font-weight: 400;
     font-style: normal;
     text-align: left;
-   
+
 }
 
 
@@ -126,22 +142,22 @@
 
 .icon1{
      background-image: url('../images/eyes.jpg');
-     background-size: cover; 
-    
+     background-size: cover;
+
 }
 
 .icon2{
-    
+
      background-image: url('../images/share.jpg');
-     background-size: cover; 
+     background-size: cover;
 }
 
 .icon3{
      background-image: url('../images/challenge2.gif');
-     background-size: cover; 
+     background-size: cover;
 }
 
-.overlay    { 
+.overlay    {
   content: "";
   display: block;
   position: absolute;
@@ -179,8 +195,8 @@
     font-style: normal;
     text-align: center;
     margin-top:8%;
-    
-   
+
+
 }
 
 .social-icons{
@@ -264,7 +280,7 @@ textarea:-ms-input-placeholder {
      padding: 0px;
        margin:0px;
     }
-    
+
     #homepage {
         justify-content: center;
         align-content: center;
@@ -278,7 +294,7 @@ textarea:-ms-input-placeholder {
        /* background-size: cover; */
     }
 
-    
+
 
 }
 
@@ -294,7 +310,7 @@ body {
     width: 100%;
     background-color: white;
     font-family: 'Oswald', sans-serif;
-} 
+}
 
 body, h1, h2, h3, h4, p, ul{
     font-family: 'Oswald', sans-serif;
@@ -380,17 +396,17 @@ body {
     background-color: #333333;
     transition: background-color 1s;
     background-image: url('../images/Elixcit-Draft-8.gif');
-    background-size: cover; 
+    background-size: cover;
 }
 
 /*
-#homepage { 
+#homepage {
 
     background: url('../images/Elixcit-Draft-2.gif') center center no-repeat;
     background-size: cover;
     height:100%;
     position: relative;
- 
+
 }
 */
 
@@ -587,7 +603,7 @@ div#icon-align:hover i, div#icon-align:hover .icons h3, div#icon-align:hover spa
 div#icon-align:hover i {
     border: 2px solid transparent;
 }*/
-------------------------------------------- ICON 
+------------------------------------------- ICON
 /*
 .icons div div {
     padding: 0;
@@ -635,7 +651,7 @@ div#icon-align:hover i {
     display: block;
 }
 
- 
+
 
 .icon-overlay{
   display: none;
@@ -658,10 +674,10 @@ div#icon-align:hover i {
   vertical-align: middle;
   display: none;
   overflow: visible;
- 
-  
+
+
   border-radius: 3px;
-  
+
   width: 600px;
   height: 600px;
   margin: 0 auto;
@@ -702,7 +718,7 @@ div#icon-align:hover i {
   font-family: "Source Code Pro";
   font-weight: 200;
   text-align: center;
-  
+
 }
 
 
@@ -837,7 +853,7 @@ input:focus {
 }
 
 .description{
-    
+
     padding:30px;
     background-color: black;
 }
@@ -890,10 +906,10 @@ input:focus {
     background: none;
     border: none;
     /*border-bottom: solid 1px white;*/
-    
+
     font-weight: 300;
     margin-top: 18px;
- 
+
 
 }
 
@@ -905,7 +921,7 @@ input:focus {
     background: none;
     border: none;
     /*border-bottom: solid 1px white;*/
-    
+
     font-weight: 300;
     margin-top: 18px;
 }
@@ -921,7 +937,7 @@ input:focus {
     font-family: 'Oswald', sans-serif;
     letter-spacing: 0px;
     text-transform: none;
-    
+
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 200;

@@ -132,7 +132,7 @@ module.exports = function(passport) {
             What's up ${req.body.fullName}, <br /><br />
 
 My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks so much for being a part of Wirlix and helping spread our vision. A little about why I started Wirlix  Sometimes life can seem like we’re just checking boxes rather than living for ourselves. We’ve all felt trapped and by ourselves. In a world where all of us are guilty of trying to fit in and be the same type of person. I wanted to create a place for the part of everyone that doesn’t. The rule-breakers or as Steve Jobs so famously said, “the ones who see things differently.” Essentially, Wirlix is the platform for the the part of you that makes you who you are: your story and your reality. Feel free to debate or chat with me any day, We have a lot of awesome features and new products coming out soon so stay tuned! I'll always have an opinion on Wirlix otherwise you can reach me at this email with any questions, concerns or honestly just anything. I’d love to hear from you.
-           
+
              <br /><br />
             Here is your password in case you ever forget.
             <br /><br />
@@ -154,7 +154,7 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
             <br />
             </div>
 
-        
+
 
          <div style = "
            color: black;
@@ -169,7 +169,7 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
            font-style: normal;
            -webkit-font-smoothing: antialiased;
            padding-bottom: 2rem;
-          
+
            padding-top: 5px;">
 
         Thanks for joining! Feel free to email us about anything. Just reach out we'd love to hear from you.
@@ -229,7 +229,7 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
 
         <div>
         <img src='cid:uniquebcg@nodemailer.com' style="height:60px; width:60px"/>
-        </div> 
+        </div>
 
         </div>
             `,
@@ -360,7 +360,7 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
                             subject: 'Welcome to Wirlix',
                             text: 'Welcome to Wirlix',
                             html: `
-        
+
                                 <div>
                                 <div style = "
                                     color: black;
@@ -382,14 +382,14 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
 
                                 <br /><br />
                                 Here is the link to reset your password.
-            
+
                                 You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:3000/resetpassword/${user.resettoken}">Click here to reset your password</a>
-            						
+
                                  <br /><br />
-        
+
                                 </div>
-                                                                                                                                           
-        
+
+
                                 `,
 
                         };
@@ -442,10 +442,10 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
 
 
     router.post('/savepassword', function(req, res, rtoken) {
-        
+
         //console.log(token);
         User.findOne({ resettoken:req.body.resettoken }).select('username email name password resettoken').exec(function(err, user) {
-           
+
             if (err) throw err; // Throw error if cannot connect
 
             if (req.body.password == null || req.body.password == '') {
@@ -485,7 +485,7 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
                                     subject: 'Welcome to Wirlix',
                                     text: 'Welcome to Wirlix',
                                     html: `
-        
+
                     <div>
                     <div style = "
                         color: black;
@@ -505,13 +505,13 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
 
                         Hi User<br/>
                         <br /><br />
-            
-                        your password is reset            						
+
+                        your password is reset
                         <br /><br />
-        
+
                         </div>
-                                                                                                                                           
-        
+
+
                         `,
 
                                 };
