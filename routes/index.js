@@ -131,7 +131,7 @@ module.exports = function(passport) {
            padding-top: 30px;">
             What's up ${req.body.fullName}, <br /><br />
 
-My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks so much for being a part of Wirlix and helping spread our vision. A little about why I started Wirlix  Sometimes life can seem like we’re just checking boxes rather than living for ourselves. We’ve all felt trapped and by ourselves. In a world where all of us are guilty of trying to fit in and be the same type of person. I wanted to create a place for the part of everyone that doesn’t. The rule-breakers or as Steve Jobs so famously said, “the ones who see things differently.” Essentially, Wirlix is the platform for the the part of you that makes you who you are: your story and your reality. Feel free to debate or chat with me any day, We have a lot of awesome features and new products coming out soon so stay tuned! I'll always have an opinion on Wirlix otherwise you can reach me at this email with any questions, concerns or honestly just anything. I’d love to hear from you.
+My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks so much for being a part of Wirlix and helping spread our vision. A little about why I started Wirlix  Sometimes life can seem like we are just checking boxes rather than living for ourselves. We have all felt trapped and by ourselves. In a world where all of us are guilty of trying to fit in and be the same type of person. I wanted to create a place for the part of everyone that does not. The rule-breakers or as Steve Jobs so famously said, “the ones who see things differently.” Essentially, Wirlix is the platform for the the part of you that makes you who you are: your story and your reality. Feel free to debate or chat with me any day, We have a lot of awesome features and new products coming out soon so stay tuned! I will always have an opinion on Wirlix otherwise you can reach me at this email with any questions, concerns or honestly just anything. I would love to hear from you.
 
              <br /><br />
             Here is your password in case you ever forget.
@@ -172,7 +172,7 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
 
            padding-top: 5px;">
 
-        Thanks for joining! Feel free to email us about anything. Just reach out we'd love to hear from you.
+        Thanks for joining! Feel free to email us about anything. Just reach out we would love to hear from you.
         Enjoy your journey.
 
         <br />
@@ -228,7 +228,7 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
           </div>
 
         <div>
-        <img src='cid:uniquebcg@nodemailer.com' style="height:60px; width:60px"/>
+        <img src="cid:uniquebcg@nodemailer.com" style="height:60px; width:60px"/>
         </div>
 
         </div>
