@@ -15,7 +15,7 @@ module.exports = function(passport) {
         res.render('index', { title: 'Wirlix', error: req.flash('error'), signupError: req.flash('signup')});
     });
     router.get('/resetpassword', function(req, res) {
-        res.render('resetpassword', { title: 'Wirlix', error: req.flash('error'), signupError: req.flash('signup')});
+        res.render('resetpassword', { title: 'Wirlix', error: req.flash('error'), success: req.flash('success')});
     });
 
 
@@ -317,17 +317,20 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
 
 
         var email = req.body.email;
-        console.log(email);
 
         User.findOne({ email: req.body.email }).select('username email firstName resettoken').exec(function(err, user) {
-            console.log(user.username);
+            let message = '';
             if (err) throw err; // Throw error if cannot connect
             if (!user) {
-                res.json({ success: false, message: 'E-mail was not found' }); // Return error if username is not found in database
+                message = "Your E-mail does not match any E-mails in our Database.";
+                req.flash('error', message);
+                res.redirect('/resetpassword');
+
+                // res.json({ success: false, message: 'E-mail was not found' }); // Return error if username is not found in database
             } else {
 
                 user.resettoken = jwt.sign({ username: user.username, email: user.email }, secret, { expiresIn: '24h' });
-                console.log(user.resettoken);
+              //  console.log(user.resettoken);
 
 //                 var resetToken = user.resettoken;
               /*      var query={username:user.username};*/
@@ -340,7 +343,7 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
                     if (err) {
                         res.json({ success: false, message: err }); // Return error if cannot connect
                     } else {
-                        console.log(savedUser)  ;
+                        //console.log(savedUser)  ;
                         // Create e-mail object to send to user
                         let transporter = nodemailer.createTransport({
                             service: 'gmail',
@@ -378,20 +381,39 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
                                     padding-top: 30px;">
                                     <br /><br />
 
-                                Hi User<br/>
+                                Hello,<br/>
 
                                 <br /><br />
-                                Here is the link to reset your password.
+                                Someone (hopefully you) has requested a password reset for your Wirlix account. Follow the link below to set a new password:
 
-                                You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:3000/resetpassword/${user.resettoken}">Click here to reset your password</a>
+                               <br><br><a href="http://localhost:3000/resetpassword/${user.resettoken}">Click here to reset your password</a>
+                                <br/><br/>
+                                If you don't wish to reset your password, disregard this email and no action will be taken.
 
-                                 <br /><br />
+                                <br /><br />
+
+
+
+        <br/><br/>
+        The Wirlix Team
+        <br/>
+        https://www.wirlix.com
+        </div>
+        <div>
+        <img src='cid:uniquebcg@nodemailer.com' style="height:60px; width:60px"/>
+        </div>
 
                                 </div>
 
 
                                 `,
-
+                                attachments: [
+                                    {
+                                        filename: 'image.png',
+                                        path: 'public/images/wx_logo2.png',
+                                        cid: 'uniquebcg@nodemailer.com' //same cid value as in the html img src
+                                    }
+                                ],
                         };
 
                         transporter.sendMail(mailOptions, (error, info) => {
@@ -400,7 +422,10 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
                             }
                             console.log('Message % s sent: %s', info.messageId, info.response);
                         });
-                        res.render('loaded',{title: 'A reset password link has been sent to your e-mail', render: ''});
+                        console.log("message flash");
+                        message = "A Password Reset Link Has Been Sent To Your Registered E-mail ID.";
+                        req.flash('success', message);
+                        res.redirect('/resetpassword');
                     }
                 });
             }
@@ -412,24 +437,20 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
     });
     // Route to verify user's e-mail activation link
     router.get('/resetpassword/:token', function(req, res) {
-        console.log("over here");
         User.findOne({ resettoken: req.params.token }).select().exec(function(err, user) {
             if (err) throw err; // Throw err if cannot connect
             var token = req.params.token; // Save user's token from parameters to variable
-            console.log(token);
+          //  console.log(token);
             // Function to verify token
             jwt.verify(token, secret, function(err, decoded) {
                 if (err) {
-                    console.log("1.we reached here");
                     res.json({ success: false, message: 'Password link has expired' }); // Token has expired or is invalid
                 } else {
                     if (!user) {
-                        console.log("2.we reached here");
                         res.json({ success: false, message: 'Password link has expired' }); // Token is valid but not no user has that token anymore
                     } else {
                         //res.json({ success: true, user: user });
                         res.render('savepassword',{rtoken: token, title: 'Wirlix', render: ''});
-                        console.log("3.we reached here");
                         console.log(user);// Return user object to controller
 
                     }
@@ -461,74 +482,17 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
                         user.resettoken = false; // Clear user's resettoken
                         // Save user's new data
                         user.save(function (err, savedUser) {
-                            console.log("i m in inside saved user");
-                            console.log(savedUser);
                             if (err) {
                                 res.json({success: false, message: err});
                             } else {
                                 // Create e-mail object to send to user
-                                let transporter = nodemailer.createTransport({
-                                    service: 'gmail',
-                                    secure: false,
-                                    port: 25,
-                                    auth: {
-                                        user: 'wirlixtest@gmail.com',
-                                        pass: 'test@W!rl!x'
-                                    },
-                                    tls: {
-                                        rejectUnauthorized: false
-                                    }
-                                });
-                                let mailOptions = {
-                                    from: 'wirlixtest@gmail.com',
-                                    to: req.body.email,
-                                    subject: 'Welcome to Wirlix',
-                                    text: 'Welcome to Wirlix',
-                                    html: `
-
-                    <div>
-                    <div style = "
-                        color: black;
-                        font-size: 15px;
-                        -ms-word-wrap: normal;
-                        word-wrap: normal;
-                        font-family: Raleway,Arial,sans-serif;
-                        /*line-height: 1.2em;*/
-                        line-height: 1.5em;
-                        letter-spacing: 2px;
-                        font-weight: 400;
-                        font-style: normal;
-                        -webkit-font-smoothing: antialiased;
-                        padding-bottom: 2rem;
-                        padding-top: 30px;">
-                        <br /><br />
-
-                        Hi User<br/>
-                        <br /><br />
-
-                        your password is reset
-                        <br /><br />
-
-                        </div>
-
-
-                        `,
-
-                                };
-
-                                transporter.sendMail(mailOptions, (error, info) => {
-                                    if (error) {
-                                        return console.log(error);
-                                    }
-                                    console.log('Message % s sent: %s', info.messageId, info.response);
-                                });
                                 res.render('loading', {title: 'Resetting Password...'});
                             }
                         });
                     });
                 }
                 else{
-                      console.log("hahah")     ;
+                      console.log("Passord did not match")     ;
                 }
             }
         });
