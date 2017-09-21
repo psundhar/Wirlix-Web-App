@@ -80,7 +80,7 @@ const NavBar = React.createClass({
                             </button>
                             <Link className="navbar-brand" to="/home"><img src="/images/wx_logo2.png" /></Link>
                         </div>
-                       
+
                         <div className="collapse navbar-collapse center-m" id="bs-example-navbar-collapse-1">
 
 
@@ -88,7 +88,8 @@ const NavBar = React.createClass({
                            <ul className="nav navbar-nav center" style={{fontFamily:"1.3em"}}>
                                 <li><Link to="/home"><span className="naver" >home</span></Link></li>
                                 <li><Link to="/debate"><span className="naver" >wirlix</span></Link></li>
-                              { /* <li><Link to="/rankings"><span className="naver">Ranking</span></Link></li>*/}
+                                { /* <li><Link to="/about"><span className="naver" >about</span></Link></li>*/}
+                               { /* <li><Link to="/rankings"><span className="naver">Ranking</span></Link></li>*/}
                                 <div className="hideNav">
                                     <li><Link to={"/profile/" + user._id}><span className="naver">Profile</span></Link></li>
                                     <li><Link to={"/profile/"+ user._id + "#profile-notifications"}><span className="naver">Notifications</span></Link></li>
@@ -107,7 +108,7 @@ const NavBar = React.createClass({
                                         <li><Link to={"/image/"}><span style={{color:"#424242 ", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Upload Image</b></span></Link></li>
                                         <li><a href="/logout"><span style={{color:"#424242 ", borderBottom: '1px solid grey', fontSize: "1.2em"}}><b>Logout</b></span></a></li>
                                     </ul></li>
-       
+
                             {/* <li><a className="help" href="/tutorial">? <br/><span>See Tutorial</span></a></li>*/}
 
                             </ul>

@@ -54,7 +54,7 @@
 .wirlix-contest {
     position: relative;
    display: inline-block;
-   background-color: black;
+   background-color: white;
    height: 575px;
    width: 100%;
     padding:20px;
@@ -74,8 +74,7 @@
 }
 
 .wirlix-contest img{
-   height:90%;
-    width:90%;
+    height:100%;
    /* padding:10%;*/
     float:left;
 
@@ -1183,6 +1182,26 @@ a:active {
 .ghost:hover {
     background-color: white;
     color: black;
+    transition: .2s ease;
+    text-decoration: none;
+    /*font-family: "Nunito", sans-serif;
+    font-size: 24px;*/
+}
+
+.ghost3 {
+    text-transform: uppercase;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    transition: .2s ease;
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+    letter-spacing: 5px;
+}
+
+.ghost3:hover {
+    background-color: black;
+    color: white;
     transition: .2s ease;
     text-decoration: none;
     /*font-family: "Nunito", sans-serif;
@@ -3227,7 +3246,9 @@ body {
 
 
 @media screen and (max-width:991px) {
-
+.contest-details p {
+  text-align: center;
+}
 }
 
 @media screen and (max-width:767px){

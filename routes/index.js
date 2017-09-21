@@ -7,6 +7,7 @@ var secret = 'harrypotter';
 const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt');
 
+
 var R = require('ramda')
 
 module.exports = function(passport) {
@@ -386,7 +387,7 @@ My name is Priyanka and I am the founder of Wirlix. I just wanted to say thanks 
                                 <br /><br />
                                 Someone (hopefully you) has requested a password reset for your Wirlix account. Follow the link below to set a new password:
 
-                               <br><br><a href="https://wirlix-development.herokuapp.com/resetpassword/${user.resettoken}">Click here to reset your password</a>
+                               <br><br><a href="http://localhost:3000/resetpassword/${user.resettoken}">Click here to reset your password</a>
                                 <br/><br/>
                                 If you don't wish to reset your password, disregard this email and no action will be taken.
 

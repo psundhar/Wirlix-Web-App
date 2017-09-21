@@ -10,6 +10,8 @@ import IO from 'socket.io-client';
 import { getStatement } from '../utilities/data';
 import ReactTooltip from 'react-tooltip';
 import { Carousel } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { updateStatementAction, createStatement, voteOnStatement } from '../actionCreators/statementActionCreators';
 import { createChallenge } from '../actionCreators/challengeActionCreators';
@@ -130,6 +132,60 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
+const MyLargeModal = React.createClass({
+  render() {
+    return (
+
+      <Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg">
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-lg">ARTICLES</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div className="boxoooo">
+          <div className="boxo2">
+            <p>PRO</p>
+            <div className="boxo3">
+              <a href="https://www.usatoday.com/story/money/personalfinance/2014/09/14/why-going-to-college-is-important/15525805/" target="_blank">Why Going to College is Important</a>
+                <p style={{color: "black", fontSize:"14px", marginTop: "2px"}}>source: USA TODAY</p>
+            </div>
+            <div className="boxo3">
+            <a href="https://www.nytimes.com/2015/06/04/upshot/bill-gates-college-dropout-dont-be-like-me.html" target="_blank">Bill Gates: "College Dropouts, Don't be like Me"</a>
+              <p style={{color: "black", fontSize:"14px", marginTop: "2px"}}>source: NY TIMES</p>
+            </div>
+            <div className="boxo3">
+            <a href="https://www.rand.org/blog/2017/05/is-college-worth-the-expense-yes-it-is.html" target="_blank">College Worth the Expense? Yes it is</a>
+              <p style={{color: "black", fontSize:"14px", marginTop: "2px"}}>source:RAND</p>
+
+            </div>
+
+          </div>
+        </div>
+        <div className="boxoooo">
+        <div className="boxo2">
+        <p>CON</p>
+        <div className="boxo3">
+        <a href="http://www.washingtonexaminer.com/is-college-worth-it-increasing-numbers-say-no/article/2625304" target="_blank">Is College Worth it? Increasing Numbers Say No</a>
+        <p style={{color: "black", fontSize:"14px", marginTop: "2px"}}>source: WASHINGTON EXAMINER </p>
+        </div>
+        <div className="boxo3">
+        <a href="http://www.pbs.org/newshour/bb/college-worth-cost/" target="_blank">College Worth Cost?</a>
+        <p style={{color: "black", fontSize:"14px", marginTop: "2px"}}>source: PBS</p>
+        </div>
+        <div className="boxo3">
+        <a href="http://www.npr.org/2017/03/05/518663850/working-class-students-answer-is-college-worth-it" target="_blank">Working Students answer: Is College Worth?</a>
+          <p style={{color: "black", fontSize:"14px", marginTop: "2px"}}>source: NY TIMES</p>
+        </div>
+        </div>
+        </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+});
+
 const HomePage = React.createClass({
 
     getInitialState() {
@@ -143,7 +199,9 @@ const HomePage = React.createClass({
             interval: false,
             indicators: false,
             controls: false,
-            hiddens: true
+            hiddens: true,
+            lgShow: false,
+            show: false
         };
     },
 
@@ -164,6 +222,16 @@ const HomePage = React.createClass({
         this.setState({ statementText: e.target.value });
     },
 
+    showModal() {
+      this.setState({show: true});
+    },
+
+    hideModal() {
+      this.setState({show: false});
+    },
+
+
+
 
     handleVote(isRational, statementId) {
         const statements = this.state.statements;
@@ -175,7 +243,7 @@ const HomePage = React.createClass({
             factExplode();
         }
         const s = statements.find(s => s._id == statementId);
-       
+
         if(s) {
 
             apiFetch('/api/statements/' + s._id, 'PUT', {isRational})
@@ -194,10 +262,10 @@ const HomePage = React.createClass({
             }
 
             this.setState({ statements });
-            
+
         }
 
-       
+
     },
 
 
@@ -261,7 +329,7 @@ const HomePage = React.createClass({
       $("#factual").show('slide', {
             direction: 'up'
             }, 700);
-       
+
         $("#emotional").show('slide', {
             direction: 'down'
             }, 700);
@@ -280,7 +348,7 @@ const HomePage = React.createClass({
        $(".comment-container").hide('slide', {
             direction: 'up'
             }, 2000);
-     
+
       setTimeout(function(){
           // console.log("jellloo");
           $("#emotional").hide('slide', {
@@ -301,6 +369,7 @@ const HomePage = React.createClass({
 
         const opinion=this.state.statementText.length!=0;
 
+        let lgClose = () => this.setState({ lgShow: false });
 
 
         return (
@@ -317,24 +386,52 @@ const HomePage = React.createClass({
             {/*<div className="button-home col-md-4" style={{ position: "absolute" }}>
                 <a href="#"><span style={{fontSize: "1.4em", fontFamily: 'Source Code Pro'}}>What's Trending</span></a>
             </div>*/}
-            
+
             <div className="dummyTopic">{ topic.prompt }</div>
-           
+
 
                 <video controls playsInline autoPlay muted loop poster="" id="bgvid">
                     <source src="video/9 GOAT.mp4" type="video/mp4" />
                      <source src="video/wirlix_promo_video_v1.webm" type="video/webm" />
                 </video>
+            {/* <div className="buttonsHome">
+                <Button bsStyle="primary" className="buttonMain" style={{display: "inlineBlock"}} onClick={()=>this.setState({ lgShow: true })}>
+                    Articles
+                </Button>
+                <Button bsStyle="primary" onClick={this.showModal}>
+                  Tomorrow's Article'
+                </Button>
+                </div>
 
-               {/* <div className="mute">
+
+
+       <Modal
+         {...this.props}
+         show={this.state.show}
+         onHide={this.hideModal}
+         dialogClassName="custom-modal"
+       >
+         <Modal.Header closeButton>
+           <Modal.Title id="contained-modal-title-lg">Tomorrows Topic</Modal.Title>
+         </Modal.Header>
+         <Modal.Body>
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdTzmOx35pkRo6-emRYri7nuLaIk_Ka1QO5Bja8fWRvLPkdfA/viewform?embedded=true" width="570px" height="410px" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+         </Modal.Body>
+         <Modal.Footer>
+           <Button onClick={this.hideModal}>Close</Button>
+         </Modal.Footer>
+       </Modal>
+
+                 <MyLargeModal show={this.state.lgShow} onHide={lgClose} />
+                <div className="mute">
                     <img src="images/sound.png" />
                 </div>
                 <div className="control">
                     <img src="images/pause.png" />
                 </div>*/}
-           
-        </div>
-            
+
+      </div>
+
         <section className="news-section" id="cont-section"  style={{backgroundColor:"#FFFFFF"}}>
         { /*    <div className="response"> */}
                 <div className="container" style={{paddingRight:"0px", paddingLeft:"0px", marginRight:"0px", marginLeft:"0px", width:"100%"}}>
@@ -349,14 +446,14 @@ const HomePage = React.createClass({
                             {opinion ? <button className="ghost" onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway", alignItems:"center"}}>Submit</span></button>:
                                 <button data-toggle="modal" data-target="#opinion-conf" onClick={ this.handleSubmit }><span style={{fontFamily: "Raleway"}}>Submit</span></button> }
                         </div>
-                    </div> 
+                    </div>
                     <div id="statement_carousel" style={{marginTop: "60px", paddingTop:"60px", borderTop:"2px solid darkgray"}}>
                     {/*<p style={{fontSize:"1.2em", textAlign: "center", marginBottom:"30px"}}>These opinions need your wisdom and support!!</p>*/}
 
                         <div style={{backgroundColor:"#292C2D"}}><p style={{ textAlign: "center", fontSize:"2em", padding:"30px", color:"white", fontFamily:"Source Code Pro", fontWeight:"200"}}>YOU DECIDE</p>
                                              </div>
                                                  <p style={{color:"black", textAlign:"center"}}>Vote for these opinions</p>
-                                               
+
                         <Carousel
                             indicators = {this.state.indicators}
                             interval = {this.state.interval}>
@@ -375,27 +472,27 @@ const HomePage = React.createClass({
                                 })}
                         </Carousel>
                     </div>
-    
+
                 <div className="tipIcons">
-                      <div className="col-md-4"><img src="images/best-debater.png" style={{height:"40px", width:"40px"}} /><br /><p style={{color:"black"}}>Vote as Factually Appealing</p></div> 
+                      <div className="col-md-4"><img src="images/best-debater.png" style={{height:"40px", width:"40px"}} /><br /><p style={{color:"black"}}>Vote as Factually Appealing</p></div>
                       <div className="col-md-4"><img style={{height:"40px", width:"40px"}} src="images/challenge.png" /><br /><p style={{color:"black"}}>Challenge the opinion</p></div>
                       <div className="col-md-4"><img  src="images/heart-b.png" style={{height:"40px", width:"40px"}} /><br /><p style={{color:"black"}}>Vote as Emotionally Appealing</p></div>
                 </div>
-                                   
+
           { /*        </div> */}
                 <div className="hideShowButton" style={{marginTop:"30px", position:"relative", display:"inline-block"}}>
                 {
                     !this.state.hiddens
                     ? <HideShow color="white" backgroundColor="black" ><button className="hideo"  onClick={ () => this.handleHide() }>Hide</button>  </HideShow>
                     :  <HideShow  color="white" backgroundColor="black" > <button className="hideo"  onClick={ () => this.handleShow() }>Show all opinions</button>  </HideShow>
-                }         
+                }
                 </div>
             </div>
 
             <div className="comments">
-                                   
+
                 <div className="container" style={{paddingLeft:"0px", paddingRight:"0px", marginLeft:"0px", marginRight:"0px", width:"100%" }}>
-                
+
                     <div className="border decide">
 
                        { /*<ul  className="nav nav-pills">
@@ -403,7 +500,7 @@ const HomePage = React.createClass({
                                 <a  href="#factual" data-toggle="tab">Factual</a>
                             </li>
                             <li ><a href="#emotional" data-toggle="tab">Emotional</a></li>
-                           
+
                         </ul>*/}
 
                         <div className="tab-content">
@@ -426,12 +523,12 @@ const HomePage = React.createClass({
                                 </div>
                             </div>
 
-                            
+
 
                             <div className="col-md-6 vote-col emotional" id = "emotional" style={{paddingLeft:"0px", paddingRight:"0px"}}>
                                 <h2 className="col-md-12" style={{backgroundColor:"#292C2D", padding:"0px", marginTop:"0px", marginBottom:"0px"}}><span data-tip="These arguments are more appealing to people's emotions">Most Emotional</span><img style= {{height: "48px", width:"48px"}}src="images/heart-w.gif" /></h2>
                                 <ReactTooltip place="top" type="dark" effect="float"/>
-                                    
+
                                 <div className="comment-container col-md-12">
                                     { statements.filter(s => s.voters && numEmotional(s.voters) >= MIN_VOTES && numEmotional(s.voters) >= numRational(s.voters))
                                         .sort((a, b) => {
@@ -446,15 +543,18 @@ const HomePage = React.createClass({
 
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
-                  
+
                 </div>
             </div>
             {/*<div className="overlay">
             </div>*/}
         </section>
+
+
+
         <ChallengeDialog handleCancel={this.handleCancel} handleConfirm={this.handleConfirm} topicId={ this.state.challenge.topicId } statementId={ this.state.challenge.statementId } user={ user } />
         <TempPopup show={ this.state.showChallengeSent } color="white" backgroundColor="crimson"><div className="center bold">Challenge Sent!</div></TempPopup>
             <div id ="opinion-conf" className="modal fade in" data-toggle="opinion" role="modal">

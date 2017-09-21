@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import Typed from 'typed.js';
+import { connect } from 'react-redux';
 
 const AboutPage = React.createClass({
 
@@ -39,15 +40,14 @@ const AboutPage = React.createClass({
 
 
     render() {
-        const {user} = this.state;
-        const { strings } = this.props;
+        const { topic, user, statements } = this.props;
        // this.typed = new Typed(this.el, options);
 
 
         return (
             <div>
                 <div className="main-section-home about" style={{background:"url(../images/we.jpg) center center no-repeat", backgroundSize: "cover", position: "relative" }}>
-                <NavBar user={ user }  />
+                  { Object.keys(user).length > 0 && (<NavBar user={ user } />) }
                 <div className="overlay">
                 </div>
                 {/*<div className="mute">
@@ -61,6 +61,59 @@ const AboutPage = React.createClass({
                     <source src="/video/wirlix_promo_video_v1.webm" type="video/webm"></source>
                 </video>*/}
                 </div>
+                <div className ="description">
+
+                        <div className="description-title">
+                          WHO WE ARE</div>
+                        <p>Wirlix is a social media debate and news platform revolutionizing the way you see the world and interact with humans around you. We believe the power of social media and technology should be used to truly connect one another and open minds rather than isolate opinions. We are challenging the status quo. We exist to show you the world through real people, real stories and real conversation.
+
+                          Seriously, the world is messed up & we all have the power to start a revolution. Join ours today.
+
+                        </p>
+
+                    <div className="social-icons">
+                     <p><a style={{ color: "white"}} target="_blank" href="https://www.facebook.com/SparkControversy/"><i className="fa fa-facebook" aria-hidden="true"></i></a> <a style={{ color: "white"}} target="_blank" href="https://twitter.com/officialwirlix"><i className="fa fa-twitter" aria-hidden="true"></i></a> <a style={{ color: "white"}} target="_blank" href="https://www.instagram.com/sparkcontroversy/"><i className="fa fa-instagram" aria-hidden="true"></i></a> <a style={{ color: "white"}} target="_blank" href="https://mail.google.com/mail/?view=cm&fs=1&to=priyanka@wirlix.com"><i className="fa fa-envelope-o" aria-hidden="true"></i></a></p>
+                   </div>
+            </div>
+                <div className = "wirlix-details">
+                    <div className = "details col-md-4">
+                        <div className = "description-box2 icon1">
+                        </div>
+                        <div className = "description-box">
+                            <div className ="icon-details">
+                                <div className ="icon-title">WATCH</div>
+                                <p>Unbiased videos challenging mainstream ideas updated every 48 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className = "details col-md-4">
+                        <div className = "description-box">
+                            <div className ="icon-details">
+                                <div className ="icon-title">SHARE</div>
+                                <p> Speak things into existence<br />&<br /> view others opinions on different controversies</p>
+                            </div>
+                        </div>
+                        <div className = "description-box2 icon2">
+
+                        </div>
+
+                    </div>
+                    <div className = "details col-md-4">
+                        <div className = "description-box2 icon3">
+
+                        </div>
+                        <div className = "description-box">
+                            <div className="icon-details">
+                                <div className ="icon-title">CHALLENGE</div>
+                                <p>Question Everything. <br /> Debate, discuss and expose yourself to different perspectives</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
                 <div className="svg-cont">
                     <svg width="350px" height="350px" viewBox="0 0 403 384" version="1.1" xmlns="http://www.w3.org/2000/svg">
                         <desc>Created with Sketch.</desc>
@@ -108,14 +161,14 @@ const AboutPage = React.createClass({
 
     },
 });
+const mapStateToProps = state => {
+  const user = state.users.find(u => u._id == state.authUserId);
 
-export default AboutPage;
+  return {
+    user,
+    topic: state.topic,
+    statements: state.statements,
+  };
+};
 
-
-
-
-
-
-
-
-
+export default connect(mapStateToProps)(AboutPage);

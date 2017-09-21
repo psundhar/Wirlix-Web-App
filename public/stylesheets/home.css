@@ -123,7 +123,7 @@ h1, h2, h3, h4{
   border-radius: 15px;
   margin-top: 15%;
   /*
-    
+
   min-width: 50%;
  min-height: 100%;
   width: 100%;
@@ -472,7 +472,7 @@ h1, h2, h3, h4{
   font-family: 'Source Code Pro', monospace;
   margin-bottom: 80px;
   border-radius: 15px;
-  
+
   font-size: 2em;
   padding: 35px;
   font-weight: 200;
@@ -589,7 +589,7 @@ h1, h2, h3, h4{
   letter-spacing: 0;
 
 }
- /*   
+ /*
 .response textarea:focus{
   outline: none;
 }
@@ -839,20 +839,22 @@ button:focus{
 }
 
 .carousel-inner {
-    
+
     position:relative;
     width: 500px;
-    left: 30%;
-   
+
   /*  align-content: center;*/
 
 }
 
 .carousel-inner item{
 
-    margin: auto;
+    margin: 60px auto;
 }
-
+.buttonMain {
+  position: relative;
+  display: inline-block;
+}
 .main-section-home video#bgvid {
   position: relative;
   display: inline-block;
@@ -1879,9 +1881,9 @@ button:focus{
 /*   background: linear-gradient(#2BB6D2, #55CEB1); /* Standard syntax (must be last) */
   /* background:url(../images/bgimg2.jpg) center center no-repeat ;*/
 /*   background-size: cover;*/
-    
-  background: #C41717;  
-    
+
+  background: #C41717;
+
 }
 
 .gradient{
@@ -2064,7 +2066,7 @@ button:focus{
 }
 
 .tipIcons{
-    
+
     width:100%;
    /* height:120px;*/
    /* background-color:#DBD9D9;*/
@@ -2073,7 +2075,7 @@ button:focus{
     margin-bottom:50px;
     position:relative;
     display:inline-block;
-    
+
 }
 
 /*----------------floating hearts-------*/
@@ -2191,11 +2193,177 @@ div.heart i {
       left: 0;
     }
   }
+.modal-title{
+  font-size: 25px;
+  text-align: center;
+}
+.boxoooo{
+  background: url(../images/red-fade-bg1.png) center center / cover no-repeat;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 600px;
+  background-color: blue;
+}
+.boxo2{
+  position: relative;
+  display: inline-block;
+  width: 90%;
+  height: 600px;
+  background-color: transparent;
+}
+.boxoooo p{
+  color: white;
+  font-size: 20px;
+  margin: 20px;
+}
+.boxo3{
+  margin: 10px;
+  position: relative;
+  display: inline-block;
+  width: 90%;
+  height: 130px;
+  background-color: white;
+}
+
+.captionP a{
+  font-size: 14px;
+  color: black;
+  margin-top: 2px;
+}
+
+.buttonsHome {
+  margin-bottom: 400px;
+}
+
+.description{
+
+    padding:30px;
+    background-color: black;
+}
+.description p{
+    padding: 35px;
+    margin: 0px;
+   /* border-bottom: 1px solid black;*/
+   /* background: black;*/
+    font-size: 14px;
+    font-family: "Source Code Pro";
+    color:white;
+   line-height: 1.75em;
+   letter-spacing: .4px;
+   font-weight: 400;
+   font-style: normal;
+    text-align: center;
+
+}
+.wirlix-details {
+   background-color: black;
+   height: 575px;
+   width: 100%;
+    overflow:auto;
+
+}
+
+.details {
+   position: relative;
+   display: inline-block;
+   background-color: #EEEBE8;
+ /*  width: 33%;*/
+   height: 100%;
+    padding-top:3%;
+     padding-bottom:3%;
+    padding-left:1.5%;
+/*    padding-right:3%;*/
+    overflow:auto;
+
+}
+
+.description-box2 {
+   position: relative;
+   display: inline-block;
+   background-color: black;
+   width: 100%;
+   height: 30%;
+     -webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;
+     margin-top:10px;
+   margin-bottom:10px;
+    overflow:auto;
+}
+
+.description-box {
+   position: relative;
+   display: inline-block;
+   background-color: white;
+   width: 100%;
+   height: 60%;
+     -webkit-box-shadow: 4px 4px 8px #888;
+  -moz-box-shadow: 4px 4px 8px #888;
+  box-shadow: 4px 4px 8px #888;
+    margin-top:10px;
+   margin-bottom:10px;
+    overflow:auto;
+}
+
+.description-title {
+    font-size: 45px;
+    line-height: 1em;
+    /*text-transform: uppercase;*/
+    font-style: normal;
+    text-align: center;
+    color: white;
+    font-family: source code pro;
+    font-weight: 300;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
 
 
+
+.icon-title {
+    font-size: 35px;
+    line-height: 1em;
+    text-transform: uppercase;
+    font-style: normal;
+    text-align: center;
+    color: black;
+    font-family: source code pro;
+    font-weight: 300;
+    padding-top: 30px;
+ /*   padding-bottom: 20px;*/
+}
+
+.icon1{
+     background-image: url('../images/eyes.jpg');
+     background-size: cover;
+
+}
+
+.icon2{
+
+     background-image: url('../images/share.jpg');
+     background-size: cover;
+}
+
+.icon3{
+     background-image: url('../images/challenge2.gif');
+     background-size: cover;
+}
+
+.social-icons a {
+    padding: 10px;
+    color: white;
+    display: inline;
+    width: 25px;
+    height: 25px;
+}
 /*----------speechBubbles----*/
 
+
 .speechStatementCard {
+  margin: 60px auto;
   width: 550px;
   position: relative;
   text-align: center;
@@ -2206,8 +2374,8 @@ div.heart i {
   -webkit-box-shadow: 4px 4px 8px #888;
   -moz-box-shadow: 4px 4px 8px #888;
   box-shadow: 4px 4px 8px #888;
-    
-   
+
+
 }
 
 .vote-col .speechStatementCard{
@@ -2215,7 +2383,7 @@ div.heart i {
   text-align: center;
   background-color: transparent;
   border: 1px solid transparent;
-  margin-left:50px; 
+  margin-left:50px;
   -webkit-box-shadow: 4px 4px 8px transparent;
   -moz-box-shadow: 4px 4px 8px transparent;
   box-shadow: 4px 4px 8px transparent;
@@ -2276,10 +2444,10 @@ div.heart i {
   text-align: center;
   line-height: 100px;
   background-color: white;
-  border: 5px solid #C41717;   
+  border: 5px solid #C41717;
     border-radius: 30px;
   -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;  
+  -moz-border-radius: 30px;
   -webkit-box-shadow: 2px 2px 4px #888;
   -moz-box-shadow: 2px 2px 4px #888;
   box-shadow: 2px 2px 4px #888;
@@ -2293,7 +2461,7 @@ div.heart i {
   border: 5px solid #C41717;
     border-radius: 30px;
   -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;  
+  -moz-border-radius: 30px;
   -webkit-box-shadow: 2px 2px 4px #888;
   -moz-box-shadow: 2px 2px 4px #888;
   box-shadow: 2px 2px 4px #888;
@@ -2323,27 +2491,27 @@ div.heart i {
 }
 
 .grad1 {
-    
+
  /*   background: lightblue; /* For browsers that do not support gradients */
 /*    background: -webkit-linear-gradient(#7AC1BD, #99C79E); /* For Safari 5.1 to 6.0 */
 /*    background: -o-linear-gradient(#7AC1BD, #99C79E); /* For Opera 11.1 to 12.0 */
 /*    background: -moz-linear-gradient(#7AC1BD, #99C79E); /* For Firefox 3.6 to 15 */
 /*    background: linear-gradient(#7AC1BD, #99C79E); /* Standard syntax (must be last) */
-    
+
  /*   background: -webkit-linear-gradient(#2BB6D2, #55CEB1); /* For Safari 5.1 to 6.0 */
  /*   background: -o-linear-gradient(#2BB6D2, #55CEB1); /* For Opera 11.1 to 12.0 */
 /*    background: -moz-linear-gradient(#2BB6D2, #55CEB1); /* For Firefox 3.6 to 15 */
 /*   background: linear-gradient(#2BB6D2, #55CEB1); /* Standard syntax (must be last) */
-    
-/*     background: #C41717; /* For browsers that do not support gradients */
-/*     background: -webkit-linear-gradient(#4B0000, #FE2000); /* For Safari 5.1 to 6.0 */
-/*     background: -o-linear-gradient(#4B0000, #FE2000); /* For Opera 11.1 to 12.0 */
-/*     background: -moz-linear-gradient(#4B0000, #FE2000); /* For Firefox 3.6 to 15 */
-/*    background: linear-gradient(#4B0000, #FE2000); /* Standard syntax (must be last) */
-    
-    background:#C41717;
-    
-   
+
+     /*background: #C40303; /* For browsers that do not support gradients */
+     background: -webkit-linear-gradient(#C40303, #FFFFFF); /* For Safari 5.1 to 6.0 */
+     background: -o-linear-gradient(#C40303, #FFFFFF); /* For Opera 11.1 to 12.0 */
+     background: -moz-linear-gradient(#C40303, #FFFFFF); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#C40303, #FFFFFF); /* Standard syntax (must be last) */
+
+    background:#C40303;
+
+
 }
 /*--for pulsating effect---*/
 
@@ -2596,8 +2764,8 @@ textarea:focus {
 }
 
 /*----debateCards---*/
- 
-   
+
+
 
 
 
@@ -2613,9 +2781,9 @@ textarea:focus {
     bottom: 85%;
     left: 93%;
   }
-    
+
     .speechStatementCard {
-  
+
   width:550px;
   position: relative;
   text-align: center;
@@ -2623,23 +2791,23 @@ textarea:focus {
   color:black;
   border: 1px solid white;
   padding:40px;
-    margin-left:0px; 
+    margin-left:0px;
   -webkit-box-shadow: 4px 4px 8px #888;
   -moz-box-shadow: 4px 4px 8px #888;
   box-shadow: 4px 4px 8px #888;
  }
-    
+
  .carousel-inner {
-    
+
     position:relative;
     width: 320px;
     left: 29.5%;
-     
+
     }
-    
+
 
 .tipIcons{
-    
+
     width:100%;
    /* height:120px;*/
     /*background-color:#DBD9D9;*/
@@ -2648,7 +2816,7 @@ textarea:focus {
     margin-bottom:50px;
     position:relative;
     display:inline-block;
-    
+
     }
 }
 
@@ -2660,9 +2828,9 @@ textarea:focus {
   left: 50%;
  /* margin-top: 300px;*/
   height: 350px;
-  
+
 }
-    
+
   .speech:before {
   content: ' ';
   position: absolute;
@@ -2684,7 +2852,7 @@ textarea:focus {
   border: 8px solid ;
   border-color: #fff transparent transparent #fff;
 }
-    
+
     .voteButton {
 
       background: none;
@@ -2712,10 +2880,10 @@ textarea:focus {
         width:25px;
         margin:7px;
     }
-    
-  
+
+
    .vote-col .speechStatementCard {
-  
+
   width:100%;
   position: relative;
   text-align: center;
@@ -2723,29 +2891,29 @@ textarea:focus {
   color:black;
   border: 1px solid white;
   padding:40px;
-     margin-left:0px; 
+     margin-left:0px;
   /*-webkit-box-shadow: 4px 4px 8px #888;
   -moz-box-shadow: 4px 4px 8px #888;
   box-shadow: 4px 4px 8px #888;*/
  }
-    
+
  .fullScreenDebateCard{
         display:none;
     }
  .mobileScreenDebateCard{
         display:block;
     }
-    
+
 .fullScreenStatementCard{
         display:none;
     }
  .mobileScreenStatementCard{
         display:block;
     }
-   
+
 
  .tipIcons{
-    
+
     width:100%;
  /*   height:120px;
     background-color:#DBD9D9;*/
@@ -2754,9 +2922,9 @@ textarea:focus {
     margin-bottom:50px;
     position:relative;
     display:inline-block;
-    
-}  
-    
+
+}
+
   .homepagetooltip{
     position: absolute;
     bottom: 88%;
@@ -2807,7 +2975,7 @@ textarea:focus {
   /*.carousel-inner{
     left: 177px;
   }*/
-    
+
      .comment{
   color: #ffffff;
   font-size: 1.25em;
@@ -2817,7 +2985,7 @@ textarea:focus {
   margin-top:20px;
 
   }
-    
+
  .opinionQuestion{
   text-align: center;
   margin-top: 50px;
@@ -2825,11 +2993,11 @@ textarea:focus {
   padding: 0px;
   font-weight: 200;
  }
-   
-    
-    
+
+
+
 .speechStatementCard {
-  
+
   width:100%;
   position: relative;
   text-align: center;
@@ -2837,18 +3005,18 @@ textarea:focus {
   color:black;
   border: 1px solid white;
   padding:40px;
-   
+
   -webkit-box-shadow: 4px 4px 8px #888;
   -moz-box-shadow: 4px 4px 8px #888;
   box-shadow: 4px 4px 8px #888;
  }
-    
+
  .carousel-inner {
-    
+
     position:relative;
     width: 100%;
     /*left: 22%;*/
-    left: 0%; 
+    left: 0%;
     }
 
 }
@@ -2861,11 +3029,11 @@ textarea:focus {
   left: 50%;
   margin-top: 300px;
   height: 350px;
-  
+
 }
-  
+
    .vote-col .speechStatementCard {
-  
+
   width:100%;
   position: relative;
   text-align: center;
@@ -2873,13 +3041,13 @@ textarea:focus {
   color:black;
   border: 1px solid white;
   padding:40px;
-     margin-left:0px; 
+     margin-left:0px;
   /*-webkit-box-shadow: 4px 4px 8px #888;
   -moz-box-shadow: 4px 4px 8px #888;
   box-shadow: 4px 4px 8px #888;*/
  }
     .speechStatementCard {
-  
+
   width:100%;
   position: relative;
   text-align: center;
@@ -2887,22 +3055,22 @@ textarea:focus {
   color:black;
   border: 1px solid white;
   padding:40px;
-   
+
   -webkit-box-shadow: 4px 4px 8px #888;
   -moz-box-shadow: 4px 4px 8px #888;
   box-shadow: 4px 4px 8px #888;
  }
-    
+
  .carousel-inner {
-    
+
     position:relative;
     width: 100%;
     /*left: 22%;*/
-    left: 0%; 
+    left: 0%;
     }
 
  .tipIcons{
-    
+
     width:100%;
  /*   height:120px;
     background-color:#DBD9D9;*/
@@ -2911,9 +3079,9 @@ textarea:focus {
     margin-bottom:50px;
     position:relative;
     display:inline-block;
-    
-}  
-    
+
+}
+
   .homepagetooltip{
     position: absolute;
     bottom: 88%;
@@ -2964,7 +3132,7 @@ textarea:focus {
   /*.carousel-inner{
     left: 177px;
   }*/
-    
+
      .comment{
   color: #ffffff;
   font-size: 1.25em;
@@ -2974,7 +3142,7 @@ textarea:focus {
   margin-top:20px;
 
   }
-    
+
  .opinionQuestion{
   text-align: center;
   margin-top: 50px;
@@ -2982,7 +3150,7 @@ textarea:focus {
   padding: 0px;
   font-weight: 200;
  }
-   
+
      .voteButton {
 
       background: none;
@@ -3010,11 +3178,11 @@ textarea:focus {
         width:25px;
         margin:7px;
     }
-    
+
     .fullScreenVoteButtons{
         display:none;
     }
-    
+
     .mobileScreenVoteButtons{
         display:block;
     }
@@ -3023,9 +3191,9 @@ textarea:focus {
 /* Small Devices, Tablets */
 /*@media only screen and (max-width : 768px) {*/
 @media only screen and (max-width : 775px){
-    
+
    .vote-col .speechStatementCard {
-  
+
   width:100%;
   position: relative;
   text-align: center;
@@ -3033,13 +3201,13 @@ textarea:focus {
   color:black;
   border: 1px solid white;
   padding:40px;
-     margin-left:0px; 
+     margin-left:0px;
   /*-webkit-box-shadow: 4px 4px 8px #888;
   -moz-box-shadow: 4px 4px 8px #888;
   box-shadow: 4px 4px 8px #888;*/
  }
     .speechStatementCard {
-  
+
   width:100%;
   position: relative;
   text-align: center;
@@ -3047,18 +3215,18 @@ textarea:focus {
   color:black;
   border: 1px solid white;
   padding:40px;
-   
+
   -webkit-box-shadow: 4px 4px 8px #888;
   -moz-box-shadow: 4px 4px 8px #888;
   box-shadow: 4px 4px 8px #888;
  }
  .carousel-inner {
-    
+
     position:relative;
     width: 100%;
     left: 0%;
     }
-    
+
  .comment{
   color: #ffffff;
   font-size: 1.25em;
@@ -3068,7 +3236,7 @@ textarea:focus {
   margin-top:20px;
 
   }
-    
+
  .opinionQuestion{
   text-align: center;
   margin-top: 50px;
@@ -3076,7 +3244,7 @@ textarea:focus {
   padding: 0px;
   font-weight: 200;
  }
-   
+
      .voteButton {
 
       background: none;
@@ -3104,15 +3272,15 @@ textarea:focus {
         width:25px;
         margin:7px;
     }
-    
+
     .fullScreenVoteButtons{
         display:none;
     }
-    
+
     .mobileScreenVoteButtons{
         display:block;
     }
-    
+
     .qotd{
         background: white;
         padding-bottom: 70px;
@@ -3120,7 +3288,7 @@ textarea:focus {
     }
 
     .tipIcons{
-    
+
    width:100%;
    /* background-color:#DBD9D9;*/
     padding-left:50px;
@@ -3128,10 +3296,10 @@ textarea:focus {
     margin-bottom:50px;
     position:relative;
     display:inline-block;
-    
+
 }
-    
-    
+
+
  .naver {
     color: black;
   }
@@ -3253,7 +3421,7 @@ textarea:focus {
 .vote-col.emotional{
     border: none;
   }
-    
+
   .nav.nav-pills{
     display: block;
     margin-top: 10px;
@@ -3261,7 +3429,7 @@ textarea:focus {
 
     .vote-col{
         display:none;
-    }  
+    }
 
   .comment .button-vote, .debate .button-vote{
     margin-bottom: 10px;
@@ -3446,9 +3614,9 @@ textarea:focus {
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
-    
-   
-    
+
+
+
   .svg-cont {
     margin: 0 auto;
     position: absolute;
@@ -3457,9 +3625,9 @@ textarea:focus {
     bottom: 200px;
     right: 0px;
   }
-    
+
 .tipIcons{
-    
+
    width:100%;
   /*  background-color:#DBD9D9;*/
     padding-left:50px;
@@ -3467,7 +3635,7 @@ textarea:focus {
     margin-bottom:50px;
     position:relative;
     display:inline-block;
-    
+
 }
 
   .svg-cont svg{
@@ -3495,15 +3663,15 @@ textarea:focus {
     overflow: hidden;
     height: 100vh;
   }
-    
+
  .slide{
         width:320px;
        /* height: 500px;*/
         margin:0 auto;
     }
-    
+
  .vote-col .speechStatementCard {
-  
+
   width:100%;
   position: relative;
   text-align: center;
@@ -3511,13 +3679,13 @@ textarea:focus {
   color:black;
   border: 1px solid white;
   padding:40px;
-     margin-left:0px; 
+     margin-left:0px;
 /*  -webkit-box-shadow: 4px 4px 8px #888;
   -moz-box-shadow: 4px 4px 8px #888;
   box-shadow: 4px 4px 8px #888;*/
  }
     .speechStatementCard {
-  
+
   width:100%;
   position: relative;
   text-align: center;
@@ -3525,19 +3693,19 @@ textarea:focus {
   color:black;
   border: 1px solid white;
   padding:40px;
-   
+
   -webkit-box-shadow: 4px 4px 8px #888;
   -moz-box-shadow: 4px 4px 8px #888;
   box-shadow: 4px 4px 8px #888;
  }
-    
+
  .carousel-inner {
-    
+
     position:relative;
     width: 100%;
     left: 0%;
     }
-    
+
  .comment{
   color: #ffffff;
   font-size: 1.25em;
@@ -3547,7 +3715,7 @@ textarea:focus {
   margin-top:20px;
 
   }
-    
+
  .opinionQuestion{
   text-align: center;
   margin-top: 50px;
@@ -3555,7 +3723,7 @@ textarea:focus {
   padding: 0px;
   font-weight: 200;
  }
-   
+
      .voteButton {
 
       background: none;
@@ -3583,21 +3751,21 @@ textarea:focus {
         width:25px;
         margin:7px;
     }
-    
+
     .fullScreenVoteButtons{
         display:none;
     }
-    
+
     .mobileScreenVoteButtons{
         display:block;
     }
-    
+
     .qotd{
         background: white;
         padding-bottom: 70px;
         border-bottom: 6px solid #C41717;
     }
-    
+
     .speech:before {
   content: ' ';
   position: absolute;
@@ -3626,7 +3794,3 @@ textarea:focus {
 @media only screen and (max-width : 320px) {
 
 }
-
-
-
-

@@ -7,6 +7,7 @@ import ProfilePage from './pages/ProfilePage';
 import ImagePage from './pages/ImagePage';
 import RankingsPage from './pages/RankingsPage';
 import AboutPage from './pages/AboutPage';
+import ChallengePage from './pages/ChallengePage';
 import TutorialPage from './pages/TutorialPage';
 
 import { createStore, applyMiddleware } from 'redux';
@@ -26,7 +27,8 @@ const App = ({}) => {
             <Route path="/home" component={ HomePage } />
             <Route path="/debate" component={ DebatePage } />
             <Route path="/rankings" component={ RankingsPage } />
-            {/*<Route path="/about" component={ AboutPage } />*/}
+          {/*  <Route path="/about" component={ AboutPage } />*/}
+            <Route path="/challenge" component={ ChallengePage } />
             <Route path="/image" component={ ImagePage } />
             <Route path="/profile/:id" component={ ProfilePage } />
 {/*
